@@ -27,7 +27,6 @@ class LoginPresenter: BasePresenter {
     
     func login(username: String! ,password: String!) {
 
-        
         self.view?.showLoading(withMessage: StringLiterals.AUTHENTICATING_USER)
         
         AuthService.shared.oauth(username: username, password: password) { (oauthResponse) in
@@ -35,7 +34,6 @@ class LoginPresenter: BasePresenter {
             
             guard let response = oauthResponse else {
                 self.view?.showError(message: StringLiterals.GENERIC_NETWORK_ERROR)
-                self.view?.showHome()
                 return
             }
             
@@ -44,7 +42,7 @@ class LoginPresenter: BasePresenter {
                 LocalStorage.shared.persistString(string: access_token, key: PersistenceIdentifiers.ACCESS_TOKEN)
                 self.view?.showHome()
             } else {
-                self.view?.showError(message: response.message)
+                self.view?.showError(message: StringLiterals.INCORRECT_PASSWORD)
             }
             
             

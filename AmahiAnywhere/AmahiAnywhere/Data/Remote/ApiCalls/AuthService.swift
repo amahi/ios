@@ -18,7 +18,7 @@ class AuthService {
     
     func oauth(username: String! , password: String!, completion: @escaping (_ oauthResponse: OAuthResponse?) -> Void ) {
         
-        let headers = [ "Content-Type": "application/x-www-form-urlencoded"]
+        let headers = [ "Content-Type": "application/x-www-form-urlencoded" ]
         
         Alamofire.request(ApiEndPoints.authenticate(), method: .post,
                           parameters: ApiConfig.oauthCredentials(username: username, password: password), headers: headers)

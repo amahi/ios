@@ -16,9 +16,7 @@ struct StringLiterals {
     
     // In app strings
     static let GENERIC_NETWORK_ERROR =          "An unexpected network error occurred."
-    
-    // Dialog Text
-    static let CANCEL =                         "Cancel"
-    static let CONFIRM =                        "Confirm"
-    static let OK =                             "OK"
+    static let INCORRECT_PASSWORD =             "Incorrect Username or Password"
+
+  
 }
