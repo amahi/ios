@@ -7,17 +7,49 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		07A3AB2E5DFE0D2AD44B0F33 /* Pods_AmahiAnywhere.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F5293AC0952F87B50DCD644D /* Pods_AmahiAnywhere.framework */; };
+		C83C637320386DD90089B9D8 /* BaseContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = C83C637020386DD90089B9D8 /* BaseContract.swift */; };
+		C83C637420386DD90089B9D8 /* BaseUIViewController+BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C83C637120386DD90089B9D8 /* BaseUIViewController+BaseView.swift */; };
+		C83C637520386DD90089B9D8 /* BaseUIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C83C637220386DD90089B9D8 /* BaseUIViewController.swift */; };
+		C83C637D2038D5150089B9D8 /* StringConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = C83C637A2038D5150089B9D8 /* StringConstants.swift */; };
+		C83C637E2038D5150089B9D8 /* StringIdentifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = C83C637B2038D5150089B9D8 /* StringIdentifiers.swift */; };
+		C83C638F2038D5B30089B9D8 /* LocalStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C83C63812038D5B30089B9D8 /* LocalStorage.swift */; };
+		C83C63902038D5B30089B9D8 /* PersistenceIdentifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = C83C63822038D5B30089B9D8 /* PersistenceIdentifiers.swift */; };
+		C83C63912038D5B30089B9D8 /* StringLiterals.swift in Sources */ = {isa = PBXBuildFile; fileRef = C83C63832038D5B30089B9D8 /* StringLiterals.swift */; };
+		C83C63922038D5B30089B9D8 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C83C63862038D5B30089B9D8 /* AuthService.swift */; };
+		C83C63952038D5B30089B9D8 /* ApiConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = C83C63892038D5B30089B9D8 /* ApiConfig.swift */; };
+		C83C63962038D5B30089B9D8 /* ApiEndPoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = C83C638A2038D5B30089B9D8 /* ApiEndPoints.swift */; };
+		C83C63992038D5B30089B9D8 /* AuthResponses.swift in Sources */ = {isa = PBXBuildFile; fileRef = C83C638E2038D5B30089B9D8 /* AuthResponses.swift */; };
+		C83C639D203992460089B9D8 /* LoginPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C83C639C203992460089B9D8 /* LoginPresenter.swift */; };
+		C83C639F2039B16C0089B9D8 /* DashboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C83C639E2039B16C0089B9D8 /* DashboardViewController.swift */; };
 		FB71BE98201CB2FC0005492C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB71BE97201CB2FC0005492C /* AppDelegate.swift */; };
-		FB71BE9A201CB2FC0005492C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB71BE99201CB2FC0005492C /* ViewController.swift */; };
+		FB71BE9A201CB2FC0005492C /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB71BE99201CB2FC0005492C /* LoginViewController.swift */; };
 		FB71BE9D201CB2FC0005492C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FB71BE9B201CB2FC0005492C /* Main.storyboard */; };
 		FB71BE9F201CB2FC0005492C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FB71BE9E201CB2FC0005492C /* Assets.xcassets */; };
 		FB71BEA2201CB2FC0005492C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FB71BEA0201CB2FC0005492C /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		499AAFCDBDAB4C05C7264992 /* Pods-AmahiAnywhere.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AmahiAnywhere.release.xcconfig"; path = "Pods/Target Support Files/Pods-AmahiAnywhere/Pods-AmahiAnywhere.release.xcconfig"; sourceTree = "<group>"; };
+		665E1C7EF1F0DEBF3A9809B0 /* Pods-AmahiAnywhere.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AmahiAnywhere.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AmahiAnywhere/Pods-AmahiAnywhere.debug.xcconfig"; sourceTree = "<group>"; };
+		C83C637020386DD90089B9D8 /* BaseContract.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseContract.swift; sourceTree = "<group>"; };
+		C83C637120386DD90089B9D8 /* BaseUIViewController+BaseView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "BaseUIViewController+BaseView.swift"; sourceTree = "<group>"; };
+		C83C637220386DD90089B9D8 /* BaseUIViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseUIViewController.swift; sourceTree = "<group>"; };
+		C83C637A2038D5150089B9D8 /* StringConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringConstants.swift; sourceTree = "<group>"; };
+		C83C637B2038D5150089B9D8 /* StringIdentifiers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringIdentifiers.swift; sourceTree = "<group>"; };
+		C83C63812038D5B30089B9D8 /* LocalStorage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalStorage.swift; sourceTree = "<group>"; };
+		C83C63822038D5B30089B9D8 /* PersistenceIdentifiers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersistenceIdentifiers.swift; sourceTree = "<group>"; };
+		C83C63832038D5B30089B9D8 /* StringLiterals.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringLiterals.swift; sourceTree = "<group>"; };
+		C83C63862038D5B30089B9D8 /* AuthService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
+		C83C63892038D5B30089B9D8 /* ApiConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApiConfig.swift; sourceTree = "<group>"; };
+		C83C638A2038D5B30089B9D8 /* ApiEndPoints.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApiEndPoints.swift; sourceTree = "<group>"; };
+		C83C638E2038D5B30089B9D8 /* AuthResponses.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthResponses.swift; sourceTree = "<group>"; };
+		C83C639C203992460089B9D8 /* LoginPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginPresenter.swift; sourceTree = "<group>"; };
+		C83C639E2039B16C0089B9D8 /* DashboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardViewController.swift; sourceTree = "<group>"; };
+		F5293AC0952F87B50DCD644D /* Pods_AmahiAnywhere.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AmahiAnywhere.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FB71BE94201CB2FC0005492C /* AmahiAnywhere.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AmahiAnywhere.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FB71BE97201CB2FC0005492C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		FB71BE99201CB2FC0005492C /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		FB71BE99201CB2FC0005492C /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		FB71BE9C201CB2FC0005492C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		FB71BE9E201CB2FC0005492C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FB71BEA1201CB2FC0005492C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -29,17 +61,120 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				07A3AB2E5DFE0D2AD44B0F33 /* Pods_AmahiAnywhere.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		C446600BA8E0E01249C2486F /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				F5293AC0952F87B50DCD644D /* Pods_AmahiAnywhere.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		C83C636F20386DD90089B9D8 /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				C83C637020386DD90089B9D8 /* BaseContract.swift */,
+				C83C637120386DD90089B9D8 /* BaseUIViewController+BaseView.swift */,
+				C83C637220386DD90089B9D8 /* BaseUIViewController.swift */,
+			);
+			path = Base;
+			sourceTree = "<group>";
+		};
+		C83C63782038D5150089B9D8 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				C83C637A2038D5150089B9D8 /* StringConstants.swift */,
+				C83C637B2038D5150089B9D8 /* StringIdentifiers.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		C83C637F2038D5B30089B9D8 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				C83C63802038D5B30089B9D8 /* Local */,
+				C83C63842038D5B30089B9D8 /* Remote */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
+		C83C63802038D5B30089B9D8 /* Local */ = {
+			isa = PBXGroup;
+			children = (
+				C83C63812038D5B30089B9D8 /* LocalStorage.swift */,
+				C83C63822038D5B30089B9D8 /* PersistenceIdentifiers.swift */,
+				C83C63832038D5B30089B9D8 /* StringLiterals.swift */,
+			);
+			path = Local;
+			sourceTree = "<group>";
+		};
+		C83C63842038D5B30089B9D8 /* Remote */ = {
+			isa = PBXGroup;
+			children = (
+				C83C63852038D5B30089B9D8 /* ApiCalls */,
+				C83C63892038D5B30089B9D8 /* ApiConfig.swift */,
+				C83C638A2038D5B30089B9D8 /* ApiEndPoints.swift */,
+				C83C638B2038D5B30089B9D8 /* Model */,
+			);
+			path = Remote;
+			sourceTree = "<group>";
+		};
+		C83C63852038D5B30089B9D8 /* ApiCalls */ = {
+			isa = PBXGroup;
+			children = (
+				C83C63862038D5B30089B9D8 /* AuthService.swift */,
+			);
+			path = ApiCalls;
+			sourceTree = "<group>";
+		};
+		C83C638B2038D5B30089B9D8 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				C83C638E2038D5B30089B9D8 /* AuthResponses.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		C83C639A2039921B0089B9D8 /* Presentation */ = {
+			isa = PBXGroup;
+			children = (
+				C83C639B2039922A0089B9D8 /* Login */,
+				C83C639E2039B16C0089B9D8 /* DashboardViewController.swift */,
+			);
+			path = Presentation;
+			sourceTree = "<group>";
+		};
+		C83C639B2039922A0089B9D8 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				FB71BE99201CB2FC0005492C /* LoginViewController.swift */,
+				C83C639C203992460089B9D8 /* LoginPresenter.swift */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		DDF3537D8AE1275A22FED2AA /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				665E1C7EF1F0DEBF3A9809B0 /* Pods-AmahiAnywhere.debug.xcconfig */,
+				499AAFCDBDAB4C05C7264992 /* Pods-AmahiAnywhere.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		FB71BE8B201CB2FB0005492C = {
 			isa = PBXGroup;
 			children = (
 				FB71BE96201CB2FC0005492C /* AmahiAnywhere */,
 				FB71BE95201CB2FC0005492C /* Products */,
+				DDF3537D8AE1275A22FED2AA /* Pods */,
+				C446600BA8E0E01249C2486F /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -54,8 +189,11 @@
 		FB71BE96201CB2FC0005492C /* AmahiAnywhere */ = {
 			isa = PBXGroup;
 			children = (
+				C83C639A2039921B0089B9D8 /* Presentation */,
+				C83C637F2038D5B30089B9D8 /* Data */,
+				C83C636F20386DD90089B9D8 /* Base */,
+				C83C63782038D5150089B9D8 /* Utils */,
 				FB71BE97201CB2FC0005492C /* AppDelegate.swift */,
-				FB71BE99201CB2FC0005492C /* ViewController.swift */,
 				FB71BE9B201CB2FC0005492C /* Main.storyboard */,
 				FB71BE9E201CB2FC0005492C /* Assets.xcassets */,
 				FB71BEA0201CB2FC0005492C /* LaunchScreen.storyboard */,
@@ -71,9 +209,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = FB71BEA6201CB2FC0005492C /* Build configuration list for PBXNativeTarget "AmahiAnywhere" */;
 			buildPhases = (
+				D37A02672BBEFF330A5E8AAE /* [CP] Check Pods Manifest.lock */,
 				FB71BE90201CB2FC0005492C /* Sources */,
 				FB71BE91201CB2FC0005492C /* Frameworks */,
 				FB71BE92201CB2FC0005492C /* Resources */,
+				F61A594FE5268D2316515601 /* [CP] Embed Pods Frameworks */,
+				C8F7A987AB598D3B34328FEB /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -131,13 +272,89 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		C8F7A987AB598D3B34328FEB /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-AmahiAnywhere/Pods-AmahiAnywhere-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D37A02672BBEFF330A5E8AAE /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-AmahiAnywhere-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F61A594FE5268D2316515601 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-AmahiAnywhere/Pods-AmahiAnywhere-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/EVReflection/EVReflection.framework",
+				"${BUILT_PRODUCTS_DIR}/IQKeyboardManagerSwift/IQKeyboardManagerSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/MBProgressHUD/MBProgressHUD.framework",
+				"${BUILT_PRODUCTS_DIR}/SkyFloatingLabelTextField/SkyFloatingLabelTextField.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/EVReflection.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/IQKeyboardManagerSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MBProgressHUD.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SkyFloatingLabelTextField.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-AmahiAnywhere/Pods-AmahiAnywhere-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		FB71BE90201CB2FC0005492C /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FB71BE9A201CB2FC0005492C /* ViewController.swift in Sources */,
+				C83C63952038D5B30089B9D8 /* ApiConfig.swift in Sources */,
+				C83C63902038D5B30089B9D8 /* PersistenceIdentifiers.swift in Sources */,
+				C83C637520386DD90089B9D8 /* BaseUIViewController.swift in Sources */,
+				FB71BE9A201CB2FC0005492C /* LoginViewController.swift in Sources */,
 				FB71BE98201CB2FC0005492C /* AppDelegate.swift in Sources */,
+				C83C637D2038D5150089B9D8 /* StringConstants.swift in Sources */,
+				C83C63922038D5B30089B9D8 /* AuthService.swift in Sources */,
+				C83C637320386DD90089B9D8 /* BaseContract.swift in Sources */,
+				C83C63912038D5B30089B9D8 /* StringLiterals.swift in Sources */,
+				C83C639D203992460089B9D8 /* LoginPresenter.swift in Sources */,
+				C83C638F2038D5B30089B9D8 /* LocalStorage.swift in Sources */,
+				C83C637420386DD90089B9D8 /* BaseUIViewController+BaseView.swift in Sources */,
+				C83C637E2038D5150089B9D8 /* StringIdentifiers.swift in Sources */,
+				C83C63962038D5B30089B9D8 /* ApiEndPoints.swift in Sources */,
+				C83C63992038D5B30089B9D8 /* AuthResponses.swift in Sources */,
+				C83C639F2039B16C0089B9D8 /* DashboardViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -272,13 +489,14 @@
 		};
 		FB71BEA7201CB2FC0005492C /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 665E1C7EF1F0DEBF3A9809B0 /* Pods-AmahiAnywhere.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 325LAYFA25;
+				DEVELOPMENT_TEAM = 44WM7BTB59;
 				INFOPLIST_FILE = AmahiAnywhere/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.amahi.AmahiAnywhere;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.amahi.AmahiAnywhere-";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -287,13 +505,14 @@
 		};
 		FB71BEA8201CB2FC0005492C /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 499AAFCDBDAB4C05C7264992 /* Pods-AmahiAnywhere.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 325LAYFA25;
+				DEVELOPMENT_TEAM = 44WM7BTB59;
 				INFOPLIST_FILE = AmahiAnywhere/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.amahi.AmahiAnywhere;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.amahi.AmahiAnywhere-";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
