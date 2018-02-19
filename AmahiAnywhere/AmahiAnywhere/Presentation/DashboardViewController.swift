@@ -23,5 +23,4 @@ class DashboardViewController: BaseUIViewController {
             self.dismiss(animated: true, completion: nil)
         }
     }
-    
 }
