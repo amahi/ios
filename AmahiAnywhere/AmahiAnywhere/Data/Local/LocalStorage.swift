@@ -1,0 +1,54 @@
+//
+//  LocalStorage.swift
+//  AmahiAnywhere
+//
+//  Created by codedentwickler on 2/18/18.
+//  Copyright © 2018 Amahi. All rights reserved.
+//
+
+import Foundation
+
+final class LocalStorage: NSObject {
+    
+    override init() {
+        super.init()
+    }
+    
+    static let shared = LocalStorage()
+    
+    public func persistString(string: String!, key: String!){
+        delete(key: key);
+        UserDefaults.standard.setValue(string, forKey: key);
+        UserDefaults.standard.synchronize();
+    }
+    
+    public func getString(key: String!) -> String? {
+        UserDefaults.standard.synchronize()
+        return UserDefaults.standard.value(forKey: key) as? String;
+    }
+    
+    public func contains(key: String!) -> Bool{
+        return UserDefaults.standard.object(forKey: key) != nil
+    }
+    public func delete(key: String!){
+        UserDefaults.standard.removeObject(forKey: key);
+        UserDefaults.standard.synchronize();
+    }
+    
+    public func logout(_ complete: () -> Void){
+        UserDefaults.standard.removeObject(forKey: PersistenceIdentifiers.ACCESS_TOKEN)
+        UserDefaults.standard.synchronize()
+        complete();
+    }
+    
+    public func clearAll(){
+        let appDomain = Bundle.main.bundleIdentifier!
+        UserDefaults.standard.removePersistentDomain(forName: appDomain)
+        UserDefaults.standard.synchronize()
+    }
+    
+    public func getAccessToken() -> String? {
+        return self.getString(key: PersistenceIdentifiers.ACCESS_TOKEN)
+    }
+
+}
