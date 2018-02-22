@@ -19,6 +19,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         IQKeyboardManager.sharedManager().enable = true
         
+        self.window? = UIWindow(frame: UIScreen.main.bounds)
+        let mainStoryboard: UIStoryboard = UIStoryboard(name: StoryBoardIdentifiers.MAIN, bundle: nil)
+        var initialViewController: UIViewController? = nil
+        if LocalStorage.shared.contains(key: PersistenceIdentifiers.ACCESS_TOKEN) {
+            initialViewController = mainStoryboard.instantiateViewController(withIdentifier: "DashboardViewController")
+        } else {
+            initialViewController = mainStoryboard.instantiateInitialViewController()
+        }
+        
+        self.window?.rootViewController = initialViewController
+        self.window?.makeKeyAndVisible()
         return true
     }
 
