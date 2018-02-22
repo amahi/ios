@@ -25,5 +25,4 @@ struct ApiConfig {
         
         return parameters
     }
-
 }
