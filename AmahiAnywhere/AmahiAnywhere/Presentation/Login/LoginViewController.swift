@@ -7,11 +7,12 @@
 //
 
 import UIKit
+import SkyFloatingLabelTextField
 
 class LoginViewController: BaseUIViewController {
 
-    @IBOutlet weak var usernameInputField: UITextField!
-    @IBOutlet weak var passwordInputField: UITextField!
+    @IBOutlet weak var usernameInputField: SkyFloatingLabelTextField!
+    @IBOutlet weak var passwordInputField: SkyFloatingLabelTextField!
     
     private var presenter: LoginPresenter!
     
@@ -24,12 +25,23 @@ class LoginViewController: BaseUIViewController {
         passwordInputField.delegate = self
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        (textField as! SkyFloatingLabelTextField).errorMessage = nil
+        return true
     }
-
     @IBAction func userclickSignIn(_ sender: Any) {
+        
+        if (usernameInputField.text?.isEmpty)! {
+            usernameInputField.errorColor = UIColor.red
+            usernameInputField.errorMessage = StringLiterals.FIELD_IS_REQUIRED
+            return
+        }
+        
+        if (passwordInputField.text?.isEmpty)! {
+            passwordInputField.errorColor = UIColor.red
+            passwordInputField.errorMessage = StringLiterals.FIELD_IS_REQUIRED
+            return
+        }
         
         presenter.login(username: usernameInputField.text!,
                         password: passwordInputField.text!)

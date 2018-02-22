@@ -6,7 +6,7 @@
 //  Copyright © 2018 Amahi. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 class DashboardViewController: BaseUIViewController {
     
@@ -19,8 +19,9 @@ class DashboardViewController: BaseUIViewController {
     
     @IBAction func userClickSignOut(_ sender: Any) {
         
-        LocalStorage.shared.logout {
-            self.dismiss(animated: true, completion: nil)
-        }
+        LocalStorage.shared.logout {}
+        let loginVc = self.instantiateViewController(withIdentifier: "LoginViewController" ,
+                                                         from: StoryBoardIdentifiers.MAIN)
+        self.present(loginVc, animated: true, completion: nil)
     }
 }
