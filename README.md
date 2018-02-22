@@ -10,6 +10,7 @@ Amahi iOS App, new from scratch, in Swift.
 - Close Xcode
 - Open a terminal window, and `$ cd` into your project directory.
 - Run `$ pod install`
+- You may require to run `$ pod update`
 - `$ open AmahiAnywhere.xcworkspace` and build.
 
 ### Pods
@@ -25,7 +26,7 @@ Amahi iOS App, new from scratch, in Swift.
 
 ## Support
 
-If you have questions about Amahi or just want to interact, you can contact us via IRC on #amahi on irc.freenode.net. Don't forget that we are open to suggestions, extensions or adaptations. Feel free to discuss or propose new ideas for projects!
+If you have questions about Amahi or just want to interact, you can contact us via [IRC channel](http://talk.amahi.org). Don't forget that we are open to suggestions, extensions or adaptations. Feel free to discuss or propose new ideas for projects!
 
 
 This app will go into the [iOS app store](https://itunes.apple.com/us/app/amahi/id761559919) and replace the current version there written in Objective C.
