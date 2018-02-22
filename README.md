@@ -7,15 +7,12 @@ Amahi iOS App, new from scratch, in Swift.
 - Xcode 9.0+
 
 ## Setup
-```
-Close Xcode
-Open a terminal window, and $ cd into your project directory.
-Run $ pod install
-Open AmahiAnywhere.xcworkspace and build.
-```
+- Close Xcode
+- Open a terminal window, and `$ cd` into your project directory.
+- Run `$ pod install`
+- `$ open AmahiAnywhere.xcworkspace` and build.
 
 ### Pods
-```
 - [Alamofire](https://github.com/Alamofire/Alamofire): Elegant HTTP Networking in Swift
 
 - [EVReflection](https://github.com/evermeer/EVReflection): Reflection based (Dictionary, CKRecord, NSManagedObject, Realm,                     JSON and XML) object mapping with extensions for Alamofire
@@ -25,8 +22,6 @@ Open AmahiAnywhere.xcworkspace and build.
 - [SkyFloatingLabelTextField](https://github.com/Skyscanner/SkyFloatingLabelTextField): A beautiful and flexible text field                                   control implementation of "Float Label Pattern". Written in Swift.
 
 - [MBProgressHUD](https://github.com/jdg/MBProgressHUD)
-
-```
 
 ## Support
 
