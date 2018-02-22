@@ -68,3 +68,5 @@ fastlane/test_output
 
 ._*
 .DS*
+
+AmahiAnywhere/AmahiAnywhere/Data/Remote/ApiConfig.swift
