@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		07A3AB2E5DFE0D2AD44B0F33 /* Pods_AmahiAnywhere.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F5293AC0952F87B50DCD644D /* Pods_AmahiAnywhere.framework */; };
+		0AA5E185203F36DD0010FD47 /* Amahi Logo White Font.png in Resources */ = {isa = PBXBuildFile; fileRef = 0AA5E184203F36DD0010FD47 /* Amahi Logo White Font.png */; };
 		C83C637320386DD90089B9D8 /* BaseContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = C83C637020386DD90089B9D8 /* BaseContract.swift */; };
 		C83C637420386DD90089B9D8 /* BaseUIViewController+BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C83C637120386DD90089B9D8 /* BaseUIViewController+BaseView.swift */; };
 		C83C637520386DD90089B9D8 /* BaseUIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C83C637220386DD90089B9D8 /* BaseUIViewController.swift */; };
@@ -30,6 +31,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0AA5E184203F36DD0010FD47 /* Amahi Logo White Font.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Amahi Logo White Font.png"; sourceTree = "<group>"; };
 		499AAFCDBDAB4C05C7264992 /* Pods-AmahiAnywhere.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AmahiAnywhere.release.xcconfig"; path = "Pods/Target Support Files/Pods-AmahiAnywhere/Pods-AmahiAnywhere.release.xcconfig"; sourceTree = "<group>"; };
 		665E1C7EF1F0DEBF3A9809B0 /* Pods-AmahiAnywhere.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AmahiAnywhere.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AmahiAnywhere/Pods-AmahiAnywhere.debug.xcconfig"; sourceTree = "<group>"; };
 		C83C637020386DD90089B9D8 /* BaseContract.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseContract.swift; sourceTree = "<group>"; };
@@ -196,6 +198,7 @@
 				FB71BE97201CB2FC0005492C /* AppDelegate.swift */,
 				FB71BE9B201CB2FC0005492C /* Main.storyboard */,
 				FB71BE9E201CB2FC0005492C /* Assets.xcassets */,
+				0AA5E184203F36DD0010FD47 /* Amahi Logo White Font.png */,
 				FB71BEA0201CB2FC0005492C /* LaunchScreen.storyboard */,
 				FB71BEA3201CB2FC0005492C /* Info.plist */,
 			);
@@ -265,6 +268,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FB71BEA2201CB2FC0005492C /* LaunchScreen.storyboard in Resources */,
+				0AA5E185203F36DD0010FD47 /* Amahi Logo White Font.png in Resources */,
 				FB71BE9F201CB2FC0005492C /* Assets.xcassets in Resources */,
 				FB71BE9D201CB2FC0005492C /* Main.storyboard in Resources */,
 			);
