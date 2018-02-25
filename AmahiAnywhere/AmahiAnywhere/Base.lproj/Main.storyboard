@@ -98,17 +98,29 @@
                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Amahi Logo White Font.png" translatesAutoresizingMaskIntoConstraints="NO" id="MhE-Ip-eIw">
                                         <rect key="frame" x="67" y="111" width="240" height="128"/>
                                     </imageView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="g1t-fT-DMe">
+                                        <rect key="frame" x="20" y="485" width="335" height="30"/>
+                                        <state key="normal" title="Forgot password?">
+                                            <color key="titleColor" red="0.4038835764" green="0.40394583340000001" blue="0.40386995669999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="userClickForgotPassword:" destination="BYZ-38-t0r" eventType="touchUpInside" id="WlE-nh-Ghg"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.094117647060000004" green="0.094117647060000004" blue="0.094117647060000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstItem="Ncp-2O-f9H" firstAttribute="leading" secondItem="9fv-AI-FYH" secondAttribute="leading" constant="20" id="4uX-s6-ssq"/>
                                     <constraint firstItem="MhE-Ip-eIw" firstAttribute="leading" secondItem="9fv-AI-FYH" secondAttribute="leading" constant="67" id="8G1-jw-NKZ"/>
                                     <constraint firstItem="MhE-Ip-eIw" firstAttribute="top" secondItem="9fv-AI-FYH" secondAttribute="top" constant="111" id="Dos-Ad-n5g"/>
+                                    <constraint firstAttribute="trailing" secondItem="g1t-fT-DMe" secondAttribute="trailing" constant="20" id="E8f-s9-4mT"/>
                                     <constraint firstItem="0uK-Wc-m2p" firstAttribute="top" secondItem="Ncp-2O-f9H" secondAttribute="bottom" constant="37" id="L4f-ns-cpq"/>
                                     <constraint firstItem="0uK-Wc-m2p" firstAttribute="top" secondItem="MhE-Ip-eIw" secondAttribute="bottom" constant="155.33000000000001" id="QQy-Fm-9Fj"/>
                                     <constraint firstItem="0uK-Wc-m2p" firstAttribute="width" secondItem="Ncp-2O-f9H" secondAttribute="width" id="QjF-7P-36h"/>
                                     <constraint firstItem="Ncp-2O-f9H" firstAttribute="top" secondItem="MhE-Ip-eIw" secondAttribute="bottom" constant="8" id="SAx-ww-a6L"/>
+                                    <constraint firstItem="g1t-fT-DMe" firstAttribute="top" secondItem="0uK-Wc-m2p" secondAttribute="bottom" constant="40.333333333333314" id="Vho-A4-xil"/>
                                     <constraint firstAttribute="trailing" secondItem="MhE-Ip-eIw" secondAttribute="trailing" constant="68" id="ZSb-VI-maY"/>
+                                    <constraint firstItem="g1t-fT-DMe" firstAttribute="leading" secondItem="9fv-AI-FYH" secondAttribute="leading" constant="20" id="cqP-Vn-HoU"/>
                                     <constraint firstItem="Ncp-2O-f9H" firstAttribute="top" secondItem="9fv-AI-FYH" secondAttribute="top" constant="247" id="o20-fl-kQC"/>
                                     <constraint firstItem="0uK-Wc-m2p" firstAttribute="centerX" secondItem="Ncp-2O-f9H" secondAttribute="centerX" id="v6G-Dk-SSi"/>
                                     <constraint firstItem="Ncp-2O-f9H" firstAttribute="top" secondItem="MhE-Ip-eIw" secondAttribute="bottom" constant="8" id="xKK-RT-wFa"/>
@@ -132,7 +144,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="223" y="134"/>
+            <point key="canvasLocation" x="221.25" y="132.04225352112675"/>
         </scene>
         <!--Home-->
         <scene sceneID="aT1-kv-Ut4">

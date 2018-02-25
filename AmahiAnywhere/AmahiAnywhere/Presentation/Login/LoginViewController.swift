@@ -29,6 +29,11 @@ class LoginViewController: BaseUIViewController {
         (textField as! SkyFloatingLabelTextField).errorMessage = nil
         return true
     }
+    
+    @IBAction func userClickForgotPassword(_ sender: UIButton) {
+        UIApplication.shared.open(NSURL(string:"https://www.amahi.org/forgot")! as URL)
+    }
+    
     @IBAction func userclickSignIn(_ sender: Any) {
         
         if (usernameInputField.text?.isEmpty)! {
