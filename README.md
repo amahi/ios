@@ -22,7 +22,7 @@ Amahi iOS App, new from scratch, in Swift.
 
 - [SkyFloatingLabelTextField](https://github.com/Skyscanner/SkyFloatingLabelTextField): A beautiful and flexible text field                                   control implementation of "Float Label Pattern". Written in Swift.
 
-- [MBProgressHUD](https://github.com/jdg/MBProgressHUD)
+- [MBProgressHUD](https://github.com/jdg/MBProgressHUD): It is an iOS drop-in class that displays a translucent HUD with an indicator and/or labels while work is being done in a background thread.
 
 ## Support
 
