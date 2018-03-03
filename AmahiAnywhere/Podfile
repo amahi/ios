@@ -10,5 +10,6 @@ use_frameworks!
     pod 'EVReflection/Alamofire'
     pod 'IQKeyboardManagerSwift'
     pod 'SkyFloatingLabelTextField', '~> 3.0'
+    pod 'MobileVLCKit'
 
 end

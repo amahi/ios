@@ -12,9 +12,6 @@ class DashboardViewController: BaseUIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        // Check access token in the debug area
-        print("ACCESS TOKEN: \(LocalStorage.shared.getAccessToken()!)")
     }
     
     @IBAction func userClickSignOut(_ sender: Any) {

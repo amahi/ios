@@ -6,6 +6,7 @@ PODS:
   - EVReflection/Core (5.5.5)
   - IQKeyboardManagerSwift (5.0.7)
   - MBProgressHUD (1.1.0)
+  - MobileVLCKit (3.0.1)
   - SkyFloatingLabelTextField (3.4.0)
 
 DEPENDENCIES:
@@ -13,6 +14,7 @@ DEPENDENCIES:
   - EVReflection/Alamofire
   - IQKeyboardManagerSwift
   - MBProgressHUD (~> 1.1.0)
+  - MobileVLCKit
   - SkyFloatingLabelTextField (~> 3.0)
 
 SPEC CHECKSUMS:
@@ -20,8 +22,9 @@ SPEC CHECKSUMS:
   EVReflection: f5acec65ca5591bcb654743156172e3f2cbf2257
   IQKeyboardManagerSwift: 30fb3a61de1af53a95e02b80fb54ed0a19d5ede5
   MBProgressHUD: e7baa36a220447d8aeb12769bf0585582f3866d9
+  MobileVLCKit: 46931c28da80575647976cc569a7690499901406
   SkyFloatingLabelTextField: 703aa1420b697392b1e7dba25571180dde018477
 
-PODFILE CHECKSUM: 016a36dd306797a6f49fe648c4298e22ce2a2570
+PODFILE CHECKSUM: eedef2223a790d28c771b58b76a072bdce157eab
 
 COCOAPODS: 1.4.0

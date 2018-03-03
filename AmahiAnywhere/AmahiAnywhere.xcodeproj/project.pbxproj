@@ -19,10 +19,10 @@
 		C83C63912038D5B30089B9D8 /* StringLiterals.swift in Sources */ = {isa = PBXBuildFile; fileRef = C83C63832038D5B30089B9D8 /* StringLiterals.swift */; };
 		C83C63922038D5B30089B9D8 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C83C63862038D5B30089B9D8 /* AuthService.swift */; };
 		C83C63952038D5B30089B9D8 /* ApiConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = C83C63892038D5B30089B9D8 /* ApiConfig.swift */; };
-		C83C63962038D5B30089B9D8 /* ApiEndPoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = C83C638A2038D5B30089B9D8 /* ApiEndPoints.swift */; };
 		C83C63992038D5B30089B9D8 /* AuthResponses.swift in Sources */ = {isa = PBXBuildFile; fileRef = C83C638E2038D5B30089B9D8 /* AuthResponses.swift */; };
 		C83C639D203992460089B9D8 /* LoginPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C83C639C203992460089B9D8 /* LoginPresenter.swift */; };
 		C83C639F2039B16C0089B9D8 /* DashboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C83C639E2039B16C0089B9D8 /* DashboardViewController.swift */; };
+		C866E5552042D02A0083A606 /* VideoPlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C866E5542042D02A0083A606 /* VideoPlayerViewController.swift */; };
 		FB71BE98201CB2FC0005492C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB71BE97201CB2FC0005492C /* AppDelegate.swift */; };
 		FB71BE9A201CB2FC0005492C /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB71BE99201CB2FC0005492C /* LoginViewController.swift */; };
 		FB71BE9D201CB2FC0005492C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FB71BE9B201CB2FC0005492C /* Main.storyboard */; };
@@ -44,10 +44,11 @@
 		C83C63832038D5B30089B9D8 /* StringLiterals.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringLiterals.swift; sourceTree = "<group>"; };
 		C83C63862038D5B30089B9D8 /* AuthService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
 		C83C63892038D5B30089B9D8 /* ApiConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApiConfig.swift; sourceTree = "<group>"; };
-		C83C638A2038D5B30089B9D8 /* ApiEndPoints.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApiEndPoints.swift; sourceTree = "<group>"; };
 		C83C638E2038D5B30089B9D8 /* AuthResponses.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthResponses.swift; sourceTree = "<group>"; };
 		C83C639C203992460089B9D8 /* LoginPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginPresenter.swift; sourceTree = "<group>"; };
 		C83C639E2039B16C0089B9D8 /* DashboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardViewController.swift; sourceTree = "<group>"; };
+		C866E5532042373D0083A606 /* AmahiAnywhere-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "AmahiAnywhere-Bridging-Header.h"; sourceTree = "<group>"; };
+		C866E5542042D02A0083A606 /* VideoPlayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPlayerViewController.swift; sourceTree = "<group>"; };
 		F5293AC0952F87B50DCD644D /* Pods_AmahiAnywhere.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AmahiAnywhere.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FB71BE94201CB2FC0005492C /* AmahiAnywhere.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AmahiAnywhere.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FB71BE97201CB2FC0005492C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -121,7 +122,6 @@
 			children = (
 				C83C63852038D5B30089B9D8 /* ApiCalls */,
 				C83C63892038D5B30089B9D8 /* ApiConfig.swift */,
-				C83C638A2038D5B30089B9D8 /* ApiEndPoints.swift */,
 				C83C638B2038D5B30089B9D8 /* Model */,
 			);
 			path = Remote;
@@ -148,6 +148,7 @@
 			children = (
 				C83C639B2039922A0089B9D8 /* Login */,
 				C83C639E2039B16C0089B9D8 /* DashboardViewController.swift */,
+				C866E5542042D02A0083A606 /* VideoPlayerViewController.swift */,
 			);
 			path = Presentation;
 			sourceTree = "<group>";
@@ -201,6 +202,7 @@
 				0AA5E184203F36DD0010FD47 /* Amahi Logo White Font.png */,
 				FB71BEA0201CB2FC0005492C /* LaunchScreen.storyboard */,
 				FB71BEA3201CB2FC0005492C /* Info.plist */,
+				C866E5532042373D0083A606 /* AmahiAnywhere-Bridging-Header.h */,
 			);
 			path = AmahiAnywhere;
 			sourceTree = "<group>";
@@ -344,6 +346,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C83C63952038D5B30089B9D8 /* ApiConfig.swift in Sources */,
+				C866E5552042D02A0083A606 /* VideoPlayerViewController.swift in Sources */,
 				C83C63902038D5B30089B9D8 /* PersistenceIdentifiers.swift in Sources */,
 				C83C637520386DD90089B9D8 /* BaseUIViewController.swift in Sources */,
 				FB71BE9A201CB2FC0005492C /* LoginViewController.swift in Sources */,
@@ -356,7 +359,6 @@
 				C83C638F2038D5B30089B9D8 /* LocalStorage.swift in Sources */,
 				C83C637420386DD90089B9D8 /* BaseUIViewController+BaseView.swift in Sources */,
 				C83C637E2038D5150089B9D8 /* StringIdentifiers.swift in Sources */,
-				C83C63962038D5B30089B9D8 /* ApiEndPoints.swift in Sources */,
 				C83C63992038D5B30089B9D8 /* AuthResponses.swift in Sources */,
 				C83C639F2039B16C0089B9D8 /* DashboardViewController.swift in Sources */,
 			);
@@ -498,10 +500,12 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 44WM7BTB59;
+				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = AmahiAnywhere/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.amahi.AmahiAnywhere;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.amahi.AmahiAnywhere-";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "/Users/mac/IOSProjects/ios/AmahiAnywhere/AmahiAnywhere/AmahiAnywhere-Bridging-Header.h";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -514,10 +518,12 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 44WM7BTB59;
+				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = AmahiAnywhere/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.amahi.AmahiAnywhere;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.amahi.AmahiAnywhere-";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "/Users/mac/IOSProjects/ios/AmahiAnywhere/AmahiAnywhere/AmahiAnywhere-Bridging-Header.h";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
