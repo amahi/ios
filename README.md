@@ -20,9 +20,11 @@ Amahi iOS App, new from scratch, in Swift.
 
 - [IQKeyboardManagerSwift](https://github.com/hackiftekhar/IQKeyboardManager): Codeless drop-in universal library allows to                             prevent issues of keyboard sliding up and cover UITextField/UITextView with one line of code
 
-- [SkyFloatingLabelTextField](https://github.com/Skyscanner/SkyFloatingLabelTextField): A beautiful and flexible text field                                   control implementation of "Float Label Pattern". Written in Swift.
-
 - [MBProgressHUD](https://github.com/jdg/MBProgressHUD): It is an iOS drop-in class that displays a translucent HUD with an indicator and/or labels while work is being done in a background thread.
+
+- [MobileVLCKit](https://code.videolan.org/videolan/VLCKit.git): It is an Objective-C wrapper for libvlc's external interface on iOS.
+
+- [SkyFloatingLabelTextField](https://github.com/Skyscanner/SkyFloatingLabelTextField): A beautiful and flexible text field                                   control implementation of "Float Label Pattern". Written in Swift.
 
 ## Support
 
