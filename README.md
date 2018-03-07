@@ -13,6 +13,12 @@ Amahi iOS App, new from scratch, in Swift.
 - You may require to run `$ pod update`
 - `$ open AmahiAnywhere.xcworkspace` and build.
 
+### Code Practices
+Please help us follow the best practice to make it easy for the reviewer as well as the contributor.
+* Please follow the guides and code standards: [Swift Style Guide](https://github.com/linkedin/swift-style-guide)
+* Please follow the good iOS development practices: [iOS Good Practices](https://github.com/futurice/ios-good-practices)
+* If the PR is related to any front end change, please attach relevant screenshots in the pull request description.
+
 ### Pods
 - [Alamofire](https://github.com/Alamofire/Alamofire): Elegant HTTP Networking in Swift
 
