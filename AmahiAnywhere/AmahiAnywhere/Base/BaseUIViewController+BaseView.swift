@@ -37,6 +37,33 @@ extension BaseUIViewController: BaseView {
 }
 
 
+// Mark - Generic Table View Setup
+extension BaseUITableViewController: BaseView {
+    
+    func showLoading() {
+        showProgressIndicator(withMessage: StringLiterals.PLEASE_WAIT)
+    }
+    
+    func showLoading(withMessage text: String) {
+        showProgressIndicator(withMessage: text)
+    }
+    
+    func dismissLoading() {
+        dismissProgressIndicator()
+    }
+    
+    func showError(title: String, message text: String) {
+        createErrorDialog(title: title, message: text)
+    }
+    
+    func showError(message text: String) {
+        createErrorDialog(message: text)
+    }
+    
+    func isNetworkConnected() {}
+}
+
+
 // Mark - Common View Actions
 
 extension UIViewController {
@@ -55,7 +82,6 @@ extension UIViewController {
 
         return vc
     }
-
     
     func createErrorDialog(title: String! = "Oops!", message: String! = StringLiterals.GENERIC_NETWORK_ERROR) {
         
@@ -73,9 +99,16 @@ extension UIViewController {
     }
 }
 
+
 // MARK - Progress Loading Indicator
 
-extension BaseUIViewController {
+protocol ProgressLoadingIndicators {
+    func showProgressIndicator(withMessage message: String)
+    func dismissProgressIndicator()
+    func showNetworkIndicator(status: Bool)
+}
+
+extension ProgressLoadingIndicators where Self: UIViewController {
     
     func showProgressIndicator(withMessage message: String) {
         self.view.endEditing(true)
@@ -99,3 +132,6 @@ extension BaseUIViewController {
         }
     }
 }
+
+extension BaseUIViewController: ProgressLoadingIndicators {}
+extension BaseUITableViewController: ProgressLoadingIndicators {}

@@ -29,7 +29,7 @@ class LoginPresenter: BasePresenter {
 
         self.view?.showLoading(withMessage: StringLiterals.AUTHENTICATING_USER)
         
-        AuthService.shared.oauth(username: username, password: password) { (oauthResponse) in
+        AmahiApi.shared.login(username: username, password: password) { (oauthResponse) in
             self.view?.dismissLoading()
             
             guard let response = oauthResponse else {

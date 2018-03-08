@@ -9,6 +9,19 @@
 /* Begin PBXBuildFile section */
 		07A3AB2E5DFE0D2AD44B0F33 /* Pods_AmahiAnywhere.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F5293AC0952F87B50DCD644D /* Pods_AmahiAnywhere.framework */; };
 		0AA5E185203F36DD0010FD47 /* Amahi Logo White Font.png in Resources */ = {isa = PBXBuildFile; fileRef = 0AA5E184203F36DD0010FD47 /* Amahi Logo White Font.png */; };
+		4605963F204E24DF004FA066 /* DashboardPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4605963E204E24DF004FA066 /* DashboardPresenter.swift */; };
+		46059643204E8B41004FA066 /* BaseUITableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46059642204E8B41004FA066 /* BaseUITableViewController.swift */; };
+		46059646204EE17D004FA066 /* SharesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46059644204EE17D004FA066 /* SharesTableViewController.swift */; };
+		4605964B204F35E9004FA066 /* ServerRoute.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4605964A204F35E9004FA066 /* ServerRoute.swift */; };
+		4605964D204F3666004FA066 /* ServerShare.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4605964C204F3666004FA066 /* ServerShare.swift */; };
+		46098D02204FDBEE00752EB6 /* ApiEndPoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46098D01204FDBEE00752EB6 /* ApiEndPoints.swift */; };
+		46098D04204FDF5500752EB6 /* ServerFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46098D03204FDF5500752EB6 /* ServerFile.swift */; };
+		46098D08204FFFBE00752EB6 /* ServerApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46098D07204FFFBE00752EB6 /* ServerApi.swift */; };
+		46098D0A2050114C00752EB6 /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46098D092050114C00752EB6 /* Network.swift */; };
+		4665718120507847000E0D45 /* FilesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4665718020507847000E0D45 /* FilesTableViewController.swift */; };
+		46657183205085FC000E0D45 /* FilesPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46657182205085FC000E0D45 /* FilesPresenter.swift */; };
+		46CB896B204FB0FC0031151F /* SharesPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46CB896A204FB0FC0031151F /* SharesPresenter.swift */; };
+		46F87397204CC69500F1AF37 /* Server.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46F87396204CC69500F1AF37 /* Server.swift */; };
 		C83C637320386DD90089B9D8 /* BaseContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = C83C637020386DD90089B9D8 /* BaseContract.swift */; };
 		C83C637420386DD90089B9D8 /* BaseUIViewController+BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C83C637120386DD90089B9D8 /* BaseUIViewController+BaseView.swift */; };
 		C83C637520386DD90089B9D8 /* BaseUIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C83C637220386DD90089B9D8 /* BaseUIViewController.swift */; };
@@ -17,7 +30,7 @@
 		C83C638F2038D5B30089B9D8 /* LocalStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C83C63812038D5B30089B9D8 /* LocalStorage.swift */; };
 		C83C63902038D5B30089B9D8 /* PersistenceIdentifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = C83C63822038D5B30089B9D8 /* PersistenceIdentifiers.swift */; };
 		C83C63912038D5B30089B9D8 /* StringLiterals.swift in Sources */ = {isa = PBXBuildFile; fileRef = C83C63832038D5B30089B9D8 /* StringLiterals.swift */; };
-		C83C63922038D5B30089B9D8 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C83C63862038D5B30089B9D8 /* AuthService.swift */; };
+		C83C63922038D5B30089B9D8 /* AmahiApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = C83C63862038D5B30089B9D8 /* AmahiApi.swift */; };
 		C83C63952038D5B30089B9D8 /* ApiConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = C83C63892038D5B30089B9D8 /* ApiConfig.swift */; };
 		C83C63992038D5B30089B9D8 /* AuthResponses.swift in Sources */ = {isa = PBXBuildFile; fileRef = C83C638E2038D5B30089B9D8 /* AuthResponses.swift */; };
 		C83C639D203992460089B9D8 /* LoginPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C83C639C203992460089B9D8 /* LoginPresenter.swift */; };
@@ -32,6 +45,19 @@
 
 /* Begin PBXFileReference section */
 		0AA5E184203F36DD0010FD47 /* Amahi Logo White Font.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Amahi Logo White Font.png"; sourceTree = "<group>"; };
+		4605963E204E24DF004FA066 /* DashboardPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardPresenter.swift; sourceTree = "<group>"; };
+		46059642204E8B41004FA066 /* BaseUITableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseUITableViewController.swift; sourceTree = "<group>"; };
+		46059644204EE17D004FA066 /* SharesTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharesTableViewController.swift; sourceTree = "<group>"; };
+		4605964A204F35E9004FA066 /* ServerRoute.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerRoute.swift; sourceTree = "<group>"; };
+		4605964C204F3666004FA066 /* ServerShare.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerShare.swift; sourceTree = "<group>"; };
+		46098D01204FDBEE00752EB6 /* ApiEndPoints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiEndPoints.swift; sourceTree = "<group>"; };
+		46098D03204FDF5500752EB6 /* ServerFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerFile.swift; sourceTree = "<group>"; };
+		46098D07204FFFBE00752EB6 /* ServerApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerApi.swift; sourceTree = "<group>"; };
+		46098D092050114C00752EB6 /* Network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
+		4665718020507847000E0D45 /* FilesTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilesTableViewController.swift; sourceTree = "<group>"; };
+		46657182205085FC000E0D45 /* FilesPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilesPresenter.swift; sourceTree = "<group>"; };
+		46CB896A204FB0FC0031151F /* SharesPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharesPresenter.swift; sourceTree = "<group>"; };
+		46F87396204CC69500F1AF37 /* Server.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Server.swift; sourceTree = "<group>"; };
 		499AAFCDBDAB4C05C7264992 /* Pods-AmahiAnywhere.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AmahiAnywhere.release.xcconfig"; path = "Pods/Target Support Files/Pods-AmahiAnywhere/Pods-AmahiAnywhere.release.xcconfig"; sourceTree = "<group>"; };
 		665E1C7EF1F0DEBF3A9809B0 /* Pods-AmahiAnywhere.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AmahiAnywhere.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AmahiAnywhere/Pods-AmahiAnywhere.debug.xcconfig"; sourceTree = "<group>"; };
 		C83C637020386DD90089B9D8 /* BaseContract.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseContract.swift; sourceTree = "<group>"; };
@@ -42,7 +68,7 @@
 		C83C63812038D5B30089B9D8 /* LocalStorage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalStorage.swift; sourceTree = "<group>"; };
 		C83C63822038D5B30089B9D8 /* PersistenceIdentifiers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersistenceIdentifiers.swift; sourceTree = "<group>"; };
 		C83C63832038D5B30089B9D8 /* StringLiterals.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringLiterals.swift; sourceTree = "<group>"; };
-		C83C63862038D5B30089B9D8 /* AuthService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
+		C83C63862038D5B30089B9D8 /* AmahiApi.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AmahiApi.swift; sourceTree = "<group>"; };
 		C83C63892038D5B30089B9D8 /* ApiConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApiConfig.swift; sourceTree = "<group>"; };
 		C83C638E2038D5B30089B9D8 /* AuthResponses.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthResponses.swift; sourceTree = "<group>"; };
 		C83C639C203992460089B9D8 /* LoginPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginPresenter.swift; sourceTree = "<group>"; };
@@ -85,6 +111,7 @@
 				C83C637020386DD90089B9D8 /* BaseContract.swift */,
 				C83C637120386DD90089B9D8 /* BaseUIViewController+BaseView.swift */,
 				C83C637220386DD90089B9D8 /* BaseUIViewController.swift */,
+				46059642204E8B41004FA066 /* BaseUITableViewController.swift */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -94,6 +121,7 @@
 			children = (
 				C83C637A2038D5150089B9D8 /* StringConstants.swift */,
 				C83C637B2038D5150089B9D8 /* StringIdentifiers.swift */,
+				46098D092050114C00752EB6 /* Network.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -123,6 +151,7 @@
 				C83C63852038D5B30089B9D8 /* ApiCalls */,
 				C83C63892038D5B30089B9D8 /* ApiConfig.swift */,
 				C83C638B2038D5B30089B9D8 /* Model */,
+				46098D01204FDBEE00752EB6 /* ApiEndPoints.swift */,
 			);
 			path = Remote;
 			sourceTree = "<group>";
@@ -130,7 +159,8 @@
 		C83C63852038D5B30089B9D8 /* ApiCalls */ = {
 			isa = PBXGroup;
 			children = (
-				C83C63862038D5B30089B9D8 /* AuthService.swift */,
+				C83C63862038D5B30089B9D8 /* AmahiApi.swift */,
+				46098D07204FFFBE00752EB6 /* ServerApi.swift */,
 			);
 			path = ApiCalls;
 			sourceTree = "<group>";
@@ -139,6 +169,10 @@
 			isa = PBXGroup;
 			children = (
 				C83C638E2038D5B30089B9D8 /* AuthResponses.swift */,
+				4605964C204F3666004FA066 /* ServerShare.swift */,
+				46F87396204CC69500F1AF37 /* Server.swift */,
+				4605964A204F35E9004FA066 /* ServerRoute.swift */,
+				46098D03204FDF5500752EB6 /* ServerFile.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -149,6 +183,11 @@
 				C83C639B2039922A0089B9D8 /* Login */,
 				C83C639E2039B16C0089B9D8 /* DashboardViewController.swift */,
 				C866E5542042D02A0083A606 /* VideoPlayerViewController.swift */,
+				4605963E204E24DF004FA066 /* DashboardPresenter.swift */,
+				46059644204EE17D004FA066 /* SharesTableViewController.swift */,
+				46CB896A204FB0FC0031151F /* SharesPresenter.swift */,
+				4665718020507847000E0D45 /* FilesTableViewController.swift */,
+				46657182205085FC000E0D45 /* FilesPresenter.swift */,
 			);
 			path = Presentation;
 			sourceTree = "<group>";
@@ -346,21 +385,34 @@
 			buildActionMask = 2147483647;
 			files = (
 				C83C63952038D5B30089B9D8 /* ApiConfig.swift in Sources */,
+				46657183205085FC000E0D45 /* FilesPresenter.swift in Sources */,
+				46059646204EE17D004FA066 /* SharesTableViewController.swift in Sources */,
 				C866E5552042D02A0083A606 /* VideoPlayerViewController.swift in Sources */,
 				C83C63902038D5B30089B9D8 /* PersistenceIdentifiers.swift in Sources */,
 				C83C637520386DD90089B9D8 /* BaseUIViewController.swift in Sources */,
 				FB71BE9A201CB2FC0005492C /* LoginViewController.swift in Sources */,
+				4605964D204F3666004FA066 /* ServerShare.swift in Sources */,
 				FB71BE98201CB2FC0005492C /* AppDelegate.swift in Sources */,
+				4605964B204F35E9004FA066 /* ServerRoute.swift in Sources */,
+				46098D04204FDF5500752EB6 /* ServerFile.swift in Sources */,
+				46059643204E8B41004FA066 /* BaseUITableViewController.swift in Sources */,
 				C83C637D2038D5150089B9D8 /* StringConstants.swift in Sources */,
-				C83C63922038D5B30089B9D8 /* AuthService.swift in Sources */,
+				4605963F204E24DF004FA066 /* DashboardPresenter.swift in Sources */,
+				46098D02204FDBEE00752EB6 /* ApiEndPoints.swift in Sources */,
+				C83C63922038D5B30089B9D8 /* AmahiApi.swift in Sources */,
+				46CB896B204FB0FC0031151F /* SharesPresenter.swift in Sources */,
 				C83C637320386DD90089B9D8 /* BaseContract.swift in Sources */,
 				C83C63912038D5B30089B9D8 /* StringLiterals.swift in Sources */,
 				C83C639D203992460089B9D8 /* LoginPresenter.swift in Sources */,
 				C83C638F2038D5B30089B9D8 /* LocalStorage.swift in Sources */,
 				C83C637420386DD90089B9D8 /* BaseUIViewController+BaseView.swift in Sources */,
 				C83C637E2038D5150089B9D8 /* StringIdentifiers.swift in Sources */,
+				46F87397204CC69500F1AF37 /* Server.swift in Sources */,
+				46098D08204FFFBE00752EB6 /* ServerApi.swift in Sources */,
 				C83C63992038D5B30089B9D8 /* AuthResponses.swift in Sources */,
+				46098D0A2050114C00752EB6 /* Network.swift in Sources */,
 				C83C639F2039B16C0089B9D8 /* DashboardViewController.swift in Sources */,
+				4665718120507847000E0D45 /* FilesTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

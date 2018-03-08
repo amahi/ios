@@ -8,6 +8,7 @@
 
 import UIKit
 import IQKeyboardManagerSwift
+import EVReflection
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -23,13 +24,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let mainStoryboard: UIStoryboard = UIStoryboard(name: StoryBoardIdentifiers.MAIN, bundle: nil)
         var initialViewController: UIViewController? = nil
         if LocalStorage.shared.contains(key: PersistenceIdentifiers.ACCESS_TOKEN) {
-            initialViewController = mainStoryboard.instantiateViewController(withIdentifier: "DashboardViewController")
+            initialViewController = mainStoryboard.instantiateViewController(withIdentifier: "NavigationViewController")
         } else {
             initialViewController = mainStoryboard.instantiateInitialViewController()
         }
         
         self.window?.rootViewController = initialViewController
         self.window?.makeKeyAndVisible()
+        
+        // Set date formatter for EV Reflection
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "E, d MMM yyyy HH:mm:ss Z"
+        EVReflection.setDateFormatter(dateFormatter)
+        
         return true
     }
 
