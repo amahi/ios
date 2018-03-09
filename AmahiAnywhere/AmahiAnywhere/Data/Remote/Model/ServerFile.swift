@@ -30,7 +30,7 @@ public class ServerFile: EVNetworkingObject {
         var path: String = ""
         
         if parentFile != nil {
-            path.append("/\((parentFile?.getPath())!)")
+            path.append(parentFile!.getPath())
         }
     
         path.append("/\(name!)");
@@ -61,7 +61,11 @@ public class ServerFile: EVNetworkingObject {
         return dateFormatter.string(from: mtime!)
     }
     
+    public func getLastModifiedEpoch() -> Int {
+        return Int(mtime!.timeIntervalSince1970)
+    }
+    
     public func isDirectory() -> Bool {
-        return mime_type == "text/directory"
+        return Mimes.shared.match(mime_type!) == MimeType.DIRECTORY
     }
 }

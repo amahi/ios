@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Lightbox
 
 class FilesTableViewController: BaseUITableViewController {
     
@@ -49,19 +50,22 @@ class FilesTableViewController: BaseUITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "ServerFilesTableViewCell", for: indexPath) as! ServerFileTableViewCell
         let serverFile = serverFiles[indexPath.row]
-        cell.fileNameLabel?.text = serverFile.name
         if serverFile.isDirectory() {
-            cell.accessoryType = .disclosureIndicator
-            cell.fileSizeLabel?.isHidden = true
-            cell.lastModifiedLabel?.isHidden = true
+            let cell = tableView.dequeueReusableCell(withIdentifier: "ServerDirectoryTableViewCell", for: indexPath)
+            cell.textLabel?.text = serverFile.name
+            return cell
         } else {
-            cell.accessoryType = .none
+            let cell = tableView.dequeueReusableCell(withIdentifier: "ServerFileTableViewCell", for: indexPath) as! ServerFileTableViewCell
+            cell.fileNameLabel?.text = serverFile.name
             cell.fileSizeLabel?.text = serverFile.getFileSize()
             cell.lastModifiedLabel?.text = serverFile.getLastModifiedDate()
+            return cell
         }
-        return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        presenter.handleFileOpening(fileIndex: indexPath.row, files: serverFiles)
     }
 
     // MARK: - Navigation
@@ -74,7 +78,14 @@ class FilesTableViewController: BaseUITableViewController {
 
 }
 
+
+// MARK: File view implementations
+
 extension FilesTableViewController: FilesView {
+    func present(_ controller: UIViewController) {
+        self.present(controller, animated: true)
+    }
+    
     func updateFiles(files: [ServerFile]) {
         self.serverFiles = files
         filesTableView.reloadData()

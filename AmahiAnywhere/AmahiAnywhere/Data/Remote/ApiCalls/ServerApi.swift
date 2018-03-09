@@ -15,7 +15,7 @@ class ServerApi {
     
     private var server: Server!
     private var serverRoute: ServerRoute?
-    private var serverUrl: String?
+    private var serverAddress: String?
     
     private init(_ server: Server) {
         self.server = server
@@ -41,7 +41,7 @@ class ServerApi {
                 return
             }
             self.serverRoute = serverRoute
-            self.serverUrl = serverRoute.relay_addr
+            self.serverAddress = serverRoute.relay_addr
             completion(true)
         }
         
@@ -49,7 +49,7 @@ class ServerApi {
     }
     
     func getShares(completion: @escaping (_ serverRoute: [ServerShare]?) -> Void ) {
-        Network.request(ApiEndPoints.getServerShares(serverUrl), headers: getSessionHeader(), completion: completion)
+        Network.request(ApiEndPoints.getServerShares(serverAddress), headers: getSessionHeader(), completion: completion)
     }
     
     public func getFiles(share: ServerShare, directory: ServerFile? = nil, completion: @escaping (_ serverFiles: [ServerFile]?) -> Void ) {
@@ -71,7 +71,19 @@ class ServerApi {
             params["p"] = directory?.getPath()
         }
         
-        Network.request(ApiEndPoints.getServerFiles(serverUrl), parameters: params, headers: getSessionHeader(), completion: updateFiles)
+        Network.request(ApiEndPoints.getServerFiles(serverAddress), parameters: params, headers: getSessionHeader(), completion: updateFiles)
+    }
+    
+    public func getFileUri(_ file: ServerFile) -> URL {
+        var components = URLComponents(string: serverAddress!)!
+        components.path = "/files"
+        components.queryItems = [
+            URLQueryItem(name: "s", value: file.parentShare!.name),
+            URLQueryItem(name: "p", value: file.getPath()),
+            URLQueryItem(name: "mtime", value: String(file.getLastModifiedEpoch())),
+            URLQueryItem(name: "session", value: server.session_token)
+        ]
+        return try! components.asURL()
     }
     
 }

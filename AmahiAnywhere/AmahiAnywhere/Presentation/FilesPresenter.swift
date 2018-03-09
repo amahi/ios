@@ -7,10 +7,12 @@
 //
 
 import Foundation
+import Lightbox
 
 protocol FilesView : BaseView {
     func updateFiles(files: [ServerFile])
     func updateRefreshing(isRefreshing: Bool)
+    func present(_ controller: UIViewController)
 }
 
 class FilesPresenter: BasePresenter {
@@ -40,5 +42,35 @@ class FilesPresenter: BasePresenter {
             
             self.view?.updateFiles(files: serverFiles)
         }
+    }
+    
+    func handleFileOpening(fileIndex: Int, files: [ServerFile]) {
+        let file = files[fileIndex]
+        switch Mimes.shared.match(file.mime_type!) {
+            
+        case MimeType.IMAGE:
+            // prepare ImageViewer
+            let controller = LightboxController(images: prepareImageArray(files), startIndex: fileIndex)
+            controller.dynamicBackground = true
+            self.view?.present(controller)
+            
+        case MimeType.VIDEO:
+            // TODO: open VideoPlayer and play the file
+            return
+            
+        default:
+            // TODO: show list of apps that can open the file
+            return
+        }
+    }
+    
+    private func prepareImageArray(_ files: [ServerFile]) -> [LightboxImage] {
+        var images: [LightboxImage] = [LightboxImage] ()
+        for file in files {
+            if (Mimes.shared.match(file.mime_type!) == MimeType.IMAGE) {
+                images.append(LightboxImage(imageURL: ServerApi.shared!.getFileUri(file), text: file.name!))
+            }
+        }
+        return images
     }
 }

@@ -24,15 +24,17 @@ Please help us follow the best practice to make it easy for the reviewer as well
 ### Pods
 - [Alamofire](https://github.com/Alamofire/Alamofire): Elegant HTTP Networking in Swift
 
-- [EVReflection](https://github.com/evermeer/EVReflection): Reflection based (Dictionary, CKRecord, NSManagedObject, Realm,                     JSON and XML) object mapping with extensions for Alamofire
+- [EVReflection](https://github.com/evermeer/EVReflection): Reflection based (Dictionary, CKRecord, NSManagedObject, Realm, JSON and XML) object mapping with extensions for Alamofire
 
-- [IQKeyboardManagerSwift](https://github.com/hackiftekhar/IQKeyboardManager): Codeless drop-in universal library allows to                             prevent issues of keyboard sliding up and cover UITextField/UITextView with one line of code
+- [IQKeyboardManagerSwift](https://github.com/hackiftekhar/IQKeyboardManager): Codeless drop-in universal library allows to prevent issues of keyboard sliding up and cover UITextField/UITextView with one line of code
 
 - [MBProgressHUD](https://github.com/jdg/MBProgressHUD): It is an iOS drop-in class that displays a translucent HUD with an indicator and/or labels while work is being done in a background thread.
 
 - [MobileVLCKit](https://code.videolan.org/videolan/VLCKit.git): It is an Objective-C wrapper for libvlc's external interface on iOS.
 
-- [SkyFloatingLabelTextField](https://github.com/Skyscanner/SkyFloatingLabelTextField): A beautiful and flexible text field                                   control implementation of "Float Label Pattern". Written in Swift.
+- [SkyFloatingLabelTextField](https://github.com/Skyscanner/SkyFloatingLabelTextField): A beautiful and flexible text field control implementation of "Float Label Pattern". Written in Swift.
+
+- [LightBox](https://github.com/hyperoslo/Lightbox): Provides a convenient and easy to use image viewer for iOS app, packed with with features like swipe left/right to change, double tap to zoom, pinch to zoom, caching etc.
 
 ## Support
 

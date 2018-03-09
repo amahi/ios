@@ -11,5 +11,6 @@ use_frameworks!
     pod 'IQKeyboardManagerSwift'
     pod 'SkyFloatingLabelTextField', '~> 3.0'
     pod 'MobileVLCKit'
+    pod 'Lightbox'
 
 end
