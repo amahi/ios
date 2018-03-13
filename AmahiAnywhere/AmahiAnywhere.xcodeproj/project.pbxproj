@@ -567,7 +567,7 @@
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = AmahiAnywhere/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.amahi.AmahiAnywhere;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.amahi.AmahiAnywhere-dev";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "AmahiAnywhere/AmahiAnywhere-Bridging-Header.h";
 				SWIFT_VERSION = 4.0;
@@ -585,7 +585,7 @@
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = AmahiAnywhere/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.amahi.AmahiAnywhere;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.amahi.AmahiAnywhere-dev";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "AmahiAnywhere/AmahiAnywhere-Bridging-Header.h";
 				SWIFT_VERSION = 4.0;
