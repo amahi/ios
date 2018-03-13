@@ -75,13 +75,20 @@ class FilesTableViewController: BaseUITableViewController {
         vc.share = self.share
         vc.directory = serverFiles[(filesTableView.indexPathForSelectedRow?.row)!]
     }
-
 }
 
 
-// MARK: File view implementations
+// MARK: File View implementations
 
 extension FilesTableViewController: FilesView {
+    
+    func playMedia(at url: URL) {
+        let videoPlayerVc = self.viewController(viewControllerClass: VideoPlayerViewController.self,
+                                                from: StoryBoardIdentifiers.MAIN)
+        videoPlayerVc.mediaURL = url
+        self.present(videoPlayerVc)
+    }
+    
     func present(_ controller: UIViewController) {
         self.present(controller, animated: true)
     }
@@ -98,10 +105,7 @@ extension FilesTableViewController: FilesView {
             refreshControl?.endRefreshing()
         }
     }
-    
-    
 }
-
 
 // MARK: - ServerFileTableViewCell
 
@@ -111,8 +115,3 @@ class ServerFileTableViewCell: UITableViewCell {
     @IBOutlet weak var fileSizeLabel: UILabel!
     @IBOutlet weak var lastModifiedLabel: UILabel!
 }
-
-
-
-
-

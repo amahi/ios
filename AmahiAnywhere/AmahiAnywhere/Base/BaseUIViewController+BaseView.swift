@@ -68,6 +68,10 @@ extension BaseUITableViewController: BaseView {
 
 extension UIViewController {
     
+    class var storyboardID : String {
+        return "\(self)"
+    }
+    
     func performSegue(identifier: String) {
         OperationQueue.main.addOperation {
             [weak self] in
@@ -79,8 +83,18 @@ extension UIViewController {
         // Get the Storyboard with id and Create View COntroller with parameter name -> storyBoardName
         let storyboard = UIStoryboard (name: storyBoardName, bundle: nil)
         let vc = storyboard.instantiateViewController(withIdentifier: id)
-
+        
         return vc
+    }
+    
+    // Get the Storyboard with id and Create View COntroller with parameter name -> storyBoardName
+    // Use the ViewController's name as the storyboard identifier to instantiate with this method
+    func viewController<T: UIViewController>(viewControllerClass: T.Type,
+                                             from storyBoardName: String) -> T {
+        let storyboard = UIStoryboard (name: storyBoardName, bundle: nil)
+        let storyBoardID = (viewControllerClass as UIViewController.Type).storyboardID
+        
+        return storyboard.instantiateViewController(withIdentifier: storyBoardID) as! T
     }
     
     func createErrorDialog(title: String! = "Oops!", message: String! = StringLiterals.GENERIC_NETWORK_ERROR) {

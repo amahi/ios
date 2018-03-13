@@ -7,52 +7,133 @@
 //
 
 import UIKit
+import AVFoundation
 
-class VideoPlayerViewController: UIViewController, VLCMediaPlayerDelegate {
+class VideoPlayerViewController: UIViewController {
     
+    @IBOutlet weak var rootView: UIView!
     @IBOutlet weak var movieView: UIView!
     @IBOutlet weak var playButton: UIButton!
     @IBOutlet weak var fastForwardButton: UIButton!
     @IBOutlet weak var fastReverseButton: UIButton!
     @IBOutlet weak var timeLabel: UILabel!
+    @IBOutlet weak var videoControlsStackView: UIStackView!
     
+    
+    // Set the media url from the presenting Viewcontroller
+    private var idleTimer: Timer?
     private var mediaPlayer: VLCMediaPlayer?
+    public var mediaURL: URL!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        mediaPlayer = VLCMediaPlayer()
-        mediaPlayer?.delegate = self
-        mediaPlayer?.drawable = self.movieView
+        UIApplication.shared.statusBarStyle = .lightContent
         
-        // You can test the player with urls below or just replace with a url of your own
-        let url1 = "rtsp://wowzaec2demo.streamlock.net/vod/mp4:BigBuckBunny_115k.mov"
-        let url2 = "http://streams.videolan.org/streams/mp4/Mr_MrsSmith-h264_aac.mp4"
+        for view in rootView.subviews {
+            let gesture = UITapGestureRecognizer(target: self, action:  #selector(userTouchScreen))
+            gesture.delegate = self
+            gesture.cancelsTouchesInView = false
+            view.addGestureRecognizer(gesture)
+        }
         
-        mediaPlayer?.media = VLCMedia(url: URL(string: url1)!)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        if mediaPlayer?.state == VLCMediaPlayerState.paused {
-            mediaPlayer?.play()
+        mediaPlayer = VLCMediaPlayer()
+        mediaPlayer?.delegate = self
+        mediaPlayer?.drawable = self.movieView
+        mediaPlayer?.media = VLCMedia(url: mediaURL)
+
+        // Play media file immediately after video player launches
+        mediaPlayer?.play()
+        
+        if self.videoControlsStackView.isHidden {
+            self.videoControlsStackView.isHidden = false
+        }
+        videoControlsStackView.superview?.bringSubview(toFront: videoControlsStackView) 
+        self.resetScreenIdleTimer()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        if let _ = mediaPlayer?.media {
+            mediaPlayer?.stop()
+        }
+        
+        if idleTimer != nil {
+            idleTimer?.invalidate()
+            idleTimer = nil
+        }
+        
+    }
+    
+    override var next: UIResponder? {
+        self.resetScreenIdleTimer()
+        return super.next
+    }
+    
+    func keepScreenOn(enabled: Bool) {
+        UIApplication.shared.isIdleTimerDisabled = enabled
+    }
+    
+    func resetScreenIdleTimer() {
+        
+        if idleTimer == nil {
+            
+            idleTimer = Timer.scheduledTimer(timeInterval: 3.0,
+                                             target: self,
+                                             selector: #selector(idleTimeExceded),
+                                             userInfo: nil,
+                                             repeats: false)
+        } else {
+            if fabs((idleTimer?.fireDate.timeIntervalSinceNow)!) < 3.0 {
+                idleTimer?.fireDate = Date.init(timeIntervalSinceNow: 3.0)
+            }
         }
     }
     
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
+    @objc func idleTimeExceded() {
         
-        mediaPlayer?.pause()
+        idleTimer = nil
+        
+        if !videoControlsStackView.isHidden {
+            videoControlsStackView.alpha = 1.0
+
+            UIView.animate(withDuration: 0.5, delay: 0.0, options: [],
+                           animations: {
+                            self.videoControlsStackView.alpha = 0.0
+            }) { (completed) in
+                self.videoControlsStackView.isHidden = true
+            }
+
+        }
     }
     
-    @IBAction func rewind(_ sender: Any) {
+    @objc func userTouchScreen() {
         
+        videoControlsStackView.isHidden = false
+        videoControlsStackView.alpha = 1.0
+        videoControlsStackView.layer.removeAllAnimations()
+        
+        self.resetScreenIdleTimer()
+    }
+    
+}
+
+// Mark - VLC Media Player Delegates
+extension VideoPlayerViewController: VLCMediaPlayerDelegate {
+    
+    @IBAction func rewind(_ sender: Any) {
+        self.resetScreenIdleTimer()
         mediaPlayer?.rewind()
     }
     
     @IBAction func forward(_ sender: Any) {
-        
+        self.resetScreenIdleTimer()
         mediaPlayer?.fastForward()
     }
     
@@ -63,20 +144,36 @@ class VideoPlayerViewController: UIViewController, VLCMediaPlayerDelegate {
     }
     
     @IBAction func playandPause(_ sender: Any) {
+
         if (mediaPlayer?.isPlaying)! {
             mediaPlayer?.pause()
-            playButton.setImage(UIImage(named: "ic_play_white"), for: .normal)
-            playButton.imageView?.tintColor = UIColor.white
         } else {
             mediaPlayer?.play()
-            playButton.setImage(UIImage(named: "ic_pause_white"), for: .normal)
-            playButton.imageView?.tintColor = UIColor.white
         }
+        self.resetScreenIdleTimer()
     }
     
     func mediaPlayerTimeChanged(_ aNotification: Notification!) {
         
         timeLabel.text = mediaPlayer?.time.stringValue
     }
+    
+    func mediaPlayerStateChanged(_ aNotification: Notification!) {
+        
+        if mediaPlayer?.state == VLCMediaPlayerState.ended ||
+            mediaPlayer?.state == VLCMediaPlayerState.stopped ||
+            mediaPlayer?.state == VLCMediaPlayerState.ended  {
+            self.keepScreenOn(enabled: false)
+            self.perform(#selector(userClickDone(_:)), with: nil, afterDelay: 2.0)
+            self.userClickDone(self)
+        }
+        
+        playButton.setImage((mediaPlayer?.isPlaying)! ? UIImage(named:"ic_pause_white"):
+            UIImage(named:"ic_play_white"), for: .normal)
+    }
+}
+
+extension VideoPlayerViewController : UIGestureRecognizerDelegate {
+    
     
 }

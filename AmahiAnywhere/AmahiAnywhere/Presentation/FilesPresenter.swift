@@ -13,6 +13,7 @@ protocol FilesView : BaseView {
     func updateFiles(files: [ServerFile])
     func updateRefreshing(isRefreshing: Bool)
     func present(_ controller: UIViewController)
+    func playMedia(at url: URL)
 }
 
 class FilesPresenter: BasePresenter {
@@ -53,9 +54,13 @@ class FilesPresenter: BasePresenter {
             let controller = LightboxController(images: prepareImageArray(files), startIndex: fileIndex)
             controller.dynamicBackground = true
             self.view?.present(controller)
+            break
             
-        case MimeType.VIDEO:
+        case MimeType.VIDEO, MimeType.AUDIO:
             // TODO: open VideoPlayer and play the file
+            let url = ServerApi.shared!.getFileUri(file)
+            self.view?.playMedia(at: url)
+            
             return
             
         default:

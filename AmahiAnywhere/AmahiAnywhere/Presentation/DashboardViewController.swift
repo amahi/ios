@@ -50,7 +50,8 @@ class DashboardViewController: BaseUITableViewController {
     
     @IBAction func userClickSignOut(_ sender: Any) {
         LocalStorage.shared.logout {}
-        let loginVc = self.instantiateViewController(withIdentifier: "LoginViewController" ,from: StoryBoardIdentifiers.MAIN)
+        let loginVc = self.viewController(viewControllerClass: LoginViewController.self,
+                                          from: StoryBoardIdentifiers.MAIN)
         self.present(loginVc, animated: true, completion: nil)
     }
 }
