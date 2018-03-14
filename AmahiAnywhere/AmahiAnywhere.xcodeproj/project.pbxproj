@@ -19,7 +19,7 @@
 		46098D08204FFFBE00752EB6 /* ServerApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46098D07204FFFBE00752EB6 /* ServerApi.swift */; };
 		46098D0A2050114C00752EB6 /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46098D092050114C00752EB6 /* Network.swift */; };
 		4612851E2051DB770061EC21 /* Mimes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4612851D2051DB770061EC21 /* Mimes.swift */; };
-		4665718120507847000E0D45 /* FilesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4665718020507847000E0D45 /* FilesTableViewController.swift */; };
+		4665718120507847000E0D45 /* FilesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4665718020507847000E0D45 /* FilesViewController.swift */; };
 		46657183205085FC000E0D45 /* FilesPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46657182205085FC000E0D45 /* FilesPresenter.swift */; };
 		46CB896B204FB0FC0031151F /* SharesPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46CB896A204FB0FC0031151F /* SharesPresenter.swift */; };
 		46F87397204CC69500F1AF37 /* Server.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46F87396204CC69500F1AF37 /* Server.swift */; };
@@ -56,7 +56,7 @@
 		46098D07204FFFBE00752EB6 /* ServerApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerApi.swift; sourceTree = "<group>"; };
 		46098D092050114C00752EB6 /* Network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
 		4612851D2051DB770061EC21 /* Mimes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mimes.swift; sourceTree = "<group>"; };
-		4665718020507847000E0D45 /* FilesTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilesTableViewController.swift; sourceTree = "<group>"; };
+		4665718020507847000E0D45 /* FilesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilesViewController.swift; sourceTree = "<group>"; };
 		46657182205085FC000E0D45 /* FilesPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilesPresenter.swift; sourceTree = "<group>"; };
 		46CB896A204FB0FC0031151F /* SharesPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharesPresenter.swift; sourceTree = "<group>"; };
 		46F87396204CC69500F1AF37 /* Server.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Server.swift; sourceTree = "<group>"; };
@@ -189,7 +189,7 @@
 				4605963E204E24DF004FA066 /* DashboardPresenter.swift */,
 				46059644204EE17D004FA066 /* SharesTableViewController.swift */,
 				46CB896A204FB0FC0031151F /* SharesPresenter.swift */,
-				4665718020507847000E0D45 /* FilesTableViewController.swift */,
+				4665718020507847000E0D45 /* FilesViewController.swift */,
 				46657182205085FC000E0D45 /* FilesPresenter.swift */,
 			);
 			path = Presentation;
@@ -429,7 +429,7 @@
 				C83C63992038D5B30089B9D8 /* AuthResponses.swift in Sources */,
 				46098D0A2050114C00752EB6 /* Network.swift in Sources */,
 				C83C639F2039B16C0089B9D8 /* DashboardViewController.swift in Sources */,
-				4665718120507847000E0D45 /* FilesTableViewController.swift in Sources */,
+				4665718120507847000E0D45 /* FilesViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

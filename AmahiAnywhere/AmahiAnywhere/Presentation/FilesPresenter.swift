@@ -10,7 +10,8 @@ import Foundation
 import Lightbox
 
 protocol FilesView : BaseView {
-    func updateFiles(files: [ServerFile])
+    func initFiles(_ files: [ServerFile])
+    func updateFiles(_ files: [ServerFile])
     func updateRefreshing(isRefreshing: Bool)
     func present(_ controller: UIViewController)
     func playMedia(at url: URL)
@@ -41,7 +42,33 @@ class FilesPresenter: BasePresenter {
                 return
             }
             
-            self.view?.updateFiles(files: serverFiles)
+            self.view?.initFiles(serverFiles)
+            self.view?.updateFiles(serverFiles.sorted(by: ServerFile.lastModifiedSorter))
+        }
+    }
+    
+    func filterFiles(_ searchText: String, files: [ServerFile]) {
+        if searchText.count > 0 {
+            let filteredFiles = files.filter { file in
+                return file.name!.localizedCaseInsensitiveContains(searchText)
+            }
+            self.view?.updateFiles(filteredFiles)
+        } else {
+            self.view?.updateFiles(files)
+        }
+    }
+    
+    func reorderFiles(files: [ServerFile], sortOrder: FileSort) {
+        let sortedFiles = files.sorted(by: getSorter(sortOrder))
+        self.view?.updateFiles(sortedFiles)
+    }
+    
+    private func getSorter(_ sortOrder: FileSort) -> ((ServerFile, ServerFile) -> Bool) {
+        switch sortOrder {
+        case .ModifiedTime:
+            return ServerFile.lastModifiedSorter
+        case .Name:
+            return ServerFile.nameSorter
         }
     }
     
@@ -79,3 +106,5 @@ class FilesPresenter: BasePresenter {
         return images
     }
 }
+
+

@@ -52,7 +52,7 @@ class SharesTableViewController: BaseUITableViewController {
     // MARK: - Navigation
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let vc: FilesTableViewController = segue.destination as! FilesTableViewController
+        let vc: FilesViewController = segue.destination as! FilesViewController
         vc.share = shares[(sharesTableView.indexPathForSelectedRow?.row)!]
     }
 }
