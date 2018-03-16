@@ -1,10 +1,10 @@
 // !$*UTF8*$!
 {
-	archiveVersion = 1;
-	classes = {
-	};
-	objectVersion = 48;
-	objects = {
+    archiveVersion = 1;
+    classes = {
+    };
+    objectVersion = 48;
+    objects = {
 
 /* Begin PBXBuildFile section */
 		07A3AB2E5DFE0D2AD44B0F33 /* Pods_AmahiAnywhere.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F5293AC0952F87B50DCD644D /* Pods_AmahiAnywhere.framework */; };
@@ -88,14 +88,14 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		FB71BE91201CB2FC0005492C /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				07A3AB2E5DFE0D2AD44B0F33 /* Pods_AmahiAnywhere.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
+        FB71BE91201CB2FC0005492C /* Frameworks */ = {
+            isa = PBXFrameworksBuildPhase;
+            buildActionMask = 2147483647;
+            files = (
+                07A3AB2E5DFE0D2AD44B0F33 /* Pods_AmahiAnywhere.framework in Frameworks */,
+            );
+            runOnlyForDeploymentPostprocessing = 0;
+        };
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -252,26 +252,26 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		FB71BE93201CB2FC0005492C /* AmahiAnywhere */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = FB71BEA6201CB2FC0005492C /* Build configuration list for PBXNativeTarget "AmahiAnywhere" */;
-			buildPhases = (
-				D37A02672BBEFF330A5E8AAE /* [CP] Check Pods Manifest.lock */,
-				FB71BE90201CB2FC0005492C /* Sources */,
-				FB71BE91201CB2FC0005492C /* Frameworks */,
-				FB71BE92201CB2FC0005492C /* Resources */,
-				F61A594FE5268D2316515601 /* [CP] Embed Pods Frameworks */,
-				C8F7A987AB598D3B34328FEB /* [CP] Copy Pods Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = AmahiAnywhere;
-			productName = AmahiAnywhere;
-			productReference = FB71BE94201CB2FC0005492C /* AmahiAnywhere.app */;
-			productType = "com.apple.product-type.application";
-		};
+        FB71BE93201CB2FC0005492C /* AmahiAnywhere */ = {
+            isa = PBXNativeTarget;
+            buildConfigurationList = FB71BEA6201CB2FC0005492C /* Build configuration list for PBXNativeTarget "AmahiAnywhere" */;
+            buildPhases = (
+                D37A02672BBEFF330A5E8AAE /* [CP] Check Pods Manifest.lock */,
+                FB71BE90201CB2FC0005492C /* Sources */,
+                FB71BE91201CB2FC0005492C /* Frameworks */,
+                FB71BE92201CB2FC0005492C /* Resources */,
+                F61A594FE5268D2316515601 /* [CP] Embed Pods Frameworks */,
+                C8F7A987AB598D3B34328FEB /* [CP] Copy Pods Resources */,
+            );
+            buildRules = (
+            );
+            dependencies = (
+            );
+            name = AmahiAnywhere;
+            productName = AmahiAnywhere;
+            productReference = FB71BE94201CB2FC0005492C /* AmahiAnywhere.app */;
+            productType = "com.apple.product-type.application";
+        };
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -312,87 +312,87 @@
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		FB71BE92201CB2FC0005492C /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				FB71BEA2201CB2FC0005492C /* LaunchScreen.storyboard in Resources */,
-				0AA5E185203F36DD0010FD47 /* Amahi Logo White Font.png in Resources */,
-				FB71BE9F201CB2FC0005492C /* Assets.xcassets in Resources */,
-				FB71BE9D201CB2FC0005492C /* Main.storyboard in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
+        FB71BE92201CB2FC0005492C /* Resources */ = {
+            isa = PBXResourcesBuildPhase;
+            buildActionMask = 2147483647;
+            files = (
+                FB71BEA2201CB2FC0005492C /* LaunchScreen.storyboard in Resources */,
+                0AA5E185203F36DD0010FD47 /* Amahi Logo White Font.png in Resources */,
+                FB71BE9F201CB2FC0005492C /* Assets.xcassets in Resources */,
+                FB71BE9D201CB2FC0005492C /* Main.storyboard in Resources */,
+            );
+            runOnlyForDeploymentPostprocessing = 0;
+        };
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		C8F7A987AB598D3B34328FEB /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-AmahiAnywhere/Pods-AmahiAnywhere-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		D37A02672BBEFF330A5E8AAE /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-AmahiAnywhere-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		F61A594FE5268D2316515601 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-AmahiAnywhere/Pods-AmahiAnywhere-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
-				"${BUILT_PRODUCTS_DIR}/Cache/Cache.framework",
-				"${BUILT_PRODUCTS_DIR}/EVReflection/EVReflection.framework",
-				"${BUILT_PRODUCTS_DIR}/Hue/Hue.framework",
-				"${BUILT_PRODUCTS_DIR}/IQKeyboardManagerSwift/IQKeyboardManagerSwift.framework",
-				"${BUILT_PRODUCTS_DIR}/Imaginary/Imaginary.framework",
-				"${BUILT_PRODUCTS_DIR}/Lightbox/Lightbox.framework",
-				"${BUILT_PRODUCTS_DIR}/MBProgressHUD/MBProgressHUD.framework",
-				"${BUILT_PRODUCTS_DIR}/SkyFloatingLabelTextField/SkyFloatingLabelTextField.framework",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Cache.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/EVReflection.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Hue.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/IQKeyboardManagerSwift.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Imaginary.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Lightbox.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MBProgressHUD.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SkyFloatingLabelTextField.framework",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-AmahiAnywhere/Pods-AmahiAnywhere-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
+        C8F7A987AB598D3B34328FEB /* [CP] Copy Pods Resources */ = {
+            isa = PBXShellScriptBuildPhase;
+            buildActionMask = 2147483647;
+            files = (
+            );
+            inputPaths = (
+            );
+            name = "[CP] Copy Pods Resources";
+            outputPaths = (
+            );
+            runOnlyForDeploymentPostprocessing = 0;
+            shellPath = /bin/sh;
+            shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-AmahiAnywhere/Pods-AmahiAnywhere-resources.sh\"\n";
+            showEnvVarsInLog = 0;
+        };
+        D37A02672BBEFF330A5E8AAE /* [CP] Check Pods Manifest.lock */ = {
+            isa = PBXShellScriptBuildPhase;
+            buildActionMask = 2147483647;
+            files = (
+            );
+            inputPaths = (
+                "${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+                "${PODS_ROOT}/Manifest.lock",
+            );
+            name = "[CP] Check Pods Manifest.lock";
+            outputPaths = (
+                "$(DERIVED_FILE_DIR)/Pods-AmahiAnywhere-checkManifestLockResult.txt",
+            );
+            runOnlyForDeploymentPostprocessing = 0;
+            shellPath = /bin/sh;
+            shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+            showEnvVarsInLog = 0;
+        };
+        F61A594FE5268D2316515601 /* [CP] Embed Pods Frameworks */ = {
+            isa = PBXShellScriptBuildPhase;
+            buildActionMask = 2147483647;
+            files = (
+            );
+            inputPaths = (
+                "${SRCROOT}/Pods/Target Support Files/Pods-AmahiAnywhere/Pods-AmahiAnywhere-frameworks.sh",
+                "${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+                "${BUILT_PRODUCTS_DIR}/Cache/Cache.framework",
+                "${BUILT_PRODUCTS_DIR}/EVReflection/EVReflection.framework",
+                "${BUILT_PRODUCTS_DIR}/Hue/Hue.framework",
+                "${BUILT_PRODUCTS_DIR}/IQKeyboardManagerSwift/IQKeyboardManagerSwift.framework",
+                "${BUILT_PRODUCTS_DIR}/Imaginary/Imaginary.framework",
+                "${BUILT_PRODUCTS_DIR}/Lightbox/Lightbox.framework",
+                "${BUILT_PRODUCTS_DIR}/MBProgressHUD/MBProgressHUD.framework",
+                "${BUILT_PRODUCTS_DIR}/SkyFloatingLabelTextField/SkyFloatingLabelTextField.framework",
+            );
+            name = "[CP] Embed Pods Frameworks";
+            outputPaths = (
+                "${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+                "${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Cache.framework",
+                "${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/EVReflection.framework",
+                "${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Hue.framework",
+                "${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/IQKeyboardManagerSwift.framework",
+                "${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Imaginary.framework",
+                "${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Lightbox.framework",
+                "${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MBProgressHUD.framework",
+                "${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SkyFloatingLabelTextField.framework",
+            );
+            runOnlyForDeploymentPostprocessing = 0;
+            shellPath = /bin/sh;
+            shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-AmahiAnywhere/Pods-AmahiAnywhere-frameworks.sh\"\n";
+            showEnvVarsInLog = 0;
+        };
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -436,22 +436,22 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		FB71BE9B201CB2FC0005492C /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				FB71BE9C201CB2FC0005492C /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		FB71BEA0201CB2FC0005492C /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				FB71BEA1201CB2FC0005492C /* Base */,
-			);
-			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
-		};
+        FB71BE9B201CB2FC0005492C /* Main.storyboard */ = {
+            isa = PBXVariantGroup;
+            children = (
+                FB71BE9C201CB2FC0005492C /* Base */,
+            );
+            name = Main.storyboard;
+            sourceTree = "<group>";
+        };
+        FB71BEA0201CB2FC0005492C /* LaunchScreen.storyboard */ = {
+            isa = PBXVariantGroup;
+            children = (
+                FB71BEA1201CB2FC0005492C /* Base */,
+            );
+            name = LaunchScreen.storyboard;
+            sourceTree = "<group>";
+        };
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
@@ -601,25 +601,25 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		FB71BE8F201CB2FB0005492C /* Build configuration list for PBXProject "AmahiAnywhere" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				FB71BEA4201CB2FC0005492C /* Debug */,
-				FB71BEA5201CB2FC0005492C /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		FB71BEA6201CB2FC0005492C /* Build configuration list for PBXNativeTarget "AmahiAnywhere" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				FB71BEA7201CB2FC0005492C /* Debug */,
-				FB71BEA8201CB2FC0005492C /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
+        FB71BE8F201CB2FB0005492C /* Build configuration list for PBXProject "AmahiAnywhere" */ = {
+            isa = XCConfigurationList;
+            buildConfigurations = (
+                FB71BEA4201CB2FC0005492C /* Debug */,
+                FB71BEA5201CB2FC0005492C /* Release */,
+            );
+            defaultConfigurationIsVisible = 0;
+            defaultConfigurationName = Release;
+        };
+        FB71BEA6201CB2FC0005492C /* Build configuration list for PBXNativeTarget "AmahiAnywhere" */ = {
+            isa = XCConfigurationList;
+            buildConfigurations = (
+                FB71BEA7201CB2FC0005492C /* Debug */,
+                FB71BEA8201CB2FC0005492C /* Release */,
+            );
+            defaultConfigurationIsVisible = 0;
+            defaultConfigurationName = Release;
+        };
 /* End XCConfigurationList section */
-	};
-	rootObject = FB71BE8C201CB2FB0005492C /* Project object */;
+    };
+    rootObject = FB71BE8C201CB2FB0005492C /* Project object */;
 }

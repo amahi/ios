@@ -18,7 +18,8 @@ class VideoPlayerViewController: UIViewController {
     @IBOutlet weak var fastReverseButton: UIButton!
     @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var videoControlsStackView: UIStackView!
-    
+    @IBOutlet weak var doneButton: UIButton!
+
     
     // Set the media url from the presenting Viewcontroller
     private var idleTimer: Timer?
@@ -102,22 +103,28 @@ class VideoPlayerViewController: UIViewController {
         
         if !videoControlsStackView.isHidden {
             videoControlsStackView.alpha = 1.0
+            doneButton.alpha = 1.0
 
             UIView.animate(withDuration: 0.5, delay: 0.0, options: [],
                            animations: {
                             self.videoControlsStackView.alpha = 0.0
+                            self.doneButton.alpha = 0.0
             }) { (completed) in
                 self.videoControlsStackView.isHidden = true
+                self.doneButton.isHidden = true
             }
-
         }
     }
     
     @objc func userTouchScreen() {
         
-        videoControlsStackView.isHidden = false
-        videoControlsStackView.alpha = 1.0
         videoControlsStackView.layer.removeAllAnimations()
+        doneButton.layer.removeAllAnimations()
+        
+        videoControlsStackView.isHidden = false
+        doneButton.isHidden = false
+        videoControlsStackView.alpha = 1.0
+        doneButton.alpha = 1.0
         
         self.resetScreenIdleTimer()
     }
@@ -174,6 +181,5 @@ extension VideoPlayerViewController: VLCMediaPlayerDelegate {
 }
 
 extension VideoPlayerViewController : UIGestureRecognizerDelegate {
-    
     
 }

@@ -529,6 +529,7 @@
                         <viewLayoutGuide key="safeArea" id="ViS-Np-BgA"/>
                     </view>
                     <connections>
+                        <outlet property="doneButton" destination="yls-1W-my2" id="fZe-hQ-Gaw"/>
                         <outlet property="fastForwardButton" destination="yNY-jS-axI" id="h1X-0G-xKz"/>
                         <outlet property="fastReverseButton" destination="uEb-Ki-gYb" id="taN-rU-dnl"/>
                         <outlet property="movieView" destination="KBY-ej-dCS" id="VBw-5c-edq"/>
