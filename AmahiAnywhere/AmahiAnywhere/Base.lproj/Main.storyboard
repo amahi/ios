@@ -441,6 +441,19 @@
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                                         <color key="backgroundColor" red="0.094117647060000004" green="0.094117647060000004" blue="0.094117647060000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </view>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_fast_rewind_white" translatesAutoresizingMaskIntoConstraints="NO" id="yV1-bF-aVZ" userLabel="Rewind Image View">
+                                        <rect key="frame" x="16" y="388" width="40" height="36"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" relation="lessThanOrEqual" constant="40" id="8ep-KB-egX"/>
+                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="40" id="elp-iT-h4z"/>
+                                        </constraints>
+                                    </imageView>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_fast_forward_white" translatesAutoresizingMaskIntoConstraints="NO" id="Sn3-5U-2et" userLabel="Fast forward Image View">
+                                        <rect key="frame" x="319" y="388" width="40" height="36"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="40" id="8sy-BA-MhX"/>
+                                        </constraints>
+                                    </imageView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yls-1W-my2">
                                         <rect key="frame" x="16" y="16" width="37" height="30"/>
                                         <state key="normal" title="Done"/>
@@ -508,13 +521,17 @@
                                 <constraints>
                                     <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="yls-1W-my2" secondAttribute="trailing" id="3d1-Xz-aJD"/>
                                     <constraint firstItem="yls-1W-my2" firstAttribute="leading" secondItem="AxW-tj-pkW" secondAttribute="leading" constant="16" id="4US-UY-9s8"/>
+                                    <constraint firstItem="yV1-bF-aVZ" firstAttribute="leading" secondItem="AxW-tj-pkW" secondAttribute="leading" constant="16" id="9wU-v1-Kms"/>
                                     <constraint firstAttribute="bottom" secondItem="Y00-UF-7gU" secondAttribute="bottom" constant="16" id="CLl-Cb-P56"/>
                                     <constraint firstItem="KBY-ej-dCS" firstAttribute="centerX" secondItem="Y00-UF-7gU" secondAttribute="centerX" id="GfB-eq-gFy"/>
                                     <constraint firstItem="KBY-ej-dCS" firstAttribute="height" secondItem="AxW-tj-pkW" secondAttribute="height" id="QeS-iW-A08"/>
                                     <constraint firstItem="KBY-ej-dCS" firstAttribute="top" secondItem="AxW-tj-pkW" secondAttribute="top" id="Qmm-SX-Moy"/>
+                                    <constraint firstItem="yV1-bF-aVZ" firstAttribute="centerY" secondItem="KBY-ej-dCS" secondAttribute="centerY" id="aC5-vJ-pfU"/>
                                     <constraint firstItem="yls-1W-my2" firstAttribute="top" secondItem="AxW-tj-pkW" secondAttribute="top" constant="16" id="aHb-eU-rS0"/>
+                                    <constraint firstItem="yV1-bF-aVZ" firstAttribute="top" secondItem="Sn3-5U-2et" secondAttribute="top" id="e9c-Wr-Spi"/>
                                     <constraint firstItem="Y00-UF-7gU" firstAttribute="centerX" secondItem="AxW-tj-pkW" secondAttribute="centerX" id="ePR-js-XH3"/>
                                     <constraint firstItem="KBY-ej-dCS" firstAttribute="width" secondItem="AxW-tj-pkW" secondAttribute="width" id="gca-lc-tVo"/>
+                                    <constraint firstAttribute="trailing" secondItem="Sn3-5U-2et" secondAttribute="trailing" constant="16" id="pev-9x-d6E"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -532,8 +549,10 @@
                         <outlet property="doneButton" destination="yls-1W-my2" id="fZe-hQ-Gaw"/>
                         <outlet property="fastForwardButton" destination="yNY-jS-axI" id="h1X-0G-xKz"/>
                         <outlet property="fastReverseButton" destination="uEb-Ki-gYb" id="taN-rU-dnl"/>
+                        <outlet property="forwardIndicator" destination="Sn3-5U-2et" id="jOd-iD-y3G"/>
                         <outlet property="movieView" destination="KBY-ej-dCS" id="VBw-5c-edq"/>
                         <outlet property="playButton" destination="IjZ-Sm-VDh" id="3uY-1M-EgY"/>
+                        <outlet property="rewindIndicator" destination="yV1-bF-aVZ" id="daS-08-NO9"/>
                         <outlet property="rootView" destination="AxW-tj-pkW" id="tJM-mk-yhr"/>
                         <outlet property="timeLabel" destination="u1Q-ez-ytD" id="P4F-nn-ae2"/>
                         <outlet property="videoControlsStackView" destination="Y00-UF-7gU" id="ZKY-PK-QTF"/>

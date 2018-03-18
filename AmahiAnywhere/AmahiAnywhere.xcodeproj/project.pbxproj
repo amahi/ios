@@ -37,6 +37,7 @@
 		C83C639D203992460089B9D8 /* LoginPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C83C639C203992460089B9D8 /* LoginPresenter.swift */; };
 		C83C639F2039B16C0089B9D8 /* DashboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C83C639E2039B16C0089B9D8 /* DashboardViewController.swift */; };
 		C866E5552042D02A0083A606 /* VideoPlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C866E5542042D02A0083A606 /* VideoPlayerViewController.swift */; };
+		C878C97C205DF4060039C23A /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = C878C97B205DF4060039C23A /* UIColor.swift */; };
 		FB71BE98201CB2FC0005492C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB71BE97201CB2FC0005492C /* AppDelegate.swift */; };
 		FB71BE9A201CB2FC0005492C /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB71BE99201CB2FC0005492C /* LoginViewController.swift */; };
 		FB71BE9D201CB2FC0005492C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FB71BE9B201CB2FC0005492C /* Main.storyboard */; };
@@ -77,6 +78,7 @@
 		C83C639E2039B16C0089B9D8 /* DashboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardViewController.swift; sourceTree = "<group>"; };
 		C866E5532042373D0083A606 /* AmahiAnywhere-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "AmahiAnywhere-Bridging-Header.h"; sourceTree = "<group>"; };
 		C866E5542042D02A0083A606 /* VideoPlayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPlayerViewController.swift; sourceTree = "<group>"; };
+		C878C97B205DF4060039C23A /* UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
 		F5293AC0952F87B50DCD644D /* Pods_AmahiAnywhere.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AmahiAnywhere.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FB71BE94201CB2FC0005492C /* AmahiAnywhere.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AmahiAnywhere.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FB71BE97201CB2FC0005492C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -204,6 +206,14 @@
 			path = Login;
 			sourceTree = "<group>";
 		};
+		C878C97A205DF3DE0039C23A /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				C878C97B205DF4060039C23A /* UIColor.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		DDF3537D8AE1275A22FED2AA /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -234,6 +244,7 @@
 		FB71BE96201CB2FC0005492C /* AmahiAnywhere */ = {
 			isa = PBXGroup;
 			children = (
+				C878C97A205DF3DE0039C23A /* Extensions */,
 				C83C639A2039921B0089B9D8 /* Presentation */,
 				C83C637F2038D5B30089B9D8 /* Data */,
 				C83C636F20386DD90089B9D8 /* Base */,
@@ -421,6 +432,7 @@
 				C83C637320386DD90089B9D8 /* BaseContract.swift in Sources */,
 				C83C63912038D5B30089B9D8 /* StringLiterals.swift in Sources */,
 				C83C639D203992460089B9D8 /* LoginPresenter.swift in Sources */,
+				C878C97C205DF4060039C23A /* UIColor.swift in Sources */,
 				C83C638F2038D5B30089B9D8 /* LocalStorage.swift in Sources */,
 				C83C637420386DD90089B9D8 /* BaseUIViewController+BaseView.swift in Sources */,
 				C83C637E2038D5150089B9D8 /* StringIdentifiers.swift in Sources */,

@@ -8,6 +8,7 @@
 
 import UIKit
 import AVFoundation
+import QuartzCore
 
 class VideoPlayerViewController: UIViewController {
     
@@ -19,12 +20,15 @@ class VideoPlayerViewController: UIViewController {
     @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var videoControlsStackView: UIStackView!
     @IBOutlet weak var doneButton: UIButton!
-
+    @IBOutlet weak var rewindIndicator: UIImageView!
+    @IBOutlet weak var forwardIndicator: UIImageView!
     
     // Set the media url from the presenting Viewcontroller
     private var idleTimer: Timer?
     private var mediaPlayer: VLCMediaPlayer?
     public var mediaURL: URL!
+    
+    fileprivate let JUMP_INTERVAL: Int32 = 15
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,6 +42,25 @@ class VideoPlayerViewController: UIViewController {
             view.addGestureRecognizer(gesture)
         }
         
+        self.setUpIndicatorLayers(imageView: rewindIndicator)
+        self.setUpIndicatorLayers(imageView: forwardIndicator)
+    }
+    
+    func setUpIndicatorLayers(imageView: UIImageView) {
+        
+        imageView.layer.shadowColor = UIColor.softYellow.cgColor
+        
+        let image = imageView.image
+        let templateImage = image?.withRenderingMode(.alwaysTemplate)
+        imageView.image = templateImage
+        imageView.tintColor = UIColor.softYellow
+        
+        imageView.layer.shadowRadius = 5.0
+        imageView.layer.shadowOpacity = 0.8
+        imageView.layer.masksToBounds = false
+        imageView.layer.shouldRasterize = true
+        
+        imageView.alpha = 0.0 // Hide indicator when player opens
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -54,7 +77,7 @@ class VideoPlayerViewController: UIViewController {
         if self.videoControlsStackView.isHidden {
             self.videoControlsStackView.isHidden = false
         }
-        videoControlsStackView.superview?.bringSubview(toFront: videoControlsStackView) 
+        videoControlsStackView.superview?.bringSubview(toFront: videoControlsStackView)
         self.resetScreenIdleTimer()
     }
     
@@ -69,7 +92,6 @@ class VideoPlayerViewController: UIViewController {
             idleTimer?.invalidate()
             idleTimer = nil
         }
-        
     }
     
     override var next: UIResponder? {
@@ -128,7 +150,6 @@ class VideoPlayerViewController: UIViewController {
         
         self.resetScreenIdleTimer()
     }
-    
 }
 
 // Mark - VLC Media Player Delegates
@@ -136,12 +157,24 @@ extension VideoPlayerViewController: VLCMediaPlayerDelegate {
     
     @IBAction func rewind(_ sender: Any) {
         self.resetScreenIdleTimer()
-        mediaPlayer?.rewind()
+        mediaPlayer?.jumpBackward(JUMP_INTERVAL)
+        self.showIndicator(imageView: rewindIndicator)
     }
     
     @IBAction func forward(_ sender: Any) {
         self.resetScreenIdleTimer()
-        mediaPlayer?.fastForward()
+        mediaPlayer?.jumpForward(JUMP_INTERVAL)
+        self.showIndicator(imageView: forwardIndicator)
+    }
+    
+    func showIndicator(imageView: UIImageView) {
+        
+        imageView.layer.removeAllAnimations()
+        imageView.alpha = 1.0
+        UIView.animate(withDuration: 1.0, delay: 0.0, options: [],
+                       animations: {
+                        imageView.alpha = 0.0
+        }, completion: nil)
     }
     
     @IBAction func userClickDone(_ sender: Any) {
@@ -182,4 +215,8 @@ extension VideoPlayerViewController: VLCMediaPlayerDelegate {
 
 extension VideoPlayerViewController : UIGestureRecognizerDelegate {
     
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+        
+        return true
+    }
 }
