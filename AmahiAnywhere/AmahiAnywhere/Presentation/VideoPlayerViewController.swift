@@ -70,7 +70,7 @@ class VideoPlayerViewController: UIViewController {
         mediaPlayer?.delegate = self
         mediaPlayer?.drawable = self.movieView
         mediaPlayer?.media = VLCMedia(url: mediaURL)
-
+        
         // Play media file immediately after video player launches
         mediaPlayer?.play()
         
@@ -78,7 +78,6 @@ class VideoPlayerViewController: UIViewController {
             self.videoControlsStackView.isHidden = false
         }
         videoControlsStackView.superview?.bringSubview(toFront: videoControlsStackView)
-        self.resetScreenIdleTimer()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -92,11 +91,6 @@ class VideoPlayerViewController: UIViewController {
             idleTimer?.invalidate()
             idleTimer = nil
         }
-    }
-    
-    override var next: UIResponder? {
-        self.resetScreenIdleTimer()
-        return super.next
     }
     
     func keepScreenOn(enabled: Bool) {
@@ -126,7 +120,7 @@ class VideoPlayerViewController: UIViewController {
         if !videoControlsStackView.isHidden {
             videoControlsStackView.alpha = 1.0
             doneButton.alpha = 1.0
-
+            
             UIView.animate(withDuration: 0.5, delay: 0.0, options: [],
                            animations: {
                             self.videoControlsStackView.alpha = 0.0
@@ -148,7 +142,13 @@ class VideoPlayerViewController: UIViewController {
         videoControlsStackView.alpha = 1.0
         doneButton.alpha = 1.0
         
-        self.resetScreenIdleTimer()
+        self.perform(#selector(resetTimeAfterStateChanged), with: nil, afterDelay: 1.0)
+    }
+    
+    @objc func resetTimeAfterStateChanged() {
+        if mediaPlayer!.isPlaying {
+            self.resetScreenIdleTimer()
+        }
     }
 }
 
@@ -184,28 +184,42 @@ extension VideoPlayerViewController: VLCMediaPlayerDelegate {
     }
     
     @IBAction func playandPause(_ sender: Any) {
-
+        
         if (mediaPlayer?.isPlaying)! {
             mediaPlayer?.pause()
         } else {
             mediaPlayer?.play()
         }
-        self.resetScreenIdleTimer()
     }
     
     func mediaPlayerTimeChanged(_ aNotification: Notification!) {
         
         timeLabel.text = mediaPlayer?.time.stringValue
+        
+        if mediaPlayer!.time.stringValue == "00:00" {
+            self.resetScreenIdleTimer()
+        }
     }
     
     func mediaPlayerStateChanged(_ aNotification: Notification!) {
-        
+        debugPrint("Player State \(VLCMediaPlayerStateToString(mediaPlayer!.state))")
+
         if mediaPlayer?.state == VLCMediaPlayerState.ended ||
-            mediaPlayer?.state == VLCMediaPlayerState.stopped ||
-            mediaPlayer?.state == VLCMediaPlayerState.ended  {
+            mediaPlayer?.state == VLCMediaPlayerState.stopped {
             self.keepScreenOn(enabled: false)
             self.perform(#selector(userClickDone(_:)), with: nil, afterDelay: 2.0)
-            self.userClickDone(self)
+        } else if mediaPlayer?.state == VLCMediaPlayerState.buffering ||
+            mediaPlayer?.state == VLCMediaPlayerState.paused {
+            self.keepScreenOn(enabled: true)
+            self.videoControlsStackView.isHidden = false
+            idleTimer = nil
+        } else if mediaPlayer?.state == VLCMediaPlayerState.playing {
+            self.keepScreenOn(enabled: false)
+            self.resetScreenIdleTimer()
+        } else {
+            self.keepScreenOn(enabled: true)
+            self.videoControlsStackView.isHidden = false
+            idleTimer = nil
         }
         
         playButton.setImage((mediaPlayer?.isPlaying)! ? UIImage(named:"ic_pause_white"):
