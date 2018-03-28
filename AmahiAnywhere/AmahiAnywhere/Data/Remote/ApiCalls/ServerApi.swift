@@ -41,7 +41,9 @@ class ServerApi {
                 return
             }
             self.serverRoute = serverRoute
-            self.serverAddress = serverRoute.relay_addr
+            // FIXME -- will need to be controlled by settings area
+            // self.serverAddress = serverRoute.relay_addr
+            self.serverAddress = serverRoute.local_addr
             completion(true)
         }
         
