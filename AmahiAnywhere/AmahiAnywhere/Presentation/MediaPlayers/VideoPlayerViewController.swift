@@ -98,7 +98,7 @@ class VideoPlayerViewController: UIViewController {
     }
     
     func resetScreenIdleTimer() {
-        
+
         if idleTimer == nil {
             
             idleTimer = Timer.scheduledTimer(timeInterval: 3.0,
@@ -116,7 +116,7 @@ class VideoPlayerViewController: UIViewController {
     @objc func idleTimeExceded() {
         
         idleTimer = nil
-        
+
         if !videoControlsStackView.isHidden {
             videoControlsStackView.alpha = 1.0
             doneButton.alpha = 1.0
@@ -142,10 +142,11 @@ class VideoPlayerViewController: UIViewController {
         videoControlsStackView.alpha = 1.0
         doneButton.alpha = 1.0
         
-        self.perform(#selector(resetTimeAfterStateChanged), with: nil, afterDelay: 1.0)
+        resetTimeAfterStateChanged()
     }
     
     @objc func resetTimeAfterStateChanged() {
+        
         if mediaPlayer!.isPlaying {
             self.resetScreenIdleTimer()
         }
@@ -187,6 +188,8 @@ extension VideoPlayerViewController: VLCMediaPlayerDelegate {
         
         if (mediaPlayer?.isPlaying)! {
             mediaPlayer?.pause()
+            idleTimer?.invalidate()
+            idleTimer = nil
         } else {
             mediaPlayer?.play()
         }
@@ -202,7 +205,7 @@ extension VideoPlayerViewController: VLCMediaPlayerDelegate {
     }
     
     func mediaPlayerStateChanged(_ aNotification: Notification!) {
-        debugPrint("Player State \(VLCMediaPlayerStateToString(mediaPlayer!.state))")
+        debugPrint("Player State \(VLCMediaPlayerStateToString((mediaPlayer?.state)!))")
 
         if mediaPlayer?.state == VLCMediaPlayerState.ended ||
             mediaPlayer?.state == VLCMediaPlayerState.stopped {
@@ -212,6 +215,7 @@ extension VideoPlayerViewController: VLCMediaPlayerDelegate {
             mediaPlayer?.state == VLCMediaPlayerState.paused {
             self.keepScreenOn(enabled: true)
             self.videoControlsStackView.isHidden = false
+            idleTimer?.invalidate()
             idleTimer = nil
         } else if mediaPlayer?.state == VLCMediaPlayerState.playing {
             self.keepScreenOn(enabled: false)
@@ -219,6 +223,7 @@ extension VideoPlayerViewController: VLCMediaPlayerDelegate {
         } else {
             self.keepScreenOn(enabled: true)
             self.videoControlsStackView.isHidden = false
+            idleTimer?.invalidate()
             idleTimer = nil
         }
         

@@ -185,14 +185,11 @@
 		C83C639A2039921B0089B9D8 /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
+				C8CE05C9206B21C5006F6807 /* MediaPlayers */,
+				C8CE05C8206B21B2006F6807 /* Files */,
+				C8CE05C7206B1F57006F6807 /* Shares */,
+				C8CE05C6206B1F3B006F6807 /* Dashboard */,
 				C83C639B2039922A0089B9D8 /* Login */,
-				C83C639E2039B16C0089B9D8 /* DashboardViewController.swift */,
-				C866E5542042D02A0083A606 /* VideoPlayerViewController.swift */,
-				4605963E204E24DF004FA066 /* DashboardPresenter.swift */,
-				46059644204EE17D004FA066 /* SharesTableViewController.swift */,
-				46CB896A204FB0FC0031151F /* SharesPresenter.swift */,
-				4665718020507847000E0D45 /* FilesViewController.swift */,
-				46657182205085FC000E0D45 /* FilesPresenter.swift */,
 			);
 			path = Presentation;
 			sourceTree = "<group>";
@@ -212,6 +209,41 @@
 				C878C97B205DF4060039C23A /* UIColor.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		C8CE05C6206B1F3B006F6807 /* Dashboard */ = {
+			isa = PBXGroup;
+			children = (
+				C83C639E2039B16C0089B9D8 /* DashboardViewController.swift */,
+				4605963E204E24DF004FA066 /* DashboardPresenter.swift */,
+			);
+			path = Dashboard;
+			sourceTree = "<group>";
+		};
+		C8CE05C7206B1F57006F6807 /* Shares */ = {
+			isa = PBXGroup;
+			children = (
+				46059644204EE17D004FA066 /* SharesTableViewController.swift */,
+				46CB896A204FB0FC0031151F /* SharesPresenter.swift */,
+			);
+			path = Shares;
+			sourceTree = "<group>";
+		};
+		C8CE05C8206B21B2006F6807 /* Files */ = {
+			isa = PBXGroup;
+			children = (
+				4665718020507847000E0D45 /* FilesViewController.swift */,
+				46657182205085FC000E0D45 /* FilesPresenter.swift */,
+			);
+			path = Files;
+			sourceTree = "<group>";
+		};
+		C8CE05C9206B21C5006F6807 /* MediaPlayers */ = {
+			isa = PBXGroup;
+			children = (
+				C866E5542042D02A0083A606 /* VideoPlayerViewController.swift */,
+			);
+			path = MediaPlayers;
 			sourceTree = "<group>";
 		};
 		DDF3537D8AE1275A22FED2AA /* Pods */ = {
