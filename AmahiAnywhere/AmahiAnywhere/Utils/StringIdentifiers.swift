@@ -9,10 +9,13 @@ import Foundation
 
 
 struct SegueIdentfiers {
-    
+    static let CONNECTION = "connection"
 }
 
 struct StoryBoardIdentifiers {
     
     static let MAIN = "Main"
+    static let LOGINVC = "LoginViewController"
+    static let DASHBOARDVC = "DashboardTableViewController"
+    static let SETTING = "Navigation"
 }

@@ -18,10 +18,14 @@ class DashboardViewController: BaseUITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         presenter = DashboardPresenter(self)
-        presenter.fetchServers()
+         presenter.fetchServers()
         self.refreshControl?.addTarget(self, action: #selector(handleRefresh), for: UIControlEvents.valueChanged)
     }
     
+    @IBAction func settingButtonPressed(_ sender: Any) {
+        let settingVC = self.instantiateViewController(withIdentifier: StoryBoardIdentifiers.SETTING ,from: StoryBoardIdentifiers.MAIN)
+        self.present(settingVC, animated: true, completion: nil)
+    }
     @objc func handleRefresh(sender: UIRefreshControl) {
         presenter.fetchServers()
     }

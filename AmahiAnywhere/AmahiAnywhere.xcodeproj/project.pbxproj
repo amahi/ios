@@ -23,6 +23,8 @@
 		46657183205085FC000E0D45 /* FilesPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46657182205085FC000E0D45 /* FilesPresenter.swift */; };
 		46CB896B204FB0FC0031151F /* SharesPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46CB896A204FB0FC0031151F /* SharesPresenter.swift */; };
 		46F87397204CC69500F1AF37 /* Server.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46F87396204CC69500F1AF37 /* Server.swift */; };
+		80F3FDC7206C0D4D0061CD51 /* ConnectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80F3FDC6206C0D4D0061CD51 /* ConnectionViewController.swift */; };
+		80F60700206BE1530098BC60 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80F606FF206BE1530098BC60 /* SettingViewController.swift */; };
 		C83C637320386DD90089B9D8 /* BaseContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = C83C637020386DD90089B9D8 /* BaseContract.swift */; };
 		C83C637420386DD90089B9D8 /* BaseUIViewController+BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C83C637120386DD90089B9D8 /* BaseUIViewController+BaseView.swift */; };
 		C83C637520386DD90089B9D8 /* BaseUIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C83C637220386DD90089B9D8 /* BaseUIViewController.swift */; };
@@ -63,6 +65,8 @@
 		46F87396204CC69500F1AF37 /* Server.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Server.swift; sourceTree = "<group>"; };
 		499AAFCDBDAB4C05C7264992 /* Pods-AmahiAnywhere.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AmahiAnywhere.release.xcconfig"; path = "Pods/Target Support Files/Pods-AmahiAnywhere/Pods-AmahiAnywhere.release.xcconfig"; sourceTree = "<group>"; };
 		665E1C7EF1F0DEBF3A9809B0 /* Pods-AmahiAnywhere.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AmahiAnywhere.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AmahiAnywhere/Pods-AmahiAnywhere.debug.xcconfig"; sourceTree = "<group>"; };
+		80F3FDC6206C0D4D0061CD51 /* ConnectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectionViewController.swift; sourceTree = "<group>"; };
+		80F606FF206BE1530098BC60 /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		C83C637020386DD90089B9D8 /* BaseContract.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseContract.swift; sourceTree = "<group>"; };
 		C83C637120386DD90089B9D8 /* BaseUIViewController+BaseView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "BaseUIViewController+BaseView.swift"; sourceTree = "<group>"; };
 		C83C637220386DD90089B9D8 /* BaseUIViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseUIViewController.swift; sourceTree = "<group>"; };
@@ -283,6 +287,8 @@
 				C83C63782038D5150089B9D8 /* Utils */,
 				FB71BE97201CB2FC0005492C /* AppDelegate.swift */,
 				FB71BE9B201CB2FC0005492C /* Main.storyboard */,
+				80F3FDC6206C0D4D0061CD51 /* ConnectionViewController.swift */,
+				80F606FF206BE1530098BC60 /* SettingViewController.swift */,
 				FB71BE9E201CB2FC0005492C /* Assets.xcassets */,
 				0AA5E184203F36DD0010FD47 /* Amahi Logo White Font.png */,
 				FB71BEA0201CB2FC0005492C /* LaunchScreen.storyboard */,
@@ -462,9 +468,11 @@
 				C83C63922038D5B30089B9D8 /* AmahiApi.swift in Sources */,
 				46CB896B204FB0FC0031151F /* SharesPresenter.swift in Sources */,
 				C83C637320386DD90089B9D8 /* BaseContract.swift in Sources */,
+				80F60700206BE1530098BC60 /* SettingViewController.swift in Sources */,
 				C83C63912038D5B30089B9D8 /* StringLiterals.swift in Sources */,
 				C83C639D203992460089B9D8 /* LoginPresenter.swift in Sources */,
 				C878C97C205DF4060039C23A /* UIColor.swift in Sources */,
+				80F3FDC7206C0D4D0061CD51 /* ConnectionViewController.swift in Sources */,
 				C83C638F2038D5B30089B9D8 /* LocalStorage.swift in Sources */,
 				C83C637420386DD90089B9D8 /* BaseUIViewController+BaseView.swift in Sources */,
 				C83C637E2038D5150089B9D8 /* StringIdentifiers.swift in Sources */,
