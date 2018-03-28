@@ -16,7 +16,7 @@ class SettingViewController: UITableViewController,MFMailComposeViewControllerDe
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        settingItems = ["Connection","About","Rate","Feedback","Signout"]
+        settingItems = ["Connection","About","Rate","Feedback","Sign Out"]
     }
     @IBAction func backButtonPressed(_ sender: Any) {
         let dashboardVc = self.instantiateViewController(withIdentifier: StoryBoardIdentifiers.DASHBOARDVC ,from: StoryBoardIdentifiers.MAIN)
