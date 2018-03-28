@@ -462,7 +462,7 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Amahi Settings" id="ylI-ay-HB0">
-                        <barButtonItem key="leftBarButtonItem" title="Item" image="icons8-back-50" id="zlU-cM-9vs">
+                        <barButtonItem key="leftBarButtonItem" title="Item" image="backButton" id="zlU-cM-9vs">
                             <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <connections>
                                 <action selector="backButtonPressed:" destination="teI-x8-nnt" id="6hg-88-xin"/>
@@ -694,10 +694,10 @@
     </scenes>
     <resources>
         <image name="Amahi Logo White Font.png" width="719" height="246"/>
+        <image name="backButton" width="50" height="50"/>
         <image name="ic_fast_forward_white" width="36" height="36"/>
         <image name="ic_fast_rewind_white" width="36" height="36"/>
         <image name="ic_play_white" width="36" height="36"/>
-        <image name="icons8-back-50" width="50" height="50"/>
         <image name="settings" width="64" height="64"/>
         <namedColor name="textMutedColor">
             <color red="0.60799998040000003" green="0.60799998040000003" blue="0.60799998040000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
