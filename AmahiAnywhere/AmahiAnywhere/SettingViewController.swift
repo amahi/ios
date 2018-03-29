@@ -18,10 +18,6 @@ class SettingViewController: UITableViewController,MFMailComposeViewControllerDe
 
         settingItems = ["Connection","About","Rate","Feedback","Sign Out"]
     }
-    @IBAction func backButtonPressed(_ sender: Any) {
-        let dashboardVc = self.instantiateViewController(withIdentifier: StoryBoardIdentifiers.DASHBOARDVC ,from: StoryBoardIdentifiers.MAIN)
-        self.present(dashboardVc, animated: true, completion: nil)
-    }
     override func didReceiveMemoryWarning() {
          super.didReceiveMemoryWarning()
     }

@@ -189,17 +189,12 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Amahi" id="TyA-06-cMH">
-                        <barButtonItem key="leftBarButtonItem" title="Item" image="settings" id="S6H-sj-2Sr">
+                        <barButtonItem key="rightBarButtonItem" title="Item" image="setting" id="mqe-RY-zXw">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <connections>
-                                <action selector="settingButtonPressed:" destination="F1H-47-plw" id="QsB-fH-RKS"/>
+                                <action selector="settingButtonPressed:" destination="F1H-47-plw" id="7tK-ig-5ib"/>
+                                <segue destination="teI-x8-nnt" kind="show" identifier="goToSettings" id="baq-gj-hqD"/>
                             </connections>
-                        </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="Sign Out" image="settings" id="H7f-OF-EdL">
-                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="tHB-4W-xzB">
-                                <rect key="frame" x="299" y="7" width="60" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Sign Out"/>
-                            </button>
                         </barButtonItem>
                     </navigationItem>
                     <refreshControl key="refreshControl" opaque="NO" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="BP1-wH-bxM">
@@ -441,7 +436,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <color key="separatorColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <view key="tableFooterView" contentMode="scaleToFill" id="gvX-px-E8D">
-                            <rect key="frame" x="0.0" y="72" width="375" height="601"/>
+                            <rect key="frame" x="0.0" y="72" width="375" height="655"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" red="0.094117647060000004" green="0.094117647060000004" blue="0.094117647060000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         </view>
@@ -461,21 +456,14 @@
                             <outlet property="delegate" destination="teI-x8-nnt" id="Zn4-tC-xkM"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Amahi Settings" id="ylI-ay-HB0">
-                        <barButtonItem key="leftBarButtonItem" title="Item" image="backButton" id="zlU-cM-9vs">
-                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            <connections>
-                                <action selector="backButtonPressed:" destination="teI-x8-nnt" id="6hg-88-xin"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="Amahi Settings" id="ylI-ay-HB0"/>
                     <connections>
                         <segue destination="Mr0-gg-hDA" kind="show" identifier="connection" id="iIU-M3-5Ds"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Kx3-yJ-5ds" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4959" y="131"/>
+            <point key="canvasLocation" x="1756" y="938"/>
         </scene>
         <!--Connection-->
         <scene sceneID="EdA-nu-gkA">
@@ -512,7 +500,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Hx6-55-FXp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5674" y="132"/>
+            <point key="canvasLocation" x="2527" y="938"/>
         </scene>
         <!--Video Player View Controller-->
         <scene sceneID="fGc-l6-U4D">
@@ -648,7 +636,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PTC-di-5zW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2767" y="876"/>
+            <point key="canvasLocation" x="3337" y="938"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="hL1-Ob-Sli">
@@ -668,37 +656,13 @@
             </objects>
             <point key="canvasLocation" x="949.27536231884062" y="132.88043478260872"/>
         </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="vDe-7A-Kd4">
-            <objects>
-                <navigationController storyboardIdentifier="Navigation" automaticallyAdjustsScrollViewInsets="NO" id="Ol5-4U-1TM" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="nre-Wv-UWz">
-                        <rect key="frame" x="0.0" y="44" width="375" height="96"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                        <color key="backgroundColor" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>
-                        <color key="barTintColor" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>
-                        <textAttributes key="largeTitleTextAttributes">
-                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        </textAttributes>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="teI-x8-nnt" kind="relationship" relationship="rootViewController" id="GD2-v6-V9c"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="YLL-99-QV9" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="4206" y="132"/>
-        </scene>
     </scenes>
     <resources>
         <image name="Amahi Logo White Font.png" width="719" height="246"/>
-        <image name="backButton" width="50" height="50"/>
         <image name="ic_fast_forward_white" width="36" height="36"/>
         <image name="ic_fast_rewind_white" width="36" height="36"/>
         <image name="ic_play_white" width="36" height="36"/>
-        <image name="settings" width="64" height="64"/>
+        <image name="setting" width="50" height="50"/>
         <namedColor name="textMutedColor">
             <color red="0.60799998040000003" green="0.60799998040000003" blue="0.60799998040000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

@@ -10,6 +10,7 @@ import Foundation
 
 struct SegueIdentfiers {
     static let CONNECTION = "connection"
+    static let SETTING = "goToSettings"
 }
 
 struct StoryBoardIdentifiers {
@@ -17,5 +18,4 @@ struct StoryBoardIdentifiers {
     static let MAIN = "Main"
     static let LOGINVC = "LoginViewController"
     static let DASHBOARDVC = "DashboardTableViewController"
-    static let SETTING = "Navigation"
 }

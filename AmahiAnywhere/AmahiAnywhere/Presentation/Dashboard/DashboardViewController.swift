@@ -21,11 +21,6 @@ class DashboardViewController: BaseUITableViewController {
          presenter.fetchServers()
         self.refreshControl?.addTarget(self, action: #selector(handleRefresh), for: UIControlEvents.valueChanged)
     }
-    
-    @IBAction func settingButtonPressed(_ sender: Any) {
-        let settingVC = self.instantiateViewController(withIdentifier: StoryBoardIdentifiers.SETTING ,from: StoryBoardIdentifiers.MAIN)
-        self.present(settingVC, animated: true, completion: nil)
-    }
     @objc func handleRefresh(sender: UIRefreshControl) {
         presenter.fetchServers()
     }
@@ -38,6 +33,9 @@ class DashboardViewController: BaseUITableViewController {
         return "Select your HDA"
     }
     
+    @IBAction func settingButtonPressed(_ sender: Any) {
+        performSegue(withIdentifier: SegueIdentfiers.SETTING, sender: nil)
+    }
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell:UITableViewCell = tableView.dequeueReusableCell(withIdentifier: "ServerTableViewCell", for: indexPath)
         let server = self.servers[indexPath.row]
@@ -52,12 +50,6 @@ class DashboardViewController: BaseUITableViewController {
         ServerApi.initialize(server: servers[indexPath.row])
     }
     
-    @IBAction func userClickSignOut(_ sender: Any) {
-        LocalStorage.shared.logout {}
-        let loginVc = self.viewController(viewControllerClass: LoginViewController.self,
-                                          from: StoryBoardIdentifiers.MAIN)
-        self.present(loginVc, animated: true, completion: nil)
-    }
 }
 
 // Mark - Dashboard view implementations
