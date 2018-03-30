@@ -36,7 +36,6 @@ class SettingViewController: UITableViewController,MFMailComposeViewControllerDe
             let sendMailAlert = UIAlertController(title: StringLiterals.ERROR_TITLE, message: StringLiterals.ERROR_MESSAGE, preferredStyle: UIAlertControllerStyle.alert)
     
             sendMailAlert.addAction(UIAlertAction(title: StringLiterals.ALERT_ACTION, style: .default) { (action:UIAlertAction!) in
-                self.navigationController?.popToRootViewController(animated: true)
             })
             self.present(sendMailAlert, animated: true)
         }
@@ -47,21 +46,18 @@ class SettingViewController: UITableViewController,MFMailComposeViewControllerDe
                             let myalert = UIAlertController(title: StringLiterals.CANCLE_TITLE, message: StringLiterals.CANCLE_MESSAGE, preferredStyle: UIAlertControllerStyle.alert)
                 
                     myalert.addAction(UIAlertAction(title: StringLiterals.ALERT_ACTION, style: .default) { (action:UIAlertAction!) in
-                                self.navigationController?.popToRootViewController(animated: true)
                             })
                             self.present(myalert, animated: true)
                     case .saved:
                             let myalert = UIAlertController(title: StringLiterals.SAVED_TITLE, message: StringLiterals.SAVED_MESSAGE, preferredStyle: UIAlertControllerStyle.alert)
                 
                             myalert.addAction(UIAlertAction(title: StringLiterals.ALERT_ACTION, style: .default) { (action:UIAlertAction!) in
-                                self.navigationController?.popToRootViewController(animated: true)
                             })
                             self.present(myalert, animated: true)
                     case .sent:
                             let myalert = UIAlertController(title: StringLiterals.SENT_TITLE, message: StringLiterals.SENT_MESSAGE, preferredStyle: UIAlertControllerStyle.alert)
                 
                             myalert.addAction(UIAlertAction(title: StringLiterals.ALERT_ACTION, style: .default) { (action:UIAlertAction!) in
-                                self.navigationController?.popToRootViewController(animated: true)
                             })
                             self.present(myalert, animated: true)
                 
@@ -112,9 +108,8 @@ class SettingViewController: UITableViewController,MFMailComposeViewControllerDe
             let versionNumber = Bundle.main.object(forInfoDictionaryKey: StringLiterals.INFO_DICTIONARY_KEY) as! String
             let myalert = UIAlertController(title: StringLiterals.ABOUT_TITLE, message: versionNumber, preferredStyle: UIAlertControllerStyle.alert)
             myalert.addAction(UIAlertAction(title: StringLiterals.ALERT_ACTION, style: .default) { (action:UIAlertAction!) in
-            self.navigationController?.popToRootViewController(animated: true)
                 })
-            self.present(myalert, animated: true)
+            self.present(myalert, animated: true, completion: nil)
         case 2:
             let appID = StringLiterals.APP_ID
             let urlStr = StringLiterals.URL
@@ -134,7 +129,6 @@ class SettingViewController: UITableViewController,MFMailComposeViewControllerDe
         case 4:
             let refreshAlert = UIAlertController(title: StringLiterals.SIGNOUT_TITLE, message:StringLiterals.SIGNOUT_MESSAGE, preferredStyle: UIAlertControllerStyle.alert)
             refreshAlert.addAction(UIAlertAction(title: StringLiterals.SIGNOUT_CONFIRM_TITLE, style: .default, handler: { (action: UIAlertAction!) in
-            self.navigationController?.popToRootViewController(animated: true)
                                         self.signOut() }))
             refreshAlert.addAction(UIAlertAction(title: StringLiterals.SIGNOUT_CANCLE_TITLE, style: .default, handler: { (action: UIAlertAction!) in
             refreshAlert .dismiss(animated: true, completion: nil)
