@@ -11,6 +11,15 @@ import UIKit
 class ConnectionViewController: UITableViewController {
     
     var connectionItem = [String]()
+    var selectedItemIndex: Int?
+    var selectedItem: String? {
+        didSet {
+            if let selectedItem = selectedItem,
+                let index = connectionItem.index(of: selectedItem) {
+                selectedItemIndex = index
+            }
+        }
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,12 +44,17 @@ class ConnectionViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-                //tableView.deselectRow(at: indexPath, animated: true)
-                if tableView.cellForRow(at: indexPath)?.accessoryType == .checkmark {
-                        tableView.cellForRow(at: indexPath)?.accessoryType = .none
-                    } else {
-                        tableView.cellForRow(at: indexPath)?.accessoryType = .checkmark
-                    }
+        if let index = selectedItemIndex {
+            let cell = tableView.cellForRow(at: IndexPath(row: index, section: 0))
+            cell?.accessoryType = .none
+        }
+        
+        selectedItem = connectionItem[indexPath.row]
+        
+        // update the checkmark for the current row
+        let cell = tableView.cellForRow(at: indexPath)
+        cell?.accessoryType = .checkmark
+        
                 tableView.deselectRow(at: indexPath, animated: true)
             }
         override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -48,9 +62,12 @@ class ConnectionViewController: UITableViewController {
         
                 cell.textLabel?.text = connectionItem[indexPath.row]
                 cell.textLabel?.textColor = UIColor.white
-        
-        
-                return cell
+            if indexPath.row == selectedItemIndex {
+                cell.accessoryType = .checkmark
+            } else {
+                cell.accessoryType = .none
             }
-
+            
+            return cell
+}
 }
