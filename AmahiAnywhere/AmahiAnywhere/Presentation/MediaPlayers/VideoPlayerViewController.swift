@@ -41,9 +41,28 @@ class VideoPlayerViewController: UIViewController {
             gesture.cancelsTouchesInView = false
             view.addGestureRecognizer(gesture)
         }
-        
+        listenForNotifications()
         self.setUpIndicatorLayers(imageView: rewindIndicator)
         self.setUpIndicatorLayers(imageView: forwardIndicator)
+    }
+    
+    func listenForNotifications() {
+        NotificationCenter.default.addObserver(self, selector: #selector(handleRouteChange(_:)),
+                                               name: NSNotification.Name.AVAudioSessionRouteChange, object: nil)
+    }
+    
+    @objc func handleRouteChange(_ notification: Notification) {
+        guard
+            let userInfo = notification.userInfo,
+            let reasonRaw = userInfo[AVAudioSessionRouteChangeReasonKey] as? NSNumber,
+            let reason = AVAudioSessionRouteChangeReason(rawValue: reasonRaw.uintValue)
+            else { fatalError("Strange... could not get routeChange") }
+        if reason == .oldDeviceUnavailable {
+            DispatchQueue.main.async(execute: {
+                self.mediaPlayer?.pause()
+                self.userTouchScreen()   // Handle this event as if it is user-touch triggered
+            })
+        }
     }
     
     func setUpIndicatorLayers(imageView: UIImageView) {
@@ -98,7 +117,7 @@ class VideoPlayerViewController: UIViewController {
     }
     
     func resetScreenIdleTimer() {
-
+        
         if idleTimer == nil {
             
             idleTimer = Timer.scheduledTimer(timeInterval: 3.0,
@@ -116,7 +135,7 @@ class VideoPlayerViewController: UIViewController {
     @objc func idleTimeExceded() {
         
         idleTimer = nil
-
+        
         if !videoControlsStackView.isHidden {
             videoControlsStackView.alpha = 1.0
             doneButton.alpha = 1.0
@@ -179,13 +198,11 @@ extension VideoPlayerViewController: VLCMediaPlayerDelegate {
     }
     
     @IBAction func userClickDone(_ sender: Any) {
-        
         mediaPlayer?.stop()
         self.dismiss(animated: true, completion: nil)
     }
     
     @IBAction func playandPause(_ sender: Any) {
-        
         if (mediaPlayer?.isPlaying)! {
             mediaPlayer?.pause()
             idleTimer?.invalidate()
@@ -196,7 +213,6 @@ extension VideoPlayerViewController: VLCMediaPlayerDelegate {
     }
     
     func mediaPlayerTimeChanged(_ aNotification: Notification!) {
-        
         timeLabel.text = mediaPlayer?.time.stringValue
         
         if mediaPlayer!.time.stringValue == "00:00" {
@@ -206,7 +222,7 @@ extension VideoPlayerViewController: VLCMediaPlayerDelegate {
     
     func mediaPlayerStateChanged(_ aNotification: Notification!) {
         debugPrint("Player State \(VLCMediaPlayerStateToString((mediaPlayer?.state)!))")
-
+        
         if mediaPlayer?.state == VLCMediaPlayerState.ended ||
             mediaPlayer?.state == VLCMediaPlayerState.stopped {
             self.keepScreenOn(enabled: false)
