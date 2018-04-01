@@ -176,13 +176,11 @@ class VideoPlayerViewController: UIViewController {
 extension VideoPlayerViewController: VLCMediaPlayerDelegate {
     
     @IBAction func rewind(_ sender: Any) {
-        self.resetScreenIdleTimer()
         mediaPlayer?.jumpBackward(JUMP_INTERVAL)
         self.showIndicator(imageView: rewindIndicator)
     }
     
     @IBAction func forward(_ sender: Any) {
-        self.resetScreenIdleTimer()
         mediaPlayer?.jumpForward(JUMP_INTERVAL)
         self.showIndicator(imageView: forwardIndicator)
     }
@@ -231,8 +229,6 @@ extension VideoPlayerViewController: VLCMediaPlayerDelegate {
             mediaPlayer?.state == VLCMediaPlayerState.paused {
             self.keepScreenOn(enabled: true)
             self.videoControlsStackView.isHidden = false
-            idleTimer?.invalidate()
-            idleTimer = nil
         } else if mediaPlayer?.state == VLCMediaPlayerState.playing {
             self.keepScreenOn(enabled: false)
             self.resetScreenIdleTimer()
