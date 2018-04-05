@@ -17,4 +17,3 @@ public class ServerShare: EVNetworkingObject {
     public var tags: [String]? =    nil
     public var mtime: Date? =       nil
 }
-

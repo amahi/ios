@@ -17,3 +17,10 @@ public class ServerRoute: EVNetworkingObject {
     public var relay_addr: String? =   nil
 }
 
+enum ServerAddress: String {
+    case autodetect =       "Autodetect"
+    case local =            "LAN"
+    case remote =           "Remote"
+    
+    static let allValues = [autodetect, local, remote]
+}

@@ -29,13 +29,23 @@ class SharesPresenter: BasePresenter {
         
         self.view?.updateRefreshing(isRefreshing: true)
         
-        ServerApi.shared?.loadServerRoute() { (isLoadSuccessful) in
+        ServerApi.shared?.loadServerRoute(serverAddress: userConnectionPreference) { (isLoadSuccessful) in
             if !isLoadSuccessful {
                 self.view?.updateRefreshing(isRefreshing: false)
                 self.view?.showError(message: StringLiterals.GENERIC_NETWORK_ERROR)
                 return
             }
             self.getShares()
+        }
+    }
+    
+    var userConnectionPreference : ServerAddress {
+        get {
+            if let connection = LocalStorage.shared.getString(key: PersistenceIdentifiers.PREF_CONNECTION) {
+                return ServerAddress(rawValue: connection)!
+            } else {
+                return ServerAddress.autodetect
+            }
         }
     }
     

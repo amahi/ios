@@ -22,6 +22,13 @@ final class LocalStorage: NSObject {
         UserDefaults.standard.synchronize();
     }
     
+    public func persistObject(object: NSObject!, key: String!) {
+        delete(key: key)
+        let encodedData = NSKeyedArchiver.archivedData(withRootObject: object)
+        UserDefaults.standard.set(encodedData, forKey: key)
+        UserDefaults.standard.synchronize()
+    }
+    
     public func getString(key: String!) -> String? {
         UserDefaults.standard.synchronize()
         return UserDefaults.standard.value(forKey: key) as? String;
@@ -30,6 +37,7 @@ final class LocalStorage: NSObject {
     public func contains(key: String!) -> Bool{
         return UserDefaults.standard.object(forKey: key) != nil
     }
+    
     public func delete(key: String!){
         UserDefaults.standard.removeObject(forKey: key);
         UserDefaults.standard.synchronize();

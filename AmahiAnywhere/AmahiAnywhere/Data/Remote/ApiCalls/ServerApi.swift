@@ -33,7 +33,8 @@ class ServerApi {
         return [ "Session": server.session_token! ]
     }
     
-    func loadServerRoute(completion: @escaping (_ isLoadSuccessful: Bool) -> Void ) {
+    func loadServerRoute(serverAddress: ServerAddress ,
+                         completion: @escaping (_ isLoadSuccessful: Bool) -> Void ) {
         
         func updateServerRoute(serverRouteResponse: ServerRoute?) {
             guard let serverRoute = serverRouteResponse else {
@@ -41,9 +42,13 @@ class ServerApi {
                 return
             }
             self.serverRoute = serverRoute
-            // FIXME -- will need to be controlled by settings area
-            // self.serverAddress = serverRoute.relay_addr
-            self.serverAddress = serverRoute.local_addr
+            
+            // FIXME - Implement Autodetect for server address when it is available
+            if serverAddress == ServerAddress.remote {
+                self.serverAddress = serverRoute.relay_addr
+            } else {
+                self.serverAddress = serverRoute.local_addr
+            }
             completion(true)
         }
         
@@ -89,8 +94,3 @@ class ServerApi {
     }
     
 }
-
-
-
-
-

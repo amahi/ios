@@ -7,15 +7,21 @@
 
 import Foundation
 
-
 struct SegueIdentfiers {
-    static let CONNECTION = "connection"
-    static let SETTING = "goToSettings"
+    static let CONNECTION =                         "connection"
+    static let SETTING =                            "goToSettings"
 }
 
 struct StoryBoardIdentifiers {
     
-    static let MAIN = "Main"
-    static let LOGINVC = "LoginViewController"
-    static let DASHBOARDVC = "DashboardTableViewController"
+    static let MAIN =                               "Main"
+    static let LOGINVC =                            "LoginViewController"
+    static let DASHBOARDVC =                        "DashboardTableViewController"
+}
+
+struct CellIdentifiers {
+    // Cell Identifiers
+    static let CONNECTION_CELL =                     "connectionCell"
+    static let SETTING_CELL =                        "settingsCell"
+    static let SETTING_CELL_WITH_DETAILS =           "settingsCellWithDetails"
 }

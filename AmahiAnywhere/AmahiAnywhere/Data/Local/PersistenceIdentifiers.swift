@@ -13,4 +13,5 @@ import Foundation
 struct PersistenceIdentifiers {
     
     static let ACCESS_TOKEN =                       "access_token"
+    static let PREF_CONNECTION =                    "pref_connection"
 }
