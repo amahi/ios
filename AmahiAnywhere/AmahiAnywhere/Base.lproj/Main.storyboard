@@ -189,7 +189,7 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Amahi" id="TyA-06-cMH">
-                        <barButtonItem key="rightBarButtonItem" title="Item" image="ic_settings" id="mqe-RY-zXw">
+                        <barButtonItem key="leftBarButtonItem" title="Item" image="hamburger-menu-icon" id="mqe-RY-zXw">
                             <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <connections>
                                 <action selector="settingButtonPressed:" destination="F1H-47-plw" id="7tK-ig-5ib"/>
@@ -691,10 +691,10 @@
     </scenes>
     <resources>
         <image name="Amahi Logo White Font.png" width="719" height="246"/>
+        <image name="hamburger-menu-icon" width="16" height="16"/>
         <image name="ic_fast_forward_white" width="36" height="36"/>
         <image name="ic_fast_rewind_white" width="36" height="36"/>
         <image name="ic_play_white" width="36" height="36"/>
-        <image name="ic_settings" width="32" height="32"/>
         <namedColor name="textMutedColor">
             <color red="0.60799998040000003" green="0.60799998040000003" blue="0.60799998040000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

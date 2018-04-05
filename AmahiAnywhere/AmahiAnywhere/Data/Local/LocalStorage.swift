@@ -21,14 +21,7 @@ final class LocalStorage: NSObject {
         UserDefaults.standard.setValue(string, forKey: key);
         UserDefaults.standard.synchronize();
     }
-    
-    public func persistObject(object: NSObject!, key: String!) {
-        delete(key: key)
-        let encodedData = NSKeyedArchiver.archivedData(withRootObject: object)
-        UserDefaults.standard.set(encodedData, forKey: key)
-        UserDefaults.standard.synchronize()
-    }
-    
+
     public func getString(key: String!) -> String? {
         UserDefaults.standard.synchronize()
         return UserDefaults.standard.value(forKey: key) as? String;
