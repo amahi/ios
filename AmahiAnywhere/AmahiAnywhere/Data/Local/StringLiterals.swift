@@ -53,7 +53,7 @@ struct StringLiterals {
     
     // App_id
     
-    static let APP_ID =                         "Enter_App_Id"
+    static let APP_ID =                         "761559919"
     static let URL =                            "itms-apps://itunes.apple.com/app/viewContentsUserReviews?id=\(APP_ID)"
     
     // In SignOut
