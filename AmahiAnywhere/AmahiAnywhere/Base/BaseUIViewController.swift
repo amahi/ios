@@ -11,6 +11,12 @@ import Foundation
 
 class BaseUIViewController: UIViewController {
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        // Remove Back Button Text
+        navigationItem.title = ""
+    }
 }
 
 extension BaseUIViewController: UITextFieldDelegate {

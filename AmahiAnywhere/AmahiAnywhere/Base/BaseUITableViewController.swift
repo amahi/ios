@@ -10,4 +10,10 @@ import UIKit
 
 class BaseUITableViewController: UITableViewController {
 
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        // Remove Back Button Text
+        navigationItem.title = ""
+    }
 }

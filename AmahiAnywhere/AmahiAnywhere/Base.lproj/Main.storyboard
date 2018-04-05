@@ -491,7 +491,7 @@
                             <outlet property="delegate" destination="teI-x8-nnt" id="Zn4-tC-xkM"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Settings" id="ylI-ay-HB0"/>
+                    <navigationItem key="navigationItem" title="Settings" leftItemsSupplementBackButton="YES" id="ylI-ay-HB0"/>
                     <connections>
                         <segue destination="Mr0-gg-hDA" kind="show" identifier="connection" id="iIU-M3-5Ds"/>
                     </connections>
