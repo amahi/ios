@@ -30,7 +30,7 @@ struct StringLiterals {
     static let ALERT_ACTION =                   "OK"
     static let DISABLED =                       "Disabled"
     static let ACCOUNT =                        ["Sign Out"]
-    static let SETTINGS =                       ["Connection", "Auto Upload"]
+    static let SETTINGS =                       ["Connection"]
     static let ABOUT =                          ["Version",  "Rate", "Feedback", "Tell a friend"]
     static let SETTINGS_SECTION_TITLES =        ["Account", "Settings", "About"]
     static let SETTINGS_ACTION_TITLES =         [ACCOUNT, SETTINGS, ABOUT]
