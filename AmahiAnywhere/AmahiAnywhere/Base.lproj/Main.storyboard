@@ -189,6 +189,7 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Amahi" id="TyA-06-cMH">
+                        <barButtonItem key="backBarButtonItem" title=" " id="gSI-J7-yiC"/>
                         <barButtonItem key="leftBarButtonItem" title="Item" image="hamburger-menu-icon" id="mqe-RY-zXw">
                             <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <connections>
@@ -259,7 +260,9 @@
                         </connections>
                     </tableView>
                     <toolbarItems/>
-                    <navigationItem key="navigationItem" title="Shares" id="87T-nS-TQQ"/>
+                    <navigationItem key="navigationItem" title="Shares" id="87T-nS-TQQ">
+                        <barButtonItem key="backBarButtonItem" title=" " id="ErE-2F-DBt"/>
+                    </navigationItem>
                     <refreshControl key="refreshControl" opaque="NO" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="FCi-sW-ng5">
                         <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -491,7 +494,9 @@
                             <outlet property="delegate" destination="teI-x8-nnt" id="Zn4-tC-xkM"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Settings" leftItemsSupplementBackButton="YES" id="ylI-ay-HB0"/>
+                    <navigationItem key="navigationItem" title="Settings" id="ylI-ay-HB0">
+                        <barButtonItem key="backBarButtonItem" title=" " id="rEA-RU-Y4y"/>
+                    </navigationItem>
                     <connections>
                         <segue destination="Mr0-gg-hDA" kind="show" identifier="connection" id="iIU-M3-5Ds"/>
                     </connections>
