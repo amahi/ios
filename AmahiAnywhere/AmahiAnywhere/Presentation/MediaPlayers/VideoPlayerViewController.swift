@@ -224,7 +224,7 @@ extension VideoPlayerViewController: VLCMediaPlayerDelegate {
         if mediaPlayer?.state == VLCMediaPlayerState.ended ||
             mediaPlayer?.state == VLCMediaPlayerState.stopped {
             self.keepScreenOn(enabled: false)
-            self.perform(#selector(userClickDone(_:)), with: nil, afterDelay: 2.0)
+            self.dismiss(animated: true, completion: nil)
         } else if mediaPlayer?.state == VLCMediaPlayerState.buffering ||
             mediaPlayer?.state == VLCMediaPlayerState.paused {
             self.keepScreenOn(enabled: true)
