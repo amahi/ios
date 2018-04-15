@@ -16,4 +16,7 @@ public class ServerShare: EVNetworkingObject {
     public var name: String? =      nil
     public var tags: [String]? =    nil
     public var mtime: Date? =       nil
+    
+    // Overriding setValue for ignores undefined keys
+    override public func setValue(_ value: Any!, forUndefinedKey key: String) {}
 }

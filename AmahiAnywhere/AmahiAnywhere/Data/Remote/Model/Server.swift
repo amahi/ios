@@ -16,4 +16,10 @@ public class Server: EVNetworkingObject {
     public var name: String? =              nil
     public var session_token: String? =     nil
     public var active: Bool =               false
+    
+    override public func setValue(_ value: Any!, forUndefinedKey key: String) {
+        if key == "active" {
+            self.active = value as! Bool
+        }
+    }
 }

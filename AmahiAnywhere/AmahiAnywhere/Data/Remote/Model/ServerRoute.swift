@@ -15,6 +15,9 @@ public class ServerRoute: EVNetworkingObject {
     
     public var local_addr: String? =    nil
     public var relay_addr: String? =   nil
+    
+    // Overriding setValue for ignores undefined keys
+    override public func setValue(_ value: Any!, forUndefinedKey key: String) {}
 }
 
 enum ServerAddress: String {
