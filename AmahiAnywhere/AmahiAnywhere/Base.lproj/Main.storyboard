@@ -623,7 +623,6 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                         </subviews>
-                                        <color key="backgroundColor" name="textMutedColor"/>
                                         <constraints>
                                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="164" id="8Ux-0Y-fhq"/>
                                             <constraint firstItem="u1Q-ez-ytD" firstAttribute="height" secondItem="yNY-jS-axI" secondAttribute="height" id="qPh-3o-5A1"/>
@@ -700,8 +699,5 @@
         <image name="ic_fast_forward_white" width="36" height="36"/>
         <image name="ic_fast_rewind_white" width="36" height="36"/>
         <image name="ic_play_white" width="36" height="36"/>
-        <namedColor name="textMutedColor">
-            <color red="0.60799998040000003" green="0.60799998040000003" blue="0.60799998040000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
     </resources>
 </document>
