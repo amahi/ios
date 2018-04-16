@@ -12,102 +12,92 @@ public class Mimes {
     
     public static var shared = Mimes()
     
-    private var types: [String: Int]
+    private var types: [String: MimeType]
     
     private init() {
-        types = [String: Int]()
+        types = [String: MimeType]()
         
-        types.updateValue(MimeType.UNDEFINED, forKey: "application/octet-stream")
+        types.updateValue(MimeType.undefined, forKey: "application/octet-stream")
         
-        types.updateValue(MimeType.ARCHIVE, forKey: "application/gzip")
-        types.updateValue(MimeType.ARCHIVE, forKey: "application/rar")
-        types.updateValue(MimeType.ARCHIVE, forKey: "application/zip")
-        types.updateValue(MimeType.ARCHIVE, forKey: "application/x-gtar")
-        types.updateValue(MimeType.ARCHIVE, forKey: "application/x-tar")
-        types.updateValue(MimeType.ARCHIVE, forKey: "application/x-rar-compressed")
+        types.updateValue(MimeType.archive, forKey: "application/gzip")
+        types.updateValue(MimeType.archive, forKey: "application/rar")
+        types.updateValue(MimeType.archive, forKey: "application/zip")
+        types.updateValue(MimeType.archive, forKey: "application/x-gtar")
+        types.updateValue(MimeType.archive, forKey: "application/x-tar")
+        types.updateValue(MimeType.archive, forKey: "application/x-rar-compressed")
         
-        types.updateValue(MimeType.AUDIO, forKey: "application/ogg")
-        types.updateValue(MimeType.AUDIO, forKey: "application/x-flac")
+        types.updateValue(MimeType.audio, forKey: "application/ogg")
+        types.updateValue(MimeType.audio, forKey: "application/x-flac")
         
-        types.updateValue(MimeType.CODE, forKey: "text/css")
-        types.updateValue(MimeType.CODE, forKey: "text/xml")
-        types.updateValue(MimeType.CODE, forKey: "application/json")
-        types.updateValue(MimeType.CODE, forKey: "application/javascript")
-        types.updateValue(MimeType.CODE, forKey: "application/xml")
+        types.updateValue(MimeType.code, forKey: "text/css")
+        types.updateValue(MimeType.code, forKey: "text/xml")
+        types.updateValue(MimeType.code, forKey: "application/json")
+        types.updateValue(MimeType.code, forKey: "application/javascript")
+        types.updateValue(MimeType.code, forKey: "application/xml")
         
-        types.updateValue(MimeType.DOCUMENT, forKey: "application/pdf")
-        types.updateValue(MimeType.DOCUMENT, forKey: "application/msword")
-        types.updateValue(MimeType.DOCUMENT, forKey: "application/vnd.oasis.opendocument.text")
-        types.updateValue(MimeType.DOCUMENT, forKey: "application/x-abiword")
-        types.updateValue(MimeType.DOCUMENT, forKey: "application/x-kword")
-        types.updateValue(MimeType.DOCUMENT, forKey: "application/vnd.openxmlformats-officedocument.wordprocessingml.document")
+        types.updateValue(MimeType.document, forKey: "application/pdf")
+        types.updateValue(MimeType.document, forKey: "application/msword")
+        types.updateValue(MimeType.document, forKey: "application/vnd.oasis.opendocument.text")
+        types.updateValue(MimeType.document, forKey: "application/x-abiword")
+        types.updateValue(MimeType.document, forKey: "application/x-kword")
+        types.updateValue(MimeType.document, forKey: "application/vnd.openxmlformats-officedocument.wordprocessingml.document")
         
-        types.updateValue(MimeType.DIRECTORY, forKey: "text/directory")
+        types.updateValue(MimeType.directory, forKey: "text/directory")
         
-        types.updateValue(MimeType.IMAGE, forKey: "application/vnd.oasis.opendocument.graphics")
-        types.updateValue(MimeType.IMAGE, forKey: "application/vnd.oasis.opendocument.graphics-template")
+        types.updateValue(MimeType.image, forKey: "application/vnd.oasis.opendocument.graphics")
+        types.updateValue(MimeType.image, forKey: "application/vnd.oasis.opendocument.graphics-template")
         
-        types.updateValue(MimeType.PRESENTATION, forKey: "application/vnd.ms-powerpoint")
-        types.updateValue(MimeType.PRESENTATION, forKey: "application/vnd.openxmlformats-officedocument.presentationml.presentation")
-        types.updateValue(MimeType.PRESENTATION, forKey: "application/vnd.openxmlformats-officedocument.presentationml.slideshow")
+        types.updateValue(MimeType.presentation, forKey: "application/vnd.ms-powerpoint")
+        types.updateValue(MimeType.presentation, forKey: "application/vnd.openxmlformats-officedocument.presentationml.presentation")
+        types.updateValue(MimeType.presentation, forKey: "application/vnd.openxmlformats-officedocument.presentationml.slideshow")
         
-        types.updateValue(MimeType.SPREADSHEET, forKey: "application/vnd.ms-excel")
-        types.updateValue(MimeType.SPREADSHEET, forKey: "application/vnd.oasis.opendocument.spreadsheet")
-        types.updateValue(MimeType.SPREADSHEET, forKey: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet")
+        types.updateValue(MimeType.spreadsheet, forKey: "application/vnd.ms-excel")
+        types.updateValue(MimeType.spreadsheet, forKey: "application/vnd.oasis.opendocument.spreadsheet")
+        types.updateValue(MimeType.spreadsheet, forKey: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet")
         
-        types.updateValue(MimeType.VIDEO, forKey: "application/x-quicktimeplayer")
+        types.updateValue(MimeType.video, forKey: "application/x-quicktimeplayer")
         
-        types.updateValue(MimeType.SUBTITLE, forKey: "application/x-subrip")
-        types.updateValue(MimeType.SUBTITLE, forKey: "image/vnd.dvb.subtitle")
-        types.updateValue(MimeType.SUBTITLE, forKey: "application/x-subtitle")
+        types.updateValue(MimeType.subtitle, forKey: "application/x-subrip")
+        types.updateValue(MimeType.subtitle, forKey: "image/vnd.dvb.subtitle")
+        types.updateValue(MimeType.subtitle, forKey: "application/x-subtitle")
     }
     
-    public func match(_ mime: String) -> Int {
+    public func match(_ mime: String) -> MimeType {
+    
         let type = matchKnown(mime);
     
-    if type != MimeType.UNDEFINED {
-        return type;
-    } else {
-        return matchCategory(mime)
-    }
+        if type != MimeType.undefined {
+            return type;
+        } else {
+            return matchCategory(mime)
+        }
     }
     
-    private func matchKnown(_ mime: String) -> Int {
+    private func matchKnown(_ mime: String) -> MimeType {
         guard let mimeType = types[mime] else {
-            return MimeType.UNDEFINED
+            return MimeType.undefined
         }
         return mimeType
     }
     
-    private func matchCategory(_ mime: String) -> Int {
+    private func matchCategory(_ mime: String) -> MimeType {
         let type = mime.split(separator: "/")[0]
     
         switch type {
         case "audio":
-            return MimeType.AUDIO
+            return MimeType.audio
         case "image":
-            return MimeType.IMAGE
+            return MimeType.image
         case "text":
-            return MimeType.DOCUMENT
+            return MimeType.document
         case "video":
-            return MimeType.VIDEO
+            return MimeType.video
         default:
-            return MimeType.UNDEFINED
+            return MimeType.undefined
         }
     }
-
 }
 
-public struct MimeType {
-    public static let UNDEFINED = 0
-    public static let ARCHIVE = 1
-    public static let AUDIO = 2
-    public static let CODE = 3
-    public static let DOCUMENT = 4
-    public static let DIRECTORY = 5
-    public static let IMAGE = 6
-    public static let PRESENTATION = 7
-    public static let SPREADSHEET = 8
-    public static let VIDEO = 9
-    public static let SUBTITLE = 10
+public enum MimeType: Int {
+    case undefined = 1, archive, audio, code, document, directory, image, presentation, spreadsheet, video, subtitle
 }

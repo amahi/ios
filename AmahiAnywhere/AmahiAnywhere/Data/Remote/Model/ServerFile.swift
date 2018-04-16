@@ -66,7 +66,7 @@ public class ServerFile: EVNetworkingObject {
     }
     
     public func isDirectory() -> Bool {
-        return Mimes.shared.match(mime_type!) == MimeType.DIRECTORY
+        return Mimes.shared.match(mime_type!) == MimeType.directory
     }
 }
 

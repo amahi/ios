@@ -76,14 +76,14 @@ class FilesPresenter: BasePresenter {
         let file = files[fileIndex]
         switch Mimes.shared.match(file.mime_type!) {
             
-        case MimeType.IMAGE:
+        case MimeType.image:
             // prepare ImageViewer
             let controller = LightboxController(images: prepareImageArray(files), startIndex: fileIndex)
             controller.dynamicBackground = true
             self.view?.present(controller)
             break
             
-        case MimeType.VIDEO, MimeType.AUDIO:
+        case MimeType.video, MimeType.audio:
             // TODO: open VideoPlayer and play the file
             let url = ServerApi.shared!.getFileUri(file)
             self.view?.playMedia(at: url)
@@ -99,7 +99,7 @@ class FilesPresenter: BasePresenter {
     private func prepareImageArray(_ files: [ServerFile]) -> [LightboxImage] {
         var images: [LightboxImage] = [LightboxImage] ()
         for file in files {
-            if (Mimes.shared.match(file.mime_type!) == MimeType.IMAGE) {
+            if (Mimes.shared.match(file.mime_type!) == MimeType.image) {
                 images.append(LightboxImage(imageURL: ServerApi.shared!.getFileUri(file), text: file.name!))
             }
         }
