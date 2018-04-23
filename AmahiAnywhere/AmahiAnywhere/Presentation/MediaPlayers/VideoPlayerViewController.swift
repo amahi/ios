@@ -69,6 +69,7 @@ class VideoPlayerViewController: UIViewController {
             self.videoControlsView.isHidden = false
         }
         videoControlsView.superview?.bringSubview(toFront: videoControlsView)
+        self.keepScreenOn(enabled: true)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -82,6 +83,7 @@ class VideoPlayerViewController: UIViewController {
             idleTimer?.invalidate()
             idleTimer = nil
         }
+        self.keepScreenOn(enabled: false)
     }
     
     func listenForNotifications() {
@@ -281,14 +283,10 @@ extension VideoPlayerViewController: VLCMediaPlayerDelegate {
                 scrobbleSlider.maximumValue = Float(truncating: (mediaPlayer?.media.length.value)!)
                 hasMediaFileParseFinished = true
             }
-            
-            self.keepScreenOn(enabled: true)
             self.videoControlsView.isHidden = false
         } else if mediaPlayer?.state == VLCMediaPlayerState.playing {
-            self.keepScreenOn(enabled: false)
             self.resetScreenIdleTimer()
         } else {
-            self.keepScreenOn(enabled: true)
             self.videoControlsView.isHidden = false
             idleTimer?.invalidate()
             idleTimer = nil

@@ -15,17 +15,17 @@
             <objects>
                 <viewController storyboardIdentifier="LoginViewController" id="BYZ-38-t0r" customClass="LoginViewController" customModule="AmahiAnywhere" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9fv-AI-FYH">
-                                <rect key="frame" x="0.0" y="44" width="375" height="734"/>
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="32" translatesAutoresizingMaskIntoConstraints="NO" id="Ncp-2O-f9H">
-                                        <rect key="frame" x="20" y="246.99999999999997" width="335" height="110.66666666666666"/>
+                                        <rect key="frame" x="20" y="247" width="335" height="110.5"/>
                                         <subviews>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username or email" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5d3-hh-qVC" userLabel="Username Text Field" customClass="SkyFloatingLabelTextField" customModule="SkyFloatingLabelTextField">
-                                                <rect key="frame" x="0.0" y="0.0" width="335" height="39.666666666666664"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="335" height="39.5"/>
                                                 <nil key="textColor"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits" returnKeyType="next" textContentType="email"/>
@@ -51,7 +51,7 @@
                                                 </userDefinedRuntimeAttributes>
                                             </textField>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="0RS-nk-Abm" userLabel="Password Text Field" customClass="SkyFloatingLabelTextField" customModule="SkyFloatingLabelTextField">
-                                                <rect key="frame" x="0.0" y="71.666666666666686" width="335" height="39"/>
+                                                <rect key="frame" x="0.0" y="71.5" width="335" height="39"/>
                                                 <nil key="textColor"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits" returnKeyType="done" secureTextEntry="YES" textContentType="password"/>
@@ -83,7 +83,7 @@
                                         </constraints>
                                     </stackView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0uK-Wc-m2p">
-                                        <rect key="frame" x="19.666666666666657" y="394.66666666666669" width="335" height="50"/>
+                                        <rect key="frame" x="19.5" y="394.5" width="335" height="50"/>
                                         <color key="backgroundColor" red="0.2897946834564209" green="0.71102970838546753" blue="0.94655948877334595" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="ffp-A8-OPv"/>
@@ -333,7 +333,7 @@
                                 <color key="backgroundColor" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>
                                 <color key="separatorColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="ServerDirectoryTableViewCell" textLabel="2XZ-MZ-Hqo" rowHeight="54" style="IBUITableViewCellStyleDefault" id="mUg-8D-lVZ">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="ServerDirectoryTableViewCell" textLabel="2XZ-MZ-Hqo" rowHeight="54" style="IBUITableViewCellStyleDefault" id="mUg-8D-lVZ">
                                         <rect key="frame" x="0.0" y="55.5" width="375" height="54"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="mUg-8D-lVZ" id="SWJ-A3-vHv">
@@ -354,7 +354,7 @@
                                             <segue destination="UfF-4C-UHP" kind="show" id="3A7-wU-PEi"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ServerFileTableViewCell" rowHeight="54" id="Gen-P6-yQG" customClass="ServerFileTableViewCell" customModule="AmahiAnywhere" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ServerFileTableViewCell" rowHeight="54" id="Gen-P6-yQG" customClass="ServerFileTableViewCell" customModule="AmahiAnywhere" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="109.5" width="375" height="54"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Gen-P6-yQG" id="dXc-bC-ZIk">
@@ -623,6 +623,9 @@
                                                     </stackView>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="260" verticalHuggingPriority="251" text="00:00" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="u1Q-ez-ytD" userLabel="Play Time">
                                                         <rect key="frame" x="223" y="0.0" width="39" height="36"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="39" id="tEr-0O-y1E"/>
+                                                        </constraints>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <nil key="highlightedColor"/>
