@@ -47,14 +47,14 @@ class FilesPresenter: BasePresenter {
         }
     }
     
-    func filterFiles(_ searchText: String, files: [ServerFile]) {
+    func filterFiles(_ searchText: String, files: [ServerFile], sortOrder: FileSort) {
         if searchText.count > 0 {
             let filteredFiles = files.filter { file in
                 return file.name!.localizedCaseInsensitiveContains(searchText)
             }
-            self.view?.updateFiles(filteredFiles)
+            self.reorderFiles(files: filteredFiles, sortOrder: sortOrder)
         } else {
-            self.view?.updateFiles(files)
+            self.reorderFiles(files: files, sortOrder: sortOrder)
         }
     }
     
@@ -65,11 +65,11 @@ class FilesPresenter: BasePresenter {
     
     private func getSorter(_ sortOrder: FileSort) -> ((ServerFile, ServerFile) -> Bool) {
         switch sortOrder {
-        case .ModifiedTime:
-            return ServerFile.lastModifiedSorter
-        case .Name:
-            return ServerFile.nameSorter
-        }
+            case .modifiedTime:
+                return ServerFile.lastModifiedSorter
+            case .name:
+                return ServerFile.nameSorter
+            }
     }
     
     func handleFileOpening(fileIndex: Int, files: [ServerFile]) {

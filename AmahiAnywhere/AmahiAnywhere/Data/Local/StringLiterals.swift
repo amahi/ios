@@ -33,9 +33,7 @@ struct StringLiterals {
     static let SETTINGS =                       ["Connection"]
     static let ABOUT =                          ["Version",  "Rate", "Feedback", "Tell a friend"]
     static let SETTINGS_SECTION_TITLES =        ["Account", "Settings", "About"]
-    static let SETTINGS_ACTION_TITLES =         [ACCOUNT, SETTINGS, ABOUT]
-//    static let CONNECTION_ITEMS =               ["Autodetect","LAN","Remote"]
-    
+    static let SETTINGS_ACTION_TITLES =         [ACCOUNT, SETTINGS, ABOUT]    
     
     // In Mail Compose Controller
     

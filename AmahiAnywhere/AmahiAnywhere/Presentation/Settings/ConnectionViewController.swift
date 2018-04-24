@@ -12,20 +12,6 @@ class ConnectionViewController: UITableViewController {
         tableView.tableFooterView = footer
     }
     
-    var userConnectionPreference : ServerAddress {
-        set {
-            LocalStorage.shared.persistString(string: newValue.rawValue,
-                                              key: PersistenceIdentifiers.PREF_CONNECTION)
-        }
-        get {
-            if let connection = LocalStorage.shared.getString(key: PersistenceIdentifiers.PREF_CONNECTION) {
-                return ServerAddress(rawValue: connection)!
-            } else {
-                return ServerAddress.local
-            }
-        }
-    }
-    
     // MARK: - Table view data source
     
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -37,7 +23,7 @@ class ConnectionViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if let index = connectionItem.index(of: userConnectionPreference) {
+        if let index = connectionItem.index(of: LocalStorage.shared.userConnectionPreference) {
             let cell = tableView.cellForRow(at: IndexPath(row: index, section: 0))
             cell?.accessoryType = .none
         }
@@ -45,7 +31,7 @@ class ConnectionViewController: UITableViewController {
         // update the checkmark for the current row
         let cell = tableView.cellForRow(at: indexPath)
         cell?.accessoryType = .checkmark
-        userConnectionPreference = connectionItem[indexPath.row]
+        LocalStorage.shared.userConnectionPreference = connectionItem[indexPath.row]
         
         tableView.deselectRow(at: indexPath, animated: true)
     }
@@ -56,13 +42,12 @@ class ConnectionViewController: UITableViewController {
         cell.textLabel?.text = connectionItem[indexPath.row].rawValue
         cell.textLabel?.textColor = UIColor.white
         
-        if connectionItem[indexPath.row] == userConnectionPreference {
+        if connectionItem[indexPath.row] == LocalStorage.shared.userConnectionPreference {
             cell.accessoryType = .checkmark
         } else {
             cell.accessoryType = .none
         }
         
         return cell
-        
     }
 }

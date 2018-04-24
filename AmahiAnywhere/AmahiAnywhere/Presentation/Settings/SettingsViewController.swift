@@ -103,7 +103,7 @@ class SettingsViewController: UITableViewController,MFMailComposeViewControllerD
             cell.detailTextLabel?.textColor = UIColor.lightGray
             
             if section == 1 && row == 0 {
-                cell.detailTextLabel?.text = self.userConnectionPreference.rawValue
+                cell.detailTextLabel?.text = LocalStorage.shared.userConnectionPreference.rawValue
             } else if section == 1 && row == 1 {
                 cell.detailTextLabel?.text = StringLiterals.DISABLED
             }  else if section == 2 && row == 0 {
@@ -119,16 +119,6 @@ class SettingsViewController: UITableViewController,MFMailComposeViewControllerD
         }
         
         return cell
-    }
-    
-    var userConnectionPreference : ServerAddress {
-        get {
-            if let connection = LocalStorage.shared.getString(key: PersistenceIdentifiers.PREF_CONNECTION) {
-                return ServerAddress(rawValue: connection)!
-            } else {
-                return ServerAddress.local
-            }
-        }
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

@@ -19,7 +19,7 @@ class FilesViewController: BaseUIViewController, UITableViewDelegate, UITableVie
     private var presenter: FilesPresenter!
     var refreshControl: UIRefreshControl!
     
-    private var fileSort = FileSort.ModifiedTime
+    private var fileSort = FileSort.modifiedTime
 
     @IBOutlet var filesTableView: UITableView!
     
@@ -37,10 +37,6 @@ class FilesViewController: BaseUIViewController, UITableViewDelegate, UITableVie
         
         presenter.getFiles(share, directory: directory)
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-    }
     
     @objc func handleRefresh(sender: UIRefreshControl) {
         presenter.getFiles(share, directory: directory)
@@ -56,18 +52,15 @@ class FilesViewController: BaseUIViewController, UITableViewDelegate, UITableVie
     // MARK: - File sorting and searching functionality
     
     @IBAction func onSortChange(_ sender: UISegmentedControl) {
-        fileSort = sender.selectedSegmentIndex == 0 ? FileSort.ModifiedTime : FileSort.Name
+        fileSort = sender.selectedSegmentIndex == 0 ? FileSort.modifiedTime : FileSort.name
         presenter.reorderFiles(files: serverFiles, sortOrder: fileSort)
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        presenter.filterFiles(searchText, files: serverFiles)
+        presenter.filterFiles(searchText, files: serverFiles, sortOrder: fileSort)
     }
 
     // MARK: - Table view data source
-
-//    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-//    }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return filteredFiles.count
@@ -145,6 +138,6 @@ class ServerFileTableViewCell: UITableViewCell {
 }
 
 enum FileSort {
-    case ModifiedTime
-    case Name
+    case modifiedTime
+    case name
 }

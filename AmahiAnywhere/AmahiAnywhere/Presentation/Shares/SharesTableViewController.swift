@@ -24,10 +24,6 @@ class SharesTableViewController: BaseUITableViewController {
         
         presenter.loadServerRoute()
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-    }
     
     @objc func handleRefresh(sender: UIRefreshControl) {
         presenter.getShares()
