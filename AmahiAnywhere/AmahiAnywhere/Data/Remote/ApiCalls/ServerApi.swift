@@ -52,11 +52,11 @@ class ServerApi {
             completion(true)
         }
         
-        Network.request(ApiEndPoints.getServerRoute(), headers: getSessionHeader(), completion: updateServerRoute)
+        Network.shared.request(ApiEndPoints.getServerRoute(), headers: getSessionHeader(), completion: updateServerRoute)
     }
     
     func getShares(completion: @escaping (_ serverRoute: [ServerShare]?) -> Void ) {
-        Network.request(ApiEndPoints.getServerShares(serverAddress), headers: getSessionHeader(), completion: completion)
+        Network.shared.request(ApiEndPoints.getServerShares(serverAddress), headers: getSessionHeader(), completion: completion)
     }
     
     public func getFiles(share: ServerShare, directory: ServerFile? = nil, completion: @escaping (_ serverFiles: [ServerFile]?) -> Void ) {
@@ -78,7 +78,7 @@ class ServerApi {
             params["p"] = directory?.getPath()
         }
         
-        Network.request(ApiEndPoints.getServerFiles(serverAddress), parameters: params, headers: getSessionHeader(), completion: updateFiles)
+        Network.shared.request(ApiEndPoints.getServerFiles(serverAddress), parameters: params, headers: getSessionHeader(), completion: updateFiles)
     }
     
     public func getFileUri(_ file: ServerFile) -> URL {

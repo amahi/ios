@@ -11,17 +11,25 @@ import Lightbox
 
 class FilesViewController: BaseUIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate {
     
+    // Mark - Server properties, will be set from presenting class
     public var directory: ServerFile?
     public var share: ServerShare!
     
+    // Mark - TableView data properties
     private var serverFiles: [ServerFile] = [ServerFile]()
     private var filteredFiles: [ServerFile] = [ServerFile]()
-    private var presenter: FilesPresenter!
-    var refreshControl: UIRefreshControl!
     
     private var fileSort = FileSort.modifiedTime
-
-    @IBOutlet var filesTableView: UITableView!
+    
+    // Mark - UIKit properties
+    @IBOutlet private var filesTableView: UITableView!
+    private var refreshControl: UIRefreshControl!
+    private var downloadProgressAlertController : UIAlertController?
+    private var progressView: UIProgressView?
+    private var docController: UIDocumentInteractionController?
+    
+    private var isAlertShowing = false
+    private var presenter: FilesPresenter!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -59,13 +67,13 @@ class FilesViewController: BaseUIViewController, UITableViewDelegate, UITableVie
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         presenter.filterFiles(searchText, files: serverFiles, sortOrder: fileSort)
     }
-
+    
     // MARK: - Table view data source
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return filteredFiles.count
     }
-
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let serverFile = filteredFiles[indexPath.row]
         if serverFile.isDirectory() {
@@ -81,13 +89,23 @@ class FilesViewController: BaseUIViewController, UITableViewDelegate, UITableVie
         }
     }
     
+    private func setupDownloadProgressIndicator() {
+        downloadProgressAlertController = UIAlertController(title: "", message: "", preferredStyle: .alert)
+        progressView = UIProgressView(progressViewStyle: .bar)
+        progressView?.setProgress(0.0, animated: true)
+        progressView?.frame = CGRect(x: 10, y: 100, width: 250, height: 2)
+        downloadProgressAlertController?.view.addSubview(progressView!)
+        let height:NSLayoutConstraint = NSLayoutConstraint(item: downloadProgressAlertController!.view, attribute: NSLayoutAttribute.height, relatedBy: NSLayoutRelation.equal, toItem: nil, attribute: NSLayoutAttribute.notAnAttribute, multiplier: 1, constant: 120)
+        downloadProgressAlertController?.view.addConstraint(height);
+    }
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         presenter.handleFileOpening(fileIndex: indexPath.row, files: filteredFiles)
         tableView.deselectRow(at: indexPath, animated: true)
     }
-
+    
     // MARK: - Navigation
-
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let vc: FilesViewController = segue.destination as! FilesViewController
         vc.share = self.share
@@ -100,9 +118,41 @@ class FilesViewController: BaseUIViewController, UITableViewDelegate, UITableVie
 
 extension FilesViewController: FilesView {
     
+    func dismissProgressIndicator(at url: URL, mimeType: MimeType) {
+        downloadProgressAlertController?.dismiss(animated: true, completion: {
+            self.webViewOpenContent(at: url, mimeType: mimeType)
+        })
+        downloadProgressAlertController = nil
+        progressView = nil
+        isAlertShowing = false
+    }
+    
+    func updateDownloadProgress(for row: Int, downloadJustStarted: Bool , progress: Float) {
+        
+        if downloadJustStarted {
+            setupDownloadProgressIndicator()
+            downloadProgressAlertController?.title = "Downloading \(self.filteredFiles[row].name!)"
+        }
+        
+        if !isAlertShowing {
+            self.isAlertShowing = true
+            present(downloadProgressAlertController!, animated: true, completion: nil)
+        }
+        
+        progressView?.setProgress(progress, animated: true)
+    }
+    
+    func webViewOpenContent(at url: URL, mimeType: MimeType) {
+        let webViewVc = self.viewController(viewControllerClass: WebViewController.self,
+                                            from: StoryBoardIdentifiers.MAIN)
+        webViewVc.url = url
+        webViewVc.mimeType = mimeType
+        self.navigationController?.pushViewController(webViewVc, animated: true)
+    }
+    
     func playMedia(at url: URL) {
         let videoPlayerVc = self.viewController(viewControllerClass: VideoPlayerViewController.self, from: StoryBoardIdentifiers.MAIN)
-       videoPlayerVc.mediaURL = url
+        videoPlayerVc.mediaURL = url
         self.present(videoPlayerVc)
     }
     
@@ -131,7 +181,7 @@ extension FilesViewController: FilesView {
 // MARK: - ServerFileTableViewCell
 
 class ServerFileTableViewCell: UITableViewCell {
-
+    
     @IBOutlet weak var fileNameLabel: UILabel!
     @IBOutlet weak var fileSizeLabel: UILabel!
     @IBOutlet weak var lastModifiedLabel: UILabel!

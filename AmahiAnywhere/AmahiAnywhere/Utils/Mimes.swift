@@ -30,6 +30,8 @@ public class Mimes {
         types.updateValue(MimeType.audio, forKey: "application/x-flac")
         
         types.updateValue(MimeType.code, forKey: "text/css")
+        types.updateValue(MimeType.code, forKey: "text/html")
+        types.updateValue(MimeType.code, forKey: "text/plain")
         types.updateValue(MimeType.code, forKey: "text/xml")
         types.updateValue(MimeType.code, forKey: "application/json")
         types.updateValue(MimeType.code, forKey: "application/javascript")
@@ -84,16 +86,16 @@ public class Mimes {
         let type = mime.split(separator: "/")[0]
     
         switch type {
-        case "audio":
-            return MimeType.audio
-        case "image":
-            return MimeType.image
-        case "text":
-            return MimeType.document
-        case "video":
-            return MimeType.video
-        default:
-            return MimeType.undefined
+            case "audio":
+                return MimeType.audio
+            case "image":
+                return MimeType.image
+            case "text":
+                return MimeType.document
+            case "video":
+                return MimeType.video
+            default:
+                return MimeType.undefined
         }
     }
 }

@@ -20,12 +20,12 @@ class AmahiApi {
         
         let headers = [ "Content-Type": "application/x-www-form-urlencoded" ]
 
-        Network.request(ApiEndPoints.authenticate(), method: .post, parameters: ApiConfig.oauthCredentials(username: username, password: password),
+        Network.shared.request(ApiEndPoints.authenticate(), method: .post, parameters: ApiConfig.oauthCredentials(username: username, password: password),
                         headers: headers, completion: completion)
     }
     
     func getServers(completion: @escaping (_ servers: [Server]?) -> Void ) {
-        Network.request(ApiEndPoints.fetchServers(), completion: completion)
+        Network.shared.request(ApiEndPoints.fetchServers(), completion: completion)
     }
 
 }
