@@ -43,7 +43,8 @@ public class Mimes {
         types.updateValue(MimeType.document, forKey: "application/x-abiword")
         types.updateValue(MimeType.document, forKey: "application/x-kword")
         types.updateValue(MimeType.document, forKey: "application/vnd.openxmlformats-officedocument.wordprocessingml.document")
-        
+        types.updateValue(MimeType.document, forKey: "text/csv")
+
         types.updateValue(MimeType.directory, forKey: "text/directory")
         
         types.updateValue(MimeType.image, forKey: "application/vnd.oasis.opendocument.graphics")
