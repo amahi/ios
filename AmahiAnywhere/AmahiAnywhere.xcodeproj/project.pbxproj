@@ -40,6 +40,7 @@
 		C83C639F2039B16C0089B9D8 /* DashboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C83C639E2039B16C0089B9D8 /* DashboardViewController.swift */; };
 		C866E5552042D02A0083A606 /* VideoPlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C866E5542042D02A0083A606 /* VideoPlayerViewController.swift */; };
 		C878C97C205DF4060039C23A /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = C878C97B205DF4060039C23A /* UIColor.swift */; };
+		C8D86160209490230014D8AC /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8D8615F209490230014D8AC /* WebViewController.swift */; };
 		FB71BE98201CB2FC0005492C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB71BE97201CB2FC0005492C /* AppDelegate.swift */; };
 		FB71BE9A201CB2FC0005492C /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB71BE99201CB2FC0005492C /* LoginViewController.swift */; };
 		FB71BE9D201CB2FC0005492C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FB71BE9B201CB2FC0005492C /* Main.storyboard */; };
@@ -83,6 +84,7 @@
 		C866E5532042373D0083A606 /* AmahiAnywhere-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "AmahiAnywhere-Bridging-Header.h"; sourceTree = "<group>"; };
 		C866E5542042D02A0083A606 /* VideoPlayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPlayerViewController.swift; sourceTree = "<group>"; };
 		C878C97B205DF4060039C23A /* UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
+		C8D8615F209490230014D8AC /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
 		F5293AC0952F87B50DCD644D /* Pods_AmahiAnywhere.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AmahiAnywhere.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FB71BE94201CB2FC0005492C /* AmahiAnywhere.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AmahiAnywhere.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FB71BE97201CB2FC0005492C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -195,6 +197,7 @@
 				C8CE05C7206B1F57006F6807 /* Shares */,
 				C8CE05C6206B1F3B006F6807 /* Dashboard */,
 				C83C639B2039922A0089B9D8 /* Login */,
+				C8D8615F209490230014D8AC /* WebViewController.swift */,
 			);
 			path = Presentation;
 			sourceTree = "<group>";
@@ -335,7 +338,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0920;
-				LastUpgradeCheck = 0920;
+				LastUpgradeCheck = 0930;
 				ORGANIZATIONNAME = Amahi;
 				TargetAttributes = {
 					FB71BE93201CB2FC0005492C = {
@@ -470,6 +473,7 @@
 				C83C637E2038D5150089B9D8 /* StringIdentifiers.swift in Sources */,
 				46F87397204CC69500F1AF37 /* Server.swift in Sources */,
 				46098D08204FFFBE00752EB6 /* ServerApi.swift in Sources */,
+				C8D86160209490230014D8AC /* WebViewController.swift in Sources */,
 				C83C63992038D5B30089B9D8 /* AuthResponses.swift in Sources */,
 				46098D0A2050114C00752EB6 /* Network.swift in Sources */,
 				C83C639F2039B16C0089B9D8 /* DashboardViewController.swift in Sources */,
@@ -513,6 +517,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -520,6 +525,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -571,6 +577,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -578,6 +585,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;

@@ -18,6 +18,7 @@ struct StringLiterals {
     static let GENERIC_NETWORK_ERROR =          "An unexpected network error occurred."
     static let INCORRECT_PASSWORD =             "Incorrect Username or Password"
     static let FIELD_IS_REQUIRED =              "This Field is required!"
+    static let ERROR_DOWNLOADING_FILE =         "Error while downloading file"
     
     // In Setting Area
     static let FEEDBACK_RECEPIENT =             "support@amahi.org"

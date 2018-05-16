@@ -30,6 +30,8 @@ public class Mimes {
         types.updateValue(MimeType.audio, forKey: "application/x-flac")
         
         types.updateValue(MimeType.code, forKey: "text/css")
+        types.updateValue(MimeType.code, forKey: "text/html")
+        types.updateValue(MimeType.code, forKey: "text/plain")
         types.updateValue(MimeType.code, forKey: "text/xml")
         types.updateValue(MimeType.code, forKey: "application/json")
         types.updateValue(MimeType.code, forKey: "application/javascript")
@@ -45,6 +47,7 @@ public class Mimes {
         // FIXME-cpg: this is done temporarily until we get the last bits of https://github.com/amahi/ios/issues/56
         types.updateValue(MimeType.document, forKey: "application/epub+zip")
         types.updateValue(MimeType.document, forKey: "application/x-mobipocket")
+        types.updateValue(MimeType.document, forKey: "text/csv")
 
         types.updateValue(MimeType.directory, forKey: "text/directory")
         
@@ -88,16 +91,16 @@ public class Mimes {
         let type = mime.split(separator: "/")[0]
     
         switch type {
-        case "audio":
-            return MimeType.audio
-        case "image":
-            return MimeType.image
-        case "text":
-            return MimeType.document
-        case "video":
-            return MimeType.video
-        default:
-            return MimeType.undefined
+            case "audio":
+                return MimeType.audio
+            case "image":
+                return MimeType.image
+            case "text":
+                return MimeType.document
+            case "video":
+                return MimeType.video
+            default:
+                return MimeType.undefined
         }
     }
 }
