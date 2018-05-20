@@ -118,9 +118,9 @@ class FilesViewController: BaseUIViewController, UITableViewDelegate, UITableVie
 
 extension FilesViewController: FilesView {
     
-    func dismissProgressIndicator(at url: URL, mimeType: MimeType) {
+    func dismissProgressIndicator(at url: URL, completion: @escaping () -> Void) {
         downloadProgressAlertController?.dismiss(animated: true, completion: {
-            self.webViewOpenContent(at: url, mimeType: mimeType)
+            completion()
         })
         downloadProgressAlertController = nil
         progressView = nil
@@ -131,7 +131,7 @@ extension FilesViewController: FilesView {
         
         if downloadJustStarted {
             setupDownloadProgressIndicator()
-            downloadProgressAlertController?.title = "Downloading \(self.filteredFiles[row].name!)"
+            downloadProgressAlertController?.title = String(format: StringLiterals.DOWNLOADING_FILE, self.filteredFiles[row].name!)
         }
         
         if !isAlertShowing {
@@ -140,6 +140,14 @@ extension FilesViewController: FilesView {
         }
         
         progressView?.setProgress(progress, animated: true)
+    }
+    
+    func shareFile(at url: URL) {
+        let linkToShare = [url]
+        
+        let activityController = UIActivityViewController(activityItems: linkToShare, applicationActivities: nil)
+        
+        self.present(activityController, animated: true, completion: nil)
     }
     
     func webViewOpenContent(at url: URL, mimeType: MimeType) {

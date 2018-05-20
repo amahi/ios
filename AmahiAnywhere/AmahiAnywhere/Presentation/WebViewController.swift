@@ -43,7 +43,7 @@ class WebViewController : UIViewController {
             webView.addObserver(self, forKeyPath: keyPath, options: .new, context: nil)
         }
         
-            webView.loadFileURL(url, allowingReadAccessTo: url)
+        webView.loadFileURL(url, allowingReadAccessTo: url)
     }
     
     @objc func userClickDone() {

@@ -1,6 +1,10 @@
 # Amahi iOS App
 Amahi iOS App, new from scratch, in Swift.
 
+[![Build Status](https://travis-ci.org/amahi/ios.svg?branch=master)](https://travis-ci.org/amahi/ios) `master`
+
+[![Build Status](https://travis-ci.org/amahi/ios.svg?branch=beta)](https://travis-ci.org/amahi/ios) `beta`
+
 ## Requirements
 
 - iOS 9.0+

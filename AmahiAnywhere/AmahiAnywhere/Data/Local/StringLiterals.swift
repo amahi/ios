@@ -19,6 +19,7 @@ struct StringLiterals {
     static let INCORRECT_PASSWORD =             "Incorrect Username or Password"
     static let FIELD_IS_REQUIRED =              "This Field is required!"
     static let ERROR_DOWNLOADING_FILE =         "Error while downloading file"
+    static let DOWNLOADING_FILE =               "Downloading %@"
     
     // In Setting Area
     static let FEEDBACK_RECEPIENT =             "support@amahi.org"

@@ -21,10 +21,12 @@ protocol FilesView : BaseView {
     func playMedia(at url: URL)
     
     func webViewOpenContent(at url: URL, mimeType: MimeType)
+    
+    func shareFile(at url: URL)
 
     func updateDownloadProgress(for row: Int, downloadJustStarted: Bool, progress: Float)
     
-    func dismissProgressIndicator(at url: URL, mimeType: MimeType)
+    func dismissProgressIndicator(at url: URL, completion: @escaping () -> Void)
 }
 
 class FilesPresenter: BasePresenter {
@@ -85,8 +87,9 @@ class FilesPresenter: BasePresenter {
     func handleFileOpening(fileIndex: Int, files: [ServerFile]) {
         let file = files[fileIndex]
         
-        debugPrint("File Path \(file.getPath())")
-        switch Mimes.shared.match(file.mime_type!) {
+        let type = Mimes.shared.match(file.mime_type!)
+        
+        switch type {
             
             case MimeType.image:
                 // prepare ImageViewer
@@ -101,22 +104,25 @@ class FilesPresenter: BasePresenter {
                 self.view?.playMedia(at: url)
                 return
             
-            case MimeType.code, MimeType.presentation, MimeType.document, MimeType.spreadsheet:
+            case MimeType.code, MimeType.presentation, MimeType.sharedFile, MimeType.document, MimeType.spreadsheet:
                 if fileExists(fileName: file.getPath()) {
-                    let mimeType = Mimes.shared.match(file.mime_type!)
-                    self.view?.webViewOpenContent(at: localPath(for: file), mimeType: mimeType)
+                    if type == MimeType.sharedFile {
+                        self.view?.shareFile(at: localPath(for: file))
+                    } else {
+                        self.view?.webViewOpenContent(at: localPath(for: file), mimeType: type)
+                    }
                 } else {
-                    downloadAndOpenInWebView(fileIndex: fileIndex, serverFile: file)
+                    downloadAndOpenFile(fileIndex: fileIndex, serverFile: file, mimeType: type)
                 }
                 break
-
+            
             default:
                 // TODO: show list of apps that can open the file
                 return
         }
     }
     
-    private func downloadAndOpenInWebView(fileIndex: Int , serverFile: ServerFile) {
+    private func downloadAndOpenFile(fileIndex: Int , serverFile: ServerFile, mimeType: MimeType) {
         
         self.view?.updateDownloadProgress(for: fileIndex, downloadJustStarted: true, progress: 0.0)
         Network.shared.downloadFileToStorage(file: serverFile, progressCompletion: { progress in
@@ -128,13 +134,16 @@ class FilesPresenter: BasePresenter {
                 return
             }
             
-            let documentPath = self.localPath(for: serverFile)
+            let filePath = self.localPath(for: serverFile)
             
-            // Get file path in documents folder
-            
-            let mimeType = Mimes.shared.match(serverFile.mime_type!)
-            
-            self.view?.dismissProgressIndicator(at: documentPath, mimeType: mimeType)
+            self.view?.dismissProgressIndicator(at: filePath, completion: {
+                
+                if mimeType == MimeType.sharedFile {
+                    self.view?.shareFile(at: filePath)
+                } else {
+                    self.view?.webViewOpenContent(at: filePath, mimeType: mimeType)
+                }
+            })
         })
     }
     
