@@ -28,6 +28,12 @@ class DashboardPresenter: BasePresenter {
     func fetchServers() {
         
         self.view?.updateRefreshing(isRefreshing: true)
+        
+        // cleanup temp files in background
+        DispatchQueue.global(qos: .background).async {
+            FileManager.default.cleanUpFilesInCache(folderName: "cache")
+        }
+        
         AmahiApi.shared.getServers() { (serverResponse) in
             self.view?.updateRefreshing(isRefreshing: false)
 

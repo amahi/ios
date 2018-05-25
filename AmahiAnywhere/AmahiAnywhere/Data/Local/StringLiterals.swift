@@ -20,6 +20,8 @@ struct StringLiterals {
     static let FIELD_IS_REQUIRED =              "This Field is required!"
     static let ERROR_DOWNLOADING_FILE =         "Error while downloading file"
     static let DOWNLOADING_FILE =               "Downloading %@"
+    static let OK =                             "OK"
+    static let CURRENT_SIZE =                   "Current size: %@"
     
     // In Setting Area
     static let FEEDBACK_RECEPIENT =             "support@amahi.org"
@@ -32,7 +34,7 @@ struct StringLiterals {
     static let ALERT_ACTION =                   "OK"
     static let DISABLED =                       "Disabled"
     static let ACCOUNT =                        ["Sign Out"]
-    static let SETTINGS =                       ["Connection"]
+    static let SETTINGS =                       ["Connection", CLEAR_CACHE_TITLE]
     static let ABOUT =                          ["Version",  "Rate", "Feedback", "Tell a friend"]
     static let SETTINGS_SECTION_TITLES =        ["Account", "Settings", "About"]
     static let SETTINGS_ACTION_TITLES =         [ACCOUNT, SETTINGS, ABOUT]    
@@ -56,10 +58,12 @@ struct StringLiterals {
     static let APP_ID =                         "761559919"
     static let URL =                            "itms-apps://itunes.apple.com/app/viewContentsUserReviews?id=\(APP_ID)"
     
-    // In SignOut
+    // Alert Texts
     
     static let SIGNOUT_TITLE =                  "Sign Out"
     static let SIGNOUT_MESSAGE =                "Are You Sure You Want to Sign Out ? "
-    static let SIGNOUT_CONFIRM_TITLE =          "Confirm"
-    static let SIGNOUT_CANCLE_TITLE =           "Cancel"
+    static let CLEAR_CACHE_TITLE =              "Clear Temporary Downloads"
+    static let CLEAR_CACHE_MESSAGE =            "Are you sure you want to delete all temporary files ? "
+    static let CONFIRM =                        "Confirm"
+    static let CANCEL =                         "Cancel"
 }

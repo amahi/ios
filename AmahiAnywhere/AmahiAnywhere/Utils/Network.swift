@@ -41,7 +41,7 @@ public class Network {
                     case .success:
                         if let data = response.result.value {
                             completion(data)
-                        }else{
+                        } else {
                             completion(nil);
                         }
                     
@@ -78,8 +78,10 @@ public class Network {
 
         // Create destination URL
         let destination: DownloadRequest.DownloadFileDestination = { _, _ in
-            let documentsUrl =  FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first as URL?
-            let destinationFileUrl = documentsUrl?.appendingPathComponent(file.getPath())
+            
+            let tempDirectoryURL = FileManager.default.createFolderInTemp(folderName: "cache")
+
+            let destinationFileUrl = tempDirectoryURL?.appendingPathComponent(file.getPath())
             
             return (destinationFileUrl!, [.removePreviousFile, .createIntermediateDirectories])
         }

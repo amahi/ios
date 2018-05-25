@@ -113,7 +113,6 @@ extension UIViewController {
     }
 }
 
-
 // MARK - Progress Loading Indicator
 
 protocol ProgressLoadingIndicators {

@@ -23,7 +23,7 @@ protocol FilesView : BaseView {
     func webViewOpenContent(at url: URL, mimeType: MimeType)
     
     func shareFile(at url: URL)
-
+    
     func updateDownloadProgress(for row: Int, downloadJustStarted: Bool, progress: Float)
     
     func dismissProgressIndicator(at url: URL, completion: @escaping () -> Void)
@@ -77,11 +77,11 @@ class FilesPresenter: BasePresenter {
     
     private func getSorter(_ sortOrder: FileSort) -> ((ServerFile, ServerFile) -> Bool) {
         switch sortOrder {
-            case .modifiedTime:
-                return ServerFile.lastModifiedSorter
-            case .name:
-                return ServerFile.nameSorter
-            }
+        case .modifiedTime:
+            return ServerFile.lastModifiedSorter
+        case .name:
+            return ServerFile.nameSorter
+        }
     }
     
     func handleFileOpening(fileIndex: Int, files: [ServerFile]) {
@@ -91,40 +91,46 @@ class FilesPresenter: BasePresenter {
         
         switch type {
             
-            case MimeType.image:
-                // prepare ImageViewer
-                let controller = LightboxController(images: prepareImageArray(files), startIndex: fileIndex)
-                controller.dynamicBackground = true
-                self.view?.present(controller)
-                break
+        case MimeType.image:
+            // prepare ImageViewer
+            let controller = LightboxController(images: prepareImageArray(files), startIndex: fileIndex)
+            controller.dynamicBackground = true
+            self.view?.present(controller)
+            break
             
-            case MimeType.video, MimeType.audio:
-                // TODO: open VideoPlayer and play the file
-                let url = ServerApi.shared!.getFileUri(file)
-                self.view?.playMedia(at: url)
-                return
+        case MimeType.video, MimeType.audio:
+            // TODO: open VideoPlayer and play the file
+            let url = ServerApi.shared!.getFileUri(file)
+            self.view?.playMedia(at: url)
+            return
             
-            case MimeType.code, MimeType.presentation, MimeType.sharedFile, MimeType.document, MimeType.spreadsheet:
-                if fileExists(fileName: file.getPath()) {
-                    if type == MimeType.sharedFile {
-                        self.view?.shareFile(at: localPath(for: file))
-                    } else {
-                        self.view?.webViewOpenContent(at: localPath(for: file), mimeType: type)
-                    }
+        case MimeType.code, MimeType.presentation, MimeType.sharedFile, MimeType.document, MimeType.spreadsheet:
+            if fileExists(fileName: file.getPath()) {
+                if type == MimeType.sharedFile {
+                    self.view?.shareFile(at: localPath(for: file))
                 } else {
-                    downloadAndOpenFile(fileIndex: fileIndex, serverFile: file, mimeType: type)
+                    self.view?.webViewOpenContent(at: localPath(for: file), mimeType: type)
                 }
-                break
+            } else {
+                downloadAndOpenFile(fileIndex: fileIndex, serverFile: file, mimeType: type)
+            }
+            break
             
-            default:
-                // TODO: show list of apps that can open the file
-                return
+        default:
+            // TODO: show list of apps that can open the file
+            return
         }
     }
     
     private func downloadAndOpenFile(fileIndex: Int , serverFile: ServerFile, mimeType: MimeType) {
         
         self.view?.updateDownloadProgress(for: fileIndex, downloadJustStarted: true, progress: 0.0)
+        
+        // cleanup temp files in background
+        DispatchQueue.global(qos: .background).async {
+            FileManager.default.cleanUpFilesInCache(folderName: "cache")
+        }
+        
         Network.shared.downloadFileToStorage(file: serverFile, progressCompletion: { progress in
             self.view?.updateDownloadProgress(for: fileIndex, downloadJustStarted: false, progress: progress)
         }, completion: { (wasSuccessful) in
@@ -149,21 +155,23 @@ class FilesPresenter: BasePresenter {
     
     private func localPath(for file: ServerFile) -> URL {
         
-        let documentsUrl =  FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first as URL?
-        return documentsUrl!.appendingPathComponent(file.getPath())
+        let fileManager = FileManager.default
+        let tempDirectory = fileManager.temporaryDirectory
+        let cacheFolderPath = tempDirectory.appendingPathComponent("cache")
+        
+        return cacheFolderPath.appendingPathComponent(file.getPath())
     }
     
     private func fileExists(fileName: String) -> Bool {
-        let path = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] as String
-        let url = NSURL(fileURLWithPath: path)
-        if let pathComponent = url.appendingPathComponent(fileName) {
-            let filePath = pathComponent.path
-            let fileManager = FileManager.default
-            if fileManager.fileExists(atPath: filePath) {
-                return true
-            } else {
-                return false
-            }
+        
+        let fileManager = FileManager.default
+        let tempDirectory = fileManager.temporaryDirectory
+        let cacheFolderPath = tempDirectory.appendingPathComponent("cache")
+        
+        let pathComponent = cacheFolderPath.appendingPathComponent(fileName)
+        let filePath = pathComponent.path
+        if fileManager.fileExists(atPath: filePath) {
+            return true
         } else {
             return false
         }
