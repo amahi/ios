@@ -10,6 +10,12 @@ import UIKit
 import Foundation
 
 class BaseUIViewController: UIViewController {
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        updateNavigationBarBackground()
+    }
 }
 
 extension BaseUIViewController: UITextFieldDelegate {
@@ -26,5 +32,4 @@ extension BaseUIViewController: UITextFieldDelegate {
             textField.resignFirstResponder()
         }
     }
-
 }

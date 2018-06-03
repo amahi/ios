@@ -14,6 +14,7 @@ PODS:
     - Imaginary (~> 3.0)
   - MBProgressHUD (1.1.0)
   - MobileVLCKit (3.0.2)
+  - ReachabilitySwift (4.1.0)
   - SkyFloatingLabelTextField (3.4.1)
 
 DEPENDENCIES:
@@ -23,6 +24,7 @@ DEPENDENCIES:
   - Lightbox
   - MBProgressHUD (~> 1.1.0)
   - MobileVLCKit
+  - ReachabilitySwift
   - SkyFloatingLabelTextField (~> 3.0)
 
 SPEC REPOS:
@@ -36,6 +38,7 @@ SPEC REPOS:
     - Lightbox
     - MBProgressHUD
     - MobileVLCKit
+    - ReachabilitySwift
     - SkyFloatingLabelTextField
 
 SPEC CHECKSUMS:
@@ -48,8 +51,9 @@ SPEC CHECKSUMS:
   Lightbox: 2dc267df8be2285bc7724cb11cbbf4aaaf59dced
   MBProgressHUD: e7baa36a220447d8aeb12769bf0585582f3866d9
   MobileVLCKit: a9e06de53e7a7fd43d7b04bcab4f2e68868f768a
+  ReachabilitySwift: 6849231cd4e06559f3b9ef4a97a0a0f96d41e09f
   SkyFloatingLabelTextField: 8085f20f57f74a00cfcae58099299faa1a971035
 
-PODFILE CHECKSUM: e0756aaa708147098f0c886eb8ee1f52f75971f1
+PODFILE CHECKSUM: ded4ab1c42e0cde70590609e420e0d2a3601b692
 
 COCOAPODS: 1.5.0

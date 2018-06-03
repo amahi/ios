@@ -16,7 +16,7 @@ class ServerApi {
     private var server: Server!
     private var serverRoute: ServerRoute?
     private var serverAddress: String?
-    
+
     private init(_ server: Server) {
         self.server = server
     }
@@ -29,33 +29,69 @@ class ServerApi {
         return self.server
     }
     
-    private func getSessionHeader() -> HTTPHeaders {
+    private var isServerRouteLoaded : Bool {
+        return serverRoute != nil
+    }
+    
+    public func getSessionHeader() -> HTTPHeaders {
         return [ "Session": server.session_token! ]
     }
     
-    func loadServerRoute(serverAddress: ServerAddress ,
-                         completion: @escaping (_ isLoadSuccessful: Bool) -> Void ) {
+    func loadServerRoute(completion: @escaping (_ isLoadSuccessful: Bool) -> Void ) {
         
         func updateServerRoute(serverRouteResponse: ServerRoute?) {
             guard let serverRoute = serverRouteResponse else {
                 completion(false)
                 return
             }
+//            serverRoute.local_addr = ApiConfig.LOCAL_BASE_URL
+
             self.serverRoute = serverRoute
-            
-            // FIXME - Implement Autodetect for server address when it is available
-            if serverAddress == ServerAddress.remote {
-                self.serverAddress = serverRoute.relay_addr
-            } else {
-                self.serverAddress = serverRoute.local_addr
-            }
+            debugPrint("Response Load Server Route: \(serverRoute)")
+            try? debugPrint("Local Server Host: \(serverRoute.local_addr!.asURL().host!)")
+            try? debugPrint("Remote Server Host: \(serverRoute.relay_addr!.asURL().host!)")
+
+            configureConnection()
             completion(true)
         }
         
         Network.shared.request(ApiEndPoints.getServerRoute(), headers: getSessionHeader(), completion: updateServerRoute)
     }
     
-    func getShares(completion: @escaping (_ serverRoute: [ServerShare]?) -> Void ) {
+    func configureConnection() {
+        
+        if !isServerRouteLoaded {
+            debugPrint("Route is not loaded when configureConnection was called")
+            return
+        }
+        
+        let connectionMode = LocalStorage.shared.userConnectionPreference
+        ConnectionModeManager.shared.currentMode = connectionMode
+        
+        if connectionMode == .local {
+            serverAddress = serverRoute?.local_addr
+        } else if connectionMode == .remote {
+            serverAddress = serverRoute?.relay_addr
+        } else if connectionMode == .auto {
+            startServerConnectionDetection()
+        }
+    }
+    
+    func startServerConnectionDetection() {
+        ConnectionModeManager.shared.updateCurrentConnectionInfo(connectionInfo: serverRoute!)
+        ConnectionModeManager.shared.testLocalAvailability()
+    }
+    
+    var isConnected: Bool  {
+        return server != nil && serverRoute != nil && serverAddress != nil
+    }
+    
+    func getShares(completion: @escaping (_ serverShares: [ServerShare]?) -> Void ) {
+        if !isServerRouteLoaded {
+            return
+        }
+
+        serverAddress = ConnectionModeManager.shared.currentConnectionBaseURL(serverRoute: serverRoute!)
         Network.shared.request(ApiEndPoints.getServerShares(serverAddress), headers: getSessionHeader(), completion: completion)
     }
     

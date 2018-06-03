@@ -1,7 +1,7 @@
 import UIKit
 import MessageUI
 
-class SettingsViewController: UITableViewController,MFMailComposeViewControllerDelegate {
+class SettingsViewController: BaseUITableViewController, MFMailComposeViewControllerDelegate {
     
     var settingItems = StringLiterals.SETTINGS_ACTION_TITLES
     var titleForSections = StringLiterals.SETTINGS_SECTION_TITLES
@@ -103,7 +103,19 @@ class SettingsViewController: UITableViewController,MFMailComposeViewControllerD
             cell.detailTextLabel?.textColor = UIColor.lightGray
             
             if section == 1 && row == 0 {
-                cell.detailTextLabel?.text = LocalStorage.shared.userConnectionPreference.rawValue
+                let connectionMode = LocalStorage.shared.userConnectionPreference
+                
+                if connectionMode == ConnectionMode.auto {
+                    let isLocalInUse = ConnectionModeManager.shared.isLocalInUse()
+                    
+                    if isLocalInUse {
+                        cell.detailTextLabel?.text =  StringLiterals.AUTO_CONNECTION_LAN
+                    } else {
+                        cell.detailTextLabel?.text =  StringLiterals.AUTO_CONNECTION_REMOTE
+                    }
+                } else {
+                  cell.detailTextLabel?.text =  LocalStorage.shared.userConnectionPreference.rawValue
+                }
             }
             else if section == 1 && row == 1 {
                 

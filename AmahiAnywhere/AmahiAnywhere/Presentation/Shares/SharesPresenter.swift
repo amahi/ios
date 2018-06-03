@@ -29,7 +29,7 @@ class SharesPresenter: BasePresenter {
         
         self.view?.updateRefreshing(isRefreshing: true)
         
-        ServerApi.shared?.loadServerRoute(serverAddress: LocalStorage.shared.userConnectionPreference) { (isLoadSuccessful) in
+        ServerApi.shared?.loadServerRoute() { (isLoadSuccessful) in
             if !isLoadSuccessful {
                 self.view?.updateRefreshing(isRefreshing: false)
                 self.view?.showError(message: StringLiterals.GENERIC_NETWORK_ERROR)
@@ -38,6 +38,7 @@ class SharesPresenter: BasePresenter {
             self.getShares()
         }
     }
+    
     
     func getShares() {
         

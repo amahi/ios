@@ -35,6 +35,8 @@ public class Network {
     public func request<T: NSObject>(_ url: String!, method: HTTPMethod! = .get, parameters: Parameters = [:], headers: HTTPHeaders = [:],
                                             completion: @escaping (_ response: T?) -> Void) where T: EVReflectable {
         
+        debugPrint("Making request to \(url) with parameters \(parameters) and headers \(headers) ")
+        
         Alamofire.request(url, method: method, parameters: parameters, headers: getFinalHeaders(headers))
             .responseObject {(response: DataResponse<T>) in
                 switch response.result {
@@ -54,7 +56,9 @@ public class Network {
     
     public func request<T: NSObject>(_ url: String!, method: HTTPMethod! = .get, parameters: Parameters = [:], headers: HTTPHeaders = [:],
                                             completion: @escaping (_ response: [T]?) -> Void) where T: EVReflectable {
-        
+
+        debugPrint("Making request to \(url) with parameters \(parameters) and headers \(headers) ")
+
         Alamofire.request(url, method: method, parameters: parameters, headers: getFinalHeaders(headers))
             .responseArray {(response: DataResponse<[T]>) in
                 switch response.result {

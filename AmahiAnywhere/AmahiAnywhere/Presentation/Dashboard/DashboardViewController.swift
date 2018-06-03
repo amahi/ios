@@ -18,7 +18,7 @@ class DashboardViewController: BaseUITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         presenter = DashboardPresenter(self)
-         presenter.fetchServers()
+        presenter.fetchServers()
         self.refreshControl?.addTarget(self, action: #selector(handleRefresh), for: UIControlEvents.valueChanged)
     }
     @objc func handleRefresh(sender: UIRefreshControl) {

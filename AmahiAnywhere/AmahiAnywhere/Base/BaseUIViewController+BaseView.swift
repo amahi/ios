@@ -68,6 +68,17 @@ extension BaseUITableViewController: BaseView {
 
 extension UIViewController {
     
+    func updateNavigationBarBackground() {
+        var connectionMode = ConnectionMode.remote
+        
+        if ConnectionModeManager.shared.isLocalInUse() {
+            connectionMode = ConnectionMode.local
+        }
+        
+        let color = connectionMode == .remote ? UIColor.remoteIndicatorBrown : UIColor.localIndicatorBlack
+        self.navigationController?.navigationBar.backgroundColor = color
+    }
+    
     class var storyboardID : String {
         return "\(self)"
     }

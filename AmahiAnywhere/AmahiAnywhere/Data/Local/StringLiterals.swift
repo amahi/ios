@@ -21,8 +21,11 @@ struct StringLiterals {
     static let ERROR_DOWNLOADING_FILE =         "Error while downloading file"
     static let DOWNLOADING_FILE =               "Downloading %@"
     static let OK =                             "OK"
+
     static let CURRENT_SIZE =                   "Current size: %@"
-    
+    static let AUTO_CONNECTION_LAN =            "Autodetect: (currently LAN)"
+    static let AUTO_CONNECTION_REMOTE =         "Autodetect: (currently Remote)"
+
     // In Setting Area
     static let FEEDBACK_RECEPIENT =             "support@amahi.org"
     static let FEEDBACK_SUBJECT =               "iOS Amahi Anywhere"
