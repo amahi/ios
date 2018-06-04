@@ -1,2 +1,5 @@
 os: osx
 language: swift
+
+before_script:
+        - rvm get head || true # https://github.com/travis-ci/travis-ci/issues/6307
