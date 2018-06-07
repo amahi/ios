@@ -159,7 +159,7 @@ extension FilesViewController: FilesView {
     }
     
     func playMedia(at url: URL) {
-        let videoPlayerVc = self.viewController(viewControllerClass: VideoPlayerViewController.self, from: StoryBoardIdentifiers.MAIN)
+        let videoPlayerVc = self.viewController(viewControllerClass: VideoPlayerViewController.self, from: StoryBoardIdentifiers.VIDEO_PLAYER)
         videoPlayerVc.mediaURL = url
         self.present(videoPlayerVc)
     }

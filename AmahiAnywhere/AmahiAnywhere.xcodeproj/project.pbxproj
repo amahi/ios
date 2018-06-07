@@ -38,6 +38,7 @@
 		C83C63992038D5B30089B9D8 /* AuthResponses.swift in Sources */ = {isa = PBXBuildFile; fileRef = C83C638E2038D5B30089B9D8 /* AuthResponses.swift */; };
 		C83C639D203992460089B9D8 /* LoginPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C83C639C203992460089B9D8 /* LoginPresenter.swift */; };
 		C83C639F2039B16C0089B9D8 /* DashboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C83C639E2039B16C0089B9D8 /* DashboardViewController.swift */; };
+		C8490D1520C847F90052D636 /* VideoPlayer.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C8490D1420C847F90052D636 /* VideoPlayer.storyboard */; };
 		C866E5552042D02A0083A606 /* VideoPlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C866E5542042D02A0083A606 /* VideoPlayerViewController.swift */; };
 		C878C97C205DF4060039C23A /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = C878C97B205DF4060039C23A /* UIColor.swift */; };
 		C88E5A7120B543B2006518B6 /* FileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C88E5A7020B543B1006518B6 /* FileManager.swift */; };
@@ -86,6 +87,7 @@
 		C83C638E2038D5B30089B9D8 /* AuthResponses.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthResponses.swift; sourceTree = "<group>"; };
 		C83C639C203992460089B9D8 /* LoginPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginPresenter.swift; sourceTree = "<group>"; };
 		C83C639E2039B16C0089B9D8 /* DashboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardViewController.swift; sourceTree = "<group>"; };
+		C8490D1420C847F90052D636 /* VideoPlayer.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = VideoPlayer.storyboard; sourceTree = "<group>"; };
 		C866E5532042373D0083A606 /* AmahiAnywhere-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "AmahiAnywhere-Bridging-Header.h"; sourceTree = "<group>"; };
 		C866E5542042D02A0083A606 /* VideoPlayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPlayerViewController.swift; sourceTree = "<group>"; };
 		C878C97B205DF4060039C23A /* UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
@@ -320,6 +322,7 @@
 				FB71BEA0201CB2FC0005492C /* LaunchScreen.storyboard */,
 				FB71BEA3201CB2FC0005492C /* Info.plist */,
 				C866E5532042373D0083A606 /* AmahiAnywhere-Bridging-Header.h */,
+				C8490D1420C847F90052D636 /* VideoPlayer.storyboard */,
 			);
 			path = AmahiAnywhere;
 			sourceTree = "<group>";
@@ -394,6 +397,7 @@
 				0AA5E185203F36DD0010FD47 /* Amahi Logo White Font.png in Resources */,
 				FB71BE9F201CB2FC0005492C /* Assets.xcassets in Resources */,
 				FB71BE9D201CB2FC0005492C /* Main.storyboard in Resources */,
+				C8490D1520C847F90052D636 /* VideoPlayer.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

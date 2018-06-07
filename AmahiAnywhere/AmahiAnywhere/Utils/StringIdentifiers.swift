@@ -15,6 +15,7 @@ struct SegueIdentfiers {
 struct StoryBoardIdentifiers {
     
     static let MAIN =                               "Main"
+    static let VIDEO_PLAYER =                       "VideoPlayer"
     static let LOGINVC =                            "LoginViewController"
     static let DASHBOARDVC =                        "DashboardTableViewController"
 }

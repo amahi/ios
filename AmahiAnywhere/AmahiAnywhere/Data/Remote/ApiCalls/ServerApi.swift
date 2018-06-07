@@ -46,11 +46,7 @@ class ServerApi {
             }
 //            serverRoute.local_addr = ApiConfig.LOCAL_BASE_URL
 
-            self.serverRoute = serverRoute
-            debugPrint("Response Load Server Route: \(serverRoute)")
-            try? debugPrint("Local Server Host: \(serverRoute.local_addr!.asURL().host!)")
-            try? debugPrint("Remote Server Host: \(serverRoute.relay_addr!.asURL().host!)")
-
+            self.serverRoute = serverRoute            
             configureConnection()
             completion(true)
         }

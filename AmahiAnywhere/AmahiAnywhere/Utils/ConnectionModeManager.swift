@@ -97,7 +97,6 @@ class ConnectionModeManager {
                                                              headers: ServerApi.shared?.getSessionHeader(),
                                                              timeoutInterval: 3.0)?
             .responseJSON(completionHandler: { (response) in
-                debugPrint("local availability response \(response.result)")
                 switch response.result {
                     case .success:
                         if let data = response.result.value {
