@@ -29,7 +29,8 @@ class VideoPlayerViewController: UIViewController {
     private var mediaPlayer: VLCMediaPlayer?
     public var mediaURL: URL!
     
-    private var hasMediaFileParseFinished : Bool = false
+    private var hasMediaFileParseFinished = false
+    private var hasPlayStarted = false
     
     fileprivate let JUMP_INTERVAL: Int32 = 15
     
@@ -263,7 +264,8 @@ extension VideoPlayerViewController: VLCMediaPlayerDelegate {
         timeLabel.text = mediaPlayer?.time.stringValue
         scrobbleSlider.value = Float(truncating: (mediaPlayer?.time.value)!)
         
-        if mediaPlayer!.time.stringValue == "00:00" {
+        if !hasPlayStarted {
+            hasPlayStarted = true
             self.resetScreenIdleTimer()
         }
     }
