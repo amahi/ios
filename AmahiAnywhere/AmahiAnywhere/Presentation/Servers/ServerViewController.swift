@@ -23,6 +23,7 @@ class ServerViewController: BaseUITableViewController {
     }
     
     @objc func handleRefresh(sender: UIRefreshControl) {
+        updateNavigationBarBackground()
         presenter.fetchServers()
     }
     

@@ -107,8 +107,8 @@ class ConnectionModeManager {
                 }
                 
                 self.lastCheckedAt = Date()
+                debugPrint("Last check passed after testLocalAvailability completed \(self.lastCheckPassed)")
             })
-        debugPrint("Last check passed after testLocalAvailability completed \(lastCheckPassed)")
     }
     
     func updateCurrentConnectionInfo(connectionInfo: ServerRoute) {
