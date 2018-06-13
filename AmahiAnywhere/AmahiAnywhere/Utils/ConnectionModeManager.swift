@@ -14,7 +14,7 @@ class ConnectionModeManager {
     private let MinimumConnectionCheckPeriod = 3.0
     
     var lastCheckedAt: Date?
-    var lastCheckPassed = false
+    var lastCheckPassed = true
     var currentMode: ConnectionMode?
     var currentConnectionInfo: ServerRoute?
     
@@ -67,11 +67,6 @@ class ConnectionModeManager {
         
         debugPrint("testLocalAvailability was called")
         
-        if isLocalInUse() {
-            debugPrint("Local availability test already passed, current connection is LAN already")
-            return
-        }
-        
         if lastCheckedAt != nil && fabs(Float(lastCheckedAt!.timeIntervalSinceNow)) <= Float(MinimumConnectionCheckPeriod)  {
                  debugPrint("local checking ratelimit exceeded. last cheked %.1fs ago", fabs(Float((lastCheckedAt?.timeIntervalSinceNow)!)))
             return
@@ -97,6 +92,7 @@ class ConnectionModeManager {
                                                              headers: ServerApi.shared?.getSessionHeader(),
                                                              timeoutInterval: 3.0)?
             .responseJSON(completionHandler: { (response) in
+
                 switch response.result {
                     case .success:
                         if let data = response.result.value {

@@ -26,6 +26,7 @@ class SharesTableViewController: BaseUITableViewController {
     }
     
     @objc func handleRefresh(sender: UIRefreshControl) {
+        updateNavigationBarBackground()
         presenter.getShares()
     }
 

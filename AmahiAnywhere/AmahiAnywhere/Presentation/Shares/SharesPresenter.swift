@@ -39,7 +39,6 @@ class SharesPresenter: BasePresenter {
         }
     }
     
-    
     func getShares() {
         
         self.view?.updateRefreshing(isRefreshing: true)

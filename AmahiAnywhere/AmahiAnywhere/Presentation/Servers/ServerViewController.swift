@@ -1,5 +1,5 @@
 //
-//  DashboardViewController.swift
+//  ServerViewController.swift
 //  AmahiAnywhere
 //
 //  Created by codedentwickler on 2/18/18.
@@ -8,19 +8,20 @@
 
 import UIKit
 
-class DashboardViewController: BaseUITableViewController {
+class ServerViewController: BaseUITableViewController {
     
-    private var presenter: DashboardPresenter!
+    private var presenter: ServerPresenter!
     @IBOutlet var serverTableView: UITableView!
     
     private var servers: [Server] = [Server]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        presenter = DashboardPresenter(self)
+        presenter = ServerPresenter(self)
         presenter.fetchServers()
         self.refreshControl?.addTarget(self, action: #selector(handleRefresh), for: UIControlEvents.valueChanged)
     }
+    
     @objc func handleRefresh(sender: UIRefreshControl) {
         presenter.fetchServers()
     }
@@ -49,11 +50,14 @@ class DashboardViewController: BaseUITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         ServerApi.initialize(server: servers[indexPath.row])
     }
+}
+
+extension ServerViewController {
     
 }
 
-// Mark - Dashboard view implementations
-extension DashboardViewController: DashboardView {
+// Mark - Server view implementations
+extension ServerViewController: ServerView {
     
     func updateRefreshing(isRefreshing: Bool) {
         if isRefreshing {

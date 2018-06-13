@@ -149,7 +149,7 @@
         <!--Home-->
         <scene sceneID="ESo-Sr-Hre">
             <objects>
-                <tableViewController storyboardIdentifier="DashboardTableViewController" id="F1H-47-plw" userLabel="Home" customClass="DashboardViewController" customModule="AmahiAnywhere" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="ServerTableViewController" id="F1H-47-plw" userLabel="Home" customClass="ServerViewController" customModule="AmahiAnywhere" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" indicatorStyle="black" dataMode="prototypes" style="grouped" separatorStyle="singleLineEtched" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="xWS-vw-YSJ">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		07A3AB2E5DFE0D2AD44B0F33 /* Pods_AmahiAnywhere.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F5293AC0952F87B50DCD644D /* Pods_AmahiAnywhere.framework */; };
 		0AA5E185203F36DD0010FD47 /* Amahi Logo White Font.png in Resources */ = {isa = PBXBuildFile; fileRef = 0AA5E184203F36DD0010FD47 /* Amahi Logo White Font.png */; };
-		4605963F204E24DF004FA066 /* DashboardPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4605963E204E24DF004FA066 /* DashboardPresenter.swift */; };
+		4605963F204E24DF004FA066 /* ServerPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4605963E204E24DF004FA066 /* ServerPresenter.swift */; };
 		46059643204E8B41004FA066 /* BaseUITableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46059642204E8B41004FA066 /* BaseUITableViewController.swift */; };
 		46059646204EE17D004FA066 /* SharesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46059644204EE17D004FA066 /* SharesTableViewController.swift */; };
 		4605964B204F35E9004FA066 /* ServerRoute.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4605964A204F35E9004FA066 /* ServerRoute.swift */; };
@@ -37,7 +37,7 @@
 		C83C63952038D5B30089B9D8 /* ApiConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = C83C63892038D5B30089B9D8 /* ApiConfig.swift */; };
 		C83C63992038D5B30089B9D8 /* AuthResponses.swift in Sources */ = {isa = PBXBuildFile; fileRef = C83C638E2038D5B30089B9D8 /* AuthResponses.swift */; };
 		C83C639D203992460089B9D8 /* LoginPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C83C639C203992460089B9D8 /* LoginPresenter.swift */; };
-		C83C639F2039B16C0089B9D8 /* DashboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C83C639E2039B16C0089B9D8 /* DashboardViewController.swift */; };
+		C83C639F2039B16C0089B9D8 /* ServerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C83C639E2039B16C0089B9D8 /* ServerViewController.swift */; };
 		C8490D1520C847F90052D636 /* VideoPlayer.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C8490D1420C847F90052D636 /* VideoPlayer.storyboard */; };
 		C866E5552042D02A0083A606 /* VideoPlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C866E5542042D02A0083A606 /* VideoPlayerViewController.swift */; };
 		C878C97C205DF4060039C23A /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = C878C97B205DF4060039C23A /* UIColor.swift */; };
@@ -56,7 +56,7 @@
 
 /* Begin PBXFileReference section */
 		0AA5E184203F36DD0010FD47 /* Amahi Logo White Font.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Amahi Logo White Font.png"; sourceTree = "<group>"; };
-		4605963E204E24DF004FA066 /* DashboardPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardPresenter.swift; sourceTree = "<group>"; };
+		4605963E204E24DF004FA066 /* ServerPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerPresenter.swift; sourceTree = "<group>"; };
 		46059642204E8B41004FA066 /* BaseUITableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseUITableViewController.swift; sourceTree = "<group>"; };
 		46059644204EE17D004FA066 /* SharesTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharesTableViewController.swift; sourceTree = "<group>"; };
 		4605964A204F35E9004FA066 /* ServerRoute.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerRoute.swift; sourceTree = "<group>"; };
@@ -86,7 +86,7 @@
 		C83C63892038D5B30089B9D8 /* ApiConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApiConfig.swift; sourceTree = "<group>"; };
 		C83C638E2038D5B30089B9D8 /* AuthResponses.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthResponses.swift; sourceTree = "<group>"; };
 		C83C639C203992460089B9D8 /* LoginPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginPresenter.swift; sourceTree = "<group>"; };
-		C83C639E2039B16C0089B9D8 /* DashboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardViewController.swift; sourceTree = "<group>"; };
+		C83C639E2039B16C0089B9D8 /* ServerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerViewController.swift; sourceTree = "<group>"; };
 		C8490D1420C847F90052D636 /* VideoPlayer.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = VideoPlayer.storyboard; sourceTree = "<group>"; };
 		C866E5532042373D0083A606 /* AmahiAnywhere-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "AmahiAnywhere-Bridging-Header.h"; sourceTree = "<group>"; };
 		C866E5542042D02A0083A606 /* VideoPlayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPlayerViewController.swift; sourceTree = "<group>"; };
@@ -208,7 +208,7 @@
 				C8CE05C9206B21C5006F6807 /* MediaPlayers */,
 				C8CE05C8206B21B2006F6807 /* Files */,
 				C8CE05C7206B1F57006F6807 /* Shares */,
-				C8CE05C6206B1F3B006F6807 /* Dashboard */,
+				C8CE05C6206B1F3B006F6807 /* Servers */,
 				C83C639B2039922A0089B9D8 /* Login */,
 				C8D8615F209490230014D8AC /* WebViewController.swift */,
 			);
@@ -245,13 +245,13 @@
 			path = Settings;
 			sourceTree = "<group>";
 		};
-		C8CE05C6206B1F3B006F6807 /* Dashboard */ = {
+		C8CE05C6206B1F3B006F6807 /* Servers */ = {
 			isa = PBXGroup;
 			children = (
-				C83C639E2039B16C0089B9D8 /* DashboardViewController.swift */,
-				4605963E204E24DF004FA066 /* DashboardPresenter.swift */,
+				C83C639E2039B16C0089B9D8 /* ServerViewController.swift */,
+				4605963E204E24DF004FA066 /* ServerPresenter.swift */,
 			);
-			path = Dashboard;
+			path = Servers;
 			sourceTree = "<group>";
 		};
 		C8CE05C7206B1F57006F6807 /* Shares */ = {
@@ -484,7 +484,7 @@
 				46059643204E8B41004FA066 /* BaseUITableViewController.swift in Sources */,
 				C83C637D2038D5150089B9D8 /* StringConstants.swift in Sources */,
 				C88E5A7120B543B2006518B6 /* FileManager.swift in Sources */,
-				4605963F204E24DF004FA066 /* DashboardPresenter.swift in Sources */,
+				4605963F204E24DF004FA066 /* ServerPresenter.swift in Sources */,
 				46098D02204FDBEE00752EB6 /* ApiEndPoints.swift in Sources */,
 				C83C63922038D5B30089B9D8 /* AmahiApi.swift in Sources */,
 				46CB896B204FB0FC0031151F /* SharesPresenter.swift in Sources */,
@@ -502,7 +502,7 @@
 				C8D86160209490230014D8AC /* WebViewController.swift in Sources */,
 				C83C63992038D5B30089B9D8 /* AuthResponses.swift in Sources */,
 				46098D0A2050114C00752EB6 /* Network.swift in Sources */,
-				C83C639F2039B16C0089B9D8 /* DashboardViewController.swift in Sources */,
+				C83C639F2039B16C0089B9D8 /* ServerViewController.swift in Sources */,
 				4665718120507847000E0D45 /* FilesViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
