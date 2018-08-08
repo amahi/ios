@@ -27,20 +27,6 @@ DEPENDENCIES:
   - ReachabilitySwift
   - SkyFloatingLabelTextField (~> 3.0)
 
-SPEC REPOS:
-  https://github.com/CocoaPods/Specs.git:
-    - Alamofire
-    - Cache
-    - EVReflection
-    - Hue
-    - Imaginary
-    - IQKeyboardManagerSwift
-    - Lightbox
-    - MBProgressHUD
-    - MobileVLCKit
-    - ReachabilitySwift
-    - SkyFloatingLabelTextField
-
 SPEC CHECKSUMS:
   Alamofire: 68d7d521118d49c615a8d2214d87cdf525599d30
   Cache: f28f8dd64b632155aabf9b3906b036a659048251
@@ -54,6 +40,6 @@ SPEC CHECKSUMS:
   ReachabilitySwift: 6849231cd4e06559f3b9ef4a97a0a0f96d41e09f
   SkyFloatingLabelTextField: 8085f20f57f74a00cfcae58099299faa1a971035
 
-PODFILE CHECKSUM: ded4ab1c42e0cde70590609e420e0d2a3601b692
+PODFILE CHECKSUM: 020a722c20645249a0d3b47757cae201d532aeac
 
-COCOAPODS: 1.5.0
+COCOAPODS: 1.4.0

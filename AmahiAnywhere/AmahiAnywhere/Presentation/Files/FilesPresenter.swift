@@ -8,8 +8,10 @@
 
 import Foundation
 import Lightbox
+import CoreData
+import AVFoundation
 
-protocol FilesView : BaseView {
+internal protocol FilesView : BaseView {
     func initFiles(_ files: [ServerFile])
     
     func updateFiles(_ files: [ServerFile])
@@ -20,18 +22,27 @@ protocol FilesView : BaseView {
     
     func playMedia(at url: URL)
     
+    func playAudio(_ items: [AVPlayerItem], startIndex: Int)
+    
     func webViewOpenContent(at url: URL, mimeType: MimeType)
     
-    func shareFile(at url: URL)
-    
+    func shareFile(at url: URL, from sender : UIView?)
+
     func updateDownloadProgress(for row: Int, downloadJustStarted: Bool, progress: Float)
     
     func dismissProgressIndicator(at url: URL, completion: @escaping () -> Void)
 }
 
-class FilesPresenter: BasePresenter {
+internal class FilesPresenter: BasePresenter {
     
     weak private var view: FilesView?
+    private var offlineFiles : [String: OfflineFile]?
+    
+    var fetchedResultsController : NSFetchedResultsController<NSFetchRequestResult>? {
+        didSet {
+            executeSearch()
+        }
+    }
     
     init(_ view: FilesView) {
         self.view = view
@@ -45,7 +56,7 @@ class FilesPresenter: BasePresenter {
         
         self.view?.updateRefreshing(isRefreshing: true)
         
-        ServerApi.shared?.getFiles(share: share, directory: directory) { (serverFilesResponse) in
+        ServerApi.shared!.getFiles(share: share, directory: directory) { (serverFilesResponse) in
             
             self.view?.updateRefreshing(isRefreshing: false)
             
@@ -84,7 +95,7 @@ class FilesPresenter: BasePresenter {
         }
     }
     
-    func handleFileOpening(fileIndex: Int, files: [ServerFile]) {
+    func handleFileOpening(fileIndex: Int, files: [ServerFile], from sender : UIView?) {
         let file = files[fileIndex]
         
         let type = Mimes.shared.match(file.mime_type!)
@@ -98,21 +109,49 @@ class FilesPresenter: BasePresenter {
             self.view?.present(controller)
             break
             
-        case MimeType.video, MimeType.audio:
+        case MimeType.video:
             // TODO: open VideoPlayer and play the file
             let url = ServerApi.shared!.getFileUri(file)
             self.view?.playMedia(at: url)
-            return
+            break
+            
+        case MimeType.audio:
+            let audioURLs = prepareAudioItems(files)
+            var arrangedURLs = [URL]()
+                
+            for (index, url) in audioURLs.enumerated() {
+                if (index < fileIndex) {
+                    arrangedURLs.insert(url, at: arrangedURLs.endIndex)
+                } else {
+                    arrangedURLs.insert(url, at: index - fileIndex)
+                }
+            }
+            
+            var playerItems = [AVPlayerItem]()
+            
+            for _ in 0..<6 {
+                arrangedURLs.forEach({playerItems.append(AVPlayerItem(url: $0))})
+            }
+            
+            self.view?.playAudio(playerItems, startIndex: fileIndex)
+            break
             
         case MimeType.code, MimeType.presentation, MimeType.sharedFile, MimeType.document, MimeType.spreadsheet:
-            if fileExists(fileName: file.getPath()) {
+            if FileManager.default.fileExistsInCache(file){
+                let path = FileManager.default.localPathInCache(for: file)
                 if type == MimeType.sharedFile {
-                    self.view?.shareFile(at: localPath(for: file))
+                    self.view?.shareFile(at: path, from: sender)
                 } else {
-                    self.view?.webViewOpenContent(at: localPath(for: file), mimeType: type)
+                    self.view?.webViewOpenContent(at: path, mimeType: type)
                 }
             } else {
-                downloadAndOpenFile(fileIndex: fileIndex, serverFile: file, mimeType: type)
+                downloadFile(at: fileIndex, file, mimeType: type, from: sender, completion: { filePath in
+                    if type == MimeType.sharedFile {
+                        self.view?.shareFile(at: filePath, from: sender)
+                    } else {
+                        self.view?.webViewOpenContent(at: filePath, mimeType: type)
+                    }
+                })
             }
             break
             
@@ -122,13 +161,56 @@ class FilesPresenter: BasePresenter {
         }
     }
     
-    private func downloadAndOpenFile(fileIndex: Int , serverFile: ServerFile, mimeType: MimeType) {
+    public func shareFile(_ file: ServerFile, fileIndex: Int,from sender : UIView?) {
+        let type = Mimes.shared.match(file.mime_type!)
+
+        if FileManager.default.fileExistsInCache(file){
+            let path = FileManager.default.localPathInCache(for: file)
+            self.view?.shareFile(at: path, from: sender)
+        } else {
+            downloadFile(at: fileIndex, file, mimeType: type, from: sender, completion: { filePath in
+                self.view?.shareFile(at: filePath, from: sender)
+            })
+        }
+    }
+    
+    public func makeFileAvailableOffline(_ serverFile: ServerFile) {
+        
+        let delegate = UIApplication.shared.delegate as! AppDelegate
+        let stack = delegate.stack
+        
+        var path = serverFile.getPath().replacingOccurrences(of: "/", with: "-")
+        if path.first == "-" {
+            path.removeFirst()
+        }
+        
+        let offlineFile = OfflineFile(name: serverFile.getNameOnly(),
+                                      mime: serverFile.mime_type!,
+                                      size: serverFile.size!,
+                                      mtime: serverFile.mtime!,
+                                      fileUri: ServerApi.shared!.getFileUri(serverFile).absoluteString,
+                                      localPath: path,
+                                      progress: 1,
+                                      state: OfflineFileState.downloading,
+                                      context: stack.context)
+        try? stack.saveContext()
+        
+        DownloadService.shared.startDownload(offlineFile)
+        loadOfflineFiles()
+    }
+    
+    private func downloadFile(at fileIndex: Int ,
+                      _ serverFile: ServerFile,
+                      mimeType: MimeType,
+                      from sender : UIView?,
+                      completion: @escaping (_ filePath: URL) -> Void) {
         
         self.view?.updateDownloadProgress(for: fileIndex, downloadJustStarted: true, progress: 0.0)
         
         // cleanup temp files in background
         DispatchQueue.global(qos: .background).async {
-            FileManager.default.cleanUpFilesInCache(folderName: "cache")
+            FileManager.default.cleanUpFiles(in: FileManager.default.temporaryDirectory,
+                                             folderName: "cache")
         }
         
         Network.shared.downloadFileToStorage(file: serverFile, progressCompletion: { progress in
@@ -140,41 +222,12 @@ class FilesPresenter: BasePresenter {
                 return
             }
             
-            let filePath = self.localPath(for: serverFile)
+            let filePath = FileManager.default.localPathInCache(for: serverFile)
             
             self.view?.dismissProgressIndicator(at: filePath, completion: {
-                
-                if mimeType == MimeType.sharedFile {
-                    self.view?.shareFile(at: filePath)
-                } else {
-                    self.view?.webViewOpenContent(at: filePath, mimeType: mimeType)
-                }
+                completion(filePath)
             })
         })
-    }
-    
-    private func localPath(for file: ServerFile) -> URL {
-        
-        let fileManager = FileManager.default
-        let tempDirectory = fileManager.temporaryDirectory
-        let cacheFolderPath = tempDirectory.appendingPathComponent("cache")
-        
-        return cacheFolderPath.appendingPathComponent(file.getPath())
-    }
-    
-    private func fileExists(fileName: String) -> Bool {
-        
-        let fileManager = FileManager.default
-        let tempDirectory = fileManager.temporaryDirectory
-        let cacheFolderPath = tempDirectory.appendingPathComponent("cache")
-        
-        let pathComponent = cacheFolderPath.appendingPathComponent(fileName)
-        let filePath = pathComponent.path
-        if fileManager.fileExists(atPath: filePath) {
-            return true
-        } else {
-            return false
-        }
     }
     
     private func prepareImageArray(_ files: [ServerFile]) -> [LightboxImage] {
@@ -185,5 +238,81 @@ class FilesPresenter: BasePresenter {
             }
         }
         return images
+    }
+    
+//    private func prepareAudioItems(_ files: [ServerFile]) -> [AVPlayerItem] {
+//        var audioItems = [AVPlayerItem]()
+//
+//        for file in files {
+//            if (Mimes.shared.match(file.mime_type!) == MimeType.audio) {
+//                let url = ServerApi.shared!.getFileUri(file)
+//                let item = AVPlayerItem(url: url)
+//                audioItems.append(item)
+//            }
+//        }
+//        return audioItems
+//    }
+//
+    private func prepareAudioItems(_ files: [ServerFile]) -> [URL] {
+        var audioURLs = [URL]()
+        
+        for file in files {
+            if (Mimes.shared.match(file.mime_type!) == MimeType.audio) {
+                let url = ServerApi.shared!.getFileUri(file)
+                audioURLs.append(url)
+            }
+        }
+        return audioURLs
+    }
+    
+    func loadOfflineFiles() {
+        
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "OfflineFile")
+        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "downloadDate", ascending: false)]
+
+        let delegate = UIApplication.shared.delegate as! AppDelegate
+        let stack = delegate.stack
+                
+        fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest,
+                                                              managedObjectContext: stack.context,
+                                                              sectionNameKeyPath: nil, cacheName: nil)
+        if let files = fetchedResultsController?.fetchedObjects as! [OfflineFile]? {
+     
+            var dictionary = [String : OfflineFile]()
+            
+            for file in files {
+                dictionary[file.name!] = file
+            }
+            debugPrint("Offline Files \(dictionary)")
+            
+            self.offlineFiles = dictionary
+        } else {
+            debugPrint("Detched Objects returned was nil")
+            self.offlineFiles = [:]
+        }
+    }
+    
+    func checkFileOfflineState(_ file: ServerFile) -> OfflineFileState {
+        
+        if let offlineFile = offlineFiles![file.name!] {
+            
+            if file.mtime! != offlineFile.mtime! || file.size! != offlineFile.size {
+                return .outdated
+            }
+            
+            return offlineFile.stateEnum
+        } else {
+            return .none
+        }
+    }
+    
+    private func executeSearch() {
+        if let fc = fetchedResultsController {
+            do {
+                try fc.performFetch()
+            } catch let e as NSError {
+                print("Error while trying to perform a search: \n\(e)\n\(String(describing: fetchedResultsController))")
+            }
+        }
     }
 }

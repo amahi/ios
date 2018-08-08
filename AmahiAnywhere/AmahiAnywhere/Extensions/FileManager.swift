@@ -10,17 +10,19 @@ import Foundation
 
 extension FileManager {
     
-    func createFolderInTemp(folderName: String) -> URL? {
+    func findOrCreateFolder(in directory: URL, folderName: String) -> URL? {
         let fileManager =  self
-        let tempDirectory = fileManager.temporaryDirectory
         
-        let folderPath = tempDirectory.appendingPathComponent(folderName)
+        var folderPath = directory.appendingPathComponent(folderName)
         if !fileManager.fileExists(atPath: folderPath.path) {
             do {
                 try fileManager.createDirectory(atPath: folderPath.path, withIntermediateDirectories: true, attributes: nil)
+                // Remove folder from iCloud
+                var resourceValues = URLResourceValues()
+                resourceValues.isExcludedFromBackup = true
+                try folderPath.setResourceValues(resourceValues)
             } catch {
-                debugPrint("Error while trying to create folder in temp: \(error.localizedDescription)")
-
+                debugPrint("Error while trying to create folder in directory \(directory): \(error.localizedDescription)")
                 return nil
             }
         }
@@ -28,24 +30,22 @@ extension FileManager {
         return folderPath
     }
     
-    func deleteFolderInTemp(folderName: String) {
+    func deleteFolder(in directory: URL, folderName: String) {
         do {
             let fileManager =  self
-            let tempDirectory = fileManager.temporaryDirectory
             
-            let folderPath = tempDirectory.appendingPathComponent(folderName)
+            let folderPath = directory.appendingPathComponent(folderName)
             try fileManager.removeItem(at: folderPath)
-        } catch {
+        } catch let error {
             debugPrint("Error while trying to delete files: \(error.localizedDescription)")
         }
     }
     
-    func cleanUpFilesInCache(folderName: String) {
+    func cleanUpFiles(in directory: URL, folderName: String) {
         do {
             let fileManager =  self
-            let tempDirectory = fileManager.temporaryDirectory
             
-            let folderPath = tempDirectory.appendingPathComponent(folderName)
+            let folderPath = directory.appendingPathComponent(folderName)
             
             let resourceKeys : [URLResourceKey] = [.contentAccessDateKey, .isDirectoryKey]
        
@@ -87,8 +87,8 @@ extension FileManager {
             let fileSizeNumber = fileAttributes[FileAttributeKey.size] as? NSNumber
             let fileSize = fileSizeNumber?.int64Value
             return fileSize!
-        } catch {
-            debugPrint("error reading filesize, NSFileManager extension fileSizeAtPath")
+        } catch let error {
+            debugPrint("error reading filesize, NSFileManager extension fileSizeAtPath \(error.localizedDescription)")
             return 0
         }
     }
@@ -100,8 +100,8 @@ extension FileManager {
             for i in 0 ..< files.count {
                 size += fileSizeAtPath(path:path.appending("/"+files[i]))
             }
-        } catch {
-            debugPrint("error reading directory, NSFileManager extension folderSizeAtPath")
+        } catch let error {
+            debugPrint("error reading directory, NSFileManager extension folderSizeAtPath \(error.localizedDescription)")
         }
         return size
     }
@@ -110,4 +110,48 @@ extension FileManager {
         let folderSizeStr = ByteCountFormatter.string(fromByteCount: size, countStyle: ByteCountFormatter.CountStyle.file)
         return folderSizeStr
     }
+    
+    func localFilePathInDownloads(for offlineFile: OfflineFile) -> URL? {
+        // Get local file path: download task stores tune here
+        let documentsPath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+        let downloadFolderPath = FileManager.default.findOrCreateFolder(in: documentsPath, folderName: "downloads")
+        
+        return downloadFolderPath?.appendingPathComponent(offlineFile.localPath!)
+    }
+    
+    func localPathInCache(for file: ServerFile) -> URL {
+        
+        let fileManager = self
+        let tempDirectory = fileManager.temporaryDirectory
+        let cacheFolderPath = tempDirectory.appendingPathComponent("cache")
+        
+        return cacheFolderPath.appendingPathComponent(file.getPath())
+    }
+    
+    func fileExistsInCache(_ file: ServerFile) -> Bool {
+        let fileManager =  self
+        let pathComponent = localPathInCache(for: file)
+
+        if fileManager.fileExists(atPath: pathComponent.path) {
+            return true
+        } else {
+            return false
+        }
+    }
+    
+    func fileExistsInDownloads(_ file: OfflineFile) -> Bool {
+        let fileManager =  self
+        let pathComponent = localFilePathInDownloads(for: file)
+
+        if let filePath = pathComponent?.path {
+            if fileManager.fileExists(atPath: filePath) {
+                return true
+            } else {
+                return false
+            }
+        } else {
+            return false
+        }
+    }
+    
 }

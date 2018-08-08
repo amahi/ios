@@ -172,8 +172,9 @@ class SettingsViewController: BaseUITableViewController, MFMailComposeViewContro
                     clearCacheAlert.addAction(UIAlertAction(title: StringLiterals.CONFIRM,
                                                          style: .destructive, handler: { (action: UIAlertAction!) in
                                                             
-                                                            FileManager.default.deleteFolderInTemp(folderName: "cache")
-                                                            self.tableView.reloadData()
+                                FileManager.default.deleteFolder(in: FileManager.default.temporaryDirectory,
+                                                                                             folderName: "cache")
+                                self.tableView.reloadData()
                     }))
                     clearCacheAlert.addAction(UIAlertAction(title: StringLiterals.CANCEL, style: .default, handler: { (action: UIAlertAction!) in
                         clearCacheAlert .dismiss(animated: true, completion: nil)

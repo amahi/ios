@@ -89,7 +89,7 @@ class ConnectionModeManager {
         debugPrint("Making server availability request  \(url!)")
 
         Alamofire.SessionManager.default.requestWithoutCache(url!,
-                                                             headers: ServerApi.shared?.getSessionHeader(),
+                                                             headers: ServerApi.shared!.getSessionHeader(),
                                                              timeoutInterval: 3.0)?
             .responseJSON(completionHandler: { (response) in
 
@@ -108,16 +108,24 @@ class ConnectionModeManager {
                 
                 self.lastCheckedAt = Date()
                 debugPrint("Last check passed after testLocalAvailability completed \(self.lastCheckPassed)")
+                
+                if self.lastCheckPassed {
+                    NotificationCenter.default.post(name: .LanTestPassed, object: nil, userInfo: [:])
+                } else {
+                    NotificationCenter.default.post(name: .LanTestFailed, object: nil, userInfo: [:])
+                }
             })
     }
     
     func updateCurrentConnectionInfo(connectionInfo: ServerRoute) {
-        
+        debugPrint("updateCurrentConnectionInfo was called")
         currentConnectionInfo = connectionInfo
         
         if currentMode == ConnectionMode.remote {
             lastCheckPassed = false
             return
+        } else {
+            lastCheckPassed = true
         }
         stopNotifier()
         setupReachability(currentConnectionInfo?.local_addr)

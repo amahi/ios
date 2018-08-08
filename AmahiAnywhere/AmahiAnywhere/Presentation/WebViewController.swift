@@ -51,10 +51,14 @@ class WebViewController : UIViewController {
     }
     
     @objc func userClickShare() {
-        let linkToShare = [url!]
+        
+        let linkToShare : [Any] = [url]
         
         let activityController = UIActivityViewController(activityItems: linkToShare, applicationActivities: nil)
-        
+        if let popoverController = activityController.popoverPresentationController {
+            popoverController.sourceView = self.webView
+            popoverController.sourceRect = CGRect(x: self.webView.bounds.midX, y: self.webView.bounds.midY, width: 0, height: 0)
+        }
         self.present(activityController, animated: true, completion: nil)
     }
 }

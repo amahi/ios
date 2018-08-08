@@ -17,44 +17,79 @@ class ServerViewController: BaseUITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+                
         presenter = ServerPresenter(self)
         presenter.fetchServers()
         self.refreshControl?.addTarget(self, action: #selector(handleRefresh), for: UIControlEvents.valueChanged)
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        showDownloadsIconIfOfflineFileExists()
+    }
+    
     @objc func handleRefresh(sender: UIRefreshControl) {
-        updateNavigationBarBackground()
         presenter.fetchServers()
     }
-    
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.servers.count
-    }
-    
-    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return "Select your HDA"
-    }
-    
+
     @IBAction func settingButtonPressed(_ sender: Any) {
         performSegue(withIdentifier: SegueIdentfiers.SETTING, sender: nil)
     }
+}
+
+// Mark - TableView Delegates Implementations
+extension ServerViewController {
+    
+    override func numberOfSections(in tableView: UITableView) -> Int {
+        return 2
+    }
+    
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if section == 0 {
+            return self.servers.count
+        } else {
+            return 1
+        }
+    }
+    
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        if section == 0 {
+            return StringLiterals.SELECT_YOUR_HDA
+        } else {
+            return StringLiterals.OFFLINE
+        }
+    }
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell:UITableViewCell = tableView.dequeueReusableCell(withIdentifier: "ServerTableViewCell", for: indexPath)
-        let server = self.servers[indexPath.row]
-        cell.textLabel?.text = server.name
-        cell.isUserInteractionEnabled = server.active
-        cell.textLabel?.isEnabled = server.active
-        cell.accessoryType = server.active ? .disclosureIndicator : .none
+        if indexPath.section == 0 {
+            let server = self.servers[indexPath.row]
+            cell.textLabel?.text = server.name
+            cell.isUserInteractionEnabled = server.active
+            cell.textLabel?.isEnabled = server.active
+            cell.accessoryType = server.active ? .disclosureIndicator : .none
+        } else {
+            cell.textLabel?.text = StringLiterals.DOWNLOADS
+            cell.accessoryType = .none
+        }
+        
         return cell
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        ServerApi.initialize(server: servers[indexPath.row])
+        if indexPath.section == 0 {
+            ServerApi.initialize(server: servers[indexPath.row])
+            
+            let sharesVc = viewController(viewControllerClass: SharesTableViewController.self,
+                                          from: StoryBoardIdentifiers.MAIN)
+            navigationController?.pushViewController(sharesVc, animated: true)
+        } else {
+            let offlineFileVc = viewController(viewControllerClass: OfflineFilesTableViewController.self,
+                                          from: StoryBoardIdentifiers.MAIN)
+            navigationController?.pushViewController(offlineFileVc, animated: true)
+        }
     }
-}
-
-extension ServerViewController {
-    
 }
 
 // Mark - Server view implementations

@@ -16,13 +16,18 @@ class ServerApi {
     private var server: Server!
     private var serverRoute: ServerRoute?
     private var serverAddress: String?
-
-    private init(_ server: Server) {
-        self.server = server
-    }
-
+    
+    private init() {}
+    
     public static func initialize(server: Server!) {
-        self.shared = ServerApi(server)
+        if shared == nil {
+            shared = ServerApi()
+        }
+        shared?.server = server
+    }
+    
+    class func destroySharedManager() {
+        shared = nil
     }
     
     func getServer() -> Server? {
@@ -39,14 +44,20 @@ class ServerApi {
     
     func loadServerRoute(completion: @escaping (_ isLoadSuccessful: Bool) -> Void ) {
         
+        //        let fakeServerRoute = ServerRoute()
+        //        fakeServerRoute.local_addr = ApiConfig.MIFI_BASE_URL
+        //        self.serverRoute = fakeServerRoute
+        //        completion(true)
+        //        return
+        
         func updateServerRoute(serverRouteResponse: ServerRoute?) {
             guard let serverRoute = serverRouteResponse else {
                 completion(false)
                 return
             }
-//            serverRoute.local_addr = ApiConfig.LOCAL_BASE_URL
-
-            self.serverRoute = serverRoute            
+//            serverRoute.local_addr = ApiConfig.MIFI_BASE_URL
+            
+            self.serverRoute = serverRoute
             configureConnection()
             completion(true)
         }
@@ -86,7 +97,7 @@ class ServerApi {
         if !isServerRouteLoaded {
             return
         }
-
+        
         serverAddress = ConnectionModeManager.shared.currentConnectionBaseURL(serverRoute: serverRoute!)
         Network.shared.request(ApiEndPoints.getServerShares(serverAddress), headers: getSessionHeader(), completion: completion)
     }
@@ -124,5 +135,4 @@ class ServerApi {
         ]
         return try! components.asURL()
     }
-    
 }

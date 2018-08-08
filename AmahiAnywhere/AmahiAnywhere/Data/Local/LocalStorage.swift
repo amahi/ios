@@ -56,7 +56,7 @@ final class LocalStorage: NSObject {
         set {
             LocalStorage.shared.persistString(string: newValue.rawValue,
                                               key: PersistenceIdentifiers.PREF_CONNECTION)
-            ServerApi.shared?.configureConnection()
+            ServerApi.shared!.configureConnection()
         }
         get {
             if let connection = LocalStorage.shared.getString(key: PersistenceIdentifiers.PREF_CONNECTION) {

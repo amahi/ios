@@ -13,5 +13,4 @@ use_frameworks!
     pod 'MobileVLCKit'
     pod 'Lightbox'
     pod 'ReachabilitySwift'
-
 end

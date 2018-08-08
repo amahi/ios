@@ -27,11 +27,14 @@ class ServerPresenter: BasePresenter {
     
     func fetchServers() {
         
+        ServerApi.destroySharedManager()
+        
         self.view?.updateRefreshing(isRefreshing: true)
         
         // cleanup temp files in background
         DispatchQueue.global(qos: .background).async {
-            FileManager.default.cleanUpFilesInCache(folderName: "cache")
+            FileManager.default.cleanUpFiles(in: FileManager.default.temporaryDirectory,
+                                             folderName: "cache")
         }
         
         AmahiApi.shared.getServers() { (serverResponse) in
