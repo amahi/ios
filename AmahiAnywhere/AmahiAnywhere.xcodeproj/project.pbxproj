@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		04BA8996211D56F400E7A868 /* AmahiLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04BA8995211D56F400E7A868 /* AmahiLogger.swift */; };
 		07A3AB2E5DFE0D2AD44B0F33 /* Pods_AmahiAnywhere.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F5293AC0952F87B50DCD644D /* Pods_AmahiAnywhere.framework */; };
 		0AA5E185203F36DD0010FD47 /* Amahi Logo White Font.png in Resources */ = {isa = PBXBuildFile; fileRef = 0AA5E184203F36DD0010FD47 /* Amahi Logo White Font.png */; };
 		4605963F204E24DF004FA066 /* ServerPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4605963E204E24DF004FA066 /* ServerPresenter.swift */; };
@@ -77,6 +78,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		04BA8995211D56F400E7A868 /* AmahiLogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmahiLogger.swift; sourceTree = "<group>"; };
 		0AA5E184203F36DD0010FD47 /* Amahi Logo White Font.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Amahi Logo White Font.png"; sourceTree = "<group>"; };
 		4605963E204E24DF004FA066 /* ServerPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerPresenter.swift; sourceTree = "<group>"; };
 		46059642204E8B41004FA066 /* BaseUITableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseUITableViewController.swift; sourceTree = "<group>"; };
@@ -198,6 +200,7 @@
 				C83C637B2038D5150089B9D8 /* StringIdentifiers.swift */,
 				46098D092050114C00752EB6 /* Network.swift */,
 				4612851D2051DB770061EC21 /* Mimes.swift */,
+				04BA8995211D56F400E7A868 /* AmahiLogger.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -641,6 +644,7 @@
 				46F87397204CC69500F1AF37 /* Server.swift in Sources */,
 				C86CA92A20D3D26300C8EDCA /* OfflineFile+CoreDataProperties.swift in Sources */,
 				C8DA5B2020D5E09000F5A527 /* FilesViewController+UISearchBarDelegate.swift in Sources */,
+				04BA8996211D56F400E7A868 /* AmahiLogger.swift in Sources */,
 				C8DA5B2320D5E0D800F5A527 /* ServerFileTableViewCell.swift in Sources */,
 				46098D08204FFFBE00752EB6 /* ServerApi.swift in Sources */,
 				C8D86160209490230014D8AC /* WebViewController.swift in Sources */,

@@ -28,7 +28,7 @@ class DownloadService : NSObject {
     func startDownload(_ offlineFile: OfflineFile) {
         let url = offlineFile.remoteFileURL()
 
-        debugPrint("Download Has Started for url \(url)")
+        AmahiLogger.log("Download Has Started for url \(url)")
         let download = Download(offlineFile: offlineFile)
         download.task = downloadsSession.downloadTask(with: url)
         download.task!.resume()

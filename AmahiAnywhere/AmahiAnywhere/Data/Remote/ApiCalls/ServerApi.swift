@@ -44,18 +44,18 @@ class ServerApi {
     
     func loadServerRoute(completion: @escaping (_ isLoadSuccessful: Bool) -> Void ) {
         
-        //        let fakeServerRoute = ServerRoute()
-        //        fakeServerRoute.local_addr = ApiConfig.MIFI_BASE_URL
-        //        self.serverRoute = fakeServerRoute
-        //        completion(true)
-        //        return
-        
+        //                let fakeServerRoute = ServerRoute()
+        //                fakeServerRoute.local_addr = ApiConfig.MIFI_BASE_URL
+        //                self.serverRoute = fakeServerRoute
+        //                completion(true)
+        //                return
+        //
         func updateServerRoute(serverRouteResponse: ServerRoute?) {
             guard let serverRoute = serverRouteResponse else {
                 completion(false)
                 return
             }
-//            serverRoute.local_addr = ApiConfig.MIFI_BASE_URL
+//            serverRoute.local_addr = ApiConfig.REDCHEETAH_BASE_URL
             
             self.serverRoute = serverRoute
             configureConnection()
@@ -68,7 +68,7 @@ class ServerApi {
     func configureConnection() {
         
         if !isServerRouteLoaded {
-            debugPrint("Route is not loaded when configureConnection was called")
+            AmahiLogger.log("Route is not loaded when configureConnection was called")
             return
         }
         

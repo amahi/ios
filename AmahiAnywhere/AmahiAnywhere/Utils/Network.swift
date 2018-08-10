@@ -37,7 +37,7 @@ public class Network {
         Alamofire.request(url, method: method, parameters: parameters, headers: getFinalHeaders(headers))
             .responseObject {(response: DataResponse<T>) in
                 
-//                debugPrint("Request to \(url!) returned with STATUS CODE \(response.response?.statusCode)") // <<<<<<<<<<<<<
+//                AmahiLogger.log("Request to \(url!) returned with STATUS CODE \(response.response?.statusCode)") // <<<<<<<<<<<<<
                 switch response.result {
                     case .success:
                         if let data = response.result.value {
@@ -47,7 +47,7 @@ public class Network {
                         }
                     
                     case .failure(let error):
-                        debugPrint(error)
+                        AmahiLogger.log(error)
                         completion(nil);
                 }
         }
@@ -67,7 +67,7 @@ public class Network {
                     }
                     
                 case .failure(let error):
-                    debugPrint(error)
+                    AmahiLogger.log(error)
                     completion(nil);
                 }
         }

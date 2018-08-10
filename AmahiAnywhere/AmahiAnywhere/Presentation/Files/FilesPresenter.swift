@@ -283,11 +283,11 @@ internal class FilesPresenter: BasePresenter {
             for file in files {
                 dictionary[file.name!] = file
             }
-            debugPrint("Offline Files \(dictionary)")
+            AmahiLogger.log("Offline Files \(dictionary)")
             
             self.offlineFiles = dictionary
         } else {
-            debugPrint("Detched Objects returned was nil")
+            AmahiLogger.log("Detched Objects returned was nil")
             self.offlineFiles = [:]
         }
     }
@@ -311,7 +311,7 @@ internal class FilesPresenter: BasePresenter {
             do {
                 try fc.performFetch()
             } catch let e as NSError {
-                print("Error while trying to perform a search: \n\(e)\n\(String(describing: fetchedResultsController))")
+                AmahiLogger.log("Error while trying to perform a search: \n\(e)\n\(String(describing: fetchedResultsController))")
             }
         }
     }

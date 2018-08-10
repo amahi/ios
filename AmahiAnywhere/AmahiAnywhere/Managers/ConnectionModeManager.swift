@@ -52,7 +52,7 @@ class ConnectionModeManager {
         do {
             try reachability?.startNotifier()
         } catch {
-            debugPrint("Unable to start notifier")
+            AmahiLogger.log("Unable to start notifier")
             return
         }
     }
@@ -65,10 +65,10 @@ class ConnectionModeManager {
     
     func testLocalAvailability() {
         
-        debugPrint("testLocalAvailability was called")
+        AmahiLogger.log("testLocalAvailability was called")
         
         if lastCheckedAt != nil && fabs(Float(lastCheckedAt!.timeIntervalSinceNow)) <= Float(MinimumConnectionCheckPeriod)  {
-                 debugPrint("local checking ratelimit exceeded. last cheked %.1fs ago", fabs(Float((lastCheckedAt?.timeIntervalSinceNow)!)))
+                 AmahiLogger.log("local checking ratelimit exceeded. last cheked %.1fs ago", fabs(Float((lastCheckedAt?.timeIntervalSinceNow)!)))
             return
         }
         
@@ -78,15 +78,15 @@ class ConnectionModeManager {
         
         let url = localAvailabilityURL()
         
-        debugPrint("trying local reachability test with url: \(url!)")
+        AmahiLogger.log("trying local reachability test with url: \(url!)")
         
         guard url != nil else {
-            debugPrint("local availability URL is nil")
+            AmahiLogger.log("local availability URL is nil")
             return
         }
         
         // Make Request
-        debugPrint("Making server availability request  \(url!)")
+        AmahiLogger.log("Making server availability request  \(url!)")
 
         Alamofire.SessionManager.default.requestWithoutCache(url!,
                                                              headers: ServerApi.shared!.getSessionHeader(),
@@ -103,11 +103,11 @@ class ConnectionModeManager {
                     
                     case .failure(let error):
                         self.lastCheckPassed = false
-                        debugPrint("local availability check return with error \(error)")
+                        AmahiLogger.log("local availability check return with error \(error)")
                 }
                 
                 self.lastCheckedAt = Date()
-                debugPrint("Last check passed after testLocalAvailability completed \(self.lastCheckPassed)")
+                AmahiLogger.log("Last check passed after testLocalAvailability completed \(self.lastCheckPassed)")
                 
                 if self.lastCheckPassed {
                     NotificationCenter.default.post(name: .LanTestPassed, object: nil, userInfo: [:])
@@ -118,7 +118,7 @@ class ConnectionModeManager {
     }
     
     func updateCurrentConnectionInfo(connectionInfo: ServerRoute) {
-        debugPrint("updateCurrentConnectionInfo was called")
+        AmahiLogger.log("updateCurrentConnectionInfo was called")
         currentConnectionInfo = connectionInfo
         
         if currentMode == ConnectionMode.remote {
@@ -155,11 +155,11 @@ class ConnectionModeManager {
     func currentConnectionBaseURL(serverRoute: ServerRoute) -> String? {
         
         if isLocalInUse() {
-            debugPrint("Current mode in use \(currentMode!)")
-            debugPrint("LAN mode in use")
+            AmahiLogger.log("Current mode in use \(currentMode!)")
+            AmahiLogger.log("LAN mode in use")
             return serverRoute.local_addr
         }
-        debugPrint("Remote mode in use")
+        AmahiLogger.log("Remote mode in use")
         return serverRoute.relay_addr
     }
     

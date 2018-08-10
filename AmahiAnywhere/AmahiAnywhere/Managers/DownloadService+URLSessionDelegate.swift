@@ -28,14 +28,14 @@ extension DownloadService: URLSessionDownloadDelegate {
     
     // Stores downloaded file
     func urlSession(_ session: URLSession, downloadTask: URLSessionDownloadTask, didFinishDownloadingTo location: URL) {
-        debugPrint("Download Has Completed for url \(downloadTask.originalRequest?.url!)")
+        AmahiLogger.log("Download Has Completed for url \(downloadTask.originalRequest?.url!)")
 
         guard let sourceURL = downloadTask.originalRequest?.url else { return }
         guard let download = DownloadService.shared.activeDownloads[sourceURL] else { return }
         activeDownloads[sourceURL] = nil
         
         let destinationURL = FileManager.default.localFilePathInDownloads(for: download.offlineFile)!
-        debugPrint("DestinationURL::: \(destinationURL)")
+        AmahiLogger.log("DestinationURL::: \(destinationURL)")
         
         let fileManager = FileManager.default
         try? fileManager.removeItem(at: destinationURL)
@@ -50,7 +50,7 @@ extension DownloadService: URLSessionDownloadDelegate {
             }
             
         } catch let error {
-            debugPrint("Could not move file to disk: \(error.localizedDescription)")
+            AmahiLogger.log("Could not move file to disk: \(error.localizedDescription)")
         }
     }
     
@@ -73,7 +73,7 @@ extension DownloadService: URLSessionDownloadDelegate {
     }
     
     func urlSession(_ session: URLSession, task: URLSessionTask, didCompleteWithError error: Error?) {
-        debugPrint("Download completed with error: \(task), error: \(error?.localizedDescription ?? "")")
+        AmahiLogger.log("Download completed with error: \(task), error: \(error?.localizedDescription ?? "")")
         if error == nil { return }
         guard let url = task.originalRequest?.url,
             let download = activeDownloads[url]  else { return }

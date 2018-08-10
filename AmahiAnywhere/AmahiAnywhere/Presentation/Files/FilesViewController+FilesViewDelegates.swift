@@ -103,9 +103,9 @@ extension FilesViewController: FilesView {
     }
     
     @objc func nextAudio(notification: Notification) {
-        debugPrint("nextAudio was called")
+        AmahiLogger.log("nextAudio was called")
         guard player != nil else { return }
-        debugPrint("AVPlayerItemDidPlayToEndTime notif info  \(notification.userInfo)")
+        AmahiLogger.log("AVPlayerItemDidPlayToEndTime notif info  \(notification.userInfo)")
         //        if let currentItem = player.currentItem {
         if let currentItem = notification.userInfo!["object"] as? AVPlayerItem {
             currentItem.seek(to: kCMTimeZero)
@@ -134,13 +134,13 @@ extension FilesViewController: FilesView {
             let newRate = (change?[NSKeyValueChangeKey.newKey] as! NSNumber).doubleValue
             guard player != nil else { return }
 
-            debugPrint("CURRENT RATE IS \(newRate)")
+            AmahiLogger.log("CURRENT RATE IS \(newRate)")
             
             if newRate == 0.0 {
                 
                 if let currentItem = player.currentItem {
                     guard currentItem.currentTime() == currentItem.duration else { return }
-                    debugPrint("ENTERED LAST BLOCK")
+                    AmahiLogger.log("ENTERED LAST BLOCK")
                     currentItem.seek(to: kCMTimeZero)
                     self.player.advanceToNextItem()
                     self.player.insert(currentItem, after: nil)

@@ -40,12 +40,12 @@ class OfflineFilesPresenter: BasePresenter {
         let fileManager = FileManager.default
         
         if !fileManager.fileExistsInDownloads(file) {
-            debugPrint("OFFLINE FILE DOES NOT EXIST IN EXPECTED LOCATION !!!")
+            AmahiLogger.log("OFFLINE FILE DOES NOT EXIST IN EXPECTED LOCATION !!!")
             return
         }
         
         let url = fileManager.localFilePathInDownloads(for: file)!
-        debugPrint("Path to Offline folder is \(url)")
+        AmahiLogger.log("Path to Offline folder is \(url)")
         
         let type = Mimes.shared.match(file.mime!)
         

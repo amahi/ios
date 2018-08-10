@@ -112,7 +112,7 @@ extension UIViewController {
     
     @objc func updateDownloadsIconOnDownloadStarted() {
         
-        debugPrint("Active Downloads count \(DownloadService.shared.activeDownloads.count)")
+        AmahiLogger.log("Active Downloads count \(DownloadService.shared.activeDownloads.count)")
         
         if navigationItem.rightBarButtonItem == nil {
             let rightButton = UIBarButtonItem(image: UIImage(named: "cellphoneIcon"),
@@ -131,7 +131,7 @@ extension UIViewController {
     }
     
     @objc func updateDownloadsIconOnDownloadCompleted() {
-        debugPrint("Active Downloads count \(DownloadService.shared.activeDownloads.count)")
+        AmahiLogger.log("Active Downloads count \(DownloadService.shared.activeDownloads.count)")
         
         if DownloadService.shared.activeDownloads.isEmpty {
             navigationItem.rightBarButtonItem?.tintColor = UIColor.white

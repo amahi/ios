@@ -25,7 +25,7 @@ extension Alamofire.SessionManager {
             return request(encodedURLRequest)
         } catch {
             // TODO: find a better way to handle error
-            debugPrint(error)
+            AmahiLogger.log(error)
             return nil
         }
     }

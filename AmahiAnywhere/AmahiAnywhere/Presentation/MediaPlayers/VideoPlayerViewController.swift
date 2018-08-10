@@ -281,7 +281,7 @@ extension VideoPlayerViewController: VLCMediaPlayerDelegate {
     }
     
     func mediaPlayerStateChanged(_ aNotification: Notification!) {
-        debugPrint("Player State \(VLCMediaPlayerStateToString((mediaPlayer?.state)!))")
+        AmahiLogger.log("Player State \(VLCMediaPlayerStateToString((mediaPlayer?.state)!))")
         
         if mediaPlayer?.state == VLCMediaPlayerState.ended ||
             mediaPlayer?.state == VLCMediaPlayerState.stopped {

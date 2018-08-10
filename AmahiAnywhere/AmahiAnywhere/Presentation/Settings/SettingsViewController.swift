@@ -58,7 +58,7 @@ class SettingsViewController: BaseUITableViewController, MFMailComposeViewContro
                 self.present(myalert, animated: true)
             
             case .failed:
-                print("Mail sent failure: \(String(describing: error?.localizedDescription))")
+                AmahiLogger.log("Mail sent failure: \(String(describing: error?.localizedDescription))")
                 // default:
                 break
         }

@@ -27,14 +27,14 @@ struct CoreDataStack {
         
         // Assumes the model is in the main bundle
         guard let modelURL = Bundle.main.url(forResource: modelName, withExtension: "momd") else {
-            debugPrint("Unable to find \(modelName)in the main bundle")
+            AmahiLogger.log("Unable to find \(modelName)in the main bundle")
             return nil
         }
         self.modelURL = modelURL
         
         // Try to create the model from the URL
         guard let model = NSManagedObjectModel(contentsOf: modelURL) else {
-            debugPrint("unable to create a model from \(modelURL)")
+            AmahiLogger.log("unable to create a model from \(modelURL)")
             return nil
         }
         self.model = model
@@ -50,7 +50,7 @@ struct CoreDataStack {
         let fm = FileManager.default
         
         guard let docUrl = fm.urls(for: .documentDirectory, in: .userDomainMask).first else {
-            debugPrint("Unable to reach the documents folder")
+            AmahiLogger.log("Unable to reach the documents folder")
             return nil
         }
         
@@ -62,7 +62,7 @@ struct CoreDataStack {
         do {
             try addStoreCoordinator(NSSQLiteStoreType, configuration: nil, storeURL: dbURL, options: options as [NSObject : AnyObject]?)
         } catch {
-            debugPrint("unable to add store at \(dbURL)")
+            AmahiLogger.log("unable to add store at \(dbURL)")
         }
     }
     
@@ -110,9 +110,9 @@ extension CoreDataStack {
         if delayInSeconds > 0 {
             do {
                 try saveContext()
-                debugPrint("Autosaving only if new changes exist")
+                AmahiLogger.log("Autosaving only if new changes exist")
             } catch let error as NSError {
-                debugPrint("Error while autosaving  \(error.localizedDescription)")
+                AmahiLogger.log("Error while autosaving  \(error.localizedDescription)")
             }
             
             let delayInNanoSeconds = UInt64(delayInSeconds) * NSEC_PER_SEC

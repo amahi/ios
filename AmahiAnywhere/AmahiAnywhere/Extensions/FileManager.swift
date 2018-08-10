@@ -22,7 +22,7 @@ extension FileManager {
                 resourceValues.isExcludedFromBackup = true
                 try folderPath.setResourceValues(resourceValues)
             } catch {
-                debugPrint("Error while trying to create folder in directory \(directory): \(error.localizedDescription)")
+                AmahiLogger.log("Error while trying to create folder in directory \(directory): \(error.localizedDescription)")
                 return nil
             }
         }
@@ -37,7 +37,7 @@ extension FileManager {
             let folderPath = directory.appendingPathComponent(folderName)
             try fileManager.removeItem(at: folderPath)
         } catch let error {
-            debugPrint("Error while trying to delete files: \(error.localizedDescription)")
+            AmahiLogger.log("Error while trying to delete files: \(error.localizedDescription)")
         }
     }
     
@@ -50,14 +50,14 @@ extension FileManager {
             let resourceKeys : [URLResourceKey] = [.contentAccessDateKey, .isDirectoryKey]
        
             if !fileExists(atPath: folderPath.path) {
-                debugPrint("Cache is empty, no need to proceed with cleanup")
+                AmahiLogger.log("Cache is empty, no need to proceed with cleanup")
                 return
             }
             
             let enumerator = FileManager.default.enumerator(at: folderPath,
                                                             includingPropertiesForKeys: resourceKeys,
                                                             options: [.skipsHiddenFiles], errorHandler: { (url, error) -> Bool in
-                                                                debugPrint("directoryEnumerator error at \(url): ", error)
+                                                                AmahiLogger.log("directoryEnumerator error at \(url): ", error)
                                                                 return true
             })!
             
@@ -77,7 +77,7 @@ extension FileManager {
             }
             
         } catch {
-            debugPrint("Error while trying to delete files: \(error.localizedDescription)")
+            AmahiLogger.log("Error while trying to delete files: \(error.localizedDescription)")
         }
     }
     
@@ -88,7 +88,7 @@ extension FileManager {
             let fileSize = fileSizeNumber?.int64Value
             return fileSize!
         } catch let error {
-            debugPrint("error reading filesize, NSFileManager extension fileSizeAtPath \(error.localizedDescription)")
+            AmahiLogger.log("error reading filesize, NSFileManager extension fileSizeAtPath \(error.localizedDescription)")
             return 0
         }
     }
@@ -101,7 +101,7 @@ extension FileManager {
                 size += fileSizeAtPath(path:path.appending("/"+files[i]))
             }
         } catch let error {
-            debugPrint("error reading directory, NSFileManager extension folderSizeAtPath \(error.localizedDescription)")
+            AmahiLogger.log("error reading directory, NSFileManager extension folderSizeAtPath \(error.localizedDescription)")
         }
         return size
     }

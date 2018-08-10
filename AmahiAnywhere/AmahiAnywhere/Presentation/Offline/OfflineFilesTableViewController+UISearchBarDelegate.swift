@@ -37,7 +37,7 @@ extension OfflineFilesTableViewController: UISearchBarDelegate {
             try fetchedResultsController?.performFetch()
             tableView.reloadData()
         } catch let error as NSError {
-            debugPrint("Error while fetchedResultsController is performing fetch on search text changed \(error.localizedDescription)")
+            AmahiLogger.log("Error while fetchedResultsController is performing fetch on search text changed \(error.localizedDescription)")
         }
     }
     
@@ -54,7 +54,7 @@ extension OfflineFilesTableViewController: UISearchBarDelegate {
             try fetchedResultsController?.performFetch()
             tableView.reloadData()
         } catch let error as NSError {
-            debugPrint("Error while fetchedResultsController is performing fetch on sort order changed  \(error.localizedDescription)")
+            AmahiLogger.log("Error while fetchedResultsController is performing fetch on sort order changed  \(error.localizedDescription)")
         }
     }
 }

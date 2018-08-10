@@ -46,7 +46,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             try audioSession.setCategory(AVAudioSessionCategoryPlayback)
             try AVAudioSession.sharedInstance().setActive(true)
         } catch {
-            debugPrint("Setting category to AVAudioSessionCategoryPlayback failed.")
+            AmahiLogger.log("Setting category to AVAudioSessionCategoryPlayback failed.")
         }
         application.beginReceivingRemoteControlEvents()
 
@@ -74,7 +74,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         do {
             try stack.saveContext()
         } catch let error as NSError {
-            print("Error while saving. \(error.localizedDescription)")
+            AmahiLogger.log("Error while saving. \(error.localizedDescription)")
         }
     }
 
@@ -85,7 +85,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         do {
             try stack.saveContext()
         } catch let error as NSError {
-            print("Error while saving. \(error.localizedDescription)")
+            AmahiLogger.log("Error while saving. \(error.localizedDescription)")
         }
     }
 
@@ -107,7 +107,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         do {
             try stack.dropAllData()
         } catch let error as NSError {
-            debugPrint("Error droping all objects in DB  \(error.localizedDescription)")
+            AmahiLogger.log("Error droping all objects in DB  \(error.localizedDescription)")
         }
         
         let documentsPath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!

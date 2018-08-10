@@ -47,7 +47,7 @@ extension OfflineFilesTableViewController {
             cell.fileSizeLabel.isHidden = false
         }
         
-        debugPrint("Offline File State at index: \(indexPath.row) \(offlineFile.stateEnum) with progress \(offlineFile.progress)")
+        AmahiLogger.log("Offline File State at index: \(indexPath.row) \(offlineFile.stateEnum) with progress \(offlineFile.progress)")
         return cell
     }
     
@@ -62,7 +62,7 @@ extension OfflineFilesTableViewController {
             do {
                 try fileManager.removeItem(at: fileManager.localFilePathInDownloads(for: offlineFile)!)
             } catch let error {
-                debugPrint("Couldn't Delete file from Downloads \(error.localizedDescription)")
+                AmahiLogger.log("Couldn't Delete file from Downloads \(error.localizedDescription)")
             }
             
             let delegate = UIApplication.shared.delegate as! AppDelegate
@@ -71,7 +71,7 @@ extension OfflineFilesTableViewController {
             // Delete Offline File from CoreData and persist new changes immediately
             stack.context.delete(offlineFile)
             try? stack.saveContext()
-            debugPrint("File was deleted from Downloads")
+            AmahiLogger.log("File was deleted from Downloads")
         }
         delete.backgroundColor = UIColor.red
         

@@ -20,8 +20,7 @@ class OfflineFilesTableViewController : CoreDataTableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        debugPrint("Active Downloads \(DownloadService.shared.activeDownloads)")
-        
+        AmahiLogger.log("Active Downloads \(DownloadService.shared.activeDownloads)")
         presenter = OfflineFilesPresenter(self)
 
         self.navigationItem.title = StringLiterals.OFFLINE
@@ -109,7 +108,7 @@ class OfflineFilesTableViewController : CoreDataTableViewController {
         do {
             try fileManager.removeItem(at: fileManager.localFilePathInDownloads(for: offlineFile)!)
         } catch let error {
-            debugPrint("Couldn't Delete file from Downloads \(error.localizedDescription)")
+            AmahiLogger.log("Couldn't Delete file from Downloads \(error.localizedDescription)")
         }
         
         let delegate = UIApplication.shared.delegate as! AppDelegate
@@ -118,6 +117,6 @@ class OfflineFilesTableViewController : CoreDataTableViewController {
         // Delete Offline File from core date and persist new changes immediately
         stack.context.delete(offlineFile)
         try? stack.saveContext()
-        debugPrint("File was deleted from Downloads")
+        AmahiLogger.log("File was deleted from Downloads")
     }
 }

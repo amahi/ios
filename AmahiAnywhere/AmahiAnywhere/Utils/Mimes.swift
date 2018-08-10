@@ -45,10 +45,8 @@ public class Mimes {
         types.updateValue(MimeType.document, forKey: "application/x-kword")
         types.updateValue(MimeType.document, forKey: "application/vnd.openxmlformats-officedocument.wordprocessingml.document")
 
-        // FIXME-cpg: this is done temporarily until we get the last bits of https://github.com/amahi/ios/issues/56
-        types.updateValue(MimeType.document, forKey: "application/epub+zip")
-        types.updateValue(MimeType.document, forKey: "application/x-mobipocket")
-        types.updateValue(MimeType.document, forKey: "text/csv")
+        types.updateValue(MimeType.sharedFile, forKey: "application/epub+zip")
+        types.updateValue(MimeType.sharedFile, forKey: "application/x-mobipocket")
 
         types.updateValue(MimeType.directory, forKey: "text/directory")
         
