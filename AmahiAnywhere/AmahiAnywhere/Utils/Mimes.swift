@@ -31,13 +31,14 @@ public class Mimes {
         
         types.updateValue(MimeType.code, forKey: "text/css")
         types.updateValue(MimeType.code, forKey: "text/html")
-        types.updateValue(MimeType.code, forKey: "text/plain")
         types.updateValue(MimeType.code, forKey: "text/xml")
         types.updateValue(MimeType.code, forKey: "application/json")
         types.updateValue(MimeType.code, forKey: "application/javascript")
         types.updateValue(MimeType.code, forKey: "application/xml")
         
         types.updateValue(MimeType.document, forKey: "application/pdf")
+        types.updateValue(MimeType.document, forKey: "text/csv")
+        types.updateValue(MimeType.document, forKey: "text/plain")
         types.updateValue(MimeType.document, forKey: "application/msword")
         types.updateValue(MimeType.document, forKey: "application/vnd.oasis.opendocument.text")
         types.updateValue(MimeType.document, forKey: "application/x-abiword")
@@ -106,5 +107,5 @@ public class Mimes {
 }
 
 public enum MimeType: Int {
-    case undefined = 1, archive, audio, code, document, directory, image, presentation, spreadsheet, video, subtitle
+    case undefined = 1, archive, audio, code, sharedFile, document, directory, image, presentation, spreadsheet, video, subtitle
 }

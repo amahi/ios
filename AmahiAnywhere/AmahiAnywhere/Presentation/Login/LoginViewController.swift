@@ -58,11 +58,10 @@ class LoginViewController: BaseUIViewController {
 // Mark - Login view implementations
 extension LoginViewController: LoginView {
     
-    
     func showHome() {
         
-        let dashBoardVc = self.instantiateViewController(withIdentifier: "NavigationViewController", from: StoryBoardIdentifiers.MAIN)
-        self.present(dashBoardVc, animated: true, completion: nil)
+        let serverVc = self.instantiateViewController(withIdentifier: "NavigationViewController", from: StoryBoardIdentifiers.MAIN)
+        self.present(serverVc, animated: true, completion: nil)
     }
     
 }

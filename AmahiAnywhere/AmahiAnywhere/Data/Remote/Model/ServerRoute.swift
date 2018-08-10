@@ -20,10 +20,16 @@ public class ServerRoute: EVNetworkingObject {
     override public func setValue(_ value: Any!, forUndefinedKey key: String) {}
 }
 
-enum ServerAddress: String {
-    case autodetect =       "Autodetect"
+extension ServerRoute {
+    static func ==(lhs: ServerRoute, rhs: ServerRoute) -> Bool {
+        return lhs.local_addr == rhs.local_addr && lhs.relay_addr == rhs.relay_addr
+    }
+}
+
+enum ConnectionMode: String {
+    case auto =             "Autodetect"
     case local =            "LAN"
     case remote =           "Remote"
     
-    static let allValues = [autodetect, local, remote]
+    static let allValues = [auto, local, remote]
 }

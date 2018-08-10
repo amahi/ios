@@ -27,5 +27,4 @@ class AmahiApi {
     func getServers(completion: @escaping (_ servers: [Server]?) -> Void ) {
         Network.shared.request(ApiEndPoints.fetchServers(), completion: completion)
     }
-
 }
