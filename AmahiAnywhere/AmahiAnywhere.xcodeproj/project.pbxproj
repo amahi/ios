@@ -448,7 +448,6 @@
 				FB71BE91201CB2FC0005492C /* Frameworks */,
 				FB71BE92201CB2FC0005492C /* Resources */,
 				F61A594FE5268D2316515601 /* [CP] Embed Pods Frameworks */,
-				BF6690513829C3624E1CFC3A /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -514,21 +513,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		BF6690513829C3624E1CFC3A /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-AmahiAnywhere/Pods-AmahiAnywhere-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		D37A02672BBEFF330A5E8AAE /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -798,14 +782,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 44WM7BTB59;
+				DEVELOPMENT_TEAM = 325LAYFA25;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = AmahiAnywhere/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.amahi.AmahiAnywhere-dev";
+				PRODUCT_BUNDLE_IDENTIFIER = com.amahi.AmahiAnywhere;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_ENFORCE_EXCLUSIVE_ACCESS = none;
 				SWIFT_OBJC_BRIDGING_HEADER = "AmahiAnywhere/AmahiAnywhere-Bridging-Header.h";
@@ -820,14 +804,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 44WM7BTB59;
+				DEVELOPMENT_TEAM = 325LAYFA25;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = AmahiAnywhere/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.amahi.AmahiAnywhere-dev";
+				PRODUCT_BUNDLE_IDENTIFIER = com.amahi.AmahiAnywhere;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_ENFORCE_EXCLUSIVE_ACCESS = none;
 				SWIFT_OBJC_BRIDGING_HEADER = "AmahiAnywhere/AmahiAnywhere-Bridging-Header.h";
