@@ -25,6 +25,18 @@ class SharesTableViewController: BaseUITableViewController {
         presenter.loadServerRoute()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        showDownloadsIconIfOfflineFileExists()
+    }
+    
+    override func updateNavigationBarBackgroundWhenLanTestFailed() {
+        super.updateNavigationBarBackgroundWhenLanTestFailed()
+        
+        presenter.getShares()
+    }
+    
     @objc func handleRefresh(sender: UIRefreshControl) {
         presenter.getShares()
     }
@@ -32,7 +44,7 @@ class SharesTableViewController: BaseUITableViewController {
     // MARK: - Table view data source
     
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return ServerApi.shared?.getServer()?.name
+        return ServerApi.shared!.getServer()?.name
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

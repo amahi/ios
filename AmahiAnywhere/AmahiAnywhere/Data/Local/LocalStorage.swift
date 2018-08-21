@@ -52,18 +52,18 @@ final class LocalStorage: NSObject {
         return self.getString(key: PersistenceIdentifiers.ACCESS_TOKEN)
     }
     
-    public var userConnectionPreference : ServerAddress {
+    public var userConnectionPreference : ConnectionMode {
         set {
             LocalStorage.shared.persistString(string: newValue.rawValue,
                                               key: PersistenceIdentifiers.PREF_CONNECTION)
+            ServerApi.shared!.configureConnection()
         }
         get {
             if let connection = LocalStorage.shared.getString(key: PersistenceIdentifiers.PREF_CONNECTION) {
-                return ServerAddress(rawValue: connection)!
+                return ConnectionMode(rawValue: connection)!
             } else {
-                return ServerAddress.local
+                return ConnectionMode.auto
             }
         }
     }
-
 }

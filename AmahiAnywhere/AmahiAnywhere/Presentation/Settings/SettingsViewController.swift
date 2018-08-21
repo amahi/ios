@@ -1,7 +1,7 @@
 import UIKit
 import MessageUI
 
-class SettingsViewController: UITableViewController,MFMailComposeViewControllerDelegate {
+class SettingsViewController: BaseUITableViewController, MFMailComposeViewControllerDelegate {
     
     var settingItems = StringLiterals.SETTINGS_ACTION_TITLES
     var titleForSections = StringLiterals.SETTINGS_SECTION_TITLES
@@ -58,7 +58,7 @@ class SettingsViewController: UITableViewController,MFMailComposeViewControllerD
                 self.present(myalert, animated: true)
             
             case .failed:
-                print("Mail sent failure: \(String(describing: error?.localizedDescription))")
+                AmahiLogger.log("Mail sent failure: \(String(describing: error?.localizedDescription))")
                 // default:
                 break
         }
@@ -103,10 +103,28 @@ class SettingsViewController: UITableViewController,MFMailComposeViewControllerD
             cell.detailTextLabel?.textColor = UIColor.lightGray
             
             if section == 1 && row == 0 {
-                cell.detailTextLabel?.text = LocalStorage.shared.userConnectionPreference.rawValue
-            } else if section == 1 && row == 1 {
-                cell.detailTextLabel?.text = StringLiterals.DISABLED
-            }  else if section == 2 && row == 0 {
+                let connectionMode = LocalStorage.shared.userConnectionPreference
+                
+                if connectionMode == ConnectionMode.auto {
+                    let isLocalInUse = ConnectionModeManager.shared.isLocalInUse()
+                    
+                    if isLocalInUse {
+                        cell.detailTextLabel?.text =  StringLiterals.AUTO_CONNECTION_LAN
+                    } else {
+                        cell.detailTextLabel?.text =  StringLiterals.AUTO_CONNECTION_REMOTE
+                    }
+                } else {
+                  cell.detailTextLabel?.text =  LocalStorage.shared.userConnectionPreference.rawValue
+                }
+            }
+            else if section == 1 && row == 1 {
+                
+                let cacheFolderPath = FileManager.default.temporaryDirectory.appendingPathComponent("cache").path
+                
+                let cacheSize = FileManager.default.folderSizeAtPath(path: cacheFolderPath)
+                cell.detailTextLabel?.text = String(format: StringLiterals.CURRENT_SIZE, ByteCountFormatter().string(fromByteCount: cacheSize))
+            }
+            else if section == 2 && row == 0 {
                 if let versionNumber = Bundle.main.object(forInfoDictionaryKey: StringLiterals.INFO_DICTIONARY_KEY) as! String? {
                     cell.detailTextLabel?.text = "v\(versionNumber)"
                 }
@@ -133,11 +151,11 @@ class SettingsViewController: UITableViewController,MFMailComposeViewControllerD
                 let refreshAlert = UIAlertController(title: StringLiterals.SIGNOUT_TITLE,
                                                      message:StringLiterals.SIGNOUT_MESSAGE,
                                                      preferredStyle: UIAlertControllerStyle.alert)
-                refreshAlert.addAction(UIAlertAction(title: StringLiterals.SIGNOUT_CONFIRM_TITLE,
-                                                     style: .default, handler: { (action: UIAlertAction!) in
+                refreshAlert.addAction(UIAlertAction(title: StringLiterals.CONFIRM,
+                                                     style: .destructive, handler: { (action: UIAlertAction!) in
                     self.signOut()
                 }))
-                refreshAlert.addAction(UIAlertAction(title: StringLiterals.SIGNOUT_CANCLE_TITLE, style: .default, handler: { (action: UIAlertAction!) in
+                refreshAlert.addAction(UIAlertAction(title: StringLiterals.CANCEL, style: .default, handler: { (action: UIAlertAction!) in
                     refreshAlert .dismiss(animated: true, completion: nil)
                 }))
                 present(refreshAlert, animated: true, completion: nil)
@@ -145,10 +163,27 @@ class SettingsViewController: UITableViewController,MFMailComposeViewControllerD
             case 1:
                 if row == 0 {
                     performSegue(withIdentifier: SegueIdentfiers.CONNECTION, sender: nil)
+                } else if row == 1 {
+                    // Clear temp storage
+                    
+                    let clearCacheAlert = UIAlertController(title: StringLiterals.CLEAR_CACHE_TITLE,
+                                                         message:StringLiterals.CLEAR_CACHE_MESSAGE,
+                                                         preferredStyle: UIAlertControllerStyle.alert)
+                    clearCacheAlert.addAction(UIAlertAction(title: StringLiterals.CONFIRM,
+                                                         style: .destructive, handler: { (action: UIAlertAction!) in
+                                                            
+                                FileManager.default.deleteFolder(in: FileManager.default.temporaryDirectory,
+                                                                                             folderName: "cache")
+                                self.tableView.reloadData()
+                    }))
+                    clearCacheAlert.addAction(UIAlertAction(title: StringLiterals.CANCEL, style: .default, handler: { (action: UIAlertAction!) in
+                        clearCacheAlert .dismiss(animated: true, completion: nil)
+                    }))
+                    present(clearCacheAlert, animated: true, completion: nil)
                 }
                 
                 break
-            case 2:
+            case 2: 
                 if row == 1 {
                     let urlStr = StringLiterals.URL
                     if let url = URL(string: urlStr), UIApplication.shared.canOpenURL(url) {

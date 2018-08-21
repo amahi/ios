@@ -17,38 +17,39 @@ class VideoPlayerViewController: UIViewController {
     @IBOutlet weak var playButton: UIButton!
     @IBOutlet weak var fastForwardButton: UIButton!
     @IBOutlet weak var rewindButton: UIButton!
-    @IBOutlet weak var timeLabel: UILabel!
+    @IBOutlet weak var timeElapsedLabel: UILabel!
+    @IBOutlet weak var durationLabel: UILabel!
     @IBOutlet weak var videoControlsView: UIView!
     @IBOutlet weak var doneButton: UIButton!
     @IBOutlet weak var rewindIndicator: UIImageView!
     @IBOutlet weak var forwardIndicator: UIImageView!
-    @IBOutlet weak var scrobbleSlider: UISlider!
+    @IBOutlet weak var timeSlider: UISlider!
     
     // Set the media url from the presenting Viewcontroller
     private var idleTimer: Timer?
     private var mediaPlayer: VLCMediaPlayer?
     public var mediaURL: URL!
     
-    private var hasMediaFileParseFinished : Bool = false
+    private var hasMediaFileParseFinished = false
+    private var hasPlayStarted = false
     
-    fileprivate let JUMP_INTERVAL: Int32 = 15
+    fileprivate static let IntervalForFastRewindAndFastForward: Int32 = 15
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         let scrobbleTapGesture = UITapGestureRecognizer(target: self, action:  #selector(userTapScrobblePosition(_:)))
-        scrobbleSlider.addGestureRecognizer(scrobbleTapGesture)
+        timeSlider.addGestureRecognizer(scrobbleTapGesture)
         
-        scrobbleSlider.setThumbImage(UIImage(named: "ic_slider_knob"), for: .normal)
+        timeSlider.setThumbImage(UIImage(named: "sliderKnobIcon"), for: .normal)
         
         UIApplication.shared.statusBarStyle = .lightContent
         
-        for view in rootView.subviews {
-            let gesture = UITapGestureRecognizer(target: self, action:  #selector(userTouchScreen))
-            gesture.delegate = self
-            gesture.cancelsTouchesInView = false
-            view.addGestureRecognizer(gesture)
-        }
+        let gesture = UITapGestureRecognizer(target: self, action:  #selector(userTouchScreen))
+        gesture.delegate = self
+        gesture.cancelsTouchesInView = false
+        movieView.addGestureRecognizer(gesture)
+
         listenForNotifications()
         self.setUpIndicatorLayers(imageView: rewindIndicator)
         self.setUpIndicatorLayers(imageView: forwardIndicator)
@@ -65,6 +66,8 @@ class VideoPlayerViewController: UIViewController {
         // Play media file immediately after video player launches
         mediaPlayer?.play()
         
+        durationLabel.text = mediaPlayer?.media.length.stringValue
+        
         if self.videoControlsView.isHidden {
             self.videoControlsView.isHidden = false
         }
@@ -76,7 +79,7 @@ class VideoPlayerViewController: UIViewController {
         super.viewWillDisappear(animated)
         
         if let _ = mediaPlayer?.isPlaying {
-            mediaPlayer?.stop()
+            mediaPlayer?.pause()
         }
         
         if idleTimer != nil {
@@ -152,8 +155,8 @@ class VideoPlayerViewController: UIViewController {
             
             UIView.animate(withDuration: 0.5, delay: 0.0, options: [],
                            animations: {
-                            self.videoControlsView.alpha = 0.0
-                            self.doneButton.alpha = 0.0
+                self.videoControlsView.alpha = 0.0
+                self.doneButton.alpha = 0.0
             }) { (completed) in
                 self.videoControlsView.isHidden = true
                 self.doneButton.isHidden = true
@@ -162,6 +165,14 @@ class VideoPlayerViewController: UIViewController {
     }
     
     @objc func userTouchScreen() {
+                
+        if !videoControlsView.isHidden {
+            videoControlsView.isHidden = true
+            doneButton.isHidden = true
+            videoControlsView.alpha = 0
+            doneButton.alpha = 0
+            return
+        }
         
         videoControlsView.layer.removeAllAnimations()
         doneButton.layer.removeAllAnimations()
@@ -182,12 +193,12 @@ class VideoPlayerViewController: UIViewController {
     }
     
     @IBAction func rewind(_ sender: Any) {
-        mediaPlayer?.jumpBackward(JUMP_INTERVAL)
+        mediaPlayer?.jumpBackward(VideoPlayerViewController.IntervalForFastRewindAndFastForward)
         self.showIndicator(imageView: rewindIndicator)
     }
     
     @IBAction func forward(_ sender: Any) {
-        mediaPlayer?.jumpForward(JUMP_INTERVAL)
+        mediaPlayer?.jumpForward(VideoPlayerViewController.IntervalForFastRewindAndFastForward)
         self.showIndicator(imageView: forwardIndicator)
     }
     
@@ -220,11 +231,11 @@ class VideoPlayerViewController: UIViewController {
         
         if hasMediaFileParseFinished {
             let newPosition = VLCTime.init(number: sender.value as NSNumber)
-            timeLabel.text = newPosition?.stringValue
             mediaPlayer?.position = (newPosition?.value.floatValue)! / (mediaPlayer?.media.length.value.floatValue)!
-            
+            timeElapsedLabel.text = newPosition?.stringValue
+            durationLabel.text = mediaPlayer?.media.length.stringValue
         } else {
-            scrobbleSlider.value = 0.0
+            timeSlider.value = 0.0
         }
         
         self.resetScreenIdleTimer()
@@ -232,44 +243,45 @@ class VideoPlayerViewController: UIViewController {
     
     @objc func userTapScrobblePosition(_ tapGesture: UITapGestureRecognizer) {
         
-        if scrobbleSlider.isHighlighted {
+        if timeSlider.isHighlighted {
             return
         }
-        let point = tapGesture.location(in: scrobbleSlider)
-        let percentage = point.x / scrobbleSlider.bounds.size.width
-        let delta = Float(percentage) * (scrobbleSlider.maximumValue - scrobbleSlider.minimumValue)
-        let value = scrobbleSlider.minimumValue + delta
+        let point = tapGesture.location(in: timeSlider)
+        let percentage = point.x / timeSlider.bounds.size.width
+        let delta = Float(percentage) * (timeSlider.maximumValue - timeSlider.minimumValue)
+        let value = timeSlider.minimumValue + delta
 
-        scrobbleSlider.setValue(value, animated: true)
+        timeSlider.setValue(value, animated: true)
         
         if !(mediaPlayer?.isPlaying)! {
             mediaPlayer?.play()
         }
         
-        self.userChangedMediaPosition(scrobbleSlider)
+        self.userChangedMediaPosition(timeSlider)
     }
     
     @IBAction func scrobblePositionTouchDown(_ sender: Any) {
         self.idleTimer?.invalidate()
         self.idleTimer = nil
     }
-    
 }
 
 // Mark - VLC Media Player Delegates
 extension VideoPlayerViewController: VLCMediaPlayerDelegate {
     
     func mediaPlayerTimeChanged(_ aNotification: Notification!) {
-        timeLabel.text = mediaPlayer?.time.stringValue
-        scrobbleSlider.value = Float(truncating: (mediaPlayer?.time.value)!)
-        
-        if mediaPlayer!.time.stringValue == "00:00" {
+        timeSlider.value = Float(truncating: (mediaPlayer?.time.value)!)
+        timeElapsedLabel.text = mediaPlayer?.time.stringValue
+        durationLabel.text = mediaPlayer?.media.length.stringValue
+
+        if !hasPlayStarted {
+            hasPlayStarted = true
             self.resetScreenIdleTimer()
         }
     }
     
     func mediaPlayerStateChanged(_ aNotification: Notification!) {
-        debugPrint("Player State \(VLCMediaPlayerStateToString((mediaPlayer?.state)!))")
+        AmahiLogger.log("Player State \(VLCMediaPlayerStateToString((mediaPlayer?.state)!))")
         
         if mediaPlayer?.state == VLCMediaPlayerState.ended ||
             mediaPlayer?.state == VLCMediaPlayerState.stopped {
@@ -280,7 +292,7 @@ extension VideoPlayerViewController: VLCMediaPlayerDelegate {
             
             if !hasMediaFileParseFinished && (mediaPlayer?.media.length.intValue != 0) {
                 
-                scrobbleSlider.maximumValue = Float(truncating: (mediaPlayer?.media.length.value)!)
+                timeSlider.maximumValue = Float(truncating: (mediaPlayer?.media.length.value)!)
                 hasMediaFileParseFinished = true
             }
             self.videoControlsView.isHidden = false
@@ -292,8 +304,8 @@ extension VideoPlayerViewController: VLCMediaPlayerDelegate {
             idleTimer = nil
         }
         
-        playButton.setImage((mediaPlayer?.isPlaying)! ? UIImage(named:"ic_pause_white"):
-            UIImage(named:"ic_play_white"), for: .normal)
+        playButton.setImage((mediaPlayer?.isPlaying)! ? UIImage(named:"pauseIcon"):
+            UIImage(named:"playIcon"), for: .normal)
     }
 }
 

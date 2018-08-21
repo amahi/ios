@@ -1,8 +1,8 @@
 import UIKit
 
-class ConnectionViewController: UITableViewController {
+class ConnectionViewController: BaseUITableViewController {
     
-    var connectionItem = ServerAddress.allValues
+    var connectionItem = ConnectionMode.allValues
 
     override func viewDidLoad() {
         super.viewDidLoad()

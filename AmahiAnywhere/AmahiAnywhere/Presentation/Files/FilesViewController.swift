@@ -8,32 +8,41 @@
 
 import UIKit
 import Lightbox
+import AVFoundation
 
-class FilesViewController: BaseUIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate {
+class FilesViewController: BaseUIViewController {
     
     // Mark - Server properties, will be set from presenting class
     public var directory: ServerFile?
     public var share: ServerShare!
     
     // Mark - TableView data properties
-    private var serverFiles: [ServerFile] = [ServerFile]()
-    private var filteredFiles: [ServerFile] = [ServerFile]()
+    internal var serverFiles: [ServerFile] = [ServerFile]()
+    internal var filteredFiles: [ServerFile] = [ServerFile]()
     
-    private var fileSort = FileSort.modifiedTime
+    internal var fileSort = FileSort.modifiedTime
+    
+    /*
+     KVO context used to differentiate KVO callbacks for this class versus other
+     classes in its class hierarchy.
+     */
+    internal var playerKVOContext = 0
     
     // Mark - UIKit properties
-    @IBOutlet private var filesTableView: UITableView!
-    private var refreshControl: UIRefreshControl!
-    private var downloadProgressAlertController : UIAlertController?
-    private var progressView: UIProgressView?
-    private var docController: UIDocumentInteractionController?
+    @IBOutlet var filesTableView: UITableView!
+    internal var refreshControl: UIRefreshControl!
+    internal var downloadProgressAlertController : UIAlertController?
+    internal var progressView: UIProgressView?
+    internal var docController: UIDocumentInteractionController?
     
-    private var isAlertShowing = false
-    private var presenter: FilesPresenter!
+    @objc internal var player: AVQueuePlayer!
     
+    internal var isAlertShowing = false
+    internal var presenter: FilesPresenter!
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         presenter = FilesPresenter(self)
         
         refreshControl = UIRefreshControl()
@@ -41,9 +50,73 @@ class FilesViewController: BaseUIViewController, UITableViewDelegate, UITableVie
         self.refreshControl?.addTarget(self, action: #selector(handleRefresh), for: UIControlEvents.valueChanged)
         filesTableView.addSubview(refreshControl)
         
+        let longPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(handleLongPress))
+        filesTableView.addGestureRecognizer(longPressGesture)
+        
         self.navigationItem.title = getTitle()
         
         presenter.getFiles(share, directory: directory)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        showDownloadsIconIfOfflineFileExists()
+        presenter.loadOfflineFiles()
+    }
+    
+    @objc func handleLongPress(sender: UIGestureRecognizer) {
+        
+        let touchPoint = sender.location(in: filesTableView)
+        if let indexPath = filesTableView.indexPathForRow(at: touchPoint) {
+            
+            let file = self.filteredFiles[indexPath.row]
+            
+            if file.isDirectory() {
+                return
+            }
+            
+            let download = self.creatAlertAction(StringLiterals.DOWNLOAD, style: .default) { (action) in
+                let file = self.filteredFiles[indexPath.row]
+                self.presenter.makeFileAvailableOffline(file)
+            }!
+            let state = presenter.checkFileOfflineState(file)
+
+            let share = self.creatAlertAction(StringLiterals.SHARE, style: .default) { (action) in
+                self.presenter.shareFile(file, fileIndex: indexPath.row,
+                                         from: self.filesTableView.cellForRow(at: indexPath))
+            }!
+            
+            let removeOffline = self.creatAlertAction(StringLiterals.REMOVE_OFFLINE, style: .default) { (action) in
+            }!
+            
+            let stop = self.creatAlertAction(StringLiterals.STOP_DOWNLOAD, style: .default) { (action) in
+            }!
+            
+            var actions = [UIAlertAction]()            
+            actions.append(share)
+
+            if state == .none {
+                actions.append(download)
+            } else if state == .downloaded {
+                actions.append(removeOffline)
+            } else if state == .downloading {
+                actions.append(stop)
+            }
+            
+            let cancel = self.creatAlertAction(StringLiterals.CANCEL, style: .cancel, clicked: nil)!
+            actions.append(cancel)
+            
+            self.createActionSheet(title: "",
+                                   message: StringLiterals.CHOOSE_ONE,
+                                   ltrActions: actions,
+                                   preferredActionPosition: 0,
+                                   sender: filesTableView.cellForRow(at: indexPath))
+        }
+    }
+    
+    @objc func userClickMenu(sender: UIGestureRecognizer) {
+        handleLongPress(sender: sender)
     }
     
     @objc func handleRefresh(sender: UIRefreshControl) {
@@ -57,39 +130,7 @@ class FilesViewController: BaseUIViewController, UITableViewDelegate, UITableVie
         return share!.name
     }
     
-    // MARK: - File sorting and searching functionality
-    
-    @IBAction func onSortChange(_ sender: UISegmentedControl) {
-        fileSort = sender.selectedSegmentIndex == 0 ? FileSort.modifiedTime : FileSort.name
-        presenter.reorderFiles(files: serverFiles, sortOrder: fileSort)
-    }
-    
-    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        presenter.filterFiles(searchText, files: serverFiles, sortOrder: fileSort)
-    }
-    
-    // MARK: - Table view data source
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return filteredFiles.count
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let serverFile = filteredFiles[indexPath.row]
-        if serverFile.isDirectory() {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "ServerDirectoryTableViewCell", for: indexPath)
-            cell.textLabel?.text = serverFile.name
-            return cell
-        } else {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "ServerFileTableViewCell", for: indexPath) as! ServerFileTableViewCell
-            cell.fileNameLabel?.text = serverFile.name
-            cell.fileSizeLabel?.text = serverFile.getFileSize()
-            cell.lastModifiedLabel?.text = serverFile.getLastModifiedDate()
-            return cell
-        }
-    }
-    
-    private func setupDownloadProgressIndicator() {
+    internal func setupDownloadProgressIndicator() {
         downloadProgressAlertController = UIAlertController(title: "", message: "", preferredStyle: .alert)
         progressView = UIProgressView(progressViewStyle: .bar)
         progressView?.setProgress(0.0, animated: true)
@@ -99,11 +140,6 @@ class FilesViewController: BaseUIViewController, UITableViewDelegate, UITableVie
         downloadProgressAlertController?.view.addConstraint(height);
     }
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        presenter.handleFileOpening(fileIndex: indexPath.row, files: filteredFiles)
-        tableView.deselectRow(at: indexPath, animated: true)
-    }
-    
     // MARK: - Navigation
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -111,83 +147,4 @@ class FilesViewController: BaseUIViewController, UITableViewDelegate, UITableVie
         vc.share = self.share
         vc.directory = filteredFiles[(filesTableView.indexPathForSelectedRow?.row)!]
     }
-}
-
-
-// MARK: File View implementations
-
-extension FilesViewController: FilesView {
-    
-    func dismissProgressIndicator(at url: URL, mimeType: MimeType) {
-        downloadProgressAlertController?.dismiss(animated: true, completion: {
-            self.webViewOpenContent(at: url, mimeType: mimeType)
-        })
-        downloadProgressAlertController = nil
-        progressView = nil
-        isAlertShowing = false
-    }
-    
-    func updateDownloadProgress(for row: Int, downloadJustStarted: Bool , progress: Float) {
-        
-        if downloadJustStarted {
-            setupDownloadProgressIndicator()
-            downloadProgressAlertController?.title = "Downloading \(self.filteredFiles[row].name!)"
-        }
-        
-        if !isAlertShowing {
-            self.isAlertShowing = true
-            present(downloadProgressAlertController!, animated: true, completion: nil)
-        }
-        
-        progressView?.setProgress(progress, animated: true)
-    }
-    
-    func webViewOpenContent(at url: URL, mimeType: MimeType) {
-        let webViewVc = self.viewController(viewControllerClass: WebViewController.self,
-                                            from: StoryBoardIdentifiers.MAIN)
-        webViewVc.url = url
-        webViewVc.mimeType = mimeType
-        self.navigationController?.pushViewController(webViewVc, animated: true)
-    }
-    
-    func playMedia(at url: URL) {
-        let videoPlayerVc = self.viewController(viewControllerClass: VideoPlayerViewController.self, from: StoryBoardIdentifiers.MAIN)
-        videoPlayerVc.mediaURL = url
-        self.present(videoPlayerVc)
-    }
-    
-    func present(_ controller: UIViewController) {
-        self.present(controller, animated: true)
-    }
-    
-    func initFiles(_ files: [ServerFile]) {
-        self.serverFiles = files
-    }
-    
-    func updateFiles(_ files: [ServerFile]) {
-        self.filteredFiles = files
-        filesTableView.reloadData()
-    }
-    
-    func updateRefreshing(isRefreshing: Bool) {
-        if isRefreshing {
-            refreshControl?.beginRefreshing()
-        } else {
-            refreshControl?.endRefreshing()
-        }
-    }
-}
-
-// MARK: - ServerFileTableViewCell
-
-class ServerFileTableViewCell: UITableViewCell {
-    
-    @IBOutlet weak var fileNameLabel: UILabel!
-    @IBOutlet weak var fileSizeLabel: UILabel!
-    @IBOutlet weak var lastModifiedLabel: UILabel!
-}
-
-enum FileSort {
-    case modifiedTime
-    case name
 }

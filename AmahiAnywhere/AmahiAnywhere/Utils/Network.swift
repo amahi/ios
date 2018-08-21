@@ -10,7 +10,6 @@ import Foundation
 import Alamofire
 import EVReflection
 
-
 public class Network {
     
     private init(){}
@@ -37,16 +36,18 @@ public class Network {
         
         Alamofire.request(url, method: method, parameters: parameters, headers: getFinalHeaders(headers))
             .responseObject {(response: DataResponse<T>) in
+                
+//                AmahiLogger.log("Request to \(url!) returned with STATUS CODE \(response.response?.statusCode)") // <<<<<<<<<<<<<
                 switch response.result {
                     case .success:
                         if let data = response.result.value {
                             completion(data)
-                        }else{
+                        } else {
                             completion(nil);
                         }
                     
                     case .failure(let error):
-                        debugPrint(error)
+                        AmahiLogger.log(error)
                         completion(nil);
                 }
         }
@@ -54,7 +55,7 @@ public class Network {
     
     public func request<T: NSObject>(_ url: String!, method: HTTPMethod! = .get, parameters: Parameters = [:], headers: HTTPHeaders = [:],
                                             completion: @escaping (_ response: [T]?) -> Void) where T: EVReflectable {
-        
+
         Alamofire.request(url, method: method, parameters: parameters, headers: getFinalHeaders(headers))
             .responseArray {(response: DataResponse<[T]>) in
                 switch response.result {
@@ -66,7 +67,7 @@ public class Network {
                     }
                     
                 case .failure(let error):
-                    debugPrint(error)
+                    AmahiLogger.log(error)
                     completion(nil);
                 }
         }
@@ -78,27 +79,28 @@ public class Network {
 
         // Create destination URL
         let destination: DownloadRequest.DownloadFileDestination = { _, _ in
-            let documentsUrl =  FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first as URL?
-            let destinationFileUrl = documentsUrl?.appendingPathComponent(file.getPath())
+            
+            let tempDirectoryURL = FileManager.default.findOrCreateFolder(in: FileManager.default.temporaryDirectory,
+                                                                    folderName: "cache")
+
+            let destinationFileUrl = tempDirectoryURL?.appendingPathComponent(file.getPath())
             
             return (destinationFileUrl!, [.removePreviousFile, .createIntermediateDirectories])
         }
         
-        if let fileUrl = ServerApi.shared?.getFileUri(file) {
+        let fileUrl = ServerApi.shared!.getFileUri(file)
             
-            Alamofire.download(fileUrl, to: destination)
-                .downloadProgress { progress in
-                    progressCompletion(Float(progress.fractionCompleted))
-                }
-                .response { response in
-                
-                    if response.error == nil {
-                        completion(true)
-                    } else {
-                        completion(false)
-                    }
+        Alamofire.download(fileUrl, to: destination)
+            .downloadProgress { progress in
+                progressCompletion(Float(progress.fractionCompleted))
             }
-    
+            .response { response in
+            
+                if response.error == nil {
+                    completion(true)
+                } else {
+                    completion(false)
+                }
         }
     }
 }

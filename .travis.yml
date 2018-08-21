@@ -1,2 +1,21 @@
-os: osx
-language: swift
+language: objective-c
+osx_image: xcode9.3
+
+# xcode_workspace: AmahiAnywhere/AmahiAnywhere.xcworkspace
+# xcode_scheme: AmahiAnywhere
+xcode_sdk: iphonesimulator11.3
+
+before_install:
+# - brew update; brew update
+- gem install xcpretty -N
+
+ script:
+
+- set -o pipefail 
+- travis_retry xcodebuild -workspace AmahiAnywhere/AmahiAnywhere.xcworkspace -scheme AmahiAnywhere -sdk iphonesimulator ONLY_ACTIVE_ARCH=NO | xcpretty -c
+
+# before_script:
+#         - rvm get head || true # https://github.com/travis-ci/travis-ci/issues/6307
+
+#         - nvm install 6
+#         - npm install -g yarn

@@ -56,9 +56,7 @@ public class ServerFile: EVNetworkingObject {
     }
     
     public func getLastModifiedDate() -> String {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "E MMM d yyyy"
-        return dateFormatter.string(from: mtime!)
+        return mtime!.asString
     }
     
     public func getLastModifiedEpoch() -> Int {

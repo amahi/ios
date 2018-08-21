@@ -12,5 +12,5 @@ use_frameworks!
     pod 'SkyFloatingLabelTextField', '~> 3.0'
     pod 'MobileVLCKit'
     pod 'Lightbox'
-
+    pod 'ReachabilitySwift'
 end
