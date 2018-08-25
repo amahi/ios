@@ -12,7 +12,7 @@ class AmahiLogger {
     public static func log(_ items: Any...) {
         // Only allowing in DEBUG mode
         #if DEBUG
-            // FIXME -- this crashes the app AmahiLogger.log(items)
+            debugPrint(items)
         #endif
     }
 }
