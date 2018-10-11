@@ -30,7 +30,7 @@ class CoreDataTableViewController: BaseUITableViewController {
     
     // MARK: Initializers
     
-    init(fetchedResultsController fc : NSFetchedResultsController<NSFetchRequestResult>, style : UITableViewStyle = .plain) {
+    init(fetchedResultsController fc : NSFetchedResultsController<NSFetchRequestResult>, style : UITableView.Style = .plain) {
         fetchedResultsController = fc
         super.init(style: style)
     }

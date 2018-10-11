@@ -108,7 +108,7 @@ extension FilesViewController: FilesView {
         AmahiLogger.log("AVPlayerItemDidPlayToEndTime notif info  \(notification.userInfo)")
         //        if let currentItem = player.currentItem {
         if let currentItem = notification.userInfo!["object"] as? AVPlayerItem {
-            currentItem.seek(to: kCMTimeZero)
+            currentItem.seek(to: CMTime.zero)
             self.player.advanceToNextItem()
             self.player.insert(currentItem, after: nil)
         }
@@ -141,7 +141,7 @@ extension FilesViewController: FilesView {
                 if let currentItem = player.currentItem {
                     guard currentItem.currentTime() == currentItem.duration else { return }
                     AmahiLogger.log("ENTERED LAST BLOCK")
-                    currentItem.seek(to: kCMTimeZero)
+                    currentItem.seek(to: CMTime.zero)
                     self.player.advanceToNextItem()
                     self.player.insert(currentItem, after: nil)
                     

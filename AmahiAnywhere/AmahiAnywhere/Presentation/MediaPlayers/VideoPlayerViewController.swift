@@ -71,7 +71,7 @@ class VideoPlayerViewController: UIViewController {
         if self.videoControlsView.isHidden {
             self.videoControlsView.isHidden = false
         }
-        videoControlsView.superview?.bringSubview(toFront: videoControlsView)
+        videoControlsView.superview?.bringSubviewToFront(videoControlsView)
         self.keepScreenOn(enabled: true)
     }
     
@@ -91,14 +91,14 @@ class VideoPlayerViewController: UIViewController {
     
     func listenForNotifications() {
         NotificationCenter.default.addObserver(self, selector: #selector(handleRouteChange(_:)),
-                                               name: NSNotification.Name.AVAudioSessionRouteChange, object: nil)
+                                               name: AVAudioSession.routeChangeNotification, object: nil)
     }
     
     @objc func handleRouteChange(_ notification: Notification) {
         guard
             let userInfo = notification.userInfo,
             let reasonRaw = userInfo[AVAudioSessionRouteChangeReasonKey] as? NSNumber,
-            let reason = AVAudioSessionRouteChangeReason(rawValue: reasonRaw.uintValue)
+            let reason = AVAudioSession.RouteChangeReason(rawValue: reasonRaw.uintValue)
             else { fatalError("Strange... could not get routeChange") }
         if reason == .oldDeviceUnavailable {
             DispatchQueue.main.async(execute: {
