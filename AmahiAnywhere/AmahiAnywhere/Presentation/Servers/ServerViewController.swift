@@ -20,7 +20,7 @@ class ServerViewController: BaseUITableViewController {
                 
         presenter = ServerPresenter(self)
         presenter.fetchServers()
-        self.refreshControl?.addTarget(self, action: #selector(handleRefresh), for: UIControlEvents.valueChanged)
+        self.refreshControl?.addTarget(self, action: #selector(handleRefresh), for: UIControl.Event.valueChanged)
     }
     
     override func viewWillAppear(_ animated: Bool) {

@@ -20,7 +20,7 @@ class SharesTableViewController: BaseUITableViewController {
         super.viewDidLoad()
         
         presenter = SharesPresenter(self)
-        self.refreshControl?.addTarget(self, action: #selector(handleRefresh), for: UIControlEvents.valueChanged)
+        self.refreshControl?.addTarget(self, action: #selector(handleRefresh), for: UIControl.Event.valueChanged)
         
         presenter.loadServerRoute()
     }

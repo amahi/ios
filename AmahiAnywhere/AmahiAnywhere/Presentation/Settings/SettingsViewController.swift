@@ -28,7 +28,7 @@ class SettingsViewController: BaseUITableViewController, MFMailComposeViewContro
     func showSendMailErrorAlert() {
         let sendMailAlert = UIAlertController(title: StringLiterals.MAIL_ERROR_TITLE,
                                               message: StringLiterals.MAIL_ERROR_MESSAGE,
-                                              preferredStyle: UIAlertControllerStyle.alert)
+                                              preferredStyle: UIAlertController.Style.alert)
         
         sendMailAlert.addAction(UIAlertAction(title: StringLiterals.ALERT_ACTION, style: .default) { (action:UIAlertAction!) in
         })
@@ -39,19 +39,19 @@ class SettingsViewController: BaseUITableViewController, MFMailComposeViewContro
                                didFinishWith result:MFMailComposeResult, error:Error?) {
         switch result {
             case .cancelled:
-                let myalert = UIAlertController(title: StringLiterals.CANCEL_TITLE, message: StringLiterals.CANCEL_MESSAGE, preferredStyle: UIAlertControllerStyle.alert)
+                let myalert = UIAlertController(title: StringLiterals.CANCEL_TITLE, message: StringLiterals.CANCEL_MESSAGE, preferredStyle: UIAlertController.Style.alert)
                 
                 myalert.addAction(UIAlertAction(title: StringLiterals.ALERT_ACTION, style: .default) { (action:UIAlertAction!) in
                 })
                 self.present(myalert, animated: true)
             case .saved:
-                let myalert = UIAlertController(title: StringLiterals.SAVED_TITLE, message: StringLiterals.SAVED_MESSAGE, preferredStyle: UIAlertControllerStyle.alert)
+                let myalert = UIAlertController(title: StringLiterals.SAVED_TITLE, message: StringLiterals.SAVED_MESSAGE, preferredStyle: UIAlertController.Style.alert)
                 
                 myalert.addAction(UIAlertAction(title: StringLiterals.ALERT_ACTION, style: .default) { (action:UIAlertAction!) in
                 })
                 self.present(myalert, animated: true)
             case .sent:
-                let myalert = UIAlertController(title: StringLiterals.SENT_TITLE, message: StringLiterals.SENT_MESSAGE, preferredStyle: UIAlertControllerStyle.alert)
+                let myalert = UIAlertController(title: StringLiterals.SENT_TITLE, message: StringLiterals.SENT_MESSAGE, preferredStyle: UIAlertController.Style.alert)
                 
                 myalert.addAction(UIAlertAction(title: StringLiterals.ALERT_ACTION, style: .default) { (action:UIAlertAction!) in
                 })
@@ -150,7 +150,7 @@ class SettingsViewController: BaseUITableViewController, MFMailComposeViewContro
             case 0:
                 let refreshAlert = UIAlertController(title: StringLiterals.SIGNOUT_TITLE,
                                                      message:StringLiterals.SIGNOUT_MESSAGE,
-                                                     preferredStyle: UIAlertControllerStyle.alert)
+                                                     preferredStyle: UIAlertController.Style.alert)
                 refreshAlert.addAction(UIAlertAction(title: StringLiterals.CONFIRM,
                                                      style: .destructive, handler: { (action: UIAlertAction!) in
                     self.signOut()
@@ -168,7 +168,7 @@ class SettingsViewController: BaseUITableViewController, MFMailComposeViewContro
                     
                     let clearCacheAlert = UIAlertController(title: StringLiterals.CLEAR_CACHE_TITLE,
                                                          message:StringLiterals.CLEAR_CACHE_MESSAGE,
-                                                         preferredStyle: UIAlertControllerStyle.alert)
+                                                         preferredStyle: UIAlertController.Style.alert)
                     clearCacheAlert.addAction(UIAlertAction(title: StringLiterals.CONFIRM,
                                                          style: .destructive, handler: { (action: UIAlertAction!) in
                                                             
@@ -188,7 +188,7 @@ class SettingsViewController: BaseUITableViewController, MFMailComposeViewContro
                     let urlStr = StringLiterals.URL
                     if let url = URL(string: urlStr), UIApplication.shared.canOpenURL(url) {
                         if #available(iOS 10.0, *) {
-                            UIApplication.shared.open(url, options: [:], completionHandler: nil)
+                            UIApplication.shared.open(url, options: convertToUIApplicationOpenExternalURLOptionsKeyDictionary([:]), completionHandler: nil)
                         } else {
                             UIApplication.shared.openURL(url)
                         }
@@ -217,4 +217,9 @@ class SettingsViewController: BaseUITableViewController, MFMailComposeViewContro
                 break
         }
     }
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertToUIApplicationOpenExternalURLOptionsKeyDictionary(_ input: [String: Any]) -> [UIApplication.OpenExternalURLOptionsKey: Any] {
+	return Dictionary(uniqueKeysWithValues: input.map { key, value in (UIApplication.OpenExternalURLOptionsKey(rawValue: key), value)})
 }

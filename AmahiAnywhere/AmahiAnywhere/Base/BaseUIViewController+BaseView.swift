@@ -195,7 +195,7 @@ extension UIViewController {
     
     func createErrorDialog(title: String! = "Oops!", message: String! = StringLiterals.GENERIC_NETWORK_ERROR) {
         
-        let alertController = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.alert);
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: UIAlertController.Style.alert);
         
         let defaultAction = UIAlertAction(title: "OK", style: .default, handler: nil);
         alertController.addAction(defaultAction);
@@ -206,7 +206,7 @@ extension UIViewController {
     
     func createActionSheet(title: String! = "", message: String! = StringLiterals.CHOOSE_ONE, ltrActions: [UIAlertAction]! = [] ,
                            preferredActionPosition: Int = 0, sender: UIView? = nil ){
-        let alertController = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.actionSheet);
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: UIAlertController.Style.actionSheet);
         
         if(ltrActions.count == 0){
             let defaultAction = UIAlertAction(title: StringLiterals.OK, style: .default, handler: nil);
@@ -228,7 +228,7 @@ extension UIViewController {
         self.present(alertController, animated: true, completion: nil);
     }
     
-    func creatAlertAction(_ title: String! = "Ok", style: UIAlertActionStyle = .default, clicked: ((_ action: UIAlertAction) -> Void)?) -> UIAlertAction! {
+    func creatAlertAction(_ title: String! = "Ok", style: UIAlertAction.Style = .default, clicked: ((_ action: UIAlertAction) -> Void)?) -> UIAlertAction! {
         return UIAlertAction(title: title, style: style, handler: clicked);
     }
 }

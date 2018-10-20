@@ -30,11 +30,11 @@ class WebViewController : UIViewController {
         
         // Auto layout the webview
         rootView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "|-0-[webView]-0-|",
-                                                                           options: NSLayoutFormatOptions(rawValue: 0),
+                                                                           options: NSLayoutConstraint.FormatOptions(rawValue: 0),
                                                                            metrics: nil,
                                                                            views: ["webView": webView]))
         rootView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-0-[webView]-0-|",
-                                                                           options: NSLayoutFormatOptions(rawValue: 0),
+                                                                           options: NSLayoutConstraint.FormatOptions(rawValue: 0),
                                                                            metrics: nil,
                                                                            views: ["webView": webView]))
         
