@@ -5,11 +5,11 @@ target 'AmahiAnywhere' do
 
 use_frameworks!
 
-    pod 'Alamofire', '~> 4.5'
-    pod 'MBProgressHUD', '~> 1.1.0'
+    pod 'Alamofire'
+    pod 'MBProgressHUD'
     pod 'EVReflection/Alamofire'
     pod 'IQKeyboardManagerSwift'
-    pod 'SkyFloatingLabelTextField', '~> 3.0'
+    pod 'SkyFloatingLabelTextField'
     pod 'MobileVLCKit'
     pod 'Lightbox'
     pod 'ReachabilitySwift'
