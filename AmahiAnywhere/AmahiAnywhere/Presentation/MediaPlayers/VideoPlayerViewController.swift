@@ -48,8 +48,14 @@ class VideoPlayerViewController: UIViewController {
         let gesture = UITapGestureRecognizer(target: self, action:  #selector(userTouchScreen))
         gesture.delegate = self
         gesture.cancelsTouchesInView = false
+        movieView.isUserInteractionEnabled = true
         movieView.addGestureRecognizer(gesture)
-
+        
+        let videoControlsTapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(resetScreenIdleTimer))
+        videoControlsTapGestureRecognizer.cancelsTouchesInView = false
+        videoControlsView.isUserInteractionEnabled = true
+        videoControlsView.addGestureRecognizer(videoControlsTapGestureRecognizer)
+        
         listenForNotifications()
         self.setUpIndicatorLayers(imageView: rewindIndicator)
         self.setUpIndicatorLayers(imageView: forwardIndicator)
@@ -129,7 +135,7 @@ class VideoPlayerViewController: UIViewController {
         UIApplication.shared.isIdleTimerDisabled = enabled
     }
     
-    func resetScreenIdleTimer() {
+    @objc func resetScreenIdleTimer() {
         
         if idleTimer == nil {
             
@@ -145,8 +151,7 @@ class VideoPlayerViewController: UIViewController {
         }
     }
     
-    @objc func idleTimeExceded() {
-        
+    @objc func idleTimeExceded() {        
         idleTimer = nil
         
         if !videoControlsView.isHidden {
@@ -195,11 +200,13 @@ class VideoPlayerViewController: UIViewController {
     @IBAction func rewind(_ sender: Any) {
         mediaPlayer?.jumpBackward(VideoPlayerViewController.IntervalForFastRewindAndFastForward)
         self.showIndicator(imageView: rewindIndicator)
+        resetTimeAfterStateChanged()
     }
     
     @IBAction func forward(_ sender: Any) {
         mediaPlayer?.jumpForward(VideoPlayerViewController.IntervalForFastRewindAndFastForward)
         self.showIndicator(imageView: forwardIndicator)
+        resetTimeAfterStateChanged()
     }
     
     func showIndicator(imageView: UIImageView) {
