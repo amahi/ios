@@ -28,7 +28,7 @@ DEPENDENCIES:
   - SkyFloatingLabelTextField (~> 3.0)
 
 SPEC REPOS:
-  https://github.com/CocoaPods/Specs.git:
+  https://github.com/cocoapods/specs.git:
     - Alamofire
     - Cache
     - EVReflection
@@ -56,4 +56,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: 020a722c20645249a0d3b47757cae201d532aeac
 
-COCOAPODS: 1.5.0
+COCOAPODS: 1.5.3
