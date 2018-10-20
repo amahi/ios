@@ -43,7 +43,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Setup Audio Session For Background Play
         let audioSession = AVAudioSession.sharedInstance()
         do {
-            try audioSession.setCategory(convertFromAVAudioSessionCategory(AVAudioSession.Category.playback))
+            try audioSession.setCategory(AVAudioSession.Category(rawValue: convertFromAVAudioSessionCategory(AVAudioSession.Category.playback)), mode: AVAudioSession.Mode.moviePlayback, options: AVAudioSession.CategoryOptions.allowBluetooth)
             try AVAudioSession.sharedInstance().setActive(true)
         } catch {
             AmahiLogger.log("Setting category to AVAudioSessionCategoryPlayback failed.")
