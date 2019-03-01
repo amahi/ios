@@ -24,6 +24,17 @@ class LoginViewController: BaseUIViewController {
         usernameInputField.delegate = self
         passwordInputField.delegate = self
     }
+    
+    override func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if textField == usernameInputField {
+            textField.resignFirstResponder()
+            passwordInputField.becomeFirstResponder()
+        }
+        else if textField == passwordInputField {
+            textField.resignFirstResponder()
+        }
+        return true
+    }
 
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         (textField as! SkyFloatingLabelTextField).errorMessage = nil
