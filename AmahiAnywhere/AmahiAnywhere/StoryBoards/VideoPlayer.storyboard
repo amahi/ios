@@ -1,13 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina5_9" orientation="landscape">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
-        <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -25,16 +23,42 @@
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xdE-qU-B5f">
                                         <rect key="frame" x="0.0" y="0.0" width="812" height="354"/>
+                                        <subviews>
+                                            <view alpha="0.80000000000000004" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3yJ-en-oBu">
+                                                <rect key="frame" x="709" y="35" width="95" height="25"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Volume: 75" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5L4-at-Ysz">
+                                                        <rect key="frame" x="0.0" y="0.0" width="95" height="25"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
+                                                <color key="backgroundColor" cocoaTouchSystemColor="lightTextColor"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="95" id="Fcn-d5-oZV"/>
+                                                    <constraint firstAttribute="trailing" secondItem="5L4-at-Ysz" secondAttribute="trailing" id="YvY-kj-kNX"/>
+                                                    <constraint firstItem="5L4-at-Ysz" firstAttribute="leading" secondItem="3yJ-en-oBu" secondAttribute="leading" id="aA2-tI-iTS"/>
+                                                    <constraint firstAttribute="bottom" secondItem="5L4-at-Ysz" secondAttribute="bottom" id="lNY-sf-oXG"/>
+                                                    <constraint firstItem="5L4-at-Ysz" firstAttribute="top" secondItem="3yJ-en-oBu" secondAttribute="top" id="muo-TB-tzb"/>
+                                                    <constraint firstAttribute="height" constant="25" id="n3J-e1-lkj"/>
+                                                </constraints>
+                                            </view>
+                                        </subviews>
                                         <color key="backgroundColor" red="0.094117647060000004" green="0.094117647060000004" blue="0.094117647060000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstItem="3yJ-en-oBu" firstAttribute="top" secondItem="xdE-qU-B5f" secondAttribute="top" constant="35" id="Zw7-SQ-aXH"/>
+                                            <constraint firstAttribute="trailing" secondItem="3yJ-en-oBu" secondAttribute="trailing" constant="8" id="qey-il-9Cj"/>
+                                        </constraints>
                                     </view>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="fastRewindIcon" translatesAutoresizingMaskIntoConstraints="NO" id="QvY-Mo-eVr" userLabel="Rewind Image View">
-                                        <rect key="frame" x="16" y="159" width="40" height="36"/>
+                                        <rect key="frame" x="16" y="123" width="40" height="108"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="40" id="IDC-FX-o7R"/>
                                         </constraints>
                                     </imageView>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="fastForwardIcon" translatesAutoresizingMaskIntoConstraints="NO" id="zkf-3f-xjD" userLabel="Fast forward Image View">
-                                        <rect key="frame" x="756" y="159" width="40" height="36"/>
+                                        <rect key="frame" x="756" y="123" width="40" height="108"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="40" id="cdL-eu-btn"/>
                                         </constraints>
@@ -76,10 +100,10 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="equalCentering" spacing="24" translatesAutoresizingMaskIntoConstraints="NO" id="Imw-Rw-l56">
-                                                <rect key="frame" x="306.33333333333331" y="36" width="168" height="36"/>
+                                                <rect key="frame" x="234" y="36" width="312" height="108"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4fn-Os-xxP" userLabel="Reverse">
-                                                        <rect key="frame" x="0.0" y="0.0" width="36" height="36"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="84" height="108"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" relation="lessThanOrEqual" constant="84" id="uOa-ln-bRi"/>
                                                         </constraints>
@@ -90,7 +114,7 @@
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CdG-13-Cmv" userLabel="Play">
-                                                        <rect key="frame" x="66" y="0.0" width="36" height="36"/>
+                                                        <rect key="frame" x="114" y="0.0" width="84" height="108"/>
                                                         <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <state key="normal" image="playIcon"/>
                                                         <connections>
@@ -98,7 +122,7 @@
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eet-gH-dEN" userLabel="Forward">
-                                                        <rect key="frame" x="132" y="0.0" width="36" height="36"/>
+                                                        <rect key="frame" x="228" y="0.0" width="84" height="108"/>
                                                         <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <state key="normal" image="fastForwardIcon"/>
                                                         <connections>
@@ -197,6 +221,8 @@
                         <outlet property="timeElapsedLabel" destination="37w-J2-g45" id="qKQ-xq-VEK"/>
                         <outlet property="timeSlider" destination="cAB-QC-gop" id="3hw-au-7IU"/>
                         <outlet property="videoControlsView" destination="Px1-hZ-kQe" id="is9-8p-DYA"/>
+                        <outlet property="volumeLabel" destination="5L4-at-Ysz" id="n3L-6z-ONn"/>
+                        <outlet property="volumeView" destination="3yJ-en-oBu" id="vBK-Nn-oBn"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jbP-4A-Sha" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -229,7 +255,7 @@
                                         <rect key="frame" x="0.0" y="0.0" width="812" height="354"/>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bvb-kH-hda">
-                                        <rect key="frame" x="155" y="211.66666666666666" width="41.666666666666657" height="20.333333333333343"/>
+                                        <rect key="frame" x="155" y="211.66666666666663" width="41.666666666666657" height="20.333333333333343"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -259,10 +285,10 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="equalCentering" spacing="24" translatesAutoresizingMaskIntoConstraints="NO" id="sJa-0i-lQR">
-                                                <rect key="frame" x="306.66666666666669" y="36" width="168" height="36"/>
+                                                <rect key="frame" x="234" y="36" width="312" height="108"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZWC-I1-uIu" userLabel="Reverse">
-                                                        <rect key="frame" x="0.0" y="0.0" width="36" height="36"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="84" height="108"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" relation="lessThanOrEqual" constant="84" id="WeW-4Z-deK"/>
                                                         </constraints>
@@ -273,7 +299,7 @@
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4bL-Ux-erU" userLabel="Play">
-                                                        <rect key="frame" x="66" y="0.0" width="36" height="36"/>
+                                                        <rect key="frame" x="114" y="0.0" width="84" height="108"/>
                                                         <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <state key="normal" image="playIcon"/>
                                                         <connections>
@@ -281,7 +307,7 @@
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oDG-Xf-mOs" userLabel="Forward">
-                                                        <rect key="frame" x="132" y="0.0" width="36" height="36"/>
+                                                        <rect key="frame" x="228" y="0.0" width="84" height="108"/>
                                                         <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <state key="normal" image="forwardIcon"/>
                                                         <connections>
@@ -384,10 +410,10 @@
     </scenes>
     <resources>
         <image name="backIcon" width="32" height="16"/>
-        <image name="fastForwardIcon" width="36" height="36"/>
-        <image name="fastRewindIcon" width="36" height="36"/>
+        <image name="fastForwardIcon" width="108" height="108"/>
+        <image name="fastRewindIcon" width="108" height="108"/>
         <image name="forwardIcon" width="32" height="16"/>
         <image name="musicPlayerArtWork" width="300" height="300"/>
-        <image name="playIcon" width="36" height="36"/>
+        <image name="playIcon" width="108" height="108"/>
     </resources>
 </document>

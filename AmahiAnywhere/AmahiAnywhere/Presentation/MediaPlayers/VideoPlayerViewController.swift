@@ -13,18 +13,20 @@ import MediaPlayer
 
 class VideoPlayerViewController: UIViewController {
     
-    @IBOutlet private weak var rootView: UIView!
-    @IBOutlet private weak var movieView: UIView!
-    @IBOutlet private weak var playButton: UIButton!
-    @IBOutlet private weak var fastForwardButton: UIButton!
-    @IBOutlet private weak var rewindButton: UIButton!
-    @IBOutlet private weak var timeElapsedLabel: UILabel!
-    @IBOutlet private weak var durationLabel: UILabel!
-    @IBOutlet private weak var videoControlsView: UIView!
-    @IBOutlet private weak var doneButton: UIButton!
-    @IBOutlet private weak var rewindIndicator: UIImageView!
-    @IBOutlet private weak var forwardIndicator: UIImageView!
-    @IBOutlet private weak var timeSlider: UISlider!
+    @IBOutlet weak var rootView: UIView!
+    @IBOutlet weak var movieView: UIView!
+    @IBOutlet weak var playButton: UIButton!
+    @IBOutlet weak var fastForwardButton: UIButton!
+    @IBOutlet weak var rewindButton: UIButton!
+    @IBOutlet weak var timeElapsedLabel: UILabel!
+    @IBOutlet weak var durationLabel: UILabel!
+    @IBOutlet weak var videoControlsView: UIView!
+    @IBOutlet weak var doneButton: UIButton!
+    @IBOutlet weak var rewindIndicator: UIImageView!
+    @IBOutlet weak var forwardIndicator: UIImageView!
+    @IBOutlet weak var timeSlider: UISlider!
+    @IBOutlet weak var volumeView: UIView!
+    @IBOutlet weak var volumeLabel: UILabel!
     
     private var doubleTapGesture: UITapGestureRecognizer!
     private var tapGesture: UITapGestureRecognizer!
@@ -46,7 +48,12 @@ class VideoPlayerViewController: UIViewController {
         timeSlider.addGestureRecognizer(scrobbleTapGesture)
         
         timeSlider.setThumbImage(UIImage(named: "sliderKnobIcon"), for: .normal)
-                
+        
+        UIApplication.shared.statusBarStyle = .lightContent
+        
+        let panGesture = UIPanGestureRecognizer(target: self, action: #selector(handlePanGesture))
+        movieView.addGestureRecognizer(panGesture)
+
         let videoControlsTapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(resetScreenIdleTimer))
         videoControlsTapGestureRecognizer.cancelsTouchesInView = false
         videoControlsView.isUserInteractionEnabled = true
@@ -70,8 +77,51 @@ class VideoPlayerViewController: UIViewController {
         MPRemoteCommandCenter.shared().togglePlayPauseCommand.addTarget(self, action: #selector(playandPause(_:)))
     }
     
+    @objc func handlePanGesture(panGesture: UIPanGestureRecognizer) {
+        
+        // Adding the volume label to the view
+        self.movieView.addSubview(self.volumeView)
+        
+        // Dealing with panGesture's states
+        if panGesture.state == .began {
+            self.volumeView.alpha = 0.8
+        }
+        else if panGesture.state == .ended {
+            UIView.animate(withDuration: 1.8) {
+                self.volumeView.alpha = 0
+            }
+        }
+        else {
+            self.volumeView.alpha = 0.8
+        }
+        
+        // Finding the movement of the panGesture and updating the volume label
+        let speed = panGesture.velocity(in: self.view)
+        let vertical = abs(speed.y) > abs(speed.x)
+        if vertical == true {
+            if speed.y > 0 {
+                self.mediaPlayer?.audio.volume -= 2
+                volumeLabel.text = "Volume: \(abs((mediaPlayer?.audio.volume)!/2))"
+            }
+            else if speed.y < 0 {
+                mediaPlayer?.audio.volume = (mediaPlayer?.audio.volume)! + Int32(1)
+                volumeLabel.text = "Volume: \(abs((mediaPlayer?.audio.volume)!/2))"
+            }
+            else {
+                print("Ideal Pan Gesture//Volume Change")
+            }
+        }
+    }
+    
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
+        volumeView.layer.cornerRadius = 10
+        volumeView.alpha = 0
+        
+        // Setting default volume
+        mediaPlayer?.audio.volume = Int32(125)
         
         mediaPlayer = VLCMediaPlayer()
         mediaPlayer?.delegate = self
