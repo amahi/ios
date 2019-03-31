@@ -34,7 +34,7 @@ class ServerViewController: BaseUITableViewController {
     }
 
     @IBAction func settingButtonPressed(_ sender: Any) {
-        performSegue(withIdentifier: SegueIdentfiers.SETTING, sender: nil)
+        performSegue(withIdentifier: SegueIdentfiers.settings, sender: nil)
     }
 }
 
@@ -55,9 +55,9 @@ extension ServerViewController {
     
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         if section == 0 {
-            return StringLiterals.SELECT_YOUR_HDA
+            return StringLiterals.selectYourHDA
         } else {
-            return StringLiterals.OFFLINE
+            return StringLiterals.offline
         }
     }
     
@@ -70,7 +70,7 @@ extension ServerViewController {
             cell.textLabel?.isEnabled = server.active
             cell.accessoryType = server.active ? .disclosureIndicator : .none
         } else {
-            cell.textLabel?.text = StringLiterals.DOWNLOADS
+            cell.textLabel?.text = StringLiterals.downloads
             cell.accessoryType = .none
         }
         
@@ -82,11 +82,11 @@ extension ServerViewController {
             ServerApi.initialize(server: servers[indexPath.row])
             
             let sharesVc = viewController(viewControllerClass: SharesTableViewController.self,
-                                          from: StoryBoardIdentifiers.MAIN)
+                                          from: StoryBoardIdentifiers.main)
             navigationController?.pushViewController(sharesVc, animated: true)
         } else {
             let offlineFileVc = viewController(viewControllerClass: OfflineFilesTableViewController.self,
-                                          from: StoryBoardIdentifiers.MAIN)
+                                          from: StoryBoardIdentifiers.main)
             navigationController?.pushViewController(offlineFileVc, animated: true)
         }
     }

@@ -13,20 +13,20 @@ import MediaPlayer
 
 class VideoPlayerViewController: UIViewController {
     
-    @IBOutlet weak var rootView: UIView!
-    @IBOutlet weak var movieView: UIView!
-    @IBOutlet weak var playButton: UIButton!
-    @IBOutlet weak var fastForwardButton: UIButton!
-    @IBOutlet weak var rewindButton: UIButton!
-    @IBOutlet weak var timeElapsedLabel: UILabel!
-    @IBOutlet weak var durationLabel: UILabel!
-    @IBOutlet weak var videoControlsView: UIView!
-    @IBOutlet weak var doneButton: UIButton!
-    @IBOutlet weak var rewindIndicator: UIImageView!
-    @IBOutlet weak var forwardIndicator: UIImageView!
-    @IBOutlet weak var timeSlider: UISlider!
-    @IBOutlet weak var volumeView: UIView!
-    @IBOutlet weak var volumeLabel: UILabel!
+    @IBOutlet private weak var rootView: UIView!
+    @IBOutlet private weak var movieView: UIView!
+    @IBOutlet private weak var playButton: UIButton!
+    @IBOutlet private weak var fastForwardButton: UIButton!
+    @IBOutlet private weak var rewindButton: UIButton!
+    @IBOutlet private weak var timeElapsedLabel: UILabel!
+    @IBOutlet private weak var durationLabel: UILabel!
+    @IBOutlet private weak var videoControlsView: UIView!
+    @IBOutlet private weak var doneButton: UIButton!
+    @IBOutlet private weak var rewindIndicator: UIImageView!
+    @IBOutlet private weak var forwardIndicator: UIImageView!
+    @IBOutlet private weak var timeSlider: UISlider!
+    @IBOutlet private weak var volumeView: UIView!
+    @IBOutlet private weak var volumeLabel: UILabel!
     
     private var doubleTapGesture: UITapGestureRecognizer!
     private var tapGesture: UITapGestureRecognizer!

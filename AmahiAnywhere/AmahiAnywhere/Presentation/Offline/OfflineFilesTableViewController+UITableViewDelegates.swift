@@ -71,7 +71,7 @@ extension OfflineFilesTableViewController {
         
         let offlineFile = self.fetchedResultsController!.object(at: indexPath) as! OfflineFile
         
-        let delete = UITableViewRowAction(style: .destructive, title: StringLiterals.DELETE) { (action, indexPath) in
+        let delete = UITableViewRowAction(style: .destructive, title: StringLiterals.delete) { (action, indexPath) in
             
             // Delete file in downloads directory
             let fileManager = FileManager.default
@@ -91,7 +91,7 @@ extension OfflineFilesTableViewController {
         }
         delete.backgroundColor = UIColor.red
         
-        let share = UITableViewRowAction(style: .normal, title: StringLiterals.SHARE) { (action, indexPath) in
+        let share = UITableViewRowAction(style: .normal, title: StringLiterals.share) { (action, indexPath) in
             
             guard let url = FileManager.default.localFilePathInDownloads(for: offlineFile) else { return }
             self.shareFile(at: url, from: tableView.cellForRow(at: indexPath))

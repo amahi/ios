@@ -3,7 +3,7 @@ import WebKit
 class WebViewController : UIViewController {
     
     @IBOutlet weak var rootView: UIView!
-    private weak var webView: WKWebView!
+    private var webView: WKWebView!
     @IBOutlet private weak var progressView: UIProgressView!
     
     public var url: URL!

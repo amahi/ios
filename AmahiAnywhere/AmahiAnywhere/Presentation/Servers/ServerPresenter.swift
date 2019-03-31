@@ -41,7 +41,7 @@ class ServerPresenter: BasePresenter {
             self.view?.updateRefreshing(isRefreshing: false)
 
             guard let servers = serverResponse else {
-                self.view?.showError(message: StringLiterals.GENERIC_NETWORK_ERROR)
+                self.view?.showError(message: StringLiterals.genericNetworkError)
                 return
             }
             self.view?.updateServerList(servers)

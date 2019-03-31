@@ -68,19 +68,19 @@ extension FilesViewController : UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
         let file = self.filteredFiles[indexPath.row]
-        let download = UITableViewRowAction(style: .destructive, title: StringLiterals.DOWNLOAD) { (action, indexPath) in
+        let download = UITableViewRowAction(style: .destructive, title: StringLiterals.download) { (action, indexPath) in
             self.presenter.makeFileAvailableOffline(file)
         }
         download.backgroundColor = UIColor.red
         
-        let availableOffline = UITableViewRowAction(style: .destructive, title: StringLiterals.AVAILABLE_OFFLINE) { (action, indexPath) in
+        let availableOffline = UITableViewRowAction(style: .destructive, title: StringLiterals.availableOffline) { (action, indexPath) in
         }
         let state = presenter.checkFileOfflineState(file)
         if state  == .downloaded || state == .downloading {
             return [availableOffline]
         }
         
-        let share = UITableViewRowAction(style: .normal, title: StringLiterals.SHARE) { (action, indexPath) in
+        let share = UITableViewRowAction(style: .normal, title: StringLiterals.share) { (action, indexPath) in
         }
         share.backgroundColor = UIColor.blue
         

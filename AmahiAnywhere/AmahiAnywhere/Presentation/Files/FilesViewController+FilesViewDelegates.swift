@@ -27,7 +27,7 @@ extension FilesViewController: FilesView {
         
         if downloadJustStarted {
             setupDownloadProgressIndicator()
-            downloadProgressAlertController?.title = String(format: StringLiterals.DOWNLOADING_FILE, self.filteredFiles[row].name!)
+            downloadProgressAlertController?.title = String(format: StringLiterals.downloadingFile, self.filteredFiles[row].name!)
         }
         
         if !isAlertShowing {
@@ -51,7 +51,7 @@ extension FilesViewController: FilesView {
     
     func webViewOpenContent(at url: URL, mimeType: MimeType) {
         let webViewVc = self.viewController(viewControllerClass: WebViewController.self,
-                                            from: StoryBoardIdentifiers.MAIN)
+                                            from: StoryBoardIdentifiers.main)
         webViewVc.url = url
         webViewVc.mimeType = mimeType
         self.navigationController?.pushViewController(webViewVc, animated: true)
@@ -59,7 +59,7 @@ extension FilesViewController: FilesView {
     
     func playMedia(at url: URL) {
         let videoPlayerVc = self.viewController(viewControllerClass: VideoPlayerViewController.self,
-                                                from: StoryBoardIdentifiers.VIDEO_PLAYER)
+                                                from: StoryBoardIdentifiers.videoPlayer)
         videoPlayerVc.mediaURL = url
         self.present(videoPlayerVc)
     }

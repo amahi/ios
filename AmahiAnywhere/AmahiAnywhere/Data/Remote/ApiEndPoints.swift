@@ -11,15 +11,15 @@ import Foundation
 struct ApiEndPoints {
 
     static func authenticate() -> String! {
-        return "\(ApiConfig.BASE_URL)/api2/oauth/token?grant_type=password"
+        return "\(ApiConfig.baseUrl)/api2/oauth/token?grant_type=password"
     }
 
     static func fetchServers() -> String! {
-        return "\(ApiConfig.BASE_URL)/api2/servers?access_token=\(LocalStorage.shared.getAccessToken()!)"
+        return "\(ApiConfig.baseUrl)/api2/servers?access_token=\(LocalStorage.shared.getAccessToken()!)"
     }
 
     static func getServerRoute() -> String! {
-        return "\(ApiConfig.PROXY_URL)/client"
+        return "\(ApiConfig.proxyUrl)/client"
     }
 
     static func getServerShares(_ serverUrl: String!) -> String! {

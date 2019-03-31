@@ -37,7 +37,7 @@ final class LocalStorage: NSObject {
     }
     
     public func logout(_ complete: () -> Void){
-        delete(key: PersistenceIdentifiers.ACCESS_TOKEN)
+        delete(key: PersistenceIdentifiers.accessToken)
         UserDefaults.standard.synchronize()
         complete();
     }
@@ -49,17 +49,17 @@ final class LocalStorage: NSObject {
     }
     
     public func getAccessToken() -> String? {
-        return self.getString(key: PersistenceIdentifiers.ACCESS_TOKEN)
+        return self.getString(key: PersistenceIdentifiers.accessToken)
     }
     
     public var userConnectionPreference : ConnectionMode {
         set {
             LocalStorage.shared.persistString(string: newValue.rawValue,
-                                              key: PersistenceIdentifiers.PREF_CONNECTION)
+                                              key: PersistenceIdentifiers.prefConnection)
             ServerApi.shared!.configureConnection()
         }
         get {
-            if let connection = LocalStorage.shared.getString(key: PersistenceIdentifiers.PREF_CONNECTION) {
+            if let connection = LocalStorage.shared.getString(key: PersistenceIdentifiers.prefConnection) {
                 return ConnectionMode(rawValue: connection)!
             } else {
                 return ConnectionMode.auto

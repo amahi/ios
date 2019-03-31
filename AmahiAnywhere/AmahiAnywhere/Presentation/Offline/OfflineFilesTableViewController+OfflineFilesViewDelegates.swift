@@ -18,14 +18,14 @@ extension OfflineFilesTableViewController : OfflineFilesView {
     
     func webViewOpenContent(at url: URL, mimeType: MimeType) {
         let webViewVc = self.viewController(viewControllerClass: WebViewController.self,
-                                            from: StoryBoardIdentifiers.MAIN)
+                                            from: StoryBoardIdentifiers.main)
         webViewVc.url = url
         webViewVc.mimeType = mimeType
         self.navigationController?.pushViewController(webViewVc, animated: true)
     }
     
     func playMedia(at url: URL) {
-        let videoPlayerVc = self.viewController(viewControllerClass: VideoPlayerViewController.self, from: StoryBoardIdentifiers.VIDEO_PLAYER)
+        let videoPlayerVc = self.viewController(viewControllerClass: VideoPlayerViewController.self, from: StoryBoardIdentifiers.videoPlayer)
         videoPlayerVc.mediaURL = url
         self.present(videoPlayerVc)
     }

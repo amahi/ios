@@ -11,70 +11,69 @@ import Foundation
 struct StringLiterals {
     
     // Loading Indicator Messages
-    static let AUTHENTICATING_USER =            "Authenticating, please wait . . ."
-    static let PLEASE_WAIT =                    "Please Wait . . ."
+    static let authenticatingUser =             "Authenticating, please wait . . ."
+    static let pleaseWait =                     "Please Wait . . ."
     
     // In app strings
-    static let GENERIC_NETWORK_ERROR =          "An unexpected network error occurred."
-    static let INCORRECT_PASSWORD =             "Incorrect Username or Password"
-    static let FIELD_IS_REQUIRED =              "This Field is required!"
-    static let ERROR_DOWNLOADING_FILE =         "Error while downloading file"
-    static let DOWNLOADING_FILE =               "Downloading %@"
-    static let OK =                             "OK"
-    static let SELECT_YOUR_HDA =                "Select your HDA"
-    static let OFFLINE =                        "Offline"
-    static let DOWNLOADS =                      "Downloads"
-    static let SHARE =                          "Share"
-    static let DOWNLOAD =                       "Download"
-    static let DELETE =                         "Delete"
-    static let AVAILABLE_OFFLINE =              "Available Offline"
-    static let REMOVE_OFFLINE =                 "Make unavailable Offline"
-    static let STOP_DOWNLOAD =                  "Stop Download"
-    static let CHOOSE_ONE =                     "Choose One"
-    static let OPEN =                           "Open"
+    static let genericNetworkError =            "An unexpected network error occurred."
+    static let inCorrectLoginMessage =          "Incorrect Username or Password"
+    static let fieldIsRequired =                "This Field is required!"
+    static let errorDownloadingFileMessage =    "Error while downloading file"
+    static let downloadingFile =                "Downloading %@"
+    static let ok =                             "OK"
+    static let selectYourHDA =                  "Select your HDA"
+    static let offline =                        "Offline"
+    static let downloads =                      "Downloads"
+    static let share =                          "Share"
+    static let download =                       "Download"
+    static let delete =                         "Delete"
+    static let availableOffline =               "Available Offline"
+    static let removeOfflineMessage =           "Make unavailable Offline"
+    static let stopDownload =                   "Stop Download"
+    static let chooseOne =                      "Choose One"
+    static let open =                           "Open"
 
-    static let CURRENT_SIZE =                   "Current size: %@"
-    static let AUTO_CONNECTION_LAN =            "Autodetect (currently LAN)"
-    static let AUTO_CONNECTION_REMOTE =         "Autodetect (currently Remote)"
+    static let currentSize =                    "Current size: %@"
+    static let autoConnectLAN =                 "Autodetect (currently LAN)"
+    static let autoConnectRemote =              "Autodetect (currently Remote)"
 
     // In Setting Area
-    static let FEEDBACK_RECEPIENT =             "support@amahi.org"
-    static let FEEDBACK_SUBJECT =               "iOS Amahi Anywhere"
-    static let FEEDBACK_MSG =                   "<b>Please write the feedback</b>"
-    static let SHARE_SUBJECT =                  "Check out my Amahi home server!"
-    static let SHARE_MESSAGE =                  "I use the Amahi Home Server for storing, backing up and streaming all my files.\n\nCheck it out!\n\n<a href='https://www.amahi.org/'>https://www.amahi.org"
-    static let MAIL_ERROR_TITLE =               "Couldn't Send Mail"
-    static let MAIL_ERROR_MESSAGE =             "Your Device Couldn't Send Mail"
-    static let ALERT_ACTION =                   "OK"
-    static let DISABLED =                       "Disabled"
-    static let ACCOUNT =                        ["Sign Out"]
-    static let SETTINGS =                       ["Connection", CLEAR_CACHE_TITLE]
-    static let ABOUT =                          ["Version",  "Rate", "Feedback", "Tell a friend"]
-    static let SETTINGS_SECTION_TITLES =        ["Account", "Settings", "About"]
-    static let SETTINGS_ACTION_TITLES =         [ACCOUNT, SETTINGS, ABOUT]    
+    static let feedbackEmailAddress =           "support@amahi.org"
+    static let feedbackEmailSubject =           "iOS Amahi Anywhere"
+    static let feedbackEmailHint =              "<b>Please write the feedback</b>"
+    static let shareEmailSubject =              "Check out my Amahi home server!"
+    static let shareEmailMessage =              "I use the Amahi Home Server for storing, backing up and streaming all my files.\n\nCheck it out!\n\n<a href='https://www.amahi.org/'>https://www.amahi.org"
+    static let emailErrorTitle =                "Couldn't Send Mail"
+    static let emailErrorMessage =              "Your Device Couldn't Send Mail"
+    static let disabled =                       "Disabled"
+    static let accountSectionSubItems =         ["Sign Out"]
+    static let settingsSectionSubItems =        ["Connection", clearCacheTitle]
+    static let aboutSectionSubItems =           ["Version",  "Rate", "Feedback", "Tell a friend"]
+    static let settingsSectionsTitle =          ["Account", "Settings", "About"]
+    static let settingsSectionsSubItems =       [accountSectionSubItems, settingsSectionSubItems, aboutSectionSubItems]
     
     // In Mail Compose Controller
     
-    static let CANCEL_TITLE =                   "Cancelled"
-    static let CANCEL_MESSAGE =                 "Mail Cancelled"
-    static let SAVED_TITLE =                    "Saved"
-    static let SAVED_MESSAGE =                  "Mail Saved"
-    static let SENT_TITLE =                     "Sent"
-    static let SENT_MESSAGE =                   "Mail Sent"
+    static let cancelled =                      "Cancelled"
+    static let mailCancelled =                  "Mail Cancelled"
+    static let saved =                          "Saved"
+    static let mailSaved =                      "Mail Saved"
+    static let sent =                           "Sent"
+    static let mailSent =                       "Mail Sent"
     
-    static let INFO_DICTIONARY_KEY =            "CFBundleShortVersionString"
+    static let versionNumberDictionaryKey =     "CFBundleShortVersionString"
     
     // App_id
     
-    static let APP_ID =                         "761559919"
-    static let URL =                            "itms-apps://itunes.apple.com/app/viewContentsUserReviews?id=\(APP_ID)"
+    static let appID =                         "761559919"
+    static let amahiUrlOnAppStore =             "itms-apps://itunes.apple.com/app/viewContentsUserReviews?id=\(appID)"
     
     // Alert Texts
     
-    static let SIGNOUT_TITLE =                  "Sign Out"
-    static let SIGNOUT_MESSAGE =                "Are You Sure You Want to Sign Out ? "
-    static let CLEAR_CACHE_TITLE =              "Clear Temporary Downloads"
-    static let CLEAR_CACHE_MESSAGE =            "Are you sure you want to delete all temporary files ? "
-    static let CONFIRM =                        "Confirm"
-    static let CANCEL =                         "Cancel"
+    static let signOut =                        "Sign Out"
+    static let signOutMessage =                 "Are You Sure You Want to Sign Out ? "
+    static let clearCacheTitle =                "Clear Temporary Downloads"
+    static let clearCacheMessage =              "Are you sure you want to delete all temporary files ?"
+    static let confirm =                        "Confirm"
+    static let cancel =                         "Cancel"
 }

@@ -37,7 +37,7 @@ class ConnectionViewController: BaseUITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: CellIdentifiers.CONNECTION_CELL, for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: CellIdentifiers.connectionCell, for: indexPath)
         
         cell.textLabel?.text = connectionItem[indexPath.row].rawValue
         cell.textLabel?.textColor = UIColor.white

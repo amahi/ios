@@ -24,9 +24,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         IQKeyboardManager.shared.enable = true
         
         self.window? = UIWindow(frame: UIScreen.main.bounds)
-        let mainStoryboard: UIStoryboard = UIStoryboard(name: StoryBoardIdentifiers.MAIN, bundle: nil)
+        let mainStoryboard: UIStoryboard = UIStoryboard(name: StoryBoardIdentifiers.main, bundle: nil)
         var initialViewController: UIViewController? = nil
-        if LocalStorage.shared.contains(key: PersistenceIdentifiers.ACCESS_TOKEN) {
+        if LocalStorage.shared.contains(key: PersistenceIdentifiers.accessToken) {
             initialViewController = mainStoryboard.instantiateViewController(withIdentifier: "NavigationViewController")
         } else {
             initialViewController = mainStoryboard.instantiateInitialViewController()

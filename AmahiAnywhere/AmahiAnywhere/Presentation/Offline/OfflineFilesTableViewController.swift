@@ -23,7 +23,7 @@ class OfflineFilesTableViewController : CoreDataTableViewController {
         AmahiLogger.log("Active Downloads \(DownloadService.shared.activeDownloads)")
         presenter = OfflineFilesPresenter(self)
 
-        self.navigationItem.title = StringLiterals.OFFLINE
+        self.navigationItem.title = StringLiterals.offline
         
         let longPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(handleLongPress))
         tableView.addGestureRecognizer(longPressGesture)
@@ -49,24 +49,24 @@ class OfflineFilesTableViewController : CoreDataTableViewController {
 
             let offlineFile = self.fetchedResultsController!.object(at: indexPath) as! OfflineFile
 
-            let delete = self.creatAlertAction(StringLiterals.DELETE, style: .default) { (action) in
+            let delete = self.creatAlertAction(StringLiterals.delete, style: .default) { (action) in
                 if offlineFile.stateEnum != .downloading {
                     DownloadService.shared.cancelDownload(offlineFile)
                 }
                 self.delete(file: offlineFile)
             }!
             
-            let open = self.creatAlertAction(StringLiterals.OPEN, style: .default) { (action) in
+            let open = self.creatAlertAction(StringLiterals.open, style: .default) { (action) in
                 let offlineFiles : [OfflineFile] = self.fetchedResultsController?.fetchedObjects as! [OfflineFile]
                 self.presenter.handleOfflineFile(fileIndex: indexPath.row, files: offlineFiles, from: self.tableView.cellForRow(at: indexPath))
             }!
             
-            let share = self.creatAlertAction(StringLiterals.SHARE, style: .default) { (action) in
+            let share = self.creatAlertAction(StringLiterals.share, style: .default) { (action) in
                 guard let url = FileManager.default.localFilePathInDownloads(for: offlineFile) else { return }
                 self.shareFile(at: url, from: self.tableView.cellForRow(at: indexPath))
             }!
             
-            let stop = self.creatAlertAction(StringLiterals.STOP_DOWNLOAD, style: .default) { (action) in
+            let stop = self.creatAlertAction(StringLiterals.stopDownload, style: .default) { (action) in
                 DownloadService.shared.cancelDownload(offlineFile)
                 self.delete(file: offlineFile)
             }!
@@ -87,11 +87,11 @@ class OfflineFilesTableViewController : CoreDataTableViewController {
                 actions.append(delete)
             }
             
-            let cancel = self.creatAlertAction(StringLiterals.CANCEL, style: .cancel, clicked: nil)!
+            let cancel = self.creatAlertAction(StringLiterals.cancel, style: .cancel, clicked: nil)!
             actions.append(cancel)
             
             self.createActionSheet(title: "",
-                                   message: StringLiterals.CHOOSE_ONE,
+                                   message: StringLiterals.chooseOne,
                                    ltrActions: actions,
                                    preferredActionPosition: 0,
                                    sender: tableView.cellForRow(at: indexPath))

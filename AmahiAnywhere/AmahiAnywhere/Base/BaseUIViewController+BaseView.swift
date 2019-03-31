@@ -13,7 +13,7 @@ import MBProgressHUD
 extension BaseUIViewController: BaseView {
     
     func showLoading() {
-        showProgressIndicator(withMessage: StringLiterals.PLEASE_WAIT)
+        showProgressIndicator(withMessage: StringLiterals.pleaseWait)
     }
     
     func showLoading(withMessage text: String) {
@@ -40,7 +40,7 @@ extension BaseUIViewController: BaseView {
 extension BaseUITableViewController: BaseView {
     
     func showLoading() {
-        showProgressIndicator(withMessage: StringLiterals.PLEASE_WAIT)
+        showProgressIndicator(withMessage: StringLiterals.pleaseWait)
     }
     
     func showLoading(withMessage text: String) {
@@ -106,7 +106,7 @@ extension UIViewController {
     
     @objc func userClickedDownloadsIcon() {
         let offlineFileVc = viewController(viewControllerClass: OfflineFilesTableViewController.self,
-                                           from: StoryBoardIdentifiers.MAIN)
+                                           from: StoryBoardIdentifiers.main)
         navigationController?.pushViewController(offlineFileVc, animated: true)
     }
     
@@ -193,7 +193,7 @@ extension UIViewController {
         return storyboard.instantiateViewController(withIdentifier: storyBoardID) as! T
     }
     
-    func createErrorDialog(title: String! = "Oops!", message: String! = StringLiterals.GENERIC_NETWORK_ERROR) {
+    func createErrorDialog(title: String! = "Oops!", message: String! = StringLiterals.genericNetworkError) {
         
         let alertController = UIAlertController(title: title, message: message, preferredStyle: UIAlertController.Style.alert);
         
@@ -204,12 +204,12 @@ extension UIViewController {
         self.present(alertController, animated: true, completion: nil);
     }
     
-    func createActionSheet(title: String! = "", message: String! = StringLiterals.CHOOSE_ONE, ltrActions: [UIAlertAction]! = [] ,
+    func createActionSheet(title: String! = "", message: String! = StringLiterals.chooseOne, ltrActions: [UIAlertAction]! = [] ,
                            preferredActionPosition: Int = 0, sender: UIView? = nil ){
         let alertController = UIAlertController(title: title, message: message, preferredStyle: UIAlertController.Style.actionSheet);
         
         if(ltrActions.count == 0){
-            let defaultAction = UIAlertAction(title: StringLiterals.OK, style: .default, handler: nil);
+            let defaultAction = UIAlertAction(title: StringLiterals.ok, style: .default, handler: nil);
             alertController.addAction(defaultAction);
         } else {
             for (index , x) in ltrActions.enumerated() {

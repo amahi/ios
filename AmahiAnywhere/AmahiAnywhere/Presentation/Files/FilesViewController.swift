@@ -76,21 +76,21 @@ class FilesViewController: BaseUIViewController {
                 return
             }
             
-            let download = self.creatAlertAction(StringLiterals.DOWNLOAD, style: .default) { (action) in
+            let download = self.creatAlertAction(StringLiterals.download, style: .default) { (action) in
                 let file = self.filteredFiles[indexPath.row]
                 self.presenter.makeFileAvailableOffline(file)
             }!
             let state = presenter.checkFileOfflineState(file)
 
-            let share = self.creatAlertAction(StringLiterals.SHARE, style: .default) { (action) in
+            let share = self.creatAlertAction(StringLiterals.share, style: .default) { (action) in
                 self.presenter.shareFile(file, fileIndex: indexPath.row,
                                          from: self.filesTableView.cellForRow(at: indexPath))
             }!
             
-            let removeOffline = self.creatAlertAction(StringLiterals.REMOVE_OFFLINE, style: .default) { (action) in
+            let removeOffline = self.creatAlertAction(StringLiterals.removeOfflineMessage, style: .default) { (action) in
             }!
             
-            let stop = self.creatAlertAction(StringLiterals.STOP_DOWNLOAD, style: .default) { (action) in
+            let stop = self.creatAlertAction(StringLiterals.stopDownload, style: .default) { (action) in
             }!
             
             var actions = [UIAlertAction]()            
@@ -104,11 +104,11 @@ class FilesViewController: BaseUIViewController {
                 actions.append(stop)
             }
             
-            let cancel = self.creatAlertAction(StringLiterals.CANCEL, style: .cancel, clicked: nil)!
+            let cancel = self.creatAlertAction(StringLiterals.cancel, style: .cancel, clicked: nil)!
             actions.append(cancel)
             
             self.createActionSheet(title: "",
-                                   message: StringLiterals.CHOOSE_ONE,
+                                   message: StringLiterals.chooseOne,
                                    ltrActions: actions,
                                    preferredActionPosition: 0,
                                    sender: filesTableView.cellForRow(at: indexPath))

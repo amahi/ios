@@ -61,7 +61,7 @@ internal class FilesPresenter: BasePresenter {
             self.view?.updateRefreshing(isRefreshing: false)
             
             guard let serverFiles = serverFilesResponse else {
-                self.view?.showError(message: StringLiterals.GENERIC_NETWORK_ERROR)
+                self.view?.showError(message: StringLiterals.genericNetworkError)
                 return
             }
             
@@ -218,7 +218,7 @@ internal class FilesPresenter: BasePresenter {
         }, completion: { (wasSuccessful) in
             
             if !wasSuccessful  {
-                self.view?.showError(message: StringLiterals.ERROR_DOWNLOADING_FILE)
+                self.view?.showError(message: StringLiterals.errorDownloadingFileMessage)
                 return
             }
             

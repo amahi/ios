@@ -27,22 +27,22 @@ class LoginPresenter: BasePresenter {
     
     func login(username: String! ,password: String!) {
 
-        self.view?.showLoading(withMessage: StringLiterals.AUTHENTICATING_USER)
+        self.view?.showLoading(withMessage: StringLiterals.authenticatingUser)
         
         AmahiApi.shared.login(username: username, password: password) { (oauthResponse) in
             self.view?.dismissLoading()
             
             guard let response = oauthResponse else {
-                self.view?.showError(message: StringLiterals.GENERIC_NETWORK_ERROR)
+                self.view?.showError(message: StringLiterals.genericNetworkError)
                 return
             }
             
             if let access_token = response.access_token {
                 // Store Access Token for Future use
-                LocalStorage.shared.persistString(string: access_token, key: PersistenceIdentifiers.ACCESS_TOKEN)
+                LocalStorage.shared.persistString(string: access_token, key: PersistenceIdentifiers.accessToken)
                 self.view?.showHome()
             } else {
-                self.view?.showError(message: StringLiterals.INCORRECT_PASSWORD)
+                self.view?.showError(message: StringLiterals.inCorrectLoginMessage)
             }
             
             

@@ -10,7 +10,7 @@ import UIKit
 
 class SharesTableViewController: BaseUITableViewController {
     
-    @IBOutlet var sharesTableView: UITableView!
+    @IBOutlet fileprivate var sharesTableView: UITableView!
     
     internal var server: Server?
     private var shares: [ServerShare] = [ServerShare]()
