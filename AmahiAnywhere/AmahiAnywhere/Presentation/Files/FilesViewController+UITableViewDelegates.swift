@@ -7,6 +7,8 @@
 //
 
 import Foundation
+import SDWebImage
+import Lightbox
 
 extension FilesViewController : UITableViewDelegate, UITableViewDataSource {
     
@@ -15,6 +17,14 @@ extension FilesViewController : UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        // Configuring Lightbox to use SDWebImage for caching images
+        LightboxConfig.loadImage = {
+            imageView, URL, completion in
+            imageView.sd_setImage(with: URL, placeholderImage: nil, options: .refreshCached, completed: { (image, data, error, true) in
+                completion?(nil)
+            })
+        }
+        
         let serverFile = filteredFiles[indexPath.row]
         if serverFile.isDirectory() {
             let cell = tableView.dequeueReusableCell(withIdentifier: "ServerDirectoryTableViewCell", for: indexPath)
@@ -25,6 +35,21 @@ extension FilesViewController : UITableViewDelegate, UITableViewDataSource {
             cell.fileNameLabel?.text = serverFile.name
             cell.fileSizeLabel?.text = serverFile.getFileSize()
             cell.lastModifiedLabel?.text = serverFile.getLastModifiedDate()
+            
+            var imageName = ""
+            if (serverFile.mime_type?.starts(with: "image"))! {
+                imageName = "image"
+            }
+            else if (serverFile.mime_type?.starts(with: "audio"))! {
+                imageName = "audio"
+            }
+            else if (serverFile.mime_type?.starts(with: "video"))! {
+                imageName = "video"
+            }
+            else {
+                imageName = "file"
+            }
+            cell.thumbnailImage.sd_setImage(with: URL(string: ServerApi.shared!.getFileUri(serverFile).absoluteString), placeholderImage: UIImage(named: imageName), options: .refreshCached)
             
             let tap = UITapGestureRecognizer(target: self, action: #selector(userClickMenu(sender:)))
             tap.cancelsTouchesInView = true

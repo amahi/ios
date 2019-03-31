@@ -16,4 +16,5 @@ class OfflineFileTableViewCell: UITableViewCell {
     @IBOutlet weak var progressView: UIProgressView!
     @IBOutlet weak var menuImageView: UIImageView!
     @IBOutlet weak var brokenIndicatorImageView: UIImageView!
+    @IBOutlet weak var thumbnailImage: UIImageView!
 }
