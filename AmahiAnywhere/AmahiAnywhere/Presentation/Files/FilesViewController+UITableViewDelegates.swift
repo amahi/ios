@@ -9,6 +9,7 @@
 import Foundation
 import SDWebImage
 import Lightbox
+import AVFoundation
 
 extension FilesViewController : UITableViewDelegate, UITableViewDataSource {
     
@@ -32,24 +33,8 @@ extension FilesViewController : UITableViewDelegate, UITableViewDataSource {
             return cell
         } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: "ServerFileTableViewCell", for: indexPath) as! ServerFileTableViewCell
-            cell.fileNameLabel?.text = serverFile.name
-            cell.fileSizeLabel?.text = serverFile.getFileSize()
-            cell.lastModifiedLabel?.text = serverFile.getLastModifiedDate()
             
-            var imageName = ""
-            if (serverFile.mime_type?.starts(with: "image"))! {
-                imageName = "image"
-            }
-            else if (serverFile.mime_type?.starts(with: "audio"))! {
-                imageName = "audio"
-            }
-            else if (serverFile.mime_type?.starts(with: "video"))! {
-                imageName = "video"
-            }
-            else {
-                imageName = "file"
-            }
-            cell.thumbnailImage.sd_setImage(with: URL(string: ServerApi.shared!.getFileUri(serverFile).absoluteString), placeholderImage: UIImage(named: imageName), options: .refreshCached)
+            cell.serverFile = serverFile
             
             let tap = UITapGestureRecognizer(target: self, action: #selector(userClickMenu(sender:)))
             tap.cancelsTouchesInView = true

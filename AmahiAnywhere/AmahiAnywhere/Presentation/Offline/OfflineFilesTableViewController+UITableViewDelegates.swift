@@ -16,36 +16,15 @@ extension OfflineFilesTableViewController {
         let offlineFile = fetchedResultsController!.object(at: indexPath) as! OfflineFile
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "OfflineFileTableViewCell", for: indexPath) as! OfflineFileTableViewCell
-        cell.fileNameLabel?.text = offlineFile.name
-        cell.fileSizeLabel?.text = offlineFile.getFileSize()
-        cell.downloadDateLabel?.text = offlineFile.downloadDate?.asString
-        cell.progressView.setProgress(offlineFile.progress, animated: false)
+        cell.offlineFile = offlineFile
         
-        let image = cell.brokenIndicatorImageView.image
-        let templateImage = image?.withRenderingMode(.alwaysTemplate)
-        cell.brokenIndicatorImageView.image = templateImage
-        cell.brokenIndicatorImageView.tintColor = UIColor.brokenIndicatorRed
+        cell.progressView.setProgress(offlineFile.progress, animated: false)
 
         let tap = UITapGestureRecognizer(target: self, action: #selector(userClickMenu(sender:)))
         tap.cancelsTouchesInView = true
         cell.menuImageView.isUserInteractionEnabled = true
         cell.menuImageView.addGestureRecognizer(tap)
         
-        var imageName = ""
-        if (offlineFile.mime!.starts(with: "image")) {
-            imageName = "image"
-        }
-        else if (offlineFile.mime!.starts(with: "audio")) {
-            imageName = "audio"
-        }
-        else if (offlineFile.mime!.starts(with: "video")) {
-            imageName = "video"
-        }
-        else {
-            imageName = "file"
-        }
-        cell.thumbnailImage.sd_setImage(with: offlineFile.remoteFileURL().absoluteURL, placeholderImage: UIImage(named: imageName),options:.refreshCached)
-      
         if offlineFile.stateEnum != .downloading {
             cell.progressView.isHidden = true
         } else {

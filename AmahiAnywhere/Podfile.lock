@@ -11,11 +11,11 @@ PODS:
   - Lightbox (2.3.0):
     - Imaginary (~> 4.0)
   - MBProgressHUD (1.1.0)
-  - MobileVLCKit (3.2.0)
-  - ReachabilitySwift (4.3.0)
-  - SDWebImage (4.4.5):
-    - SDWebImage/Core (= 4.4.5)
-  - SDWebImage/Core (4.4.5)
+  - MobileVLCKit (3.3.1)
+  - ReachabilitySwift (4.3.1)
+  - SDWebImage (4.4.6):
+    - SDWebImage/Core (= 4.4.6)
+  - SDWebImage/Core (4.4.6)
   - SkyFloatingLabelTextField (3.6.0)
 
 DEPENDENCIES:
@@ -51,9 +51,9 @@ SPEC CHECKSUMS:
   IQKeyboardManagerSwift: 0f0ae8935360b4003e6ea1ac7c19898f01e2f7c7
   Lightbox: d317750e4132bfb871a5307cfe0a2c7d6a583c65
   MBProgressHUD: e7baa36a220447d8aeb12769bf0585582f3866d9
-  MobileVLCKit: f7af7d6bee693b904265768eaae6a0ed29fdcd65
-  ReachabilitySwift: 408477d1b6ed9779dba301953171e017c31241f3
-  SDWebImage: ecc03494e973b93b80213649d32175f8d2d17d4d
+  MobileVLCKit: 021031f214414aa801909f61544912162d3bcd49
+  ReachabilitySwift: 4032e2f59586e11e3b0ebe15b167abdd587a388b
+  SDWebImage: 3f3f0c02f09798048c47a5ed0a13f17b063572d8
   SkyFloatingLabelTextField: 38164979b79512f9ff9288ad8acfc4bbf5d843e3
 
 PODFILE CHECKSUM: 1b065c646b4f8dee339261630763a0ec57da1f21

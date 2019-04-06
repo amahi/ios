@@ -18,16 +18,16 @@ import Foundation
 
 struct ApiConfig {
     
-    static let BASE_URL =                       "https://example.com"
-    static let PROXY_URL =                       "https://example.com"
+    static let baseUrl =                       "https://example.com"
+    static let proxyUrl =                       "https://example.com"
     
-    private static let CLIENT_ID =              "C-I-D"
-    private static let CLIENT_SECRET =          "C-S-T"
+    private static let clientId =              "C-I-D"
+    private static let clientSecret =          "C-S-T"
     
     static func oauthCredentials(username: String, password: String) -> [String : String] {
         
-        let parameters =                          ["client_id": CLIENT_ID,
-                                                   "client_secret": CLIENT_SECRET,
+        let parameters =                          ["client_id": clientId,
+                                                   "client_secret": clientSecret,
                                                    "username" : username,
                                                    "password" : password ]
         
