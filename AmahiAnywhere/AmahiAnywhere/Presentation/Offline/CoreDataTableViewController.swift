@@ -6,9 +6,6 @@
 //  Copyright © 2018 Amahi. All rights reserved.
 //
 
-import Foundation
-
-
 import UIKit
 import CoreData
 
@@ -30,7 +27,8 @@ class CoreDataTableViewController: BaseUITableViewController {
     
     // MARK: Initializers
     
-    init(fetchedResultsController fc : NSFetchedResultsController<NSFetchRequestResult>, style : UITableView.Style = .plain) {
+    init(fetchedResultsController fc : NSFetchedResultsController<NSFetchRequestResult>,
+         style : UITableView.Style = .plain) {
         fetchedResultsController = fc
         super.init(style: style)
     }
@@ -57,43 +55,23 @@ extension CoreDataTableViewController {
 extension CoreDataTableViewController {
     
     override func numberOfSections(in tableView: UITableView) -> Int {
-        if let fc = fetchedResultsController {
-            return (fc.sections?.count)!
-        } else {
-            return 0
-        }
+        return fetchedResultsController?.sections?.count ?? 0
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if let fc = fetchedResultsController {
-            return fc.sections![section].numberOfObjects
-        } else {
-            return 0
-        }
+        return fetchedResultsController?.sections?[section].numberOfObjects ?? 0
     }
     
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        if let fc = fetchedResultsController {
-            return fc.sections![section].name
-        } else {
-            return nil
-        }
+        return fetchedResultsController?.sections?[section].name
     }
     
     override func tableView(_ tableView: UITableView, sectionForSectionIndexTitle title: String, at index: Int) -> Int {
-        if let fc = fetchedResultsController {
-            return fc.section(forSectionIndexTitle: title, at: index)
-        } else {
-            return 0
-        }
+        return fetchedResultsController?.section(forSectionIndexTitle: title, at: index) ?? 0
     }
     
     override func sectionIndexTitles(for tableView: UITableView) -> [String]? {
-        if let fc = fetchedResultsController {
-            return fc.sectionIndexTitles
-        } else {
-            return nil
-        }
+        return fetchedResultsController?.sectionIndexTitles
     }
 }
 
@@ -125,13 +103,13 @@ extension CoreDataTableViewController: NSFetchedResultsControllerDelegate {
                     atSectionIndex sectionIndex: Int,
                     for type: NSFetchedResultsChangeType) {
         
-        let set = IndexSet(integer: sectionIndex)
+        let sections = IndexSet(integer: sectionIndex)
         
-        switch (type) {
+        switch type {
         case .insert:
-            tableView.insertSections(set, with: .none)
+            tableView.insertSections(sections, with: .none)
         case .delete:
-            tableView.deleteSections(set, with: .none)
+            tableView.deleteSections(sections, with: .none)
         default:
             // irrelevant in our case
             break
@@ -144,16 +122,24 @@ extension CoreDataTableViewController: NSFetchedResultsControllerDelegate {
                     for type: NSFetchedResultsChangeType,
                     newIndexPath: IndexPath?) {
         
-        switch(type) {
+        switch type {
         case .insert:
-            tableView.insertRows(at: [newIndexPath!], with: .none)
+            if let indexPath = newIndexPath {
+                tableView.insertRows(at: [indexPath], with: .none)
+            }
         case .delete:
-            tableView.deleteRows(at: [indexPath!], with: .none)
+            if let indexPath = indexPath {
+                tableView.deleteRows(at: [indexPath], with: .none)
+            }
         case .update:
-            tableView.reloadRows(at: [indexPath!], with: .none)
+            if let indexPath = indexPath {
+                tableView.reloadRows(at: [indexPath], with: .none)
+            }
         case .move:
-            tableView.deleteRows(at: [indexPath!], with: .none)
-            tableView.insertRows(at: [newIndexPath!], with: .none)
+            if let indexPath = indexPath, let newIndexPath = newIndexPath {
+                tableView.deleteRows(at: [indexPath], with: .none)
+                tableView.insertRows(at: [newIndexPath], with: .none)
+            }
         }
     }
     
