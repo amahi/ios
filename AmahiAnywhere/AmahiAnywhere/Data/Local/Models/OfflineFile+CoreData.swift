@@ -52,7 +52,7 @@ public class OfflineFile: NSManagedObject {
         return ByteCountFormatter().string(fromByteCount: size)
     }
     
-    public func remoteFileURL() -> URL {
-        return URL(string: remoteFileUri!)!
+    public func remoteFileURL() -> URL? {
+        return URL(string: remoteFileUri ?? "")
     }
 }
