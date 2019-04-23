@@ -6,7 +6,6 @@
 //  Copyright © 2018 Amahi. All rights reserved.
 //
 
-import Foundation
 import CoreData
 
 // MARK: - CoreDataStack
@@ -69,58 +68,6 @@ struct CoreDataStack {
     // MARK: Utils
     
     func addStoreCoordinator(_ storeType: String, configuration: String?, storeURL: URL, options : [NSObject:AnyObject]?) throws {
-        try coordinator.addPersistentStore(ofType: NSSQLiteStoreType, configurationName: nil, at: dbURL, options: nil)
-    }
-}
-
-// MARK: - CoreDataStack (Removing Data)
-
-internal extension CoreDataStack  {
-    
-    func dropAllData() throws {
-        // delete all the objects in the db. This won't delete the files, it will
-        // just leave empty tables.
-        try coordinator.destroyPersistentStore(at: dbURL, ofType:NSSQLiteStoreType , options: nil)
-        try addStoreCoordinator(NSSQLiteStoreType, configuration: nil, storeURL: dbURL, options: nil)
-    }
-    
-    var isDownloadsEmpty : Bool {
-        do {
-            let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "OfflineFile")
-            let count  = try context.count(for: fetchRequest)
-            return count == 0 ? true : false
-        } catch{
-            return true
-        }
-    }
-}
-
-// MARK: - CoreDataStack (Save Data)
-
-extension CoreDataStack {
-    
-    func saveContext() throws {
-        if context.hasChanges {
-            try context.save()
-        }
-    }
-    
-    func autoSave(_ delayInSeconds : Int) {
-        
-        if delayInSeconds > 0 {
-            do {
-                try saveContext()
-                AmahiLogger.log("Autosaving only if new changes exist")
-            } catch let error as NSError {
-                AmahiLogger.log("Error while autosaving  \(error.localizedDescription)")
-            }
-            
-            let delayInNanoSeconds = UInt64(delayInSeconds) * NSEC_PER_SEC
-            let time = DispatchTime.now() + Double(Int64(delayInNanoSeconds)) / Double(NSEC_PER_SEC)
-            
-            DispatchQueue.main.asyncAfter(deadline: time) {
-                self.autoSave(delayInSeconds)
-            }
-        }
+        try coordinator.addPersistentStore(ofType: NSSQLiteStoreType, configurationName: nil, at: dbURL, options: options)
     }
 }

@@ -26,20 +26,20 @@ class DownloadService : NSObject {
     // MARK: - Download methods called in Server FilesViewController delegate methods
     
     func startDownload(_ offlineFile: OfflineFile) {
-        let url = offlineFile.remoteFileURL()
-
-        AmahiLogger.log("Download Has Started for url \(url)")
-        let download = Download(offlineFile: offlineFile)
-        download.task = downloadsSession.downloadTask(with: url)
-        download.task!.resume()
-        download.isDownloading = true
-        
-        activeDownloads[url] = download
-        NotificationCenter.default.post(name: .DownloadStarted, object: nil, userInfo: [:])
+        if let url = offlineFile.remoteFileURL() {
+            AmahiLogger.log("Download Has Started for url \(url)")
+            let download = Download(offlineFile: offlineFile)
+            download.task = downloadsSession.downloadTask(with: url)
+            download.task!.resume()
+            download.isDownloading = true
+            
+            activeDownloads[url] = download
+            NotificationCenter.default.post(name: .DownloadStarted, object: nil, userInfo: [:])
+        }
     }
     
     func pauseDownload(_ offlineFile: OfflineFile) {
-        let url = offlineFile.remoteFileURL()
+        guard let url = offlineFile.remoteFileURL() else { return }
 
         guard let download = activeDownloads[url] else { return }
         
@@ -52,7 +52,7 @@ class DownloadService : NSObject {
     }
     
     func cancelDownload(_ offlineFile: OfflineFile) {
-        let url = offlineFile.remoteFileURL()
+        guard let url = offlineFile.remoteFileURL() else { return }
 
         if let download = activeDownloads[url] {
             download.task?.cancel()
@@ -62,7 +62,7 @@ class DownloadService : NSObject {
     }
     
     func resumeDownload(_ offlineFile: OfflineFile) {
-        let url = offlineFile.remoteFileURL()
+        guard let url = offlineFile.remoteFileURL() else { return }
 
         guard let download = activeDownloads[url] else { return }
         if let resumeData = download.resumeData {

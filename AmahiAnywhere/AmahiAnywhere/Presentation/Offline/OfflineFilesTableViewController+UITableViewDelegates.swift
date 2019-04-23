@@ -28,9 +28,11 @@ extension OfflineFilesTableViewController {
         if offlineFile.stateEnum != .downloading {
             cell.progressView.isHidden = true
         } else {
-            let keyExists = DownloadService.shared.activeDownloads[offlineFile.remoteFileURL()] != nil
-            if !keyExists {
-                offlineFile.stateEnum = .completedWithError
+            if let remoteUrl = offlineFile.remoteFileURL() {
+                let keyExists = DownloadService.shared.activeDownloads[remoteUrl] != nil
+                if !keyExists {
+                    offlineFile.stateEnum = .completedWithError
+                }
             }
         }
         

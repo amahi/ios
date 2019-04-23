@@ -26,6 +26,11 @@
 		46F87397204CC69500F1AF37 /* Server.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46F87396204CC69500F1AF37 /* Server.swift */; };
 		80F3FDC7206C0D4D0061CD51 /* ConnectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80F3FDC6206C0D4D0061CD51 /* ConnectionViewController.swift */; };
 		80F60700206BE1530098BC60 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80F606FF206BE1530098BC60 /* SettingsViewController.swift */; };
+		AD8F2FDB226E9331009C8C4B /* CoreDataStack+DropDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD8F2FD9226E9331009C8C4B /* CoreDataStack+DropDatabase.swift */; };
+		AD8F2FDC226E9331009C8C4B /* CoreDataStack+AutoSaving.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD8F2FDA226E9331009C8C4B /* CoreDataStack+AutoSaving.swift */; };
+		AD8F2FE0226E9351009C8C4B /* SettingsViewController+TableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD8F2FDD226E9351009C8C4B /* SettingsViewController+TableViewDataSource.swift */; };
+		AD8F2FE1226E9351009C8C4B /* SettingsViewController+MFMailComposeViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD8F2FDE226E9351009C8C4B /* SettingsViewController+MFMailComposeViewControllerDelegate.swift */; };
+		AD8F2FE2226E9351009C8C4B /* SettingsViewController+TableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD8F2FDF226E9351009C8C4B /* SettingsViewController+TableViewDelegate.swift */; };
 		ADAFF8D6224F6DB700287409 /* ThumbnailGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADAFF8D5224F6DB700287409 /* ThumbnailGenerator.swift */; };
 		ADAFF8D822501F5B00287409 /* PDFThumbnailGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADAFF8D722501F5B00287409 /* PDFThumbnailGenerator.swift */; };
 		ADAFF8DA22501F7A00287409 /* VideoThumbnailGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADAFF8D922501F7A00287409 /* VideoThumbnailGenerator.swift */; };
@@ -102,6 +107,11 @@
 		665E1C7EF1F0DEBF3A9809B0 /* Pods-AmahiAnywhere.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AmahiAnywhere.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AmahiAnywhere/Pods-AmahiAnywhere.debug.xcconfig"; sourceTree = "<group>"; };
 		80F3FDC6206C0D4D0061CD51 /* ConnectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectionViewController.swift; sourceTree = "<group>"; };
 		80F606FF206BE1530098BC60 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		AD8F2FD9226E9331009C8C4B /* CoreDataStack+DropDatabase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CoreDataStack+DropDatabase.swift"; sourceTree = "<group>"; };
+		AD8F2FDA226E9331009C8C4B /* CoreDataStack+AutoSaving.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CoreDataStack+AutoSaving.swift"; sourceTree = "<group>"; };
+		AD8F2FDD226E9351009C8C4B /* SettingsViewController+TableViewDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SettingsViewController+TableViewDataSource.swift"; sourceTree = "<group>"; };
+		AD8F2FDE226E9351009C8C4B /* SettingsViewController+MFMailComposeViewControllerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SettingsViewController+MFMailComposeViewControllerDelegate.swift"; sourceTree = "<group>"; };
+		AD8F2FDF226E9351009C8C4B /* SettingsViewController+TableViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SettingsViewController+TableViewDelegate.swift"; sourceTree = "<group>"; };
 		ADAFF8D5224F6DB700287409 /* ThumbnailGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThumbnailGenerator.swift; sourceTree = "<group>"; };
 		ADAFF8D722501F5B00287409 /* PDFThumbnailGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFThumbnailGenerator.swift; sourceTree = "<group>"; };
 		ADAFF8D922501F7A00287409 /* VideoThumbnailGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoThumbnailGenerator.swift; sourceTree = "<group>"; };
@@ -229,6 +239,8 @@
 		C83C63802038D5B30089B9D8 /* Local */ = {
 			isa = PBXGroup;
 			children = (
+				AD8F2FDA226E9331009C8C4B /* CoreDataStack+AutoSaving.swift */,
+				AD8F2FD9226E9331009C8C4B /* CoreDataStack+DropDatabase.swift */,
 				C86CA91620D3C76C00C8EDCA /* Models */,
 				C83C63812038D5B30089B9D8 /* LocalStorage.swift */,
 				C86CA91420D3C65400C8EDCA /* CoreDataStack.swift */,
@@ -337,6 +349,9 @@
 		C8A7A7EB2075A6FF00A9234E /* Settings */ = {
 			isa = PBXGroup;
 			children = (
+				AD8F2FDE226E9351009C8C4B /* SettingsViewController+MFMailComposeViewControllerDelegate.swift */,
+				AD8F2FDD226E9351009C8C4B /* SettingsViewController+TableViewDataSource.swift */,
+				AD8F2FDF226E9351009C8C4B /* SettingsViewController+TableViewDelegate.swift */,
 				80F3FDC6206C0D4D0061CD51 /* ConnectionViewController.swift */,
 				80F606FF206BE1530098BC60 /* SettingsViewController.swift */,
 			);
@@ -593,6 +608,7 @@
 				46059646204EE17D004FA066 /* SharesTableViewController.swift in Sources */,
 				C8DA5B3520D8741000F5A527 /* String.swift in Sources */,
 				C8DA5B2720D5E14800F5A527 /* OfflineFilesTableViewController+UITableViewDelegates.swift in Sources */,
+				AD8F2FDC226E9331009C8C4B /* CoreDataStack+AutoSaving.swift in Sources */,
 				C8DEBFAD20BB1AEF00B09AED /* Alamofire.swift in Sources */,
 				C866E5552042D02A0083A606 /* VideoPlayerViewController.swift in Sources */,
 				C83C63902038D5B30089B9D8 /* PersistenceIdentifiers.swift in Sources */,
@@ -601,6 +617,7 @@
 				C86CA92C20D3D93900C8EDCA /* CoreDataTableViewController.swift in Sources */,
 				C86CA92920D3D26300C8EDCA /* OfflineFile+CoreData.swift in Sources */,
 				4605964D204F3666004FA066 /* ServerShare.swift in Sources */,
+				AD8F2FE0226E9351009C8C4B /* SettingsViewController+TableViewDataSource.swift in Sources */,
 				FB71BE98201CB2FC0005492C /* AppDelegate.swift in Sources */,
 				4605964B204F35E9004FA066 /* ServerRoute.swift in Sources */,
 				C8DEBFAB20BAE1D300B09AED /* ConnectionModeManager.swift in Sources */,
@@ -629,6 +646,8 @@
 				C8DA5B3320D7E2F500F5A527 /* OfflineFilesTableViewController+OfflineFilesViewDelegates.swift in Sources */,
 				C8DA5B2520D5E0FA00F5A527 /* OfflineFileTableViewCell.swift in Sources */,
 				C86CA92E20D3D99500C8EDCA /* OfflineFilesTableViewController.swift in Sources */,
+				AD8F2FE1226E9351009C8C4B /* SettingsViewController+MFMailComposeViewControllerDelegate.swift in Sources */,
+				AD8F2FE2226E9351009C8C4B /* SettingsViewController+TableViewDelegate.swift in Sources */,
 				C83C639D203992460089B9D8 /* LoginPresenter.swift in Sources */,
 				C8DA5B2920D5E18800F5A527 /* FileSort.swift in Sources */,
 				C8DA5B1C20D5DEC200F5A527 /* FilesViewController+FilesViewDelegates.swift in Sources */,
@@ -645,6 +664,7 @@
 				C86CA92A20D3D26300C8EDCA /* OfflineFile+CoreDataProperties.swift in Sources */,
 				C8DA5B2020D5E09000F5A527 /* FilesViewController+UISearchBarDelegate.swift in Sources */,
 				04BA8996211D56F400E7A868 /* AmahiLogger.swift in Sources */,
+				AD8F2FDB226E9331009C8C4B /* CoreDataStack+DropDatabase.swift in Sources */,
 				C8DA5B2320D5E0D800F5A527 /* ServerFileTableViewCell.swift in Sources */,
 				46098D08204FFFBE00752EB6 /* ServerApi.swift in Sources */,
 				C8D86160209490230014D8AC /* WebViewController.swift in Sources */,
