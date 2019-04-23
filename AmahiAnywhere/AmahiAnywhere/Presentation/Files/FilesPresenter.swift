@@ -111,7 +111,11 @@ internal class FilesPresenter: BasePresenter {
             
         case MimeType.video:
             // TODO: open VideoPlayer and play the file
-            let url = ServerApi.shared!.getFileUri(file)
+            guard let url = ServerApi.shared!.getFileUri(file) else {
+                AmahiLogger.log("Invalid file URL, file cannot be opened")
+                return
+            }
+            
             self.view?.playMedia(at: url)
             break
             
@@ -184,11 +188,16 @@ internal class FilesPresenter: BasePresenter {
             path.removeFirst()
         }
         
+        guard let url = ServerApi.shared!.getFileUri(serverFile) else {
+            AmahiLogger.log("Invalid file URL, file cannot be downloaded")
+            return
+        }
+        
         let offlineFile = OfflineFile(name: serverFile.getNameOnly(),
                                       mime: serverFile.mime_type!,
                                       size: serverFile.size!,
                                       mtime: serverFile.mtime!,
-                                      fileUri: ServerApi.shared!.getFileUri(serverFile).absoluteString,
+                                      fileUri: url.absoluteString,
                                       localPath: path,
                                       progress: 1,
                                       state: OfflineFileState.downloading,
@@ -234,31 +243,25 @@ internal class FilesPresenter: BasePresenter {
         var images: [LightboxImage] = [LightboxImage] ()
         for file in files {
             if (Mimes.shared.match(file.mime_type!) == MimeType.image) {
-                images.append(LightboxImage(imageURL: ServerApi.shared!.getFileUri(file), text: file.name!))
+                guard let url = ServerApi.shared!.getFileUri(file) else {
+                    AmahiLogger.log("Invalid file URL, file cannot be opened")
+                    continue
+                }
+                images.append(LightboxImage(imageURL: url, text: file.name!))
             }
         }
         return images
     }
     
-//    private func prepareAudioItems(_ files: [ServerFile]) -> [AVPlayerItem] {
-//        var audioItems = [AVPlayerItem]()
-//
-//        for file in files {
-//            if (Mimes.shared.match(file.mime_type!) == MimeType.audio) {
-//                let url = ServerApi.shared!.getFileUri(file)
-//                let item = AVPlayerItem(url: url)
-//                audioItems.append(item)
-//            }
-//        }
-//        return audioItems
-//    }
-//
     private func prepareAudioItems(_ files: [ServerFile]) -> [URL] {
         var audioURLs = [URL]()
         
         for file in files {
             if (Mimes.shared.match(file.mime_type!) == MimeType.audio) {
-                let url = ServerApi.shared!.getFileUri(file)
+                guard let url = ServerApi.shared!.getFileUri(file) else {
+                    AmahiLogger.log("Invalid file URL, file cannot be opened")
+                    continue
+                }
                 audioURLs.append(url)
             }
         }

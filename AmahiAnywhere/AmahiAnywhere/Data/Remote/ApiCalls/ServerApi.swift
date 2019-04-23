@@ -124,7 +124,7 @@ class ServerApi {
         Network.shared.request(ApiEndPoints.getServerFiles(serverAddress), parameters: params, headers: getSessionHeader(), completion: updateFiles)
     }
     
-    public func getFileUri(_ file: ServerFile) -> URL {
+    public func getFileUri(_ file: ServerFile) -> URL? {
         var components = URLComponents(string: serverAddress!)!
         components.path = "/files"
         components.queryItems = [
@@ -133,6 +133,9 @@ class ServerApi {
             URLQueryItem(name: "mtime", value: String(file.getLastModifiedEpoch())),
             URLQueryItem(name: "session", value: server.session_token)
         ]
-        return try! components.asURL()
+        components.percentEncodedQuery = components.percentEncodedQuery?
+            .replacingOccurrences(of: "+", with: "%2B")
+        
+        return components.url
     }
 }

@@ -88,7 +88,10 @@ public class Network {
             return (destinationFileUrl!, [.removePreviousFile, .createIntermediateDirectories])
         }
         
-        let fileUrl = ServerApi.shared!.getFileUri(file)
+        guard let fileUrl = ServerApi.shared!.getFileUri(file) else {
+            AmahiLogger.log("Invalid file URL, attempt to download file failed")
+            return
+        }
             
         Alamofire.download(fileUrl, to: destination)
             .downloadProgress { progress in

@@ -37,7 +37,10 @@ class ServerFileTableViewCell: UITableViewCell {
 
         let type = Mimes.shared.match(serverFile.mime_type!)
         
-        let url = ServerApi.shared!.getFileUri(serverFile)
+        guard let url = ServerApi.shared!.getFileUri(serverFile) else {
+            AmahiLogger.log("Invalid file URL, thumbnail generation failed")
+            return
+        }
         
         switch type {
             
