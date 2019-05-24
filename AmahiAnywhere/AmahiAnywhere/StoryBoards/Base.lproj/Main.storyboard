@@ -10,6 +10,101 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
+        <!--Walkthrough View Controller-->
+        <scene sceneID="0tZ-xD-8uh">
+            <objects>
+                <viewController storyboardIdentifier="WalkthroughViewController" id="gnb-XN-qtm" customClass="WalkthroughViewController" customModule="AmahiAnywhere" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="edA-We-vEt">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceHorizontal="YES" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="1gg-dZ-u9A">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="vIv-rl-rOa">
+                                    <size key="itemSize" width="80" height="53"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="jrP-Qw-CYN">
+                                        <rect key="frame" x="0.0" y="0.0" width="80" height="53"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
+                                            <rect key="frame" x="0.0" y="0.0" width="80" height="53"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </view>
+                                    </collectionViewCell>
+                                </cells>
+                            </collectionView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e0W-f3-bLf">
+                                <rect key="frame" x="0.0" y="607" width="100" height="60"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="100" id="eBF-T1-tSe"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="18"/>
+                                <state key="normal" title="SKIP">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="skipTapped:" destination="gnb-XN-qtm" eventType="touchUpInside" id="N22-FU-z01"/>
+                                </connections>
+                            </button>
+                            <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="6" translatesAutoresizingMaskIntoConstraints="NO" id="Vof-uq-fVl">
+                                <rect key="frame" x="144" y="617" width="87" height="40"/>
+                            </pageControl>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="x2A-iy-3vs">
+                                <rect key="frame" x="285" y="607" width="100" height="60"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="100" id="eoq-L4-Xa1"/>
+                                    <constraint firstAttribute="height" constant="60" id="ywd-Wm-jzL"/>
+                                </constraints>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="10" maxX="0.0" maxY="10"/>
+                                <state key="normal" image="arrowRightIcon"/>
+                                <connections>
+                                    <action selector="nextTapped:" destination="gnb-XN-qtm" eventType="touchUpInside" id="jZh-f1-2Et"/>
+                                </connections>
+                            </button>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uJ1-o5-g9s">
+                                <rect key="frame" x="0.0" y="606" width="375" height="1"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.19606164383561644" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="1" id="UDx-a8-vbN"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" red="0.13333333333333333" green="0.13333333333333333" blue="0.13333333333333333" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="uJ1-o5-g9s" firstAttribute="trailing" secondItem="PYR-Ay-zHd" secondAttribute="trailing" id="2Va-ip-AeS"/>
+                            <constraint firstItem="PYR-Ay-zHd" firstAttribute="trailing" secondItem="x2A-iy-3vs" secondAttribute="trailing" constant="-10" id="3Id-SK-4CL"/>
+                            <constraint firstItem="1gg-dZ-u9A" firstAttribute="trailing" secondItem="PYR-Ay-zHd" secondAttribute="trailing" id="4NU-d1-Ocy"/>
+                            <constraint firstItem="PYR-Ay-zHd" firstAttribute="bottom" secondItem="e0W-f3-bLf" secondAttribute="bottom" id="50K-wR-sc2"/>
+                            <constraint firstItem="1gg-dZ-u9A" firstAttribute="top" secondItem="edA-We-vEt" secondAttribute="top" id="7RW-Sn-AOG"/>
+                            <constraint firstItem="e0W-f3-bLf" firstAttribute="top" secondItem="uJ1-o5-g9s" secondAttribute="bottom" id="85G-jE-5D8"/>
+                            <constraint firstItem="Vof-uq-fVl" firstAttribute="top" secondItem="uJ1-o5-g9s" secondAttribute="bottom" constant="10" id="S3b-g1-ApC"/>
+                            <constraint firstItem="uJ1-o5-g9s" firstAttribute="leading" secondItem="PYR-Ay-zHd" secondAttribute="leading" id="VYt-xs-0N5"/>
+                            <constraint firstItem="1gg-dZ-u9A" firstAttribute="leading" secondItem="PYR-Ay-zHd" secondAttribute="leading" id="Ygn-ye-xyv"/>
+                            <constraint firstItem="x2A-iy-3vs" firstAttribute="top" secondItem="uJ1-o5-g9s" secondAttribute="bottom" id="a0V-H6-p8y"/>
+                            <constraint firstItem="Vof-uq-fVl" firstAttribute="centerX" secondItem="edA-We-vEt" secondAttribute="centerX" id="fec-Ww-0mI"/>
+                            <constraint firstItem="PYR-Ay-zHd" firstAttribute="bottom" secondItem="Vof-uq-fVl" secondAttribute="bottom" constant="10" id="oRC-9C-x6Y"/>
+                            <constraint firstItem="1gg-dZ-u9A" firstAttribute="bottom" secondItem="edA-We-vEt" secondAttribute="bottom" id="oYT-CC-Oge"/>
+                            <constraint firstItem="e0W-f3-bLf" firstAttribute="leading" secondItem="PYR-Ay-zHd" secondAttribute="leading" id="vlN-WY-e2G"/>
+                            <constraint firstItem="x2A-iy-3vs" firstAttribute="height" secondItem="e0W-f3-bLf" secondAttribute="height" id="x9f-yB-y7F"/>
+                            <constraint firstItem="PYR-Ay-zHd" firstAttribute="bottom" secondItem="x2A-iy-3vs" secondAttribute="bottom" id="xrX-tP-NuN"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="PYR-Ay-zHd"/>
+                    </view>
+                    <connections>
+                        <outlet property="arrowButton" destination="x2A-iy-3vs" id="Iig-nj-kOO"/>
+                        <outlet property="collectionView" destination="1gg-dZ-u9A" id="Njt-d3-8MJ"/>
+                        <outlet property="pageControl" destination="Vof-uq-fVl" id="b7g-Rb-qFk"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="weM-Gw-tZB" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-642.39999999999998" y="-510.49475262368821"/>
+        </scene>
         <!--Login View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
@@ -817,6 +912,7 @@
     </scenes>
     <resources>
         <image name="Amahi Logo White Font.png" width="172.55999755859375" height="59"/>
+        <image name="arrowRightIcon" width="562" height="562"/>
         <image name="brokenIcon" width="28" height="28"/>
         <image name="hamburgerIcon" width="25" height="25"/>
         <image name="moreIcon" width="72" height="72"/>

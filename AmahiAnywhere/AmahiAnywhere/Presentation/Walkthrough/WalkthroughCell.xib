@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="WalkthroughViewController" customModule="AmahiAnywhere" customModuleProvider="target"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="cell" id="7y2-i2-0AN" customClass="WalkthroughCollectionCell" customModule="AmahiAnywhere" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="356" height="586"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
+                <rect key="frame" x="0.0" y="0.0" width="356" height="586"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Glf-cE-jZX">
+                        <rect key="frame" x="0.0" y="0.0" width="356" height="586"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="60" translatesAutoresizingMaskIntoConstraints="NO" id="wth-uQ-ioB">
+                                <rect key="frame" x="20" y="28.5" width="316" height="469"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Play your Movies and Video Library" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hkf-Ic-2XP">
+                                        <rect key="frame" x="0.0" y="0.0" width="316" height="72"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="30"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="movies" translatesAutoresizingMaskIntoConstraints="NO" id="feA-qE-Vdw">
+                                        <rect key="frame" x="0.0" y="132" width="316" height="234"/>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Watch your video and movie library on your phone any time anywhere." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oJr-My-eSP">
+                                        <rect key="frame" x="0.0" y="426" width="316" height="43"/>
+                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="18"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="wth-uQ-ioB" firstAttribute="centerY" secondItem="Glf-cE-jZX" secondAttribute="centerY" constant="-30" id="DyG-tz-Exy"/>
+                            <constraint firstItem="feA-qE-Vdw" firstAttribute="height" secondItem="Glf-cE-jZX" secondAttribute="height" multiplier="0.4" id="J3V-6Z-Z2O"/>
+                            <constraint firstItem="wth-uQ-ioB" firstAttribute="leading" secondItem="Glf-cE-jZX" secondAttribute="leading" constant="20" id="czO-xQ-hji"/>
+                            <constraint firstAttribute="trailing" secondItem="wth-uQ-ioB" secondAttribute="trailing" constant="20" id="skf-fd-qNJ"/>
+                        </constraints>
+                    </view>
+                </subviews>
+            </view>
+            <constraints>
+                <constraint firstItem="Glf-cE-jZX" firstAttribute="top" secondItem="7y2-i2-0AN" secondAttribute="top" id="RFu-fX-KVh"/>
+                <constraint firstAttribute="bottom" secondItem="Glf-cE-jZX" secondAttribute="bottom" id="UCh-Yt-XDg"/>
+                <constraint firstAttribute="trailing" secondItem="Glf-cE-jZX" secondAttribute="trailing" id="uU9-uM-9fn"/>
+                <constraint firstItem="Glf-cE-jZX" firstAttribute="leading" secondItem="7y2-i2-0AN" secondAttribute="leading" id="uvz-7P-0ga"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="ns0-zI-EHh"/>
+            <size key="customSize" width="356" height="586"/>
+            <connections>
+                <outlet property="descriptionLabel" destination="oJr-My-eSP" id="s9w-WO-byw"/>
+                <outlet property="iconImageView" destination="feA-qE-Vdw" id="KRz-op-gCh"/>
+                <outlet property="titleLabel" destination="hkf-Ic-2XP" id="SvH-83-DYo"/>
+            </connections>
+            <point key="canvasLocation" x="169.56521739130437" y="109.82142857142857"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <image name="movies" width="1024" height="1024"/>
+    </resources>
+</document>

@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="WalkthroughViewController" customModule="AmahiAnywhere" customModuleProvider="target"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="amahiCell" id="pdC-CY-C8D" customClass="WalkthroughAmahiCollectionViewCell" customModule="AmahiAnywhere" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="511" height="892"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
+                <rect key="frame" x="0.0" y="0.0" width="511" height="892"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nsp-JX-Bfr">
+                        <rect key="frame" x="0.0" y="0.0" width="511" height="892"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0cg-oL-rHU">
+                                <rect key="frame" x="25" y="175" width="461" height="147"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Welcome to Amahi for iOS." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yY4-EP-5gm">
+                                        <rect key="frame" x="108.5" y="20" width="244" height="24"/>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="An iOS app that lets you access the files in your Amahi Home Server." lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wKB-Fs-fXd">
+                                        <rect key="frame" x="20" y="84" width="421" height="43"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                        <color key="textColor" red="0.86101696274286954" green="0.86954188316606629" blue="0.86954188316606629" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" red="0.25882352941176467" green="0.25882352941176467" blue="0.25882352941176467" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="wKB-Fs-fXd" secondAttribute="bottom" constant="20" id="3vq-Mr-64l"/>
+                                    <constraint firstItem="yY4-EP-5gm" firstAttribute="top" secondItem="0cg-oL-rHU" secondAttribute="top" constant="20" id="8Yv-Kl-OMG"/>
+                                    <constraint firstItem="wKB-Fs-fXd" firstAttribute="top" secondItem="yY4-EP-5gm" secondAttribute="bottom" constant="40" id="9Ox-ZV-x53"/>
+                                    <constraint firstItem="yY4-EP-5gm" firstAttribute="centerX" secondItem="0cg-oL-rHU" secondAttribute="centerX" id="U4f-Xx-6nx"/>
+                                    <constraint firstAttribute="trailing" secondItem="wKB-Fs-fXd" secondAttribute="trailing" constant="20" id="shI-6W-lSF"/>
+                                    <constraint firstItem="wKB-Fs-fXd" firstAttribute="leading" secondItem="0cg-oL-rHU" secondAttribute="leading" constant="20" id="zIs-Qp-ZH7"/>
+                                </constraints>
+                            </view>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Amahi Logo White Font.png" translatesAutoresizingMaskIntoConstraints="NO" id="7pr-cD-Cbh">
+                                <rect key="frame" x="155.5" y="75" width="200" height="60"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="ph2-0H-yXX"/>
+                                    <constraint firstAttribute="width" constant="200" id="pp8-0l-YnZ"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" red="0.13333333333333333" green="0.13333333333333333" blue="0.13333333333333333" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="7pr-cD-Cbh" firstAttribute="centerX" secondItem="nsp-JX-Bfr" secondAttribute="centerX" id="C5X-jG-6cW"/>
+                            <constraint firstAttribute="trailing" secondItem="0cg-oL-rHU" secondAttribute="trailing" constant="25" id="icU-PA-aUa"/>
+                            <constraint firstItem="0cg-oL-rHU" firstAttribute="top" secondItem="7pr-cD-Cbh" secondAttribute="bottom" constant="40" id="qwV-1V-7kt"/>
+                            <constraint firstItem="7pr-cD-Cbh" firstAttribute="top" secondItem="nsp-JX-Bfr" secondAttribute="top" constant="75" id="u3H-9M-HO7"/>
+                            <constraint firstItem="0cg-oL-rHU" firstAttribute="leading" secondItem="nsp-JX-Bfr" secondAttribute="leading" constant="25" id="und-h7-xJ9"/>
+                        </constraints>
+                    </view>
+                </subviews>
+            </view>
+            <constraints>
+                <constraint firstItem="nsp-JX-Bfr" firstAttribute="leading" secondItem="pdC-CY-C8D" secondAttribute="leading" id="2lI-YJ-pex"/>
+                <constraint firstAttribute="bottom" secondItem="nsp-JX-Bfr" secondAttribute="bottom" id="8gA-c2-MPb"/>
+                <constraint firstItem="nsp-JX-Bfr" firstAttribute="top" secondItem="pdC-CY-C8D" secondAttribute="top" id="lh2-Ez-DVh"/>
+                <constraint firstAttribute="trailing" secondItem="nsp-JX-Bfr" secondAttribute="trailing" id="r2m-Ok-93Y"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="tn0-yZ-7Gu"/>
+            <size key="customSize" width="511" height="892"/>
+            <connections>
+                <outlet property="greyView" destination="0cg-oL-rHU" id="our-vc-X11"/>
+            </connections>
+            <point key="canvasLocation" x="223.91304347826087" y="205.58035714285714"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <image name="Amahi Logo White Font.png" width="172.55999755859375" height="59"/>
+    </resources>
+</document>

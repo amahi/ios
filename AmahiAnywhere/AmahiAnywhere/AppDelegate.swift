@@ -23,13 +23,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         IQKeyboardManager.shared.enable = true
         
-        self.window? = UIWindow(frame: UIScreen.main.bounds)
+        //LocalStorage.shared.delete(key: "walkthrough")
+        
+        self.window = UIWindow(frame: UIScreen.main.bounds)
         let mainStoryboard: UIStoryboard = UIStoryboard(name: StoryBoardIdentifiers.main, bundle: nil)
         var initialViewController: UIViewController? = nil
         if LocalStorage.shared.contains(key: PersistenceIdentifiers.accessToken) {
             initialViewController = mainStoryboard.instantiateViewController(withIdentifier: "NavigationViewController")
         } else {
-            initialViewController = mainStoryboard.instantiateInitialViewController()
+            if LocalStorage.shared.contains(key: "walkthrough"){
+                // User already completed the onboarding
+                initialViewController = mainStoryboard.instantiateInitialViewController()
+            }else{
+                // User didn't complete the onboarding yet
+                initialViewController = mainStoryboard.instantiateViewController(withIdentifier: StoryBoardIdentifiers.walktrhoughViewController)
+            }
         }
         
         self.window?.rootViewController = initialViewController

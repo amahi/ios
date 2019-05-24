@@ -18,6 +18,7 @@ struct StoryBoardIdentifiers {
     static let videoPlayer =                       "VideoPlayer"
     static let loginViewController =               "LoginViewController"
     static let serverViewController =              "ServerTableViewController"
+    static let walktrhoughViewController =          "WalkthroughViewController"
 }
 
 struct CellIdentifiers {
