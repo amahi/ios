@@ -23,6 +23,9 @@ class WalkthroughViewController: BaseUIViewController {
         super.viewDidLoad()
         collectionView.delegate = self
         collectionView.dataSource = self
+        if #available(iOS 11.0, *) {
+            collectionView.contentInsetAdjustmentBehavior = .never
+        }
         collectionView.register(UINib(nibName: "WalkthroughCell", bundle: nil), forCellWithReuseIdentifier: "cell")
         collectionView.register(UINib(nibName: "WalkthroughAmahiCell", bundle: nil), forCellWithReuseIdentifier: "amahiCell")
         arrowButton.imageView?.contentMode = .scaleAspectFit
@@ -58,11 +61,7 @@ extension WalkthroughViewController: UICollectionViewDelegate, UICollectionViewD
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if indexPath.item == 0{
-            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "amahiCell", for: indexPath) as? WalkthroughAmahiCollectionViewCell else {
-                return UICollectionViewCell()
-            }
-            
-            return cell
+            return collectionView.dequeueReusableCell(withReuseIdentifier: "amahiCell", for: indexPath)
         }else{
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as? WalkthroughCollectionCell else {
                 return UICollectionViewCell()
@@ -73,11 +72,7 @@ extension WalkthroughViewController: UICollectionViewDelegate, UICollectionViewD
             return cell
         }
     }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return 0
-    }
-    
+        
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: collectionView.frame.width, height: collectionView.frame.height)
     }
@@ -90,6 +85,14 @@ extension WalkthroughViewController: UICollectionViewDelegate, UICollectionViewD
             collectionView.backgroundColor = UIColor(hex: "303E9F")
         }else{
             collectionView.backgroundColor = .clear
+        }
+    }
+    
+    override func willTransition(to newCollection: UITraitCollection, with coordinator: UIViewControllerTransitionCoordinator) {
+        collectionView.collectionViewLayout.invalidateLayout()
+        
+        DispatchQueue.main.async {
+            self.collectionView.scrollToItem(at: IndexPath(item: self.pageControl.currentPage, section: 0), at: .centeredHorizontally, animated: true)
         }
     }
 }

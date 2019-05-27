@@ -10,11 +10,11 @@
 		04BA8996211D56F400E7A868 /* AmahiLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04BA8995211D56F400E7A868 /* AmahiLogger.swift */; };
 		07A3AB2E5DFE0D2AD44B0F33 /* Pods_AmahiAnywhere.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F5293AC0952F87B50DCD644D /* Pods_AmahiAnywhere.framework */; };
 		0AA5E185203F36DD0010FD47 /* Amahi Logo White Font.png in Resources */ = {isa = PBXBuildFile; fileRef = 0AA5E184203F36DD0010FD47 /* Amahi Logo White Font.png */; };
-		3B1AE6FF22972ADF0068EBA3 /* WalkthroughAmahiCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B1AE6FE22972ADF0068EBA3 /* WalkthroughAmahiCollectionViewCell.swift */; };
 		3B24FE122296F4330044721D /* WalkthroughViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B24FE112296F4330044721D /* WalkthroughViewController.swift */; };
 		3B24FE162297086A0044721D /* WalkthroughAmahiCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3B24FE152297086A0044721D /* WalkthroughAmahiCell.xib */; };
 		3B24FE1822970B6B0044721D /* WalkthroughCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3B24FE1722970B6B0044721D /* WalkthroughCell.xib */; };
 		3B24FE1A22970B860044721D /* WalkthroughCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B24FE1922970B860044721D /* WalkthroughCollectionCell.swift */; };
+		3B84E87D2299587B00E37A74 /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B84E87C2299587B00E37A74 /* UIView.swift */; };
 		4605963F204E24DF004FA066 /* ServerPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4605963E204E24DF004FA066 /* ServerPresenter.swift */; };
 		46059643204E8B41004FA066 /* BaseUITableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46059642204E8B41004FA066 /* BaseUITableViewController.swift */; };
 		46059646204EE17D004FA066 /* SharesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46059644204EE17D004FA066 /* SharesTableViewController.swift */; };
@@ -94,11 +94,11 @@
 /* Begin PBXFileReference section */
 		04BA8995211D56F400E7A868 /* AmahiLogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmahiLogger.swift; sourceTree = "<group>"; };
 		0AA5E184203F36DD0010FD47 /* Amahi Logo White Font.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Amahi Logo White Font.png"; sourceTree = "<group>"; };
-		3B1AE6FE22972ADF0068EBA3 /* WalkthroughAmahiCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalkthroughAmahiCollectionViewCell.swift; sourceTree = "<group>"; };
 		3B24FE112296F4330044721D /* WalkthroughViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalkthroughViewController.swift; sourceTree = "<group>"; };
 		3B24FE152297086A0044721D /* WalkthroughAmahiCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WalkthroughAmahiCell.xib; sourceTree = "<group>"; };
 		3B24FE1722970B6B0044721D /* WalkthroughCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WalkthroughCell.xib; sourceTree = "<group>"; };
 		3B24FE1922970B860044721D /* WalkthroughCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalkthroughCollectionCell.swift; sourceTree = "<group>"; };
+		3B84E87C2299587B00E37A74 /* UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIView.swift; sourceTree = "<group>"; };
 		4605963E204E24DF004FA066 /* ServerPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerPresenter.swift; sourceTree = "<group>"; };
 		46059642204E8B41004FA066 /* BaseUITableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseUITableViewController.swift; sourceTree = "<group>"; };
 		46059644204EE17D004FA066 /* SharesTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharesTableViewController.swift; sourceTree = "<group>"; };
@@ -363,6 +363,7 @@
 				C8DEBFAC20BB1AEF00B09AED /* Alamofire.swift */,
 				C8DA5B3420D8740F00F5A527 /* String.swift */,
 				C84BBA5D20F37EF20030536F /* Notification.swift */,
+				3B84E87C2299587B00E37A74 /* UIView.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -433,7 +434,6 @@
 				C8DA5B2220D5E0D800F5A527 /* ServerFileTableViewCell.swift */,
 				C8DA5B2420D5E0FA00F5A527 /* OfflineFileTableViewCell.swift */,
 				3B24FE1922970B860044721D /* WalkthroughCollectionCell.swift */,
-				3B1AE6FE22972ADF0068EBA3 /* WalkthroughAmahiCollectionViewCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -649,7 +649,6 @@
 				C8DEBFAB20BAE1D300B09AED /* ConnectionModeManager.swift in Sources */,
 				C8ED025920B3E30300015846 /* URL.swift in Sources */,
 				C8DA5B1A20D5DC2200F5A527 /* DownloadService.swift in Sources */,
-				3B1AE6FF22972ADF0068EBA3 /* WalkthroughAmahiCollectionViewCell.swift in Sources */,
 				46098D04204FDF5500752EB6 /* ServerFile.swift in Sources */,
 				C8DA5B1E20D5E03600F5A527 /* FilesViewController+UITableViewDelegates.swift in Sources */,
 				C88E5A7620B66B46006518B6 /* Date.swift in Sources */,
@@ -697,6 +696,7 @@
 				46098D08204FFFBE00752EB6 /* ServerApi.swift in Sources */,
 				C8D86160209490230014D8AC /* WebViewController.swift in Sources */,
 				C83C63992038D5B30089B9D8 /* AuthResponses.swift in Sources */,
+				3B84E87D2299587B00E37A74 /* UIView.swift in Sources */,
 				ADAFF8DA22501F7A00287409 /* VideoThumbnailGenerator.swift in Sources */,
 				46098D0A2050114C00752EB6 /* Network.swift in Sources */,
 				C83C639F2039B16C0089B9D8 /* ServerViewController.swift in Sources */,

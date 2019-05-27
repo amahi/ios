@@ -24,6 +24,16 @@ class BaseUIViewController: UIViewController {
         
         NotificationCenter.default.removeObserver(self)
     }
+    
+    func hideKeyboardWhenTappedAround() {
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        tap.cancelsTouchesInView = true
+        view.addGestureRecognizer(tap)
+    }
+    
+    @objc func dismissKeyboard() {
+        view.endEditing(true)
+    }
 }
 
 extension BaseUIViewController: UITextFieldDelegate {
