@@ -28,8 +28,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.window = UIWindow(frame: UIScreen.main.bounds)
         let mainStoryboard: UIStoryboard = UIStoryboard(name: StoryBoardIdentifiers.main, bundle: nil)
         var initialViewController: UIViewController? = nil
+        
         if LocalStorage.shared.contains(key: PersistenceIdentifiers.accessToken) {
-            initialViewController = mainStoryboard.instantiateViewController(withIdentifier: "NavigationViewController")
+            // User logged in previously
+            initialViewController = mainStoryboard.instantiateViewController(withIdentifier: StoryBoardIdentifiers.tabBarController)
         } else {
             if LocalStorage.shared.contains(key: "walkthrough"){
                 // User already completed the onboarding

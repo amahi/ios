@@ -19,6 +19,7 @@ struct StoryBoardIdentifiers {
     static let loginViewController =               "LoginViewController"
     static let serverViewController =              "ServerTableViewController"
     static let walktrhoughViewController =          "WalkthroughViewController"
+    static let tabBarController =                   "UITabBarController"
 }
 
 struct CellIdentifiers {

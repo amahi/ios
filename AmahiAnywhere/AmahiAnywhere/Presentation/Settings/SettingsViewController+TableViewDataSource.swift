@@ -38,6 +38,9 @@ extension SettingsViewController {
             cell.textLabel?.text = settingItems[section][row]
             cell.textLabel?.textColor = UIColor.white
             cell.detailTextLabel?.textColor = UIColor.lightGray
+            let selectedBackgroundView = UIView()
+            selectedBackgroundView.backgroundColor = UIColor(hex: "1E2023")
+            cell.selectedBackgroundView = selectedBackgroundView
             
             if section == 1 && row == 0 {
                 let connectionMode = LocalStorage.shared.userConnectionPreference
@@ -71,6 +74,9 @@ extension SettingsViewController {
             cell = tableView.dequeueReusableCell(withIdentifier: CellIdentifiers.settingsCell, for: indexPath)
             cell.textLabel?.text = settingItems[section][row]
             cell.textLabel?.textColor = UIColor.white
+            let selectedBackgroundView = UIView()
+            selectedBackgroundView.backgroundColor = UIColor(hex: "1E2023")
+            cell.selectedBackgroundView = selectedBackgroundView
         }
         
         return cell

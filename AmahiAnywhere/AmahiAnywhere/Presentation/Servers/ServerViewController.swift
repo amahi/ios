@@ -23,19 +23,10 @@ class ServerViewController: BaseUITableViewController {
         self.refreshControl?.addTarget(self, action: #selector(handleRefresh), for: UIControl.Event.valueChanged)
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        showDownloadsIconIfOfflineFileExists()
-    }
-    
     @objc func handleRefresh(sender: UIRefreshControl) {
         presenter.fetchServers()
     }
 
-    @IBAction func settingButtonPressed(_ sender: Any) {
-        performSegue(withIdentifier: SegueIdentfiers.settings, sender: nil)
-    }
 }
 
 // Mark - TableView Delegates Implementations

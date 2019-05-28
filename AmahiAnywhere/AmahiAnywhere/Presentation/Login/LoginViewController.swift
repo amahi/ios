@@ -32,6 +32,10 @@ class LoginViewController: BaseUIViewController {
     override func viewWillAppear(_ animated: Bool) {
         usernameInputField.text = ""
         passwordInputField.text = ""
+        passwordInputField.isSecureTextEntry = true
+        showHideButton.setImage(UIImage(named: "passHidden"), for: .normal)
+        showHideButton.isHidden = true
+        
     }
     
     func setupPasswordFieldPadding(){
@@ -107,7 +111,7 @@ class LoginViewController: BaseUIViewController {
 extension LoginViewController: LoginView {
     
     func showHome() {
-        let serverVc = self.instantiateViewController(withIdentifier: "NavigationViewController", from: StoryBoardIdentifiers.main)
+        let serverVc = self.instantiateViewController (withIdentifier: StoryBoardIdentifiers.tabBarController, from: StoryBoardIdentifiers.main)
         self.present(serverVc, animated: true, completion: nil)
     }
     

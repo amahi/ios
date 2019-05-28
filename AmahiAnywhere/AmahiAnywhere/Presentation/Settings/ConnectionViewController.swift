@@ -7,9 +7,7 @@ class ConnectionViewController: BaseUITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let footer = UIView()
-        view.backgroundColor = UIColor.black
-        tableView.tableFooterView = footer
+        tableView.tableFooterView = UIView()
     }
     
     // MARK: - Table view data source
@@ -41,6 +39,10 @@ class ConnectionViewController: BaseUITableViewController {
         
         cell.textLabel?.text = connectionItem[indexPath.row].rawValue
         cell.textLabel?.textColor = UIColor.white
+        
+        let selectedBackgroundView = UIView()
+        selectedBackgroundView.backgroundColor = UIColor(hex: "1E2023")
+        cell.selectedBackgroundView = selectedBackgroundView
         
         if connectionItem[indexPath.row] == LocalStorage.shared.userConnectionPreference {
             cell.accessoryType = .checkmark
