@@ -17,7 +17,7 @@ struct StoryBoardIdentifiers {
     static let main =                              "Main"
     static let videoPlayer =                       "VideoPlayer"
     static let loginViewController =               "LoginViewController"
-    static let serverViewController =              "ServerTableViewController"
+    static let serverViewController =              "ServerViewController"
     static let walktrhoughViewController =          "WalkthroughViewController"
     static let tabBarController =                   "UITabBarController"
 }
@@ -27,4 +27,5 @@ struct CellIdentifiers {
     static let connectionCell =                     "connectionCell"
     static let settingsCell =                        "settingsCell"
     static let settingsCellWithDetails =           "settingsCellWithDetails"
+    static let serverCell =                         "serverCollectionViewCell"
 }

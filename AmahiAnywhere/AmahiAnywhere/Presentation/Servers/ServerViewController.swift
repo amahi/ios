@@ -8,79 +8,102 @@
 
 import UIKit
 
-class ServerViewController: BaseUITableViewController {
+class ServerViewController: BaseUIViewController {
     
     private var presenter: ServerPresenter!
-    @IBOutlet var serverTableView: UITableView!
-    
+    @IBOutlet var serversCollectionView: UICollectionView!
+    @IBOutlet var availableLabel: UILabel!
+    @IBOutlet var errorView: UIView!
     private var servers: [Server] = [Server]()
+    
+    let refreshControl: UIRefreshControl = {
+        let control = UIRefreshControl()
+        control.addTarget(self, action: #selector(handleRefresh), for: .valueChanged)
+        control.tintColor = .white
+        control.attributedTitle = NSAttributedString(string: "Pull To Refresh", attributes: [NSAttributedString.Key.foregroundColor: UIColor.white])
+        return control
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        serversCollectionView.delegate = self
+        serversCollectionView.dataSource = self
+        serversCollectionView.addSubview(refreshControl)
+        serversCollectionView.contentOffset = CGPoint(x: 0, y: -refreshControl.frame.size.height)
                 
         presenter = ServerPresenter(self)
         presenter.fetchServers()
-        self.refreshControl?.addTarget(self, action: #selector(handleRefresh), for: UIControl.Event.valueChanged)
     }
     
     @objc func handleRefresh(sender: UIRefreshControl) {
         presenter.fetchServers()
     }
+    
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        serversCollectionView.collectionViewLayout.invalidateLayout()
+    }
+    
+    func showErrorView(){
+        UIView.animate(withDuration: 0.7, delay: 0.0, options: .curveEaseIn, animations: {
+            self.errorView.alpha = 1.0
+        }) { (_) in
+            UIView.animate(withDuration: 1.0, delay: 2.0, options: .curveEaseOut, animations: {
+                self.errorView.alpha = 0.0
+            }, completion: nil)
+        }
+    }
+    
+    func hideErrorView(){
+        UIView.animate(withDuration: 0.5) {
+            self.errorView.alpha = 0.0
+        }
+        
+        self.errorView.isHidden = true
+    }
 
 }
 
-// Mark - TableView Delegates Implementations
-extension ServerViewController {
+// Mark - CollectionView Delegates Implementations
+extension ServerViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        return 2
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return servers.count
     }
     
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if section == 0 {
-            return self.servers.count
-        } else {
-            return 1
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CellIdentifiers.serverCell, for: indexPath) as? ServerCollectionViewCell else {
+            return UICollectionViewCell()
         }
-    }
-    
-    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        if section == 0 {
-            return StringLiterals.selectYourHDA
-        } else {
-            return StringLiterals.offline
-        }
-    }
-    
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell:UITableViewCell = tableView.dequeueReusableCell(withIdentifier: "ServerTableViewCell", for: indexPath)
-        if indexPath.section == 0 {
-            let server = self.servers[indexPath.row]
-            cell.textLabel?.text = server.name
-            cell.isUserInteractionEnabled = server.active
-            cell.textLabel?.isEnabled = server.active
-            cell.accessoryType = server.active ? .disclosureIndicator : .none
-        } else {
-            cell.textLabel?.text = StringLiterals.downloads
-            cell.accessoryType = .none
-        }
-        
+
+        let server = servers[indexPath.item]
+        cell.setupData(server: server)
         return cell
     }
     
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if indexPath.section == 0 {
-            ServerApi.initialize(server: servers[indexPath.row])
-            
-            let sharesVc = viewController(viewControllerClass: SharesTableViewController.self,
-                                          from: StoryBoardIdentifiers.main)
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        collectionView.deselectItem(at: indexPath, animated: true)
+        
+        let server = servers[indexPath.item]
+        if server.active{
+            ServerApi.initialize(server: servers[indexPath.item])
+            let sharesVc = viewController(viewControllerClass: SharesTableViewController.self, from: StoryBoardIdentifiers.main)
             navigationController?.pushViewController(sharesVc, animated: true)
-        } else {
-            let offlineFileVc = viewController(viewControllerClass: OfflineFilesTableViewController.self,
-                                          from: StoryBoardIdentifiers.main)
-            navigationController?.pushViewController(offlineFileVc, animated: true)
+        }else{
+            showErrorView()
         }
     }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let width = ((collectionView.frame.width-20-20) - 10) / 2
+        
+        if UIScreen.main.bounds.height > UIScreen.main.bounds.width{
+            return CGSize(width: width, height: collectionView.frame.height*0.30)
+        }else{
+            return CGSize(width: width, height: collectionView.frame.height*0.50)
+        }
+    }
+    
 }
 
 // Mark - Server view implementations
@@ -88,14 +111,20 @@ extension ServerViewController: ServerView {
     
     func updateRefreshing(isRefreshing: Bool) {
         if isRefreshing {
-            refreshControl?.beginRefreshing()
+            refreshControl.beginRefreshing()
         } else {
-            refreshControl?.endRefreshing()
+            refreshControl.endRefreshing()
         }
     }
     
     func updateServerList(_ activeServers: [Server]) {
         self.servers = activeServers
-        serverTableView.reloadData()
+        serversCollectionView.reloadData()
+        
+        var availableCounter = 0
+        servers.forEach { (server) in
+            availableCounter += server.active ? 1 : 0
+        }
+        availableLabel.text = "Available HDAs: \(availableCounter)"
     }
 }
