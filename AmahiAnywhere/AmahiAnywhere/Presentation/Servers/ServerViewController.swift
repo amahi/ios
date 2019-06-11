@@ -125,6 +125,10 @@ extension ServerViewController: ServerView {
         servers.forEach { (server) in
             availableCounter += server.active ? 1 : 0
         }
-        availableLabel.text = "Available HDAs: \(availableCounter)"
+        if availableCounter > 1{
+            availableLabel.text = "\(availableCounter) available HDAs"
+        }else{
+            availableLabel.text = "\(availableCounter) available HDA"
+        }
     }
 }

@@ -358,7 +358,9 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="uLf-mB-k5b"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Your HDAs" id="64g-bU-qq5"/>
+                    <navigationItem key="navigationItem" title="Your HDAs" id="64g-bU-qq5">
+                        <barButtonItem key="backBarButtonItem" title="HDAs" id="gDL-7M-YBN"/>
+                    </navigationItem>
                     <connections>
                         <outlet property="availableLabel" destination="atT-2S-a7r" id="bHu-FY-A71"/>
                         <outlet property="errorView" destination="odh-ji-ZnE" id="FOd-Op-nbu"/>
@@ -376,7 +378,7 @@
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="singleLineEtched" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="R6e-9l-T0n" userLabel="Shares Screen">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>
+                        <color key="backgroundColor" red="0.12156862745098039" green="0.12941176470588234" blue="0.14117647058823529" alpha="1" colorSpace="calibratedRGB"/>
                         <color key="separatorColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <color key="sectionIndexColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <color key="sectionIndexBackgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -398,7 +400,7 @@
                                         </label>
                                     </subviews>
                                 </tableViewCellContentView>
-                                <color key="backgroundColor" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <connections>
                                     <segue destination="UfF-4C-UHP" kind="show" id="ADI-TR-mRS"/>
                                 </connections>

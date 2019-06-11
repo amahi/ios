@@ -20,15 +20,10 @@ class SharesTableViewController: BaseUITableViewController {
         super.viewDidLoad()
         
         presenter = SharesPresenter(self)
+        self.refreshControl?.tintColor = .white
         self.refreshControl?.addTarget(self, action: #selector(handleRefresh), for: UIControl.Event.valueChanged)
         
         presenter.loadServerRoute()
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        showDownloadsIconIfOfflineFileExists()
     }
     
     override func updateNavigationBarBackgroundWhenLanTestFailed() {
@@ -54,7 +49,14 @@ class SharesTableViewController: BaseUITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell:UITableViewCell = tableView.dequeueReusableCell(withIdentifier: "SharesTableViewCell", for: indexPath)
         cell.textLabel?.text = self.shares[indexPath.row].name
+        let bgView = UIView()
+        bgView.backgroundColor = UIColor(hex: "1E2023")
+        cell.selectedBackgroundView = bgView
         return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
+        return "\(shares.count) Shares"
     }
     
     // MARK: - Navigation
