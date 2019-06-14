@@ -14,7 +14,7 @@ class OfflineFilesTableViewController : CoreDataTableViewController {
     
     internal var fileSort = OfflineFileSort.dateAdded
     internal var docController: UIDocumentInteractionController?
-    @objc internal var player: AVQueuePlayer!
+    @objc internal var player: AVPlayer!
     
     internal var presenter: OfflineFilesPresenter!
 

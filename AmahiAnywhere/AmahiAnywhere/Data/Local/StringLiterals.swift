@@ -32,7 +32,6 @@ struct StringLiterals {
     static let stopDownload =                   "Stop Download"
     static let chooseOne =                      "Choose One"
     static let open =                           "Open"
-
     static let currentSize =                    "Current size: %@"
     static let autoConnectLAN =                 "Autodetect (currently LAN)"
     static let autoConnectRemote =              "Autodetect (currently Remote)"

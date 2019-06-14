@@ -268,3 +268,4 @@ extension ProgressLoadingIndicators where Self: UIViewController {
 
 extension BaseUIViewController: ProgressLoadingIndicators {}
 extension BaseUITableViewController: ProgressLoadingIndicators {}
+

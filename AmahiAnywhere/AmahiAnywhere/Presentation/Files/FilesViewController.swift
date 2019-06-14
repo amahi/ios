@@ -35,7 +35,7 @@ class FilesViewController: BaseUIViewController {
     internal var progressView: UIProgressView?
     internal var docController: UIDocumentInteractionController?
     
-    @objc internal var player: AVQueuePlayer!
+    @objc internal var player: AVPlayer!
     
     internal var isAlertShowing = false
     internal var presenter: FilesPresenter!

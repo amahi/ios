@@ -13,7 +13,6 @@
 //
 //  Copyright © 2018 Amahi. All rights reserved.
 //
-
 import Foundation
 
 struct ApiConfig {
@@ -37,4 +36,3 @@ struct ApiConfig {
         return parameters
     }
 }
-

@@ -30,23 +30,18 @@ extension OfflineFilesTableViewController : OfflineFilesView {
         self.present(videoPlayerVc)
     }
     
-    func playAudio(_ items: [AVPlayerItem], startIndex: Int) {
+    func playAudio(_ items: [AVPlayerItem], startIndex: Int, currentIndex: Int,_ URLs: [URL]) {
         
-        let avPlayerVC = AVPlayerViewController()
-        player = AVQueuePlayer(items: items)
-        player.actionAtItemEnd = .advance
-        avPlayerVC.player = player
-        
-        for item in items {
-            NotificationCenter.default.addObserver(self,
-                                                   selector: #selector(FilesViewController.nextAudio(notification:)),
-                                                   name: .AVPlayerItemDidPlayToEndTime, object: item)
-        }
-        
-        present(avPlayerVC, animated: true) {
-            self.player.play()
-        }
+        player = AVPlayer.init(playerItem: items[currentIndex])
+        let audioPlayerVc = self.viewController(viewControllerClass: AudioPlayerViewController.self,
+                                                from: StoryBoardIdentifiers.videoPlayer)
+        audioPlayerVc.player = self.player
+        audioPlayerVc.playerItems = items
+        audioPlayerVc.itemURLs = URLs
+        player.play()
+        self.present(audioPlayerVc)
     }
+    
     
     func shareFile(at url: URL, from sender : UIView? ) {
         let linkToShare = [url]

@@ -27,7 +27,7 @@ class VideoPlayerViewController: UIViewController {
     @IBOutlet private weak var timeSlider: UISlider!
     @IBOutlet private weak var volumeView: UIView!
     @IBOutlet private weak var volumeLabel: UILabel!
-    
+    @IBOutlet private weak var moreButton: UIButton!
     private var doubleTapGesture: UITapGestureRecognizer!
     private var tapGesture: UITapGestureRecognizer!
     
@@ -38,6 +38,8 @@ class VideoPlayerViewController: UIViewController {
     
     private var hasMediaFileParseFinished = false
     private var hasPlayStarted = false
+    
+    let videoPlayerSettings = VideoPlayerSettings()
     
     fileprivate static let IntervalForFastRewindAndFastForward: Int32 = 15
     
@@ -238,14 +240,17 @@ class VideoPlayerViewController: UIViewController {
         if !videoControlsView.isHidden {
             videoControlsView.alpha = 1.0
             doneButton.alpha = 1.0
+            moreButton.alpha = 1.0
             
             UIView.animate(withDuration: 0.5, delay: 0.0, options: [],
                            animations: {
                             self.videoControlsView.alpha = 0.0
                             self.doneButton.alpha = 0.0
+                            self.moreButton.alpha = 0.0
             }) { (completed) in
                 self.videoControlsView.isHidden = true
                 self.doneButton.isHidden = true
+                self.moreButton.isHidden = true
             }
         }
     }
@@ -267,18 +272,24 @@ class VideoPlayerViewController: UIViewController {
         if !videoControlsView.isHidden {
             videoControlsView.isHidden = true
             doneButton.isHidden = true
+            moreButton.isHidden = true
+            moreButton.isHidden = true
             videoControlsView.alpha = 0
             doneButton.alpha = 0
+            moreButton.alpha = 0
             return
         }
         
         videoControlsView.layer.removeAllAnimations()
         doneButton.layer.removeAllAnimations()
+        moreButton.layer.removeAllAnimations()
         
         videoControlsView.isHidden = false
         doneButton.isHidden = false
+        moreButton.isHidden = false
         videoControlsView.alpha = 1.0
         doneButton.alpha = 1.0
+        moreButton.alpha = 1.0
         
         resetTimeAfterStateChanged()
     }
@@ -315,6 +326,19 @@ class VideoPlayerViewController: UIViewController {
                        animations: {
                         imageView.alpha = 0.0
         }, completion: nil)
+    }
+    
+    @IBAction private func moreButtonPressed(_ sender: Any) {
+        moreButtonFunction()
+    }
+    
+    func moreButtonFunction(){
+        if UIDevice.current.orientation.isLandscape {
+            AppUtility.lockOrientation(.landscape)
+      } else {
+            AppUtility.lockOrientation(.portrait)
+      }
+      videoPlayerSettings.setupVideoScreen()
     }
     
     @IBAction private func userClickDone(_ sender: Any) {

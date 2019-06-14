@@ -64,54 +64,16 @@ extension FilesViewController: FilesView {
         self.present(videoPlayerVc)
     }
     
-    func playAudio(_ items: [AVPlayerItem], startIndex: Int) {
+    func playAudio(_ items: [AVPlayerItem], startIndex: Int, currentIndex: Int,_ URLs: [URL]) {
         
-        let avPlayerVC = AVPlayerViewController()
-        player = AVQueuePlayer(items: items)
-        player.actionAtItemEnd = .advance
-        avPlayerVC.player = player
-        
-        for item in items {
-            NotificationCenter.default.addObserver(self,
-                                                   selector: #selector(FilesViewController.nextAudio(notification:)),
-                                                   name: .AVPlayerItemDidPlayToEndTime, object: item)
-        }
-        
-        present(avPlayerVC, animated: true) {
-            self.player.play()
-        }
-    }
-    
-    func setNowPlayingInfo() {
-        // Get Now Playing information and set it appropriately
-        let nowPlayingInfoCenter = MPNowPlayingInfoCenter.default()
-        var nowPlayingInfo = nowPlayingInfoCenter.nowPlayingInfo ?? [String: Any]()
-        
-        let title = "title"
-        let album = "album"
-        let artworkData = Data()
-        let image = UIImage(data: artworkData) ?? UIImage()
-        let artwork = MPMediaItemArtwork(boundsSize: image.size, requestHandler: {  (_) -> UIImage in
-            return image
-        })
-        
-        nowPlayingInfo[MPMediaItemPropertyTitle] = title
-        nowPlayingInfo[MPMediaItemPropertyAlbumTitle] = album
-        nowPlayingInfo[MPMediaItemPropertyArtwork] = artwork
-        
-        nowPlayingInfoCenter.nowPlayingInfo = nowPlayingInfo
-    }
-    
-    @objc func nextAudio(notification: Notification) {
-        AmahiLogger.log("nextAudio was called")
-        guard player != nil else { return }
-        AmahiLogger.log("AVPlayerItemDidPlayToEndTime notif info  \(notification.userInfo)")
-        //        if let currentItem = player.currentItem {
-        if let currentItem = notification.userInfo!["object"] as? AVPlayerItem {
-            currentItem.seek(to: CMTime.zero)
-            self.player.advanceToNextItem()
-            self.player.insert(currentItem, after: nil)
-        }
+        player = AVPlayer.init(playerItem: items[currentIndex])
+        let audioPlayerVc = self.viewController(viewControllerClass: AudioPlayerViewController.self,
+                                                from: StoryBoardIdentifiers.videoPlayer)
+        audioPlayerVc.player = self.player
+        audioPlayerVc.playerItems = items
+        audioPlayerVc.itemURLs = URLs
+        player.play()
+        self.present(audioPlayerVc)
     }
     
     override class func keyPathsForValuesAffectingValue(forKey key: String) -> Set<String> {
@@ -142,9 +104,6 @@ extension FilesViewController: FilesView {
                     guard currentItem.currentTime() == currentItem.duration else { return }
                     AmahiLogger.log("ENTERED LAST BLOCK")
                     currentItem.seek(to: CMTime.zero)
-                    self.player.advanceToNextItem()
-                    self.player.insert(currentItem, after: nil)
-                    
                     self.player.play()
                 }
             }
