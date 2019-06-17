@@ -35,7 +35,7 @@ class ServerFileTableViewCell: UITableViewCell {
             return
         }
 
-        let type = Mimes.shared.match(serverFile.mime_type!)
+        let type = serverFile.mimeType
         
         guard let url = ServerApi.shared!.getFileUri(serverFile) else {
             AmahiLogger.log("Invalid file URL, thumbnail generation failed")
@@ -44,11 +44,11 @@ class ServerFileTableViewCell: UITableViewCell {
         
         switch type {
             
-        case MimeType.image:
+        case .image:
             thumbnailImageView.sd_setImage(with: url, placeholderImage: UIImage(named: "image"), options: .refreshCached)
             break
             
-        case MimeType.video:
+        case .video:
 
             if let image = VideoThumbnailGenerator.imageFromMemory(for: url) {
                 thumbnailImageView.image = image
@@ -64,7 +64,7 @@ class ServerFileTableViewCell: UITableViewCell {
             }
             break
             
-        case MimeType.audio:
+        case .audio:
             
             if let image = AudioThumbnailGenerator.imageFromMemory(for: url) {
                 thumbnailImageView.image = image
@@ -80,7 +80,7 @@ class ServerFileTableViewCell: UITableViewCell {
             }
             break
             
-        case MimeType.presentation, MimeType.document, MimeType.spreadsheet:
+        case .presentation, .document, .spreadsheet:
 
             if let image = PDFThumbnailGenerator.imageFromMemory(for: url) {
                 thumbnailImageView.image = image

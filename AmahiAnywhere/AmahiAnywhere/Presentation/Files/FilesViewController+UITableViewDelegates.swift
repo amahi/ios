@@ -27,7 +27,7 @@ extension FilesViewController : UITableViewDelegate, UITableViewDataSource {
         }
         
         let serverFile = filteredFiles[indexPath.row]
-        if serverFile.isDirectory() {
+        if serverFile.isDirectory {
             let cell = tableView.dequeueReusableCell(withIdentifier: "ServerDirectoryTableViewCell", for: indexPath)
             cell.textLabel?.text = serverFile.name
             return cell
@@ -74,9 +74,6 @@ extension FilesViewController : UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         let file = self.filteredFiles[indexPath.row]
-        if file.isDirectory() {
-            return false
-        }
-        return true
+        return !file.isDirectory
     }
 }

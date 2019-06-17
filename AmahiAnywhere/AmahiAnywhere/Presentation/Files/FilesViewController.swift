@@ -72,9 +72,7 @@ class FilesViewController: BaseUIViewController {
             
             let file = self.filteredFiles[indexPath.row]
             
-            if file.isDirectory() {
-                return
-            }
+            if file.isDirectory { return }
             
             let download = self.creatAlertAction(StringLiterals.download, style: .default) { (action) in
                 let file = self.filteredFiles[indexPath.row]

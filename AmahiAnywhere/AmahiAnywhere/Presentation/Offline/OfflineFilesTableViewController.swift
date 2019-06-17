@@ -75,7 +75,7 @@ class OfflineFilesTableViewController : CoreDataTableViewController {
             
             let state = offlineFile.stateEnum
             if state == .downloaded {
-                if Mimes.shared.match(offlineFile.mime!) != .sharedFile {
+                if offlineFile.mimeType != .sharedFile {
                     actions.append(open)
                 }
                 actions.append(delete)

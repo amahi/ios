@@ -51,15 +51,15 @@ class OfflineFileTableViewCell: UITableViewCell {
         
         let url = fileManager.localFilePathInDownloads(for: offlineFile)!
         
-        let type = Mimes.shared.match(offlineFile.mime!)
+        let type = offlineFile.mimeType
         
         switch type {
             
-        case MimeType.image:
+        case .image:
             thumbnailImageView.sd_setImage(with: url, placeholderImage: UIImage(named: "image"), options: .refreshCached)
             break
             
-        case MimeType.video:
+        case .video:
             
             if let image = VideoThumbnailGenerator.imageFromMemory(for: url) {
                 thumbnailImageView.image = image
@@ -75,7 +75,7 @@ class OfflineFileTableViewCell: UITableViewCell {
             }
             break
             
-        case MimeType.audio:
+        case .audio:
             
             if let image = AudioThumbnailGenerator.imageFromMemory(for: url) {
                 thumbnailImageView.image = image
@@ -91,7 +91,7 @@ class OfflineFileTableViewCell: UITableViewCell {
             }
             break
             
-        case MimeType.presentation, MimeType.document, MimeType.spreadsheet:
+        case .presentation, .document, .spreadsheet:
             
             if let image = PDFThumbnailGenerator.imageFromMemory(for: url) {
                 thumbnailImageView.image = image

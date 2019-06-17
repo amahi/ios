@@ -25,13 +25,14 @@
 		46098D04204FDF5500752EB6 /* ServerFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46098D03204FDF5500752EB6 /* ServerFile.swift */; };
 		46098D08204FFFBE00752EB6 /* ServerApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46098D07204FFFBE00752EB6 /* ServerApi.swift */; };
 		46098D0A2050114C00752EB6 /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46098D092050114C00752EB6 /* Network.swift */; };
-		4612851E2051DB770061EC21 /* Mimes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4612851D2051DB770061EC21 /* Mimes.swift */; };
 		4665718120507847000E0D45 /* FilesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4665718020507847000E0D45 /* FilesViewController.swift */; };
 		46657183205085FC000E0D45 /* FilesPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46657182205085FC000E0D45 /* FilesPresenter.swift */; };
 		46CB896B204FB0FC0031151F /* SharesPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46CB896A204FB0FC0031151F /* SharesPresenter.swift */; };
 		46F87397204CC69500F1AF37 /* Server.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46F87396204CC69500F1AF37 /* Server.swift */; };
 		80F3FDC7206C0D4D0061CD51 /* ConnectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80F3FDC6206C0D4D0061CD51 /* ConnectionViewController.swift */; };
 		80F60700206BE1530098BC60 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80F606FF206BE1530098BC60 /* SettingsViewController.swift */; };
+		8A0A88F8227CE39C00A1360C /* MimeType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4612851D2051DB770061EC21 /* MimeType.swift */; };
+		8A67FC2B22666F81005A5038 /* OfflineFile+MimeType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A67FC2A22666F81005A5038 /* OfflineFile+MimeType.swift */; };
 		AD8F2FDB226E9331009C8C4B /* CoreDataStack+DropDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD8F2FD9226E9331009C8C4B /* CoreDataStack+DropDatabase.swift */; };
 		AD8F2FDC226E9331009C8C4B /* CoreDataStack+AutoSaving.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD8F2FDA226E9331009C8C4B /* CoreDataStack+AutoSaving.swift */; };
 		AD8F2FE0226E9351009C8C4B /* SettingsViewController+TableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD8F2FDD226E9351009C8C4B /* SettingsViewController+TableViewDataSource.swift */; };
@@ -113,7 +114,7 @@
 		46098D03204FDF5500752EB6 /* ServerFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerFile.swift; sourceTree = "<group>"; };
 		46098D07204FFFBE00752EB6 /* ServerApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerApi.swift; sourceTree = "<group>"; };
 		46098D092050114C00752EB6 /* Network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
-		4612851D2051DB770061EC21 /* Mimes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mimes.swift; sourceTree = "<group>"; };
+		4612851D2051DB770061EC21 /* MimeType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MimeType.swift; sourceTree = "<group>"; };
 		4665718020507847000E0D45 /* FilesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilesViewController.swift; sourceTree = "<group>"; };
 		46657182205085FC000E0D45 /* FilesPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilesPresenter.swift; sourceTree = "<group>"; };
 		46CB896A204FB0FC0031151F /* SharesPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharesPresenter.swift; sourceTree = "<group>"; };
@@ -122,6 +123,7 @@
 		665E1C7EF1F0DEBF3A9809B0 /* Pods-AmahiAnywhere.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AmahiAnywhere.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AmahiAnywhere/Pods-AmahiAnywhere.debug.xcconfig"; sourceTree = "<group>"; };
 		80F3FDC6206C0D4D0061CD51 /* ConnectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectionViewController.swift; sourceTree = "<group>"; };
 		80F606FF206BE1530098BC60 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		8A67FC2A22666F81005A5038 /* OfflineFile+MimeType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OfflineFile+MimeType.swift"; sourceTree = "<group>"; };
 		AD8F2FD9226E9331009C8C4B /* CoreDataStack+DropDatabase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CoreDataStack+DropDatabase.swift"; sourceTree = "<group>"; };
 		AD8F2FDA226E9331009C8C4B /* CoreDataStack+AutoSaving.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CoreDataStack+AutoSaving.swift"; sourceTree = "<group>"; };
 		AD8F2FDD226E9351009C8C4B /* SettingsViewController+TableViewDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SettingsViewController+TableViewDataSource.swift"; sourceTree = "<group>"; };
@@ -245,7 +247,7 @@
 			children = (
 				C83C637B2038D5150089B9D8 /* StringIdentifiers.swift */,
 				46098D092050114C00752EB6 /* Network.swift */,
-				4612851D2051DB770061EC21 /* Mimes.swift */,
+				4612851D2051DB770061EC21 /* MimeType.swift */,
 				04BA8995211D56F400E7A868 /* AmahiLogger.swift */,
 				ADAFF8D5224F6DB700287409 /* ThumbnailGenerator.swift */,
 				ADAFF8D722501F5B00287409 /* PDFThumbnailGenerator.swift */,
@@ -356,6 +358,7 @@
 				C86CA92720D3D26300C8EDCA /* OfflineFile+CoreData.swift */,
 				C86CA92820D3D26300C8EDCA /* OfflineFile+CoreDataProperties.swift */,
 				C80F3F4920D47422000901B4 /* OfflineFileState.swift */,
+				8A67FC2A22666F81005A5038 /* OfflineFile+MimeType.swift */,
 				C8DA5B1720D5D7EA00F5A527 /* Download.swift */,
 			);
 			path = Models;
@@ -644,7 +647,6 @@
 				46098D04204FDF5500752EB6 /* ServerFile.swift in Sources */,
 				C8DA5B1E20D5E03600F5A527 /* FilesViewController+UITableViewDelegates.swift in Sources */,
 				C88E5A7620B66B46006518B6 /* Date.swift in Sources */,
-				4612851E2051DB770061EC21 /* Mimes.swift in Sources */,
 				ADAFF8D6224F6DB700287409 /* ThumbnailGenerator.swift in Sources */,
 				46059643204E8B41004FA066 /* BaseUITableViewController.swift in Sources */,
 				C88E5A7120B543B2006518B6 /* FileManager.swift in Sources */,
@@ -674,6 +676,7 @@
 				C878C97C205DF4060039C23A /* UIColor.swift in Sources */,
 				C86CA91520D3C65400C8EDCA /* CoreDataStack.swift in Sources */,
 				C8DA5B1820D5D7EA00F5A527 /* Download.swift in Sources */,
+				8A67FC2B22666F81005A5038 /* OfflineFile+MimeType.swift in Sources */,
 				80F3FDC7206C0D4D0061CD51 /* ConnectionViewController.swift in Sources */,
 				C83C638F2038D5B30089B9D8 /* LocalStorage.swift in Sources */,
 				C83C637420386DD90089B9D8 /* BaseUIViewController+BaseView.swift in Sources */,
@@ -682,6 +685,7 @@
 				3B24FE122296F4330044721D /* WalkthroughViewController.swift in Sources */,
 				ADAFF8DC2250209700287409 /* AudioThumbnailGenerator.swift in Sources */,
 				46F87397204CC69500F1AF37 /* Server.swift in Sources */,
+				8A0A88F8227CE39C00A1360C /* MimeType.swift in Sources */,
 				C86CA92A20D3D26300C8EDCA /* OfflineFile+CoreDataProperties.swift in Sources */,
 				C8DA5B2020D5E09000F5A527 /* FilesViewController+UISearchBarDelegate.swift in Sources */,
 				04BA8996211D56F400E7A868 /* AmahiLogger.swift in Sources */,

@@ -63,12 +63,18 @@ public class ServerFile: EVNetworkingObject {
         return Int(mtime!.timeIntervalSince1970)
     }
     
-    public func isDirectory() -> Bool {
-        return Mimes.shared.match(mime_type!) == MimeType.directory
+    var isDirectory: Bool {
+        return mimeType == .directory
     }
 }
 
 extension ServerFile {
     static let nameSorter: (ServerFile, ServerFile) -> Bool = { $0.name!.localizedCaseInsensitiveCompare($1.name!) == ComparisonResult.orderedAscending }
     static let lastModifiedSorter: (ServerFile, ServerFile) -> Bool = { $0.mtime! > $1.mtime! }
+}
+
+extension ServerFile {
+    var mimeType: MimeType {
+        return MimeType(mime_type)
+    }
 }
