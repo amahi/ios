@@ -45,13 +45,18 @@ class VideoMenuCellSettings: UICollectionViewCell {
         setupViews()
     }
     
+    func removeViews() {
+        optionName.removeFromSuperview()
+        iconImageView.removeFromSuperview()
+    }
+    
     func setupViews() {
         addSubview(optionName)
         addSubview(iconImageView)
         
         addConstraintsWithFormat(format: "H:|-8-[v0(20)]-15-[v1]|", views: iconImageView,optionName)
         addConstraintsWithFormat(format: "V:|[v0]|", views: optionName)
-          addConstraintsWithFormat(format: "V:[v0(20)]", views: iconImageView)
+        addConstraintsWithFormat(format: "V:[v0(20)]", views: iconImageView)
         addConstraint(NSLayoutConstraint(item: iconImageView, attribute: .centerY, relatedBy: .equal, toItem: self, attribute: .centerY, multiplier: 1, constant: 0))
         
     }

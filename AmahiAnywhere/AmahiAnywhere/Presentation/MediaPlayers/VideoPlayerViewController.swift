@@ -33,8 +33,12 @@ class VideoPlayerViewController: UIViewController {
     
     // Set the media url from the presenting Viewcontroller
     private var idleTimer: Timer?
-    private var mediaPlayer: VLCMediaPlayer?
+    public var mediaPlayer: VLCMediaPlayer?
     public var mediaURL: URL!
+    public var captionsAvailable: [String] = []
+    public var captionIndex : [Int] = []
+    public var tracksAvailable: [String] = []
+    public var trackIndex: [Int] = []
     
     private var hasMediaFileParseFinished = false
     private var hasPlayStarted = false
@@ -149,6 +153,7 @@ class VideoPlayerViewController: UIViewController {
         if canBecomeFirstResponder {
             becomeFirstResponder()
         }
+        VideoPlayerSettings.currentSubtitleIndex = 0
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -329,6 +334,8 @@ class VideoPlayerViewController: UIViewController {
     }
     
     @IBAction private func moreButtonPressed(_ sender: Any) {
+        setUpCaptionsArray()
+        setUpTracksArray()
         moreButtonFunction()
     }
     
@@ -338,10 +345,71 @@ class VideoPlayerViewController: UIViewController {
       } else {
             AppUtility.lockOrientation(.portrait)
       }
+      videoPlayerSettings.addCaptionsInArray(array: captionsAvailable)
+      videoPlayerSettings.addCaptionIndexes(array: captionIndex)
+      videoPlayerSettings.addTracksInArray(array: tracksAvailable)
+      videoPlayerSettings.addTrackIndexes(array: trackIndex)
+      videoPlayerSettings.videoPlayer = self.mediaPlayer
       videoPlayerSettings.setupVideoScreen()
     }
     
+    func setUpCaptionsArray() {
+        let indexArray = mediaPlayer?.videoSubTitlesIndexes
+        let tempArray = mediaPlayer?.videoSubTitlesNames
+        var captions: [String] = []
+        var indexes: [Int] = []
+        var index = 0
+        
+        for name in tempArray! {
+            let caption = "\(name)"
+            if caption == "Disable" {
+                index = index + 1
+                continue
+            }
+            else {
+                let captionAvailable = caption.getDataInParenthesis(from: "[", to: "]")
+                if captionAvailable == nil {
+                    index = index + 1
+                    continue
+                }
+                else {
+                    captions.append(captionAvailable!)
+                    indexes.append(indexArray![index] as! Int)
+                    index = index + 1
+                }
+            }
+        }
+        captionsAvailable = captions
+        captionIndex = indexes
+    }
+    
+    func setUpTracksArray() {
+        VideoPlayerSettings.currentTrackIndex = mediaPlayer!.currentAudioTrackIndex
+        let indexArray = mediaPlayer?.audioTrackIndexes
+        let tempArray = mediaPlayer?.audioTrackNames
+        var tracks: [String] = []
+        var indexes: [Int] = []
+        var index = 0
+        
+        for name in tempArray! {
+            let track = "\(name)"
+            if track == "Disable" {
+                index = index + 1
+                continue
+            }
+            else {
+                let trackAvailable = track
+                tracks.append(trackAvailable)
+                indexes.append(indexArray![index] as! Int)
+                index = index + 1
+            }
+        }
+        tracksAvailable = tracks
+        trackIndex = indexes
+    }
+    
     @IBAction private func userClickDone(_ sender: Any) {
+        videoPlayerSettings.dismissDarkView()
         mediaPlayer?.stop()
         dismiss(animated: true, completion: nil)
     }
@@ -415,6 +483,7 @@ extension VideoPlayerViewController: VLCMediaPlayerDelegate {
         
         if !hasPlayStarted {
             hasPlayStarted = true
+            mediaPlayer?.currentVideoSubTitleIndex = -1
             resetScreenIdleTimer()
         }
     }
@@ -425,6 +494,7 @@ extension VideoPlayerViewController: VLCMediaPlayerDelegate {
         if mediaPlayer?.state == VLCMediaPlayerState.ended ||
             mediaPlayer?.state == VLCMediaPlayerState.stopped {
             keepScreenOn(enabled: false)
+            videoPlayerSettings.dismissDarkView()
             dismiss(animated: true, completion: nil)
         } else if mediaPlayer?.state == VLCMediaPlayerState.buffering ||
             mediaPlayer?.state == VLCMediaPlayerState.paused {
@@ -462,5 +532,15 @@ extension VideoPlayerViewController : UIGestureRecognizerDelegate {
             return true
         }
         return false
+    }
+}
+
+extension String {
+    func getDataInParenthesis(from: String, to: String) -> String? {
+        return (range(of: from)?.upperBound).flatMap { substringFrom in
+            (range(of: to, range: substringFrom..<endIndex)?.lowerBound).map { substringTo in
+                substring(with: substringFrom..<substringTo)
+            }
+        }
     }
 }
