@@ -1,0 +1,35 @@
+//
+//  FilesGridCollectionCell.swift
+//  AmahiAnywhere
+//
+//  Created by Marton Zeisler on 2019. 06. 17..
+//  Copyright © 2019. Amahi. All rights reserved.
+//
+import UIKit
+
+class FilesGridCollectionCell: FilesBaseCollectionCell {
+    
+    @IBOutlet var iconImageView: UIImageView!
+    @IBOutlet var nameLabel: UILabel!
+    @IBOutlet var moreButton: UIButton!
+    
+    func setupData(serverFile: ServerFile){
+        nameLabel.text = serverFile.name
+        
+        if serverFile.isDirectory{
+            showDirectory()
+        }else{
+            showFile()
+            setupArtWork(serverFile: serverFile, iconImageView: iconImageView)
+        }
+    }
+    
+    func showDirectory(){
+        moreButton.isHidden = true
+        iconImageView.image = UIImage(named: "folderIcon")
+    }
+    
+    func showFile(){
+        moreButton.isHidden = false
+    }
+}

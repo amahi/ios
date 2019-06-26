@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -14,6 +14,16 @@
 		3B24FE162297086A0044721D /* WalkthroughAmahiCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3B24FE152297086A0044721D /* WalkthroughAmahiCell.xib */; };
 		3B24FE1822970B6B0044721D /* WalkthroughCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3B24FE1722970B6B0044721D /* WalkthroughCell.xib */; };
 		3B24FE1A22970B860044721D /* WalkthroughCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B24FE1922970B860044721D /* WalkthroughCollectionCell.swift */; };
+		3B33324E22BAA17C00BC61EB /* FilteredServerFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B33324D22BAA17C00BC61EB /* FilteredServerFile.swift */; };
+		3B33325022BAA26600BC61EB /* FilesGridCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B33324F22BAA26600BC61EB /* FilesGridCollectionCell.swift */; };
+		3B33325222BAA27E00BC61EB /* FilesListCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B33325122BAA27E00BC61EB /* FilesListCollectionViewCell.swift */; };
+		3B33325422BAA29700BC61EB /* FilesCollectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B33325322BAA29700BC61EB /* FilesCollectionHeaderView.swift */; };
+		3B33325622BAA2AF00BC61EB /* FilesCollectionFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B33325522BAA2AF00BC61EB /* FilesCollectionFooterView.swift */; };
+		3B33325822BAA3C200BC61EB /* SortView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B33325722BAA3C200BC61EB /* SortView.swift */; };
+		3B33325A22BAA40B00BC61EB /* FilesViewController+UICollectionViewDelegates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B33325922BAA40B00BC61EB /* FilesViewController+UICollectionViewDelegates.swift */; };
+		3B33325C22BAA4BA00BC61EB /* FilesViewController+Sorting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B33325B22BAA4BA00BC61EB /* FilesViewController+Sorting.swift */; };
+		3B33325E22BAB05C00BC61EB /* FilesBaseCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B33325D22BAB05C00BC61EB /* FilesBaseCollectionViewCell.swift */; };
+		3B33326022BAB2A800BC61EB /* SortViewTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B33325F22BAB2A800BC61EB /* SortViewTableViewCell.swift */; };
 		3B4DB99722A0431100AF287B /* ServerCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B4DB99622A0431100AF287B /* ServerCollectionViewCell.swift */; };
 		3B84E87D2299587B00E37A74 /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B84E87C2299587B00E37A74 /* UIView.swift */; };
 		4605963F204E24DF004FA066 /* ServerPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4605963E204E24DF004FA066 /* ServerPresenter.swift */; };
@@ -72,9 +82,7 @@
 		C8DA5B1820D5D7EA00F5A527 /* Download.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8DA5B1720D5D7EA00F5A527 /* Download.swift */; };
 		C8DA5B1A20D5DC2200F5A527 /* DownloadService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8DA5B1920D5DC2200F5A527 /* DownloadService.swift */; };
 		C8DA5B1C20D5DEC200F5A527 /* FilesViewController+FilesViewDelegates.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8DA5B1B20D5DEC200F5A527 /* FilesViewController+FilesViewDelegates.swift */; };
-		C8DA5B1E20D5E03600F5A527 /* FilesViewController+UITableViewDelegates.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8DA5B1D20D5E03600F5A527 /* FilesViewController+UITableViewDelegates.swift */; };
-		C8DA5B2020D5E09000F5A527 /* FilesViewController+UISearchBarDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8DA5B1F20D5E09000F5A527 /* FilesViewController+UISearchBarDelegate.swift */; };
-		C8DA5B2320D5E0D800F5A527 /* ServerFileTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8DA5B2220D5E0D800F5A527 /* ServerFileTableViewCell.swift */; };
+		C8DA5B2020D5E09000F5A527 /* FilesViewController+UISearchDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8DA5B1F20D5E09000F5A527 /* FilesViewController+UISearchDelegate.swift */; };
 		C8DA5B2520D5E0FA00F5A527 /* OfflineFileTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8DA5B2420D5E0FA00F5A527 /* OfflineFileTableViewCell.swift */; };
 		C8DA5B2720D5E14800F5A527 /* OfflineFilesTableViewController+UITableViewDelegates.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8DA5B2620D5E14800F5A527 /* OfflineFilesTableViewController+UITableViewDelegates.swift */; };
 		C8DA5B2920D5E18800F5A527 /* FileSort.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8DA5B2820D5E18800F5A527 /* FileSort.swift */; };
@@ -103,6 +111,16 @@
 		3B24FE152297086A0044721D /* WalkthroughAmahiCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WalkthroughAmahiCell.xib; sourceTree = "<group>"; };
 		3B24FE1722970B6B0044721D /* WalkthroughCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WalkthroughCell.xib; sourceTree = "<group>"; };
 		3B24FE1922970B860044721D /* WalkthroughCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalkthroughCollectionCell.swift; sourceTree = "<group>"; };
+		3B33324D22BAA17C00BC61EB /* FilteredServerFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilteredServerFile.swift; sourceTree = "<group>"; };
+		3B33324F22BAA26600BC61EB /* FilesGridCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilesGridCollectionCell.swift; sourceTree = "<group>"; };
+		3B33325122BAA27E00BC61EB /* FilesListCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilesListCollectionViewCell.swift; sourceTree = "<group>"; };
+		3B33325322BAA29700BC61EB /* FilesCollectionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilesCollectionHeaderView.swift; sourceTree = "<group>"; };
+		3B33325522BAA2AF00BC61EB /* FilesCollectionFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilesCollectionFooterView.swift; sourceTree = "<group>"; };
+		3B33325722BAA3C200BC61EB /* SortView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortView.swift; sourceTree = "<group>"; };
+		3B33325922BAA40B00BC61EB /* FilesViewController+UICollectionViewDelegates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FilesViewController+UICollectionViewDelegates.swift"; sourceTree = "<group>"; };
+		3B33325B22BAA4BA00BC61EB /* FilesViewController+Sorting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FilesViewController+Sorting.swift"; sourceTree = "<group>"; };
+		3B33325D22BAB05C00BC61EB /* FilesBaseCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilesBaseCollectionViewCell.swift; sourceTree = "<group>"; };
+		3B33325F22BAB2A800BC61EB /* SortViewTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortViewTableViewCell.swift; sourceTree = "<group>"; };
 		3B4DB99622A0431100AF287B /* ServerCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerCollectionViewCell.swift; sourceTree = "<group>"; };
 		3B84E87C2299587B00E37A74 /* UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIView.swift; sourceTree = "<group>"; };
 		4605963E204E24DF004FA066 /* ServerPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerPresenter.swift; sourceTree = "<group>"; };
@@ -164,9 +182,7 @@
 		C8DA5B1720D5D7EA00F5A527 /* Download.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Download.swift; sourceTree = "<group>"; };
 		C8DA5B1920D5DC2200F5A527 /* DownloadService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadService.swift; sourceTree = "<group>"; };
 		C8DA5B1B20D5DEC200F5A527 /* FilesViewController+FilesViewDelegates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FilesViewController+FilesViewDelegates.swift"; sourceTree = "<group>"; };
-		C8DA5B1D20D5E03600F5A527 /* FilesViewController+UITableViewDelegates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FilesViewController+UITableViewDelegates.swift"; sourceTree = "<group>"; };
-		C8DA5B1F20D5E09000F5A527 /* FilesViewController+UISearchBarDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FilesViewController+UISearchBarDelegate.swift"; sourceTree = "<group>"; };
-		C8DA5B2220D5E0D800F5A527 /* ServerFileTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerFileTableViewCell.swift; sourceTree = "<group>"; };
+		C8DA5B1F20D5E09000F5A527 /* FilesViewController+UISearchDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FilesViewController+UISearchDelegate.swift"; sourceTree = "<group>"; };
 		C8DA5B2420D5E0FA00F5A527 /* OfflineFileTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfflineFileTableViewCell.swift; sourceTree = "<group>"; };
 		C8DA5B2620D5E14800F5A527 /* OfflineFilesTableViewController+UITableViewDelegates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OfflineFilesTableViewController+UITableViewDelegates.swift"; sourceTree = "<group>"; };
 		C8DA5B2820D5E18800F5A527 /* FileSort.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileSort.swift; sourceTree = "<group>"; };
@@ -308,6 +324,7 @@
 				46F87396204CC69500F1AF37 /* Server.swift */,
 				4605964A204F35E9004FA066 /* ServerRoute.swift */,
 				46098D03204FDF5500752EB6 /* ServerFile.swift */,
+				3B33324D22BAA17C00BC61EB /* FilteredServerFile.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -425,8 +442,10 @@
 				4665718020507847000E0D45 /* FilesViewController.swift */,
 				46657182205085FC000E0D45 /* FilesPresenter.swift */,
 				C8DA5B1B20D5DEC200F5A527 /* FilesViewController+FilesViewDelegates.swift */,
-				C8DA5B1D20D5E03600F5A527 /* FilesViewController+UITableViewDelegates.swift */,
-				C8DA5B1F20D5E09000F5A527 /* FilesViewController+UISearchBarDelegate.swift */,
+				3B33325B22BAA4BA00BC61EB /* FilesViewController+Sorting.swift */,
+				3B33325922BAA40B00BC61EB /* FilesViewController+UICollectionViewDelegates.swift */,
+				C8DA5B1F20D5E09000F5A527 /* FilesViewController+UISearchDelegate.swift */,
+				3B33325722BAA3C200BC61EB /* SortView.swift */,
 			);
 			path = Files;
 			sourceTree = "<group>";
@@ -445,10 +464,15 @@
 		C8DA5B2120D5E0C600F5A527 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
-				C8DA5B2220D5E0D800F5A527 /* ServerFileTableViewCell.swift */,
 				C8DA5B2420D5E0FA00F5A527 /* OfflineFileTableViewCell.swift */,
 				3B24FE1922970B860044721D /* WalkthroughCollectionCell.swift */,
 				3B4DB99622A0431100AF287B /* ServerCollectionViewCell.swift */,
+				3B33325D22BAB05C00BC61EB /* FilesBaseCollectionViewCell.swift */,
+				3B33324F22BAA26600BC61EB /* FilesGridCollectionCell.swift */,
+				3B33325122BAA27E00BC61EB /* FilesListCollectionViewCell.swift */,
+				3B33325322BAA29700BC61EB /* FilesCollectionHeaderView.swift */,
+				3B33325522BAA2AF00BC61EB /* FilesCollectionFooterView.swift */,
+				3B33325F22BAB2A800BC61EB /* SortViewTableViewCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -605,9 +629,11 @@
 			files = (
 			);
 			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-AmahiAnywhere/Pods-AmahiAnywhere-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-AmahiAnywhere/Pods-AmahiAnywhere-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -621,6 +647,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3B33325822BAA3C200BC61EB /* SortView.swift in Sources */,
+				3B33325E22BAB05C00BC61EB /* FilesBaseCollectionViewCell.swift in Sources */,
 				C8DA5B3120D7A3EB00F5A527 /* OfflineFilesTableViewController+UISearchBarDelegate.swift in Sources */,
 				C83C63952038D5B30089B9D8 /* ApiConfig.swift in Sources */,
 				46657183205085FC000E0D45 /* FilesPresenter.swift in Sources */,
@@ -636,16 +664,17 @@
 				FB71BE9A201CB2FC0005492C /* LoginViewController.swift in Sources */,
 				C86CA92C20D3D93900C8EDCA /* CoreDataTableViewController.swift in Sources */,
 				C86CA92920D3D26300C8EDCA /* OfflineFile+CoreData.swift in Sources */,
+				3B33325A22BAA40B00BC61EB /* FilesViewController+UICollectionViewDelegates.swift in Sources */,
 				4605964D204F3666004FA066 /* ServerShare.swift in Sources */,
 				AD8F2FE0226E9351009C8C4B /* SettingsViewController+TableViewDataSource.swift in Sources */,
 				FB71BE98201CB2FC0005492C /* AppDelegate.swift in Sources */,
 				4605964B204F35E9004FA066 /* ServerRoute.swift in Sources */,
 				3B4DB99722A0431100AF287B /* ServerCollectionViewCell.swift in Sources */,
+				3B33325622BAA2AF00BC61EB /* FilesCollectionFooterView.swift in Sources */,
 				C8DEBFAB20BAE1D300B09AED /* ConnectionModeManager.swift in Sources */,
 				C8ED025920B3E30300015846 /* URL.swift in Sources */,
 				C8DA5B1A20D5DC2200F5A527 /* DownloadService.swift in Sources */,
 				46098D04204FDF5500752EB6 /* ServerFile.swift in Sources */,
-				C8DA5B1E20D5E03600F5A527 /* FilesViewController+UITableViewDelegates.swift in Sources */,
 				C88E5A7620B66B46006518B6 /* Date.swift in Sources */,
 				ADAFF8D6224F6DB700287409 /* ThumbnailGenerator.swift in Sources */,
 				46059643204E8B41004FA066 /* BaseUITableViewController.swift in Sources */,
@@ -682,22 +711,27 @@
 				C83C637420386DD90089B9D8 /* BaseUIViewController+BaseView.swift in Sources */,
 				C86CA91020D3937A00C8EDCA /* OfflineFilesPresenter.swift in Sources */,
 				C83C637E2038D5150089B9D8 /* StringIdentifiers.swift in Sources */,
+				3B33325022BAA26600BC61EB /* FilesGridCollectionCell.swift in Sources */,
 				3B24FE122296F4330044721D /* WalkthroughViewController.swift in Sources */,
 				ADAFF8DC2250209700287409 /* AudioThumbnailGenerator.swift in Sources */,
 				46F87397204CC69500F1AF37 /* Server.swift in Sources */,
 				8A0A88F8227CE39C00A1360C /* MimeType.swift in Sources */,
 				C86CA92A20D3D26300C8EDCA /* OfflineFile+CoreDataProperties.swift in Sources */,
-				C8DA5B2020D5E09000F5A527 /* FilesViewController+UISearchBarDelegate.swift in Sources */,
+				C8DA5B2020D5E09000F5A527 /* FilesViewController+UISearchDelegate.swift in Sources */,
 				04BA8996211D56F400E7A868 /* AmahiLogger.swift in Sources */,
 				AD8F2FDB226E9331009C8C4B /* CoreDataStack+DropDatabase.swift in Sources */,
-				C8DA5B2320D5E0D800F5A527 /* ServerFileTableViewCell.swift in Sources */,
 				46098D08204FFFBE00752EB6 /* ServerApi.swift in Sources */,
+				3B33325422BAA29700BC61EB /* FilesCollectionHeaderView.swift in Sources */,
 				C8D86160209490230014D8AC /* WebViewController.swift in Sources */,
 				C83C63992038D5B30089B9D8 /* AuthResponses.swift in Sources */,
+				3B33324E22BAA17C00BC61EB /* FilteredServerFile.swift in Sources */,
 				3B84E87D2299587B00E37A74 /* UIView.swift in Sources */,
+				3B33325C22BAA4BA00BC61EB /* FilesViewController+Sorting.swift in Sources */,
+				3B33325222BAA27E00BC61EB /* FilesListCollectionViewCell.swift in Sources */,
 				ADAFF8DA22501F7A00287409 /* VideoThumbnailGenerator.swift in Sources */,
 				46098D0A2050114C00752EB6 /* Network.swift in Sources */,
 				C83C639F2039B16C0089B9D8 /* ServerViewController.swift in Sources */,
+				3B33326022BAB2A800BC61EB /* SortViewTableViewCell.swift in Sources */,
 				FDF80E92229FA41A0087F9B8 /* VideoPlayerSettings.swift in Sources */,
 				4665718120507847000E0D45 /* FilesViewController.swift in Sources */,
 			);
@@ -851,6 +885,7 @@
 				DEVELOPMENT_TEAM = "";
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = AmahiAnywhere/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -873,6 +908,7 @@
 				DEVELOPMENT_TEAM = "";
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = AmahiAnywhere/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

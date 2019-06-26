@@ -69,8 +69,31 @@ public class ServerFile: EVNetworkingObject {
 }
 
 extension ServerFile {
-    static let nameSorter: (ServerFile, ServerFile) -> Bool = { $0.name!.localizedCaseInsensitiveCompare($1.name!) == ComparisonResult.orderedAscending }
-    static let lastModifiedSorter: (ServerFile, ServerFile) -> Bool = { $0.mtime! > $1.mtime! }
+    
+    static let nameSorter: (ServerFile, ServerFile) -> Bool = {
+        $0.name!.localizedCaseInsensitiveCompare($1.name!) == ComparisonResult.orderedAscending
+    }
+    
+    static let lastModifiedSorter: (ServerFile, ServerFile) -> Bool = {
+        $0.mtime! > $1.mtime!
+    }
+    
+    static let sizeSorter: (ServerFile, ServerFile) -> Bool = {
+        $0.size! > $1.size!
+    }
+    
+    static let typeSorter: (ServerFile, ServerFile) -> Bool = {
+        if (!$0.isDirectory && !$1.isDirectory) || ($0.isDirectory && $1.isDirectory){
+            // Both are files or both are folders
+            return $0.name!.localizedCaseInsensitiveCompare($1.name!) == ComparisonResult.orderedAscending
+        }else if $0.isDirectory{
+            // First is a folder, second is a file
+            return true
+        }else{
+            // First is a file, second is a folder
+            return false
+        }
+    }
 }
 
 extension ServerFile {

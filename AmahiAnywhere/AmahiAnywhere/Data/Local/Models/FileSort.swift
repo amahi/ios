@@ -8,7 +8,13 @@
 
 import Foundation
 
-enum FileSort {
-    case modifiedTime
-    case name
+enum FileSort: String {
+    case modifiedTime = "Modified"
+    case name = "Name"
+    case size = "Size"
+    case type = "Type"
+}
+
+struct SortingMethod {
+    static var fileSort = FileSort.name
 }

@@ -17,6 +17,7 @@ PODS:
     - SDWebImage/Core (= 4.4.6)
   - SDWebImage/Core (4.4.6)
   - SkyFloatingLabelTextField (3.7.0)
+  - SwipeCellKit (2.6.0)
 
 DEPENDENCIES:
   - Alamofire
@@ -28,6 +29,7 @@ DEPENDENCIES:
   - ReachabilitySwift
   - SDWebImage
   - SkyFloatingLabelTextField
+  - SwipeCellKit
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
@@ -42,6 +44,7 @@ SPEC REPOS:
     - ReachabilitySwift
     - SDWebImage
     - SkyFloatingLabelTextField
+    - SwipeCellKit
 
 SPEC CHECKSUMS:
   Alamofire: ae5c501addb7afdbb13687d7f2f722c78734c2d3
@@ -55,7 +58,8 @@ SPEC CHECKSUMS:
   ReachabilitySwift: 4032e2f59586e11e3b0ebe15b167abdd587a388b
   SDWebImage: 3f3f0c02f09798048c47a5ed0a13f17b063572d8
   SkyFloatingLabelTextField: 4b46db0ab1ccde0919cded29c656e6b4805eda04
+  SwipeCellKit: 935ca28c187ec6e1ffb2b578cf8ddca842bfdcbb
 
-PODFILE CHECKSUM: fd7595a4f6ba46f9ae066710dff617088924f479
+PODFILE CHECKSUM: bed7fe23a591dea689dbed10861bd39504ff880d
 
-COCOAPODS: 1.7.2
+COCOAPODS: 1.7.1

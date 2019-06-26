@@ -28,8 +28,8 @@ struct StringLiterals {
     static let download =                       "Download"
     static let delete =                         "Delete"
     static let availableOffline =               "Available Offline"
-    static let removeOfflineMessage =           "Make unavailable Offline"
-    static let stopDownload =                   "Stop Download"
+    static let removeOfflineMessage =           "Remove Download"
+    static let stopDownload =                   "Cancel Download"
     static let chooseOne =                      "Choose One"
     static let open =                           "Open"
     static let currentSize =                    "Current size: %@"
@@ -50,6 +50,10 @@ struct StringLiterals {
     static let aboutSectionSubItems =           ["Version",  "Rate", "Feedback", "Tell a friend"]
     static let settingsSectionsTitle =          ["Account", "Settings", "About"]
     static let settingsSectionsSubItems =       [accountSectionSubItems, settingsSectionSubItems, aboutSectionSubItems]
+    static let sortByName =                     "Sort by Name"
+    static let sortByModified =                 "Sort by Modified"
+    static let sortBySize =                     "Sort by Size"
+    static let sortByType =                     "Sort by Type"
     
     // In Mail Compose Controller
     

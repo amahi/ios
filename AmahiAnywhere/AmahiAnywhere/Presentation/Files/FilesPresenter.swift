@@ -28,7 +28,7 @@ internal protocol FilesView : BaseView {
     
     func shareFile(at url: URL, from sender : UIView?)
     
-    func updateDownloadProgress(for row: Int, downloadJustStarted: Bool, progress: Float)
+    func updateDownloadProgress(for row: Int, section: Int, downloadJustStarted: Bool, progress: Float)
     
     func dismissProgressIndicator(at url: URL, completion: @escaping () -> Void)
 }
@@ -66,7 +66,7 @@ internal class FilesPresenter: BasePresenter {
             }
             
             self.view?.initFiles(serverFiles)
-            self.view?.updateFiles(serverFiles.sorted(by: ServerFile.lastModifiedSorter))
+            self.view?.updateFiles(serverFiles)
         }
     }
     
@@ -75,66 +75,40 @@ internal class FilesPresenter: BasePresenter {
             let filteredFiles = files.filter { file in
                 return file.name!.localizedCaseInsensitiveContains(searchText)
             }
-            self.reorderFiles(files: filteredFiles, sortOrder: sortOrder)
+            self.view?.updateFiles(filteredFiles)
         } else {
-            self.reorderFiles(files: files, sortOrder: sortOrder)
+            self.view?.updateFiles(files)
         }
     }
     
-    func reorderFiles(files: [ServerFile], sortOrder: FileSort) {
-        let sortedFiles = files.sorted(by: getSorter(sortOrder))
-        self.view?.updateFiles(sortedFiles)
-    }
-    
-    private func getSorter(_ sortOrder: FileSort) -> ((ServerFile, ServerFile) -> Bool) {
-        switch sortOrder {
-        case .modifiedTime:
-            return ServerFile.lastModifiedSorter
-        case .name:
-            return ServerFile.nameSorter
-        }
-    }
-    
-    func handleFileOpening(fileIndex: Int, files: [ServerFile], from sender : UIView?) {
-        let file = files[fileIndex]
-
-        let type = file.mimeType
-        AmahiLogger.log(": Matched type is (type), FILE MIMETYPE \(file.mime_type ?? "")")
-
-        AmahiLogger.log(": Matched type is \(type) , File MIMETYPE \(file.mime_type ?? "")")
+    func handleFileOpening(selectedFile: ServerFile, indexPath: IndexPath, files: FilteredServerFiles, from sender: UIView?) {
+        let type = selectedFile.mimeType
+        AmahiLogger.log(": Matched type is (type), FILE MIMETYPE \(selectedFile.mime_type ?? "")")
+        AmahiLogger.log(": Matched type is \(type) , File MIMETYPE \(selectedFile.mime_type ?? "")")
 
         switch type {
-            
+
         case .image:
             // prepare ImageViewer
-            let controller = LightboxController(images: prepareImageArray(files), startIndex: fileIndex)
+            let results = files.getImageFiles(selectedFile: selectedFile)
+            let controller = LightboxController(images: results.images, startIndex: results.startIndex)
             controller.dynamicBackground = true
             self.view?.present(controller)
-            
+
         case .video, .flacMedia:
             // TODO: open VideoPlayer and play the file
-            
-            guard let url = ServerApi.shared!.getFileUri(file) else {
+
+            guard let url = ServerApi.shared!.getFileUri(selectedFile) else {
                 AmahiLogger.log("Invalid file URL, file cannot be opened")
                 return
             }
             self.view?.playMedia(at: url)
-            
+
         case .audio:
-            let audioURLs = prepareAudioItems(files)
-            var arrangedURLs = [URL]()
-            
-            for (index, url) in audioURLs.enumerated() {
-                arrangedURLs.insert(url, at: arrangedURLs.endIndex)
-            }
-            
-            var playerItems = [AVPlayerItem]()
-            
-            arrangedURLs.forEach({playerItems.append(AVPlayerItem(url: $0))})
-            
-            self.view?.playAudio(playerItems, startIndex: 0, currentIndex: fileIndex, arrangedURLs)
+            let results = files.getAudioFiles(selectedFile: selectedFile)
+            self.view?.playAudio(results.playerItems, startIndex: 0, currentIndex: results.startIndex, results.urls)
             break
-            
+
         case .code, .presentation, .sharedFile, .document, .spreadsheet:
             func handleFileOpening(with fileURL: URL) {
                 weak var weakSelf = self
@@ -145,11 +119,11 @@ internal class FilesPresenter: BasePresenter {
                 }
             }
 
-            if FileManager.default.fileExistsInCache(file) {
-                let fileURL = FileManager.default.localPathInCache(for: file)
+            if FileManager.default.fileExistsInCache(selectedFile) {
+                let fileURL = FileManager.default.localPathInCache(for: selectedFile)
                 handleFileOpening(with: fileURL)
             } else {
-                downloadFile(at: fileIndex, file, mimeType: type, from: sender) { fileURL in
+                downloadFile(at: indexPath.item, section: indexPath.section, selectedFile, mimeType: type, from: sender) { fileURL in
                     handleFileOpening(with: fileURL)
                 }
             }
@@ -160,12 +134,12 @@ internal class FilesPresenter: BasePresenter {
         }
     }
     
-    func shareFile(_ file: ServerFile, fileIndex: Int, from sender: UIView?) {
+    func shareFile(_ file: ServerFile, fileIndex: Int, section: Int, from sender: UIView?) {
         if FileManager.default.fileExistsInCache(file) {
             let path = FileManager.default.localPathInCache(for: file)
             self.view?.shareFile(at: path, from: sender)
         } else {
-            downloadFile(at: fileIndex, file, mimeType: file.mimeType, from: sender) { [weak self] filePath in
+            downloadFile(at: fileIndex, section: section, file, mimeType: file.mimeType, from: sender) { [weak self] filePath in
                 self?.view?.shareFile(at: filePath, from: sender)
             }
         }
@@ -202,12 +176,13 @@ internal class FilesPresenter: BasePresenter {
     }
     
     private func downloadFile(at fileIndex: Int ,
+                              section: Int,
                               _ serverFile: ServerFile,
                               mimeType: MimeType,
                               from sender : UIView?,
                               completion: @escaping (_ filePath: URL) -> Void) {
         
-        self.view?.updateDownloadProgress(for: fileIndex, downloadJustStarted: true, progress: 0.0)
+        self.view?.updateDownloadProgress(for: fileIndex, section: section, downloadJustStarted: true, progress: 0.0)
         
         // cleanup temp files in background
         DispatchQueue.global(qos: .background).async {
@@ -216,7 +191,7 @@ internal class FilesPresenter: BasePresenter {
         }
         
         Network.shared.downloadFileToStorage(file: serverFile, progressCompletion: { progress in
-            self.view?.updateDownloadProgress(for: fileIndex, downloadJustStarted: false, progress: progress)
+            self.view?.updateDownloadProgress(for: fileIndex, section: section, downloadJustStarted: false, progress: progress)
         }, completion: { (wasSuccessful) in
             
             if !wasSuccessful  {
@@ -230,31 +205,6 @@ internal class FilesPresenter: BasePresenter {
                 completion(filePath)
             })
         })
-    }
-    
-    private func prepareImageArray(_ files: [ServerFile]) -> [LightboxImage] {
-        var images: [LightboxImage] = [LightboxImage] ()
-        for file in files where file.mimeType == .image {
-            guard let url = ServerApi.shared!.getFileUri(file) else {
-                AmahiLogger.log("Invalid file URL, file cannot be opened")
-                continue
-            }
-            images.append(LightboxImage(imageURL: url, text: file.name!))
-        }
-        return images
-    }
-    
-    private func prepareAudioItems(_ files: [ServerFile]) -> [URL] {
-        var audioURLs = [URL]()
-        
-        for file in files where file.mimeType == .audio {
-            guard let url = ServerApi.shared!.getFileUri(file) else {
-                AmahiLogger.log("Invalid file URL, file cannot be opened")
-                continue
-            }
-            audioURLs.append(url)
-        }
-        return audioURLs
     }
     
     func loadOfflineFiles() {

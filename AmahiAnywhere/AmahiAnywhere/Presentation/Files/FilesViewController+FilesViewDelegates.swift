@@ -23,11 +23,12 @@ extension FilesViewController: FilesView {
         isAlertShowing = false
     }
     
-    func updateDownloadProgress(for row: Int, downloadJustStarted: Bool , progress: Float) {
+    func updateDownloadProgress(for row: Int, section: Int, downloadJustStarted: Bool , progress: Float) {
         
         if downloadJustStarted {
             setupDownloadProgressIndicator()
-            downloadProgressAlertController?.title = String(format: StringLiterals.downloadingFile, self.filteredFiles[row].name!)
+            let file = self.filteredFiles.getFileFromIndexPath(IndexPath(row: row, section: section))
+            downloadProgressAlertController?.title = String(format: StringLiterals.downloadingFile, file.name!)
         }
         
         if !isAlertShowing {
@@ -54,6 +55,7 @@ extension FilesViewController: FilesView {
                                             from: StoryBoardIdentifiers.main)
         webViewVc.url = url
         webViewVc.mimeType = mimeType
+        webViewVc.hidesBottomBarWhenPushed = true
         self.navigationController?.pushViewController(webViewVc, animated: true)
     }
     
@@ -119,8 +121,21 @@ extension FilesViewController: FilesView {
     }
     
     func updateFiles(_ files: [ServerFile]) {
-        self.filteredFiles = files
-        filesTableView.reloadData()
+        // Organsing files into sections using filteredFiles
+        filteredFiles.reset()
+        let files = files.sorted(by: getSorter(fileSort))
+        
+        if fileSort == .name{
+            organizeSectionsByName(files: files)
+        }else if fileSort == .modifiedTime{
+            organizeSectionsByModified(files: files)
+        }else if fileSort == .size{
+            organizeSectionsBySize(files: files)
+        }else{
+            organizeSectionsByType(files: files)
+        }
+        
+        filesCollectionView.reloadData()
     }
     
     func updateRefreshing(isRefreshing: Bool) {

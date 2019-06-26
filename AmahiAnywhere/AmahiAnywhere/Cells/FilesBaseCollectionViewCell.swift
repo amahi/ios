@@ -1,40 +1,22 @@
 //
-//  ServerFileTableViewswift
+//  FilesBaseCollectionViewCell.swift
 //  AmahiAnywhere
 //
-//  Created by codedentwickler on 6/17/18.
-//  Copyright © 2018 Amahi. All rights reserved.
+//  Created by Marton Zeisler on 2019. 06. 19..
+//  Copyright © 2019. Amahi. All rights reserved.
 //
 
 import UIKit
+import SwipeCellKit
 
-class ServerFileTableViewCell: UITableViewCell {
-    
-    @IBOutlet weak var fileNameLabel: UILabel!
-    @IBOutlet weak var fileSizeLabel: UILabel!
-    @IBOutlet weak var lastModifiedLabel: UILabel!
-    @IBOutlet weak var menuImageView: UIImageView!
-    @IBOutlet weak var thumbnailImageView: UIImageView!
-    
-    public var serverFile: ServerFile? {
-        didSet {
-            guard let serverFile = serverFile else {
-                return
-            }
-            
-            fileNameLabel?.text = serverFile.name
-            fileSizeLabel?.text = serverFile.getFileSize()
-            lastModifiedLabel?.text = serverFile.getLastModifiedDate()
-            
-            setupArtWork()
-        }
+class FilesBaseCollectionCell: SwipeCollectionViewCell{
+    override func awakeFromNib() {
+        let backgroundView = UIView()
+        backgroundView.backgroundColor = UIColor(hex: "1E2023")
+        selectedBackgroundView = backgroundView
     }
     
-    private func setupArtWork() {
-        guard let serverFile = serverFile else {
-            return
-        }
-
+    func setupArtWork(serverFile: ServerFile, iconImageView: UIImageView){
         let type = serverFile.mimeType
         
         guard let url = ServerApi.shared!.getFileUri(serverFile) else {
@@ -44,21 +26,21 @@ class ServerFileTableViewCell: UITableViewCell {
         
         switch type {
             
-        case .image:
-            thumbnailImageView.sd_setImage(with: url, placeholderImage: UIImage(named: "image"), options: .refreshCached)
+        case MimeType.image:
+            iconImageView.sd_setImage(with: url, placeholderImage: UIImage(named: "image"), options: .refreshCached)
             break
             
         case .video:
-
+            
             if let image = VideoThumbnailGenerator.imageFromMemory(for: url) {
-                thumbnailImageView.image = image
+                iconImageView.image = image
             } else {
-                thumbnailImageView.image = UIImage(named: "video")
+                iconImageView.image = UIImage(named: "video")
                 DispatchQueue.global(qos: .background).async {
                     let image = VideoThumbnailGenerator().getThumbnail(url)
                     DispatchQueue.main.async {
                         // Code to be executed on the main thread here
-                        self.thumbnailImageView.image = image
+                        iconImageView.image = image
                     }
                 }
             }
@@ -67,37 +49,37 @@ class ServerFileTableViewCell: UITableViewCell {
         case .audio:
             
             if let image = AudioThumbnailGenerator.imageFromMemory(for: url) {
-                thumbnailImageView.image = image
+                iconImageView.image = image
             } else {
-                thumbnailImageView.image = UIImage(named: "audio")
+                iconImageView.image = UIImage(named: "audio")
                 DispatchQueue.global(qos: .background).async {
                     let image = AudioThumbnailGenerator().getThumbnail(url)
                     DispatchQueue.main.async {
                         // Code to be executed on the main thread here
-                        self.thumbnailImageView.image = image
+                        iconImageView.image = image
                     }
                 }
             }
             break
             
         case .presentation, .document, .spreadsheet:
-
+            
             if let image = PDFThumbnailGenerator.imageFromMemory(for: url) {
-                thumbnailImageView.image = image
+                iconImageView.image = image
             } else {
-                thumbnailImageView.image = UIImage(named: "file")
-
+                iconImageView.image = UIImage(named: "file")
+                
                 DispatchQueue.global(qos: .background).async {
                     let image = PDFThumbnailGenerator().getThumbnail(url)
                     DispatchQueue.main.async {
                         // Code to be executed on the main thread here
-                        self.thumbnailImageView.image = image
+                        iconImageView.image = image
                     }
                 }
             }
             
         default:
-            thumbnailImageView.image = UIImage(named: "file")
+            iconImageView.image = UIImage(named: "file")
             break
         }
     }

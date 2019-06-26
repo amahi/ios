@@ -72,7 +72,7 @@ extension UIViewController {
             let connectionMode = LocalStorage.shared.userConnectionPreference
             let color = connectionMode == .remote ? UIColor.remoteIndicatorBrown : UIColor.localIndicatorBlack
             self.navigationController?.navigationBar.backgroundColor = color
-
+            
         }
     }
     
@@ -98,9 +98,7 @@ extension UIViewController {
             } else {
                 rightButton.tintColor = UIColor.softYellow
             }
-            navigationItem.rightBarButtonItem = rightButton
         } else {
-            navigationItem.rightBarButtonItem = nil
         }
     }
     
@@ -111,33 +109,11 @@ extension UIViewController {
     }
     
     @objc func updateDownloadsIconOnDownloadStarted() {
-        
         AmahiLogger.log("Active Downloads count \(DownloadService.shared.activeDownloads.count)")
-        
-        if navigationItem.rightBarButtonItem == nil {
-            let rightButton = UIBarButtonItem(image: UIImage(named: "cellphoneIcon"),
-                                              style: .plain, target: self,
-                                              action: #selector(userClickedDownloadsIcon))
-            navigationItem.rightBarButtonItem = rightButton
-        }
-        
-        if DownloadService.shared.activeDownloads.isEmpty {
-            navigationController?.viewControllers.forEach({ (controller) in                    controller.navigationItem.rightBarButtonItem?.tintColor = UIColor.white
-            })
-        } else {
-            navigationController?.viewControllers.forEach({ (controller) in                    controller.navigationItem.rightBarButtonItem?.tintColor = UIColor.softYellow
-            })
-        }
     }
     
     @objc func updateDownloadsIconOnDownloadCompleted() {
         AmahiLogger.log("Active Downloads count \(DownloadService.shared.activeDownloads.count)")
-        
-        if DownloadService.shared.activeDownloads.isEmpty {
-            navigationItem.rightBarButtonItem?.tintColor = UIColor.white
-        } else {
-            navigationItem.rightBarButtonItem?.tintColor = UIColor.softYellow
-        }
     }
     
     func addActiveDownloadObservers() {
@@ -147,7 +123,7 @@ extension UIViewController {
         
         NotificationCenter.default.addObserver(self, selector: #selector(updateDownloadsIconOnDownloadCompleted),
                                                name: .DownloadCompletedSuccessfully, object: nil)
-
+        
         NotificationCenter.default.addObserver(self, selector: #selector(updateDownloadsIconOnDownloadCompleted),
                                                name: .DownloadCompletedWithError, object: nil)
         
@@ -199,8 +175,8 @@ extension UIViewController {
         
         let defaultAction = UIAlertAction(title: "OK", style: .default, handler: nil);
         alertController.addAction(defaultAction);
-       
-                
+        
+        
         self.present(alertController, animated: true, completion: nil);
     }
     
