@@ -83,7 +83,15 @@ class VideoPlayerViewController: UIViewController {
         MPRemoteCommandCenter.shared().togglePlayPauseCommand.addTarget(self, action: #selector(playandPause(_:)))
     }
     
+    var volumeSwipeMadeOnce = false
+    var currentVolume = 125
+    
     @objc func handlePanGesture(panGesture: UIPanGestureRecognizer) {
+        
+        if volumeSwipeMadeOnce == false {
+            self.mediaPlayer?.audio.volume = 125
+            volumeSwipeMadeOnce = true
+        }
         
         // Adding the volume label to the view
         self.movieView.addSubview(self.volumeView)
@@ -95,22 +103,28 @@ class VideoPlayerViewController: UIViewController {
         else if panGesture.state == .ended {
             UIView.animate(withDuration: 1.8) {
                 self.volumeView.alpha = 0
+                self.mediaPlayer?.audio.volume = Int32(self.currentVolume)
             }
         }
         else {
             self.volumeView.alpha = 0.8
         }
-        
+        self.changeVolume(gesture: panGesture)
+    }
+    
+    func changeVolume(gesture: UIPanGestureRecognizer){
         // Finding the movement of the panGesture and updating the volume label
-        let speed = panGesture.velocity(in: self.view)
+        let speed = gesture.velocity(in: self.view)
         let vertical = abs(speed.y) > abs(speed.x)
         if vertical == true {
             if speed.y > 0 {
-                self.mediaPlayer?.audio.volume -= 2
+                self.mediaPlayer?.audio.volume -= 1
+                currentVolume -= 1
                 volumeLabel.text = "Volume: \(abs((mediaPlayer?.audio.volume)!/2))"
             }
             else if speed.y < 0 {
-                mediaPlayer?.audio.volume = (mediaPlayer?.audio.volume)! + Int32(1)
+                mediaPlayer?.audio.volume += 1
+                currentVolume += 1
                 volumeLabel.text = "Volume: \(abs((mediaPlayer?.audio.volume)!/2))"
             }
             else {
