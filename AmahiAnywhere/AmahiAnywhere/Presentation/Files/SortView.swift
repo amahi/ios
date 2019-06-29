@@ -28,12 +28,21 @@ class SortView: UIView, UITableViewDelegate, UITableViewDataSource{
         return tableView
     }()
     
-    let tableData = [
+    var tableData = [
         sortViewData(iconImageName: "sortNameIcon", title: StringLiterals.sortByName, sortingMethod: .name),
-        sortViewData(iconImageName: "sortModifiedIcon", title: StringLiterals.sortByModified, sortingMethod: .modifiedTime),
+        sortViewData(iconImageName: "sortModifiedIcon", title: StringLiterals.sortByDate, sortingMethod: .date),
         sortViewData(iconImageName: "sortSizeIcon", title: StringLiterals.sortBySize, sortingMethod: .size),
         sortViewData(iconImageName: "sortTypeIcon", title: StringLiterals.sortByType, sortingMethod: .type),
     ]
+    
+    var serverFilesMode: Bool = true {
+        didSet{
+            if !serverFilesMode{
+                tableData.removeLast()
+                tableView.reloadData()
+            }
+        }
+    }
     
     weak var sortViewDelegate: SortViewDelegate?
     var selectedFilter: FileSort!
@@ -47,8 +56,9 @@ class SortView: UIView, UITableViewDelegate, UITableViewDataSource{
         tableView.delegate = self
     }
     
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 4
+        return tableData.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -70,7 +80,7 @@ class SortView: UIView, UITableViewDelegate, UITableViewDataSource{
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return tableView.frame.height / 4
+        return tableView.frame.height / CGFloat(tableData.count)
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

@@ -1,16 +1,15 @@
 //
-//  OfflineFilesTableViewController+OfflineFilesViewDelegates.swift
+//  OfflineFilesViewController+FilesView.swift
 //  AmahiAnywhere
 //
-//  Created by codedentwickler on 6/18/18.
-//  Copyright © 2018 Amahi. All rights reserved.
+//  Created by Marton Zeisler on 2019. 06. 28..
+//  Copyright © 2019. Amahi. All rights reserved.
 //
 
-import AVKit
 import Foundation
-import MediaPlayer
+import AVFoundation
 
-extension OfflineFilesTableViewController : OfflineFilesView {
+extension OfflineFilesViewController : OfflineFilesView {
     
     func present(_ controller: UIViewController) {
         self.present(controller, animated: true)
@@ -41,7 +40,6 @@ extension OfflineFilesTableViewController : OfflineFilesView {
         player.play()
         self.present(audioPlayerVc)
     }
-    
     
     func shareFile(at url: URL, from sender : UIView? ) {
         let linkToShare = [url]

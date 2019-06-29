@@ -12,7 +12,7 @@ extension FilesViewController{
     
     func getSorter(_ sortOrder: FileSort) -> ((ServerFile, ServerFile) -> Bool) {
         switch sortOrder {
-        case .modifiedTime:
+        case .date:
             return ServerFile.lastModifiedSorter
         case .name:
             return ServerFile.nameSorter

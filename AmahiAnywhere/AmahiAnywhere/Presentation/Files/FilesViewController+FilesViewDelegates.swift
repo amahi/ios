@@ -127,7 +127,7 @@ extension FilesViewController: FilesView {
         
         if fileSort == .name{
             organizeSectionsByName(files: files)
-        }else if fileSort == .modifiedTime{
+        }else if fileSort == .date{
             organizeSectionsByModified(files: files)
         }else if fileSort == .size{
             organizeSectionsBySize(files: files)

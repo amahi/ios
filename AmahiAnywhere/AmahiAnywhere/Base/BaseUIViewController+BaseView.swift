@@ -84,30 +84,6 @@ extension UIViewController {
         self.navigationController?.navigationBar.backgroundColor = UIColor.remoteIndicatorBrown
     }
     
-    func showDownloadsIconIfOfflineFileExists() {
-        let delegate = UIApplication.shared.delegate as! AppDelegate
-        let stack = delegate.stack
-        
-        if !stack.isDownloadsEmpty {
-            let rightButton = UIBarButtonItem(image: UIImage(named: "cellphoneIcon"),
-                                              style: .plain, target: self,
-                                              action: #selector(userClickedDownloadsIcon))
-            
-            if DownloadService.shared.activeDownloads.isEmpty {
-                rightButton.tintColor = UIColor.white
-            } else {
-                rightButton.tintColor = UIColor.softYellow
-            }
-        } else {
-        }
-    }
-    
-    @objc func userClickedDownloadsIcon() {
-        let offlineFileVc = viewController(viewControllerClass: OfflineFilesTableViewController.self,
-                                           from: StoryBoardIdentifiers.main)
-        navigationController?.pushViewController(offlineFileVc, animated: true)
-    }
-    
     @objc func updateDownloadsIconOnDownloadStarted() {
         AmahiLogger.log("Active Downloads count \(DownloadService.shared.activeDownloads.count)")
     }

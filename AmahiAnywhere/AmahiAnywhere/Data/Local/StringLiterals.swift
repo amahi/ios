@@ -51,7 +51,7 @@ struct StringLiterals {
     static let settingsSectionsTitle =          ["Account", "Settings", "About"]
     static let settingsSectionsSubItems =       [accountSectionSubItems, settingsSectionSubItems, aboutSectionSubItems]
     static let sortByName =                     "Sort by Name"
-    static let sortByModified =                 "Sort by Modified"
+    static let sortByDate =                     "Sort by Date"
     static let sortBySize =                     "Sort by Size"
     static let sortByType =                     "Sort by Type"
     

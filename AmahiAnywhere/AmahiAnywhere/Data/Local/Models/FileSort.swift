@@ -9,7 +9,7 @@
 import Foundation
 
 enum FileSort: String {
-    case modifiedTime = "Modified"
+    case date = "Date"
     case name = "Name"
     case size = "Size"
     case type = "Type"

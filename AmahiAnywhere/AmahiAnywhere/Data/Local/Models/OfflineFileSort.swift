@@ -8,7 +8,8 @@
 
 import Foundation
 
-enum OfflineFileSort {
-    case dateAdded
-    case name
+enum OfflineFileSort: String {
+    case dateAdded = "Creation Date"
+    case name = "Name"
+    case size = "Size"
 }
