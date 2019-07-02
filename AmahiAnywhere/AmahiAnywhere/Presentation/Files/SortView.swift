@@ -22,7 +22,7 @@ class SortView: UIView, UITableViewDelegate, UITableViewDataSource{
     
     let tableView: UITableView = {
         let tableView = UITableView()
-        tableView.backgroundColor = #colorLiteral(red: 0.1529411765, green: 0.1607843137, blue: 0.1803921569, alpha: 1)
+        tableView.backgroundColor = .clear
         tableView.separatorStyle = .none
         tableView.register(SortViewTableViewCell.self, forCellReuseIdentifier: "cell")
         return tableView
@@ -48,7 +48,7 @@ class SortView: UIView, UITableViewDelegate, UITableViewDataSource{
     var selectedFilter: FileSort!
     
     func setupViews(){
-        backgroundColor = .white
+        backgroundColor = #colorLiteral(red: 0.1529411765, green: 0.1607843137, blue: 0.1803921569, alpha: 1)
         addSubview(tableView)
         
         tableView.setAnchors(top: topAnchor, leading: leadingAnchor, trailing: trailingAnchor, bottom: safeAreaLayoutGuide.bottomAnchor, topConstant: 0, leadingConstant: 0, trailingConstant: 0, bottomConstant: 0)

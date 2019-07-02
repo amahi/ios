@@ -40,7 +40,7 @@ class SortViewTableViewCell: UITableViewCell {
         addSubview(iconImageView)
         addSubview(label)
         
-        iconImageView.setAnchors(top: nil, leading: leadingAnchor, trailing: nil, bottom: nil, topConstant: nil, leadingConstant: 20, trailingConstant: nil, bottomConstant: nil)
+        iconImageView.setAnchors(top: nil, leading: safeAreaLayoutGuide.leadingAnchor, trailing: nil, bottom: nil, topConstant: nil, leadingConstant: 20, trailingConstant: nil, bottomConstant: nil)
         iconImageView.center(toVertically: self, toHorizontally: nil)
         iconImageView.setAnchorSize(width: 20, height: 20)
         

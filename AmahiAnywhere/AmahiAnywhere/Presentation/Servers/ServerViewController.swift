@@ -45,7 +45,7 @@ class ServerViewController: BaseUIViewController {
     }
     
     func showErrorView(){
-        UIView.animate(withDuration: 0.7, delay: 0.0, options: .curveEaseIn, animations: {
+        UIView.animate(withDuration: 0.3, delay: 0.0, options: .curveEaseIn, animations: {
             self.errorView.alpha = 1.0
         }) { (_) in
             UIView.animate(withDuration: 1.0, delay: 2.0, options: .curveEaseOut, animations: {

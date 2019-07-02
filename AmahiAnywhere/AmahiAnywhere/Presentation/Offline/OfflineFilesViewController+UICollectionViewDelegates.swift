@@ -50,7 +50,7 @@ extension OfflineFilesViewController: UICollectionViewDelegate, UICollectionView
         if layoutIsList{
             return CGSize(width: collectionView.frame.width, height: 80)
         }else{
-            return CGSize(width: collectionView.frame.width/3, height: 220)
+            return CGSize(width: collectionView.frame.width/3, height: 150)
         }
     }
     

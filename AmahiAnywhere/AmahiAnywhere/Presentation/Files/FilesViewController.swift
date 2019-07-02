@@ -92,7 +92,6 @@ class FilesViewController: BaseUIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        setupSortViews()
     }
     
     func setupSearchBar(){
@@ -216,35 +215,43 @@ class FilesViewController: BaseUIViewController {
     }
     
     func showSortViews(){
+        sortBackgroundView = UIView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height))
+        sortBackgroundView.backgroundColor = UIColor.black.withAlphaComponent(0.6)
+        sortBackgroundView.isHidden = true
+        sortBackgroundView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(dismissSortView)))
+        
+        let height = self.view.frame.height > self.view.frame.width ? self.view.frame.height * 0.4 : self.view.frame.width * 0.3
+        sortView = SortView(frame: CGRect(x: 0, y: UIScreen.main.bounds.height, width: UIScreen.main.bounds.width, height: height))
+        sortView.selectedFilter = self.fileSort
+        sortView.sortViewDelegate = self
         sortView.tableView.reloadData()
         
+        self.view.window?.addSubview(sortBackgroundView)
+        self.view.window?.addSubview(sortView)
+    
         UIView.animate(withDuration: 0.3) {
             self.sortBackgroundView.isHidden = false
-            self.sortView.frame.origin.y = UIScreen.main.bounds.height - (self.view.frame.height * 0.4)
-        }
-    }
-    
-    func setupSortViews(){
-        if sortBackgroundView == nil{
-            sortBackgroundView = UIView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height))
-            sortBackgroundView.backgroundColor = UIColor.black.withAlphaComponent(0.6)
-            sortBackgroundView.isHidden = true
-            sortBackgroundView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(dismissSortView)))
-            self.view.window?.addSubview(sortBackgroundView)
-        }
-        
-        if sortView == nil{
-            sortView = SortView(frame: CGRect(x: 0, y: UIScreen.main.bounds.height, width: UIScreen.main.bounds.width, height: self.view.frame.height * 0.4))
-            sortView.selectedFilter = self.fileSort
-            sortView.sortViewDelegate = self
-            self.view.window?.addSubview(sortView)
+            self.sortView.frame.origin.y = UIScreen.main.bounds.height - (height)
         }
     }
     
     @objc func dismissSortView(){
-        UIView.animate(withDuration: 0.3) {
+        UIView.animate(withDuration: 0.3, animations: {
             self.sortBackgroundView.isHidden = true
             self.sortView.frame.origin.y = UIScreen.main.bounds.height
+        }) { (_) in
+            self.sortBackgroundView.removeFromSuperview()
+            self.sortView.removeFromSuperview()
+        }
+    }
+    
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        // Landscape to Portrait: width - > height, height -> width
+        // Portrait to Landscape: width -> height, height -> width
+        if sortBackgroundView != nil && sortView != nil{
+            sortBackgroundView.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.height, height: UIScreen.main.bounds.width)
+            let height = size.height > size.width ? size.height * 0.4 : size.width * 0.3
+            sortView.frame = CGRect(x: 0, y: UIScreen.main.bounds.width - height, width: size.width, height: height)
         }
     }
     
