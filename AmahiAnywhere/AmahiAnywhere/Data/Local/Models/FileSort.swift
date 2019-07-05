@@ -15,6 +15,15 @@ enum FileSort: String {
     case type = "Type"
 }
 
-struct SortingMethod {
-    static var fileSort = FileSort.name
+struct GlobalFileSort {
+    static var fileSort = FileSort.name {
+        didSet{
+            UserDefaults.standard.set(GlobalFileSort.fileSort.rawValue, forKey: "GlobalFileSort")
+        }
+    }
+    
+    static func setDefaultFileSort(){
+        let fileSortString = UserDefaults.standard.string(forKey: "GlobalFileSort") ?? "Name"
+        GlobalFileSort.fileSort = FileSort(rawValue: fileSortString) ?? .name
+    }
 }

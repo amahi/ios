@@ -18,19 +18,18 @@ extension ThumbnailGenerator {
     
     func saveImage(url: URL, toCache: UIImage?, completion: @escaping SDWebImageNoParamsBlock) {
         guard let toCache = toCache else { return }
-        
-        let manager = SDWebImageManager.shared()
+        let manager = SDWebImageManager.shared
         if let key = manager.cacheKey(for: url) {
-            manager.imageCache?.store(toCache, forKey: key, completion: completion)
+            print("marton: image saved to cache")
+            manager.imageCache.store(toCache, imageData: toCache.sd_imageData(), forKey: key, cacheType: .all, completion: completion)
         }
     }
+
     
     static func imageFromMemory(for url: URL) -> UIImage? {
-        let manager = SDWebImageManager.shared()
-        if let key: String = manager.cacheKey(for: url),
-            let image = manager.imageCache?.imageFromMemoryCache(forKey: key) {
-            return image
-        }
-        return nil
+        let manager = SDWebImageManager.shared
+        guard let key = manager.cacheKey(for: url) else { return nil }
+        return SDImageCache.shared.imageFromCache(forKey: key)
     }
+    
 }

@@ -35,6 +35,7 @@
 		3BCAFBAD22C6DBCB0044057E /* OfflineFilesViewController+UICollectionViewDelegates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BCAFBAC22C6DBCB0044057E /* OfflineFilesViewController+UICollectionViewDelegates.swift */; };
 		3BCAFBAF22C6DC1A0044057E /* OfflineFilesViewController+Sorting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BCAFBAE22C6DC1A0044057E /* OfflineFilesViewController+Sorting.swift */; };
 		3BCAFBB122C6DC460044057E /* OfflineFilesViewController+FilesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BCAFBB022C6DC460044057E /* OfflineFilesViewController+FilesView.swift */; };
+		3BF4592822CD702C00C020A4 /* GlobalLayoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BF4592722CD702C00C020A4 /* GlobalLayoutView.swift */; };
 		4605963F204E24DF004FA066 /* ServerPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4605963E204E24DF004FA066 /* ServerPresenter.swift */; };
 		46059643204E8B41004FA066 /* BaseUITableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46059642204E8B41004FA066 /* BaseUITableViewController.swift */; };
 		46059646204EE17D004FA066 /* SharesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46059644204EE17D004FA066 /* SharesTableViewController.swift */; };
@@ -135,6 +136,7 @@
 		3BCAFBAC22C6DBCB0044057E /* OfflineFilesViewController+UICollectionViewDelegates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OfflineFilesViewController+UICollectionViewDelegates.swift"; sourceTree = "<group>"; };
 		3BCAFBAE22C6DC1A0044057E /* OfflineFilesViewController+Sorting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OfflineFilesViewController+Sorting.swift"; sourceTree = "<group>"; };
 		3BCAFBB022C6DC460044057E /* OfflineFilesViewController+FilesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OfflineFilesViewController+FilesView.swift"; sourceTree = "<group>"; };
+		3BF4592722CD702C00C020A4 /* GlobalLayoutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalLayoutView.swift; sourceTree = "<group>"; };
 		4605963E204E24DF004FA066 /* ServerPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerPresenter.swift; sourceTree = "<group>"; };
 		46059642204E8B41004FA066 /* BaseUITableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseUITableViewController.swift; sourceTree = "<group>"; };
 		46059644204EE17D004FA066 /* SharesTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharesTableViewController.swift; sourceTree = "<group>"; };
@@ -298,6 +300,7 @@
 				C86CA91420D3C65400C8EDCA /* CoreDataStack.swift */,
 				C83C63822038D5B30089B9D8 /* PersistenceIdentifiers.swift */,
 				C83C63832038D5B30089B9D8 /* StringLiterals.swift */,
+				3BF4592722CD702C00C020A4 /* GlobalLayoutView.swift */,
 			);
 			path = Local;
 			sourceTree = "<group>";
@@ -729,6 +732,7 @@
 				04BA8996211D56F400E7A868 /* AmahiLogger.swift in Sources */,
 				3BCAFBB122C6DC460044057E /* OfflineFilesViewController+FilesView.swift in Sources */,
 				AD8F2FDB226E9331009C8C4B /* CoreDataStack+DropDatabase.swift in Sources */,
+				3BF4592822CD702C00C020A4 /* GlobalLayoutView.swift in Sources */,
 				3BCAFBAD22C6DBCB0044057E /* OfflineFilesViewController+UICollectionViewDelegates.swift in Sources */,
 				46098D08204FFFBE00752EB6 /* ServerApi.swift in Sources */,
 				3B33325422BAA29700BC61EB /* FilesCollectionHeaderView.swift in Sources */,

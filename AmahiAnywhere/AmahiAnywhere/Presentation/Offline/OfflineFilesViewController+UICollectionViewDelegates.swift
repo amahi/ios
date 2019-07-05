@@ -22,7 +22,7 @@ extension OfflineFilesViewController: UICollectionViewDelegate, UICollectionView
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let offlineFile = filteredFiles.getFileFromIndexPath(indexPath)
         
-        if layoutIsList{
+        if layoutView == .listView{
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "listCell", for: indexPath) as? DownloadsListCollectionCell else {
                 return UICollectionViewCell()
             }
@@ -47,7 +47,7 @@ extension OfflineFilesViewController: UICollectionViewDelegate, UICollectionView
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        if layoutIsList{
+        if layoutView == .listView{
             return CGSize(width: collectionView.frame.width, height: 80)
         }else{
             return CGSize(width: collectionView.frame.width/3, height: 150)

@@ -912,7 +912,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" semanticContentAttribute="forceRightToLeft" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aye-ox-RCD">
-                                <rect key="frame" x="0.0" y="84" width="315" height="30"/>
+                                <rect key="frame" x="0.0" y="84" width="311" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="BQF-OT-Tmn"/>
                                 </constraints>
@@ -1127,7 +1127,7 @@
                                 </collectionReusableView>
                             </collectionView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IFR-JF-fHa">
-                                <rect key="frame" x="335" y="79" width="40" height="40"/>
+                                <rect key="frame" x="331" y="79" width="40" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="40" id="Ou0-gb-DqD"/>
                                     <constraint firstAttribute="height" constant="40" id="SXY-tY-YJL"/>
@@ -1145,7 +1145,7 @@
                             <constraint firstItem="IFR-JF-fHa" firstAttribute="leading" secondItem="aye-ox-RCD" secondAttribute="trailing" constant="20" id="DMW-gj-CZn"/>
                             <constraint firstAttribute="bottom" secondItem="xYS-us-p6h" secondAttribute="bottom" id="EDh-Bm-xRt"/>
                             <constraint firstItem="aye-ox-RCD" firstAttribute="leading" secondItem="inF-ss-QuC" secondAttribute="leading" id="Fu4-Pw-QrF"/>
-                            <constraint firstItem="inF-ss-QuC" firstAttribute="trailing" secondItem="IFR-JF-fHa" secondAttribute="trailing" id="IUQ-DJ-kX8"/>
+                            <constraint firstItem="inF-ss-QuC" firstAttribute="trailing" secondItem="IFR-JF-fHa" secondAttribute="trailing" constant="4" id="IUQ-DJ-kX8"/>
                             <constraint firstItem="inF-ss-QuC" firstAttribute="trailing" secondItem="xYS-us-p6h" secondAttribute="trailing" id="S4d-RB-rVc"/>
                             <constraint firstItem="aye-ox-RCD" firstAttribute="top" secondItem="inF-ss-QuC" secondAttribute="top" constant="20" id="hGc-Z9-A4s"/>
                             <constraint firstItem="xYS-us-p6h" firstAttribute="top" secondItem="aye-ox-RCD" secondAttribute="bottom" constant="20" id="lXP-PM-1Pb"/>

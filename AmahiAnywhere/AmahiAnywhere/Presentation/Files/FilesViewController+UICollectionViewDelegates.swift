@@ -33,7 +33,7 @@ extension FilesViewController: UICollectionViewDataSource, UICollectionViewDeleg
         
         let serverFile = filteredFiles.getFileFromIndexPath(indexPath)
         
-        if layoutIsList{
+        if layoutView == .listView{
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "listCell", for: indexPath) as? FilesListCollectionViewCell else{
                 return UICollectionViewCell()
             }
@@ -54,7 +54,7 @@ extension FilesViewController: UICollectionViewDataSource, UICollectionViewDeleg
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        if layoutIsList{
+        if layoutView == .listView{
             return CGSize(width: collectionView.frame.width, height: 80)
         }else{
             return CGSize(width: collectionView.frame.width/3, height: 140)

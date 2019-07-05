@@ -26,7 +26,7 @@ class OfflineFilesViewController: BaseUIViewController{
     var searchController: UISearchController!
     var sortView: SortView!
     var sortBackgroundView: UIView!
-    var layoutIsList = true
+    var layoutView: LayoutView!
     
     internal var offlineFiles = [OfflineFile]()
     internal var filteredFiles = FilteredOfflineFiles()
@@ -56,6 +56,16 @@ class OfflineFilesViewController: BaseUIViewController{
         setupCollectionView()
         setupCoreData()
         setupSearchBar()
+    }
+    
+    func setupLayoutView(){
+        layoutView = GlobalLayoutView.layoutView
+        
+        if layoutView == .listView{
+            layoutButton.setImage(UIImage(named: "filesGridIcon"), for: .normal)
+        }else{
+            layoutButton.setImage(UIImage(named: "filesListIcon"), for: .normal)
+        }
     }
     
     func setupCollectionView(){
@@ -95,8 +105,13 @@ class OfflineFilesViewController: BaseUIViewController{
         searchController.searchBar.resignFirstResponder()
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        if layoutView != GlobalLayoutView.layoutView{
+            setupLayoutView()
+            filesCollectionView.reloadData()
+        }
     }
     
     
@@ -216,13 +231,8 @@ class OfflineFilesViewController: BaseUIViewController{
     }
     
     @IBAction func layoutButtonTapped(_ sender: Any) {
-        layoutIsList = !layoutIsList
-        
-        if layoutIsList{
-            layoutButton.setImage(UIImage(named: "filesGridIcon"), for: .normal)
-        }else{
-            layoutButton.setImage(UIImage(named: "filesListIcon"), for: .normal)
-        }
+        GlobalLayoutView.switchLayoutMode()
+        setupLayoutView()
         
         filesCollectionView.reloadData()
     }

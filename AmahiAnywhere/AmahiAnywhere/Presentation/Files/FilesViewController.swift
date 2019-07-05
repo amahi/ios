@@ -46,17 +46,28 @@ class FilesViewController: BaseUIViewController {
     
     @IBOutlet var sortButton: UIButton!
     @IBOutlet var layoutButton: UIButton!
-    var layoutIsList = true
+    var layoutView: LayoutView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         presenter = FilesPresenter(self)
+        setupLayoutView()
         setupRefreshControl()
         setupNavigationItem()
         setupSearchBar()
         setupCollectionView()
-        updateFileSort(sortingMethod: SortingMethod.fileSort)
+        updateFileSort(sortingMethod: GlobalFileSort.fileSort)
         presenter.getFiles(share, directory: directory)
+    }
+    
+    func setupLayoutView(){
+        layoutView = GlobalLayoutView.layoutView
+        
+        if layoutView == .listView{
+            layoutButton.setImage(UIImage(named: "filesGridIcon"), for: .normal)
+        }else{
+            layoutButton.setImage(UIImage(named: "filesListIcon"), for: .normal)
+        }
     }
     
     func setupRefreshControl(){
@@ -83,8 +94,9 @@ class FilesViewController: BaseUIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        if fileSort != SortingMethod.fileSort{
-            updateFileSort(sortingMethod: SortingMethod.fileSort, refreshCollectionView: true)
+        if fileSort != GlobalFileSort.fileSort || layoutView != GlobalLayoutView.layoutView{
+            setupLayoutView()
+            updateFileSort(sortingMethod: GlobalFileSort.fileSort, refreshCollectionView: true)
         }
         
         presenter.loadOfflineFiles()
@@ -207,6 +219,7 @@ class FilesViewController: BaseUIViewController {
         vc.share = self.share
         vc.directory = serverFile
         vc.fileSort = fileSort
+        vc.layoutView = layoutView
         self.navigationController?.pushViewController(vc, animated: true)
     }
     
@@ -256,14 +269,8 @@ class FilesViewController: BaseUIViewController {
     }
     
     @IBAction func layoutButtonTapped(_ sender: Any) {
-        layoutIsList = !layoutIsList
-        
-        if layoutIsList{
-            layoutButton.setImage(UIImage(named: "filesGridIcon"), for: .normal)
-        }else{
-            layoutButton.setImage(UIImage(named: "filesListIcon"), for: .normal)
-        }
-        
+        GlobalLayoutView.switchLayoutMode()
+        setupLayoutView()
         filesCollectionView.reloadData()
     }
     
@@ -273,7 +280,7 @@ class FilesViewController: BaseUIViewController {
             self.sortButton.layoutIfNeeded()
         }
         
-        SortingMethod.fileSort = sortingMethod
+        GlobalFileSort.fileSort = sortingMethod
         fileSort = sortingMethod
         
         if refreshCollectionView{
