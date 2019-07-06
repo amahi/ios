@@ -14,6 +14,7 @@ class FilesListCollectionViewCell: FilesBaseCollectionCell {
     @IBOutlet var nameLabel: UILabel!
     @IBOutlet var sizeModifiedLabel: UILabel!
     @IBOutlet var moreButton: UIButton!
+    @IBOutlet var downloadIcon: UIImageView!
     
     func setupData(serverFile: ServerFile){
         nameLabel.text = serverFile.name

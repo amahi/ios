@@ -84,6 +84,10 @@ struct FilteredServerFiles{
         }else if file.mimeType == .audio{
             audioFilesIndexPaths.append(IndexPath(item: itemIndex, section: sectionIndex))
         }
+        
+        if let offlineFile = file.getOfflineFile(){
+            OfflineFileIndexes.offlineFilesIndexPaths[offlineFile] = IndexPath(item: itemIndex, section: sectionIndex)
+        }
     }
     
     mutating func updateCounter(file: ServerFile){

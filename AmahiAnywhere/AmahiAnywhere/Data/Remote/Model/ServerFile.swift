@@ -8,6 +8,7 @@
 
 import Foundation
 import EVReflection
+import CoreData
 
 @objc(ServerFile)
 public class ServerFile: EVNetworkingObject {
@@ -65,6 +66,26 @@ public class ServerFile: EVNetworkingObject {
     
     var isDirectory: Bool {
         return mimeType == .directory
+    }
+    
+    public func getOfflineFile() -> OfflineFile?{
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "OfflineFile")
+        let predicate = NSPredicate(format: "name == %@", name!)
+        fetchRequest.predicate = predicate
+        let delegate = UIApplication.shared.delegate as! AppDelegate
+        let stack = delegate.stack
+        
+        do{
+            if let results = try stack.context.fetch(fetchRequest) as? [OfflineFile]{
+                if results.count >= 1{
+                    return results[0]
+                }
+            }
+        }catch{
+            return nil
+        }
+        
+        return nil
     }
 }
 

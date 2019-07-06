@@ -145,7 +145,7 @@ internal class FilesPresenter: BasePresenter {
         }
     }
     
-    public func makeFileAvailableOffline(_ serverFile: ServerFile) {
+    public func makeFileAvailableOffline(_ serverFile: ServerFile, _ indexPath: IndexPath) {
         
         let delegate = UIApplication.shared.delegate as! AppDelegate
         let stack = delegate.stack
@@ -169,6 +169,9 @@ internal class FilesPresenter: BasePresenter {
                                       progress: 1,
                                       state: OfflineFileState.downloading,
                                       context: stack.context)
+        
+        OfflineFileIndexes.offlineFilesIndexPaths[offlineFile] = indexPath
+        
         try? stack.saveContext()
         
         DownloadService.shared.startDownload(offlineFile)
@@ -246,6 +249,10 @@ internal class FilesPresenter: BasePresenter {
         } else {
             return .none
         }
+    }
+    
+    func getOfflineFileFromServerFile(_ file: ServerFile) -> OfflineFile?{
+        return offlineFiles?[file.name!]
     }
     
     private func executeSearch() {

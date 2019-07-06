@@ -34,7 +34,7 @@ class DownloadService : NSObject {
             download.isDownloading = true
             
             activeDownloads[url] = download
-            NotificationCenter.default.post(name: .DownloadStarted, object: nil, userInfo: [:])
+            updateTabBarStarted()
         }
     }
     
@@ -58,6 +58,8 @@ class DownloadService : NSObject {
             download.task?.cancel()
             activeDownloads.removeValue(forKey: url)
         }
+        
+        updateTabBarCompleted()
         NotificationCenter.default.post(name: .DownloadCancelled, object: nil, userInfo: [:])
     }
     
@@ -73,4 +75,28 @@ class DownloadService : NSObject {
         download.task!.resume()
         download.isDownloading = true
     }
+    
+    func updateTabBarCompleted(){
+        if let tabBarController = UIApplication.topViewController()?.tabBarController {
+            if var downloadsTabCounter = Int(tabBarController.tabBar.items?[1].badgeValue ?? "1"){
+                downloadsTabCounter -= 1
+                if downloadsTabCounter >= 1{
+                    tabBarController.tabBar.items?[1].badgeValue = String(downloadsTabCounter)
+                }else{
+                    tabBarController.tabBar.items?[1].badgeValue = nil
+                }
+            }
+        }
+    }
+    
+    func updateTabBarStarted(){
+        if let tabBarController = UIApplication.topViewController()?.tabBarController{
+            if var downloadsTabCounter = Int(tabBarController.tabBar.items?[1].badgeValue ?? "0"){
+                downloadsTabCounter += 1
+                tabBarController.tabBar.items?[1].badgeValue = String(downloadsTabCounter)
+            }
+        }
+    }
 }
+
+

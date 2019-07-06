@@ -104,6 +104,23 @@ class FilesViewController: BaseUIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        NotificationCenter.default.addObserver(self, selector: #selector(offlineFileUpdated), name: .DownloadCompletedSuccessfully, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(offlineFileUpdated), name: .OfflineFileDeleted, object: nil)
+    }
+    
+    @objc func offlineFileUpdated(_ notification: Notification){
+        
+        if notification.userInfo?["loadOfflineFiles"] != nil{
+            presenter.loadOfflineFiles()
+        }
+        
+        if let offlineFile = notification.object as? OfflineFile, let indexPath = OfflineFileIndexes.offlineFilesIndexPaths[offlineFile] {
+            if indexPath.section < filesCollectionView.numberOfSections && indexPath.item < filesCollectionView.numberOfItems(inSection: indexPath.section){
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.4) {
+                    self.filesCollectionView.reloadItems(at: [indexPath])
+                }
+            }
+        }
     }
     
     func setupSearchBar(){
@@ -146,7 +163,7 @@ class FilesViewController: BaseUIViewController {
             if file.isDirectory { return }
             
             let download = self.creatAlertAction(StringLiterals.download, style: .default) { (action) in
-                self.presenter.makeFileAvailableOffline(file)
+                self.presenter.makeFileAvailableOffline(file, indexPath)
                 }!
             let state = presenter.checkFileOfflineState(file)
             

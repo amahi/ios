@@ -29,7 +29,6 @@ extension DownloadService: URLSessionDownloadDelegate {
     // Stores downloaded file
     func urlSession(_ session: URLSession, downloadTask: URLSessionDownloadTask, didFinishDownloadingTo location: URL) {
         AmahiLogger.log("Download Has Completed for url \(downloadTask.originalRequest?.url!)")
-
         guard let sourceURL = downloadTask.originalRequest?.url else { return }
         guard let download = DownloadService.shared.activeDownloads[sourceURL] else { return }
         activeDownloads[sourceURL] = nil
@@ -46,11 +45,13 @@ extension DownloadService: URLSessionDownloadDelegate {
                 download.offlineFile.stateEnum = .downloaded
                 let delegate = UIApplication.shared.delegate as! AppDelegate
                 try? delegate.stack.saveContext()
-                NotificationCenter.default.post(name: .DownloadCompletedSuccessfully, object: nil, userInfo: [:])
+                self.updateTabBarCompleted()
+                NotificationCenter.default.post(name: .DownloadCompletedSuccessfully, object: download.offlineFile, userInfo: [:])
             }
             
         } catch let error {
             AmahiLogger.log("Could not move file to disk: \(error.localizedDescription)")
+            self.updateTabBarCompleted()
         }
     }
     
@@ -81,6 +82,8 @@ extension DownloadService: URLSessionDownloadDelegate {
             download.offlineFile.stateEnum = .completedWithError
             let delegate = UIApplication.shared.delegate as! AppDelegate
             try? delegate.stack.saveContext()
+            
+            self.updateTabBarCompleted()
             NotificationCenter.default.post(name: .DownloadCompletedWithError, object: nil, userInfo: [:])
         }
     }

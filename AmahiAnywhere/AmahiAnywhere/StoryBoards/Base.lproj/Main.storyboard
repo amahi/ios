@@ -754,21 +754,31 @@
                                                         <color key="titleColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     </state>
                                                 </button>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="downIcon" translatesAutoresizingMaskIntoConstraints="NO" id="tSU-2a-tor">
+                                                    <rect key="frame" x="322" y="26.5" width="15" height="15"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="15" id="ILF-9K-rLA"/>
+                                                        <constraint firstAttribute="width" constant="15" id="jZt-7J-aOo"/>
+                                                    </constraints>
+                                                </imageView>
                                             </subviews>
                                         </view>
                                         <constraints>
                                             <constraint firstAttribute="bottom" secondItem="d2H-LZ-HxW" secondAttribute="bottom" constant="8" id="0y1-hz-g4y"/>
                                             <constraint firstItem="d2H-LZ-HxW" firstAttribute="leading" secondItem="Wx1-XH-peS" secondAttribute="leading" constant="10" id="Ena-B1-dWo"/>
                                             <constraint firstItem="igU-r6-J6p" firstAttribute="leading" secondItem="d2H-LZ-HxW" secondAttribute="trailing" constant="8" id="Fl3-Oj-Myn"/>
+                                            <constraint firstItem="1eN-1Y-KOS" firstAttribute="leading" secondItem="tSU-2a-tor" secondAttribute="trailing" constant="-4" id="KoI-gb-wDX"/>
                                             <constraint firstItem="1eN-1Y-KOS" firstAttribute="leading" secondItem="igU-r6-J6p" secondAttribute="trailing" constant="20" id="LlE-Q6-gkP"/>
                                             <constraint firstItem="igU-r6-J6p" firstAttribute="centerY" secondItem="d2H-LZ-HxW" secondAttribute="centerY" id="UA2-bo-Cnj"/>
                                             <constraint firstItem="d2H-LZ-HxW" firstAttribute="top" secondItem="Wx1-XH-peS" secondAttribute="top" constant="8" id="WxW-Kq-uOJ"/>
                                             <constraint firstItem="1eN-1Y-KOS" firstAttribute="top" secondItem="Wx1-XH-peS" secondAttribute="top" id="XDt-AI-1pH"/>
                                             <constraint firstAttribute="bottom" secondItem="1eN-1Y-KOS" secondAttribute="bottom" id="dI9-Lv-RDO"/>
+                                            <constraint firstItem="tSU-2a-tor" firstAttribute="centerY" secondItem="1eN-1Y-KOS" secondAttribute="centerY" id="f7S-eb-LNJ"/>
                                             <constraint firstAttribute="trailing" secondItem="1eN-1Y-KOS" secondAttribute="trailing" id="osW-3c-I6a"/>
                                         </constraints>
                                         <size key="customSize" width="373" height="68"/>
                                         <connections>
+                                            <outlet property="downloadIcon" destination="tSU-2a-tor" id="Z3X-ns-HOn"/>
                                             <outlet property="iconImageView" destination="d2H-LZ-HxW" id="9Ol-JH-vXW"/>
                                             <outlet property="moreButton" destination="1eN-1Y-KOS" id="GuN-IO-M5u"/>
                                             <outlet property="nameLabel" destination="maX-2g-XaX" id="aYw-f9-5oT"/>
@@ -783,19 +793,10 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="file" translatesAutoresizingMaskIntoConstraints="NO" id="SV9-YN-b0c">
-                                                    <rect key="frame" x="0.0" y="0.0" width="145" height="77"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="145" height="85"/>
                                                 </imageView>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3Cc-pN-a7s">
-                                                    <rect key="frame" x="60" y="129" width="25" height="25"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="25" id="N2R-d4-LK4"/>
-                                                        <constraint firstAttribute="height" constant="25" id="t15-Ht-myh"/>
-                                                    </constraints>
-                                                    <inset key="contentEdgeInsets" minX="4" minY="4" maxX="4" maxY="4"/>
-                                                    <state key="normal" image="gridCellMoreIcon"/>
-                                                </button>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="File" textAlignment="center" lineBreakMode="middleTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c2d-yK-x9l">
-                                                    <rect key="frame" x="8" y="85" width="129" height="36"/>
+                                                    <rect key="frame" x="8" y="93" width="129" height="36"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="36" id="OTO-5B-vJO"/>
                                                     </constraints>
@@ -803,21 +804,38 @@
                                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="8eO-Nc-eLo">
+                                                    <rect key="frame" x="51.5" y="137" width="42" height="17"/>
+                                                    <subviews>
+                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="downIcon" translatesAutoresizingMaskIntoConstraints="NO" id="6Xn-6P-dPh">
+                                                            <rect key="frame" x="0.0" y="0.0" width="17" height="17"/>
+                                                        </imageView>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3Cc-pN-a7s">
+                                                            <rect key="frame" x="25" y="0.0" width="17" height="17"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" constant="17" id="N2R-d4-LK4"/>
+                                                                <constraint firstAttribute="height" constant="17" id="t15-Ht-myh"/>
+                                                            </constraints>
+                                                            <state key="normal" image="gridCellMoreIcon"/>
+                                                        </button>
+                                                    </subviews>
+                                                </stackView>
                                             </subviews>
                                         </view>
                                         <constraints>
-                                            <constraint firstItem="3Cc-pN-a7s" firstAttribute="top" secondItem="c2d-yK-x9l" secondAttribute="bottom" constant="8" id="3f1-c4-Mpx"/>
+                                            <constraint firstItem="8eO-Nc-eLo" firstAttribute="centerX" secondItem="dpS-lW-6Zy" secondAttribute="centerX" id="6Kl-cW-loG"/>
                                             <constraint firstItem="c2d-yK-x9l" firstAttribute="top" secondItem="SV9-YN-b0c" secondAttribute="bottom" constant="8" id="BUX-Ul-peg"/>
                                             <constraint firstAttribute="trailing" secondItem="SV9-YN-b0c" secondAttribute="trailing" id="QQ2-ug-xnr"/>
-                                            <constraint firstAttribute="bottom" secondItem="3Cc-pN-a7s" secondAttribute="bottom" id="Vwn-zb-btR"/>
+                                            <constraint firstAttribute="bottom" secondItem="8eO-Nc-eLo" secondAttribute="bottom" id="abU-3g-p8i"/>
                                             <constraint firstItem="SV9-YN-b0c" firstAttribute="leading" secondItem="dpS-lW-6Zy" secondAttribute="leading" id="cGO-IG-xHL"/>
                                             <constraint firstItem="SV9-YN-b0c" firstAttribute="top" secondItem="dpS-lW-6Zy" secondAttribute="top" id="e8x-4p-PFZ"/>
                                             <constraint firstItem="c2d-yK-x9l" firstAttribute="trailing" secondItem="dpS-lW-6Zy" secondAttribute="trailingMargin" id="jEh-Va-Mgy"/>
                                             <constraint firstItem="c2d-yK-x9l" firstAttribute="leading" secondItem="dpS-lW-6Zy" secondAttribute="leadingMargin" id="jmI-pO-ULV"/>
-                                            <constraint firstItem="3Cc-pN-a7s" firstAttribute="centerX" secondItem="dpS-lW-6Zy" secondAttribute="centerX" id="wTs-OT-FIx"/>
+                                            <constraint firstItem="8eO-Nc-eLo" firstAttribute="top" secondItem="c2d-yK-x9l" secondAttribute="bottom" constant="8" id="ubj-a4-FJd"/>
                                         </constraints>
                                         <size key="customSize" width="145" height="154"/>
                                         <connections>
+                                            <outlet property="downloadIcon" destination="6Xn-6P-dPh" id="cI4-I3-aU6"/>
                                             <outlet property="iconImageView" destination="SV9-YN-b0c" id="Rox-TG-XcZ"/>
                                             <outlet property="moreButton" destination="3Cc-pN-a7s" id="9jF-It-gYC"/>
                                             <outlet property="nameLabel" destination="c2d-yK-x9l" id="bN7-bg-Vii"/>
@@ -901,7 +919,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="k61-Xd-iYJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2470" y="-1186"/>
+            <point key="canvasLocation" x="2469.5999999999999" y="-1186.0569715142431"/>
         </scene>
         <!--Offline Files-->
         <scene sceneID="Ym4-86-Afk">
@@ -1171,6 +1189,7 @@
         <image name="arrowDownIcon" width="15.666666984558105" height="9"/>
         <image name="arrowRightIcon" width="562" height="562"/>
         <image name="brokenIcon" width="28" height="28"/>
+        <image name="downIcon" width="20" height="20"/>
         <image name="file" width="512" height="512"/>
         <image name="filesGridIcon" width="60" height="60"/>
         <image name="gridCellMoreIcon" width="72" height="72"/>

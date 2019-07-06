@@ -284,6 +284,7 @@ extension OfflineFilesViewController: NSFetchedResultsControllerDelegate {
         }else if type == .delete, let file = anObject as? OfflineFile, let deletedIndex = offlineFiles.index(of: file){
             offlineFiles.remove(at: deletedIndex)
             organiseFilesSections(offlineFiles)
+            NotificationCenter.default.post(name: .OfflineFileDeleted, object: file, userInfo: ["loadOfflineFiles": true])
         }
     }
 }

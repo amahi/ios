@@ -41,6 +41,8 @@ extension FilesViewController: UICollectionViewDataSource, UICollectionViewDeleg
             cell.setupData(serverFile: serverFile)
             cell.moreButton.addTarget(self, action: #selector(moreButtonTapped(sender:)), for: .touchUpInside)
             cell.delegate = self
+            cell.downloadIcon.isHidden = presenter.checkFileOfflineState(serverFile) != .downloaded
+
             return cell
         }else{
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "gridCell", for: indexPath) as? FilesGridCollectionCell else{
@@ -49,6 +51,7 @@ extension FilesViewController: UICollectionViewDataSource, UICollectionViewDeleg
             
             cell.setupData(serverFile: serverFile)
             cell.moreButton.addTarget(self, action: #selector(moreButtonTapped(sender:)), for: .touchUpInside)
+            cell.downloadIcon.isHidden = presenter.checkFileOfflineState(serverFile) != .downloaded
             return cell
         }
     }
@@ -122,7 +125,8 @@ extension FilesViewController: UICollectionViewDataSource, UICollectionViewDeleg
     }
     
     func collectionView(_ collectionView: UICollectionView, editActionsForItemAt indexPath: IndexPath, for orientation: SwipeActionsOrientation) -> [SwipeAction]? {
-        let serverFile = serverFiles[indexPath.item]
+        let serverFile = filteredFiles.getFileFromIndexPath(indexPath)
+        
         if serverFile.isDirectory{
             return nil
         }else{
@@ -138,7 +142,7 @@ extension FilesViewController: UICollectionViewDataSource, UICollectionViewDeleg
                 let state = presenter.checkFileOfflineState(serverFile)
                 if state == .none{
                     let downloadAction = SwipeAction(style: .default, title: "Download") { (action, indexPath) in
-                        self.presenter.makeFileAvailableOffline(serverFile)
+                        self.presenter.makeFileAvailableOffline(serverFile, indexPath)
                     }
                     
                     downloadAction.backgroundColor = #colorLiteral(red: 0.2172219259, green: 0.7408193211, blue: 0.1805167178, alpha: 1)
@@ -174,7 +178,7 @@ extension FilesViewController: UICollectionViewDataSource, UICollectionViewDeleg
         if orientation == .left{
             options.backgroundColor = #colorLiteral(red: 0.2704460415, green: 0.5734752943, blue: 1, alpha: 1)
         }else{
-            let file = serverFiles[indexPath.item]
+            let file = filteredFiles.getFileFromIndexPath(indexPath)
             let state = presenter.checkFileOfflineState(file)
             if state == .none{
                 options.backgroundColor = #colorLiteral(red: 0.2172219259, green: 0.7408193211, blue: 0.1805167178, alpha: 1)

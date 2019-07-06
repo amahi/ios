@@ -12,6 +12,7 @@ class FilesGridCollectionCell: FilesBaseCollectionCell {
     @IBOutlet var iconImageView: UIImageView!
     @IBOutlet var nameLabel: UILabel!
     @IBOutlet var moreButton: UIButton!
+    @IBOutlet var downloadIcon: UIImageView!
     
     func setupData(serverFile: ServerFile){
         nameLabel.text = serverFile.name

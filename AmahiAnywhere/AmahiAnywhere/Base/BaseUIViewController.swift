@@ -18,11 +18,9 @@ class BaseUIViewController: UIViewController {
         addActiveDownloadObservers()
         addLanTestObservers()
     }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
         
-        NotificationCenter.default.removeObserver(self)
+    deinit {
+         NotificationCenter.default.removeObserver(self)
     }
     
     func hideKeyboardWhenTappedAround() {

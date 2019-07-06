@@ -84,26 +84,26 @@ extension UIViewController {
         self.navigationController?.navigationBar.backgroundColor = UIColor.remoteIndicatorBrown
     }
     
-    @objc func updateDownloadsIconOnDownloadStarted() {
+    @objc func updateTabBadgeDownloadStarted() {
         AmahiLogger.log("Active Downloads count \(DownloadService.shared.activeDownloads.count)")
     }
     
-    @objc func updateDownloadsIconOnDownloadCompleted() {
+    @objc func updateTabBadgeDownloadCompleted() {
         AmahiLogger.log("Active Downloads count \(DownloadService.shared.activeDownloads.count)")
     }
     
     func addActiveDownloadObservers() {
         
-        NotificationCenter.default.addObserver(self, selector: #selector(updateDownloadsIconOnDownloadStarted),
+        NotificationCenter.default.addObserver(self, selector: #selector(updateTabBadgeDownloadStarted),
                                                name: .DownloadStarted, object: nil)
         
-        NotificationCenter.default.addObserver(self, selector: #selector(updateDownloadsIconOnDownloadCompleted),
+        NotificationCenter.default.addObserver(self, selector: #selector(updateTabBadgeDownloadCompleted),
                                                name: .DownloadCompletedSuccessfully, object: nil)
         
-        NotificationCenter.default.addObserver(self, selector: #selector(updateDownloadsIconOnDownloadCompleted),
+        NotificationCenter.default.addObserver(self, selector: #selector(updateTabBadgeDownloadCompleted),
                                                name: .DownloadCompletedWithError, object: nil)
         
-        NotificationCenter.default.addObserver(self, selector: #selector(updateDownloadsIconOnDownloadCompleted),
+        NotificationCenter.default.addObserver(self, selector: #selector(updateTabBadgeDownloadCompleted),
                                                name: .DownloadCancelled, object: nil)
     }
     

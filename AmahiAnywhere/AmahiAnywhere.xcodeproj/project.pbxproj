@@ -35,6 +35,8 @@
 		3BCAFBAD22C6DBCB0044057E /* OfflineFilesViewController+UICollectionViewDelegates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BCAFBAC22C6DBCB0044057E /* OfflineFilesViewController+UICollectionViewDelegates.swift */; };
 		3BCAFBAF22C6DC1A0044057E /* OfflineFilesViewController+Sorting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BCAFBAE22C6DC1A0044057E /* OfflineFilesViewController+Sorting.swift */; };
 		3BCAFBB122C6DC460044057E /* OfflineFilesViewController+FilesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BCAFBB022C6DC460044057E /* OfflineFilesViewController+FilesView.swift */; };
+		3BF1E81A22D0288700C531CD /* OfflineFileIndexes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BF1E81922D0288700C531CD /* OfflineFileIndexes.swift */; };
+		3BF1E81C22D07E9800C531CD /* UIApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BF1E81B22D07E9800C531CD /* UIApplication.swift */; };
 		3BF4592822CD702C00C020A4 /* GlobalLayoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BF4592722CD702C00C020A4 /* GlobalLayoutView.swift */; };
 		4605963F204E24DF004FA066 /* ServerPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4605963E204E24DF004FA066 /* ServerPresenter.swift */; };
 		46059643204E8B41004FA066 /* BaseUITableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46059642204E8B41004FA066 /* BaseUITableViewController.swift */; };
@@ -136,6 +138,8 @@
 		3BCAFBAC22C6DBCB0044057E /* OfflineFilesViewController+UICollectionViewDelegates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OfflineFilesViewController+UICollectionViewDelegates.swift"; sourceTree = "<group>"; };
 		3BCAFBAE22C6DC1A0044057E /* OfflineFilesViewController+Sorting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OfflineFilesViewController+Sorting.swift"; sourceTree = "<group>"; };
 		3BCAFBB022C6DC460044057E /* OfflineFilesViewController+FilesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OfflineFilesViewController+FilesView.swift"; sourceTree = "<group>"; };
+		3BF1E81922D0288700C531CD /* OfflineFileIndexes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfflineFileIndexes.swift; sourceTree = "<group>"; };
+		3BF1E81B22D07E9800C531CD /* UIApplication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIApplication.swift; sourceTree = "<group>"; };
 		3BF4592722CD702C00C020A4 /* GlobalLayoutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalLayoutView.swift; sourceTree = "<group>"; };
 		4605963E204E24DF004FA066 /* ServerPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerPresenter.swift; sourceTree = "<group>"; };
 		46059642204E8B41004FA066 /* BaseUITableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseUITableViewController.swift; sourceTree = "<group>"; };
@@ -334,6 +338,7 @@
 				4605964A204F35E9004FA066 /* ServerRoute.swift */,
 				46098D03204FDF5500752EB6 /* ServerFile.swift */,
 				3B33324D22BAA17C00BC61EB /* FilteredServerFile.swift */,
+				3BF1E81922D0288700C531CD /* OfflineFileIndexes.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -402,6 +407,7 @@
 				C8DA5B3420D8740F00F5A527 /* String.swift */,
 				C84BBA5D20F37EF20030536F /* Notification.swift */,
 				3B84E87C2299587B00E37A74 /* UIView.swift */,
+				3BF1E81B22D07E9800C531CD /* UIApplication.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -690,6 +696,7 @@
 				ADAFF8D6224F6DB700287409 /* ThumbnailGenerator.swift in Sources */,
 				46059643204E8B41004FA066 /* BaseUITableViewController.swift in Sources */,
 				C88E5A7120B543B2006518B6 /* FileManager.swift in Sources */,
+				3BF1E81C22D07E9800C531CD /* UIApplication.swift in Sources */,
 				C86CA91320D3A84A00C8EDCA /* OfflineFilesModel.xcdatamodeld in Sources */,
 				ADAFF8D822501F5B00287409 /* PDFThumbnailGenerator.swift in Sources */,
 				4605963F204E24DF004FA066 /* ServerPresenter.swift in Sources */,
@@ -737,6 +744,7 @@
 				46098D08204FFFBE00752EB6 /* ServerApi.swift in Sources */,
 				3B33325422BAA29700BC61EB /* FilesCollectionHeaderView.swift in Sources */,
 				C8D86160209490230014D8AC /* WebViewController.swift in Sources */,
+				3BF1E81A22D0288700C531CD /* OfflineFileIndexes.swift in Sources */,
 				3BCAFBA722C53E2A0044057E /* OfflineFilesViewController.swift in Sources */,
 				C83C63992038D5B30089B9D8 /* AuthResponses.swift in Sources */,
 				3B33324E22BAA17C00BC61EB /* FilteredServerFile.swift in Sources */,
@@ -898,7 +906,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 83F32NLU7E;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = AmahiAnywhere/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
@@ -906,7 +914,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.amahi.AmahiAnywhere;
+				PRODUCT_BUNDLE_IDENTIFIER = com.amahi.AmahiAnywhere.test.marton;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_ENFORCE_EXCLUSIVE_ACCESS = none;
 				SWIFT_OBJC_BRIDGING_HEADER = "AmahiAnywhere/AmahiAnywhere-Bridging-Header.h";
@@ -921,7 +929,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 83F32NLU7E;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = AmahiAnywhere/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
@@ -929,7 +937,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.amahi.AmahiAnywhere;
+				PRODUCT_BUNDLE_IDENTIFIER = com.amahi.AmahiAnywhere.test.marton;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_ENFORCE_EXCLUSIVE_ACCESS = none;
 				SWIFT_OBJC_BRIDGING_HEADER = "AmahiAnywhere/AmahiAnywhere-Bridging-Header.h";
