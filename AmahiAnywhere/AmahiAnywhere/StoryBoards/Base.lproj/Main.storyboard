@@ -761,6 +761,10 @@
                                                         <constraint firstAttribute="width" constant="15" id="jZt-7J-aOo"/>
                                                     </constraints>
                                                 </imageView>
+                                                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="xBy-MH-ltU">
+                                                    <rect key="frame" x="319.5" y="24" width="20" height="20"/>
+                                                    <color key="color" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </activityIndicatorView>
                                             </subviews>
                                         </view>
                                         <constraints>
@@ -769,17 +773,20 @@
                                             <constraint firstItem="igU-r6-J6p" firstAttribute="leading" secondItem="d2H-LZ-HxW" secondAttribute="trailing" constant="8" id="Fl3-Oj-Myn"/>
                                             <constraint firstItem="1eN-1Y-KOS" firstAttribute="leading" secondItem="tSU-2a-tor" secondAttribute="trailing" constant="-4" id="KoI-gb-wDX"/>
                                             <constraint firstItem="1eN-1Y-KOS" firstAttribute="leading" secondItem="igU-r6-J6p" secondAttribute="trailing" constant="20" id="LlE-Q6-gkP"/>
+                                            <constraint firstItem="xBy-MH-ltU" firstAttribute="centerX" secondItem="tSU-2a-tor" secondAttribute="centerX" id="Q3o-eE-8tA"/>
                                             <constraint firstItem="igU-r6-J6p" firstAttribute="centerY" secondItem="d2H-LZ-HxW" secondAttribute="centerY" id="UA2-bo-Cnj"/>
                                             <constraint firstItem="d2H-LZ-HxW" firstAttribute="top" secondItem="Wx1-XH-peS" secondAttribute="top" constant="8" id="WxW-Kq-uOJ"/>
                                             <constraint firstItem="1eN-1Y-KOS" firstAttribute="top" secondItem="Wx1-XH-peS" secondAttribute="top" id="XDt-AI-1pH"/>
                                             <constraint firstAttribute="bottom" secondItem="1eN-1Y-KOS" secondAttribute="bottom" id="dI9-Lv-RDO"/>
                                             <constraint firstItem="tSU-2a-tor" firstAttribute="centerY" secondItem="1eN-1Y-KOS" secondAttribute="centerY" id="f7S-eb-LNJ"/>
                                             <constraint firstAttribute="trailing" secondItem="1eN-1Y-KOS" secondAttribute="trailing" id="osW-3c-I6a"/>
+                                            <constraint firstItem="xBy-MH-ltU" firstAttribute="centerY" secondItem="tSU-2a-tor" secondAttribute="centerY" id="vKl-pi-m0l"/>
                                         </constraints>
                                         <size key="customSize" width="373" height="68"/>
                                         <connections>
                                             <outlet property="downloadIcon" destination="tSU-2a-tor" id="Z3X-ns-HOn"/>
                                             <outlet property="iconImageView" destination="d2H-LZ-HxW" id="9Ol-JH-vXW"/>
+                                            <outlet property="loadingIndicator" destination="xBy-MH-ltU" id="ga1-X8-IlL"/>
                                             <outlet property="moreButton" destination="1eN-1Y-KOS" id="GuN-IO-M5u"/>
                                             <outlet property="nameLabel" destination="maX-2g-XaX" id="aYw-f9-5oT"/>
                                             <outlet property="sizeModifiedLabel" destination="dNn-m0-Xdf" id="Xmv-lM-6XY"/>
@@ -805,13 +812,17 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="8eO-Nc-eLo">
-                                                    <rect key="frame" x="51.5" y="137" width="42" height="17"/>
+                                                    <rect key="frame" x="39" y="137" width="67" height="17"/>
                                                     <subviews>
                                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="downIcon" translatesAutoresizingMaskIntoConstraints="NO" id="6Xn-6P-dPh">
                                                             <rect key="frame" x="0.0" y="0.0" width="17" height="17"/>
                                                         </imageView>
-                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3Cc-pN-a7s">
+                                                        <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="wkZ-bQ-2SG">
                                                             <rect key="frame" x="25" y="0.0" width="17" height="17"/>
+                                                            <color key="color" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        </activityIndicatorView>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3Cc-pN-a7s">
+                                                            <rect key="frame" x="50" y="0.0" width="17" height="17"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="17" id="N2R-d4-LK4"/>
                                                                 <constraint firstAttribute="height" constant="17" id="t15-Ht-myh"/>
@@ -837,6 +848,7 @@
                                         <connections>
                                             <outlet property="downloadIcon" destination="6Xn-6P-dPh" id="cI4-I3-aU6"/>
                                             <outlet property="iconImageView" destination="SV9-YN-b0c" id="Rox-TG-XcZ"/>
+                                            <outlet property="loadingIndicator" destination="wkZ-bQ-2SG" id="c2p-oX-el8"/>
                                             <outlet property="moreButton" destination="3Cc-pN-a7s" id="9jF-It-gYC"/>
                                             <outlet property="nameLabel" destination="c2d-yK-x9l" id="bN7-bg-Vii"/>
                                         </connections>

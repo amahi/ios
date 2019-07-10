@@ -154,20 +154,31 @@ GCKRemoteMediaClientListener, GCKRequestDelegate {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        setupNotifications()
+    }
+    
+    func setupNotifications(){
         NotificationCenter.default.addObserver(self, selector: #selector(offlineFileUpdated), name: .DownloadCompletedSuccessfully, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(offlineFileUpdated), name: .OfflineFileDeleted, object: nil)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(offlineFileUpdated(_:)), name: .DownloadStarted, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(offlineFileUpdated(_:)), name: .DownloadCancelled, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(offlineFileUpdated(_:)), name: .DownloadCompletedWithError, object: nil)
     }
     
     @objc func offlineFileUpdated(_ notification: Notification){
         
         if notification.userInfo?["loadOfflineFiles"] != nil{
+            // If offline files have changed - an offline file was deleted
             presenter.loadOfflineFiles()
         }
         
         if let offlineFile = notification.object as? OfflineFile, let indexPath = OfflineFileIndexes.offlineFilesIndexPaths[offlineFile] {
             if indexPath.section < filesCollectionView.numberOfSections && indexPath.item < filesCollectionView.numberOfItems(inSection: indexPath.section){
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.4) {
-                    self.filesCollectionView.reloadItems(at: [indexPath])
+                    UIView.performWithoutAnimation {
+                        self.filesCollectionView.reloadItems(at: [indexPath])
+                    }
                 }
             }
         }

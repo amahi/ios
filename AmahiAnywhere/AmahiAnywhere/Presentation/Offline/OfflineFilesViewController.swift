@@ -102,7 +102,7 @@ class OfflineFilesViewController: BaseUIViewController{
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        searchController.searchBar.resignFirstResponder()
+        searchController?.searchBar.resignFirstResponder()
     }
     
     override func viewWillAppear(_ animated: Bool) {

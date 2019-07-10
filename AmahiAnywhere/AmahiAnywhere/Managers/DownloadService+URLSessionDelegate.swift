@@ -84,7 +84,7 @@ extension DownloadService: URLSessionDownloadDelegate {
             try? delegate.stack.saveContext()
             
             self.updateTabBarCompleted()
-            NotificationCenter.default.post(name: .DownloadCompletedWithError, object: nil, userInfo: [:])
+            NotificationCenter.default.post(name: .DownloadCompletedWithError, object: download.offlineFile, userInfo: [:])
         }
     }
 }

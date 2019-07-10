@@ -42,7 +42,15 @@ extension FilesViewController: UICollectionViewDataSource, UICollectionViewDeleg
             cell.moreButton.addTarget(self, action: #selector(moreButtonTapped(sender:)), for: .touchUpInside)
             cell.delegate = self
             cell.downloadIcon.isHidden = presenter.checkFileOfflineState(serverFile) != .downloaded
-
+            
+            if presenter.checkFileOfflineState(serverFile) == .downloading{
+                cell.loadingIndicator.isHidden = false
+                cell.loadingIndicator.startAnimating()
+            }else{
+                cell.loadingIndicator.isHidden = true
+                cell.loadingIndicator.stopAnimating()
+            }
+            
             return cell
         }else{
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "gridCell", for: indexPath) as? FilesGridCollectionCell else{

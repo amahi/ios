@@ -27,6 +27,8 @@ class DownloadService : NSObject {
     
     func startDownload(_ offlineFile: OfflineFile) {
         if let url = offlineFile.remoteFileURL() {
+            offlineFile.stateEnum = .downloading
+            NotificationCenter.default.post(name: .DownloadStarted, object: offlineFile, userInfo: nil)
             AmahiLogger.log("Download Has Started for url \(url)")
             let download = Download(offlineFile: offlineFile)
             download.task = downloadsSession.downloadTask(with: url)
@@ -60,7 +62,7 @@ class DownloadService : NSObject {
         }
         
         updateTabBarCompleted()
-        NotificationCenter.default.post(name: .DownloadCancelled, object: nil, userInfo: [:])
+        NotificationCenter.default.post(name: .DownloadCancelled, object: offlineFile, userInfo: [:])
     }
     
     func resumeDownload(_ offlineFile: OfflineFile) {
