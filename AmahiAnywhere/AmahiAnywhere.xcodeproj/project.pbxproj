@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 51;
+	objectVersion = 50;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -55,6 +55,7 @@
 		80F60700206BE1530098BC60 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80F606FF206BE1530098BC60 /* SettingsViewController.swift */; };
 		8A0A88F8227CE39C00A1360C /* MimeType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4612851D2051DB770061EC21 /* MimeType.swift */; };
 		8A67FC2B22666F81005A5038 /* OfflineFile+MimeType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A67FC2A22666F81005A5038 /* OfflineFile+MimeType.swift */; };
+		9938343D22CBAAA2002A8213 /* Toast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9938343C22CBAAA2002A8213 /* Toast.swift */; };
 		AD8F2FDB226E9331009C8C4B /* CoreDataStack+DropDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD8F2FD9226E9331009C8C4B /* CoreDataStack+DropDatabase.swift */; };
 		AD8F2FDC226E9331009C8C4B /* CoreDataStack+AutoSaving.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD8F2FDA226E9331009C8C4B /* CoreDataStack+AutoSaving.swift */; };
 		AD8F2FE0226E9351009C8C4B /* SettingsViewController+TableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD8F2FDD226E9351009C8C4B /* SettingsViewController+TableViewDataSource.swift */; };
@@ -160,6 +161,8 @@
 		80F3FDC6206C0D4D0061CD51 /* ConnectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectionViewController.swift; sourceTree = "<group>"; };
 		80F606FF206BE1530098BC60 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		8A67FC2A22666F81005A5038 /* OfflineFile+MimeType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OfflineFile+MimeType.swift"; sourceTree = "<group>"; };
+		9913634D22D5D2F100B48586 /* AmahiAnywhere.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = AmahiAnywhere.entitlements; sourceTree = "<group>"; };
+		9938343C22CBAAA2002A8213 /* Toast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Toast.swift; sourceTree = "<group>"; };
 		AD8F2FD9226E9331009C8C4B /* CoreDataStack+DropDatabase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CoreDataStack+DropDatabase.swift"; sourceTree = "<group>"; };
 		AD8F2FDA226E9331009C8C4B /* CoreDataStack+AutoSaving.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CoreDataStack+AutoSaving.swift"; sourceTree = "<group>"; };
 		AD8F2FDD226E9351009C8C4B /* SettingsViewController+TableViewDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SettingsViewController+TableViewDataSource.swift"; sourceTree = "<group>"; };
@@ -281,6 +284,7 @@
 				ADAFF8D722501F5B00287409 /* PDFThumbnailGenerator.swift */,
 				ADAFF8D922501F7A00287409 /* VideoThumbnailGenerator.swift */,
 				ADAFF8DB2250209700287409 /* AudioThumbnailGenerator.swift */,
+				9938343C22CBAAA2002A8213 /* Toast.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -526,6 +530,7 @@
 		FB71BE96201CB2FC0005492C /* AmahiAnywhere */ = {
 			isa = PBXGroup;
 			children = (
+				9913634D22D5D2F100B48586 /* AmahiAnywhere.entitlements */,
 				0479B103210E0FB70052489F /* Managers */,
 				C8B70E1120FA937600873B3F /* StoryBoards */,
 				C8DA5B2120D5E0C600F5A527 /* Cells */,
@@ -555,6 +560,7 @@
 				FB71BE91201CB2FC0005492C /* Frameworks */,
 				FB71BE92201CB2FC0005492C /* Resources */,
 				F61A594FE5268D2316515601 /* [CP] Embed Pods Frameworks */,
+				AB0902F10DF6D8E8ED1D608E /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -580,6 +586,9 @@
 						LastSwiftMigration = 1000;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
+							com.apple.AccessWiFi = {
+								enabled = 1;
+							};
 							com.apple.BackgroundModes = {
 								enabled = 1;
 							};
@@ -623,6 +632,21 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		AB0902F10DF6D8E8ED1D608E /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-AmahiAnywhere/Pods-AmahiAnywhere-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		D37A02672BBEFF330A5E8AAE /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -647,11 +671,9 @@
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-AmahiAnywhere/Pods-AmahiAnywhere-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-AmahiAnywhere/Pods-AmahiAnywhere-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -678,6 +700,7 @@
 				C83C63902038D5B30089B9D8 /* PersistenceIdentifiers.swift in Sources */,
 				C83C637520386DD90089B9D8 /* BaseUIViewController.swift in Sources */,
 				3BCAFBA522C5385D0044057E /* DownloadsBaseCollectionCell.swift in Sources */,
+				9938343D22CBAAA2002A8213 /* Toast.swift in Sources */,
 				FB71BE9A201CB2FC0005492C /* LoginViewController.swift in Sources */,
 				C86CA92920D3D26300C8EDCA /* OfflineFile+CoreData.swift in Sources */,
 				3B33325A22BAA40B00BC61EB /* FilesViewController+UICollectionViewDelegates.swift in Sources */,
@@ -905,6 +928,7 @@
 			baseConfigurationReference = 665E1C7EF1F0DEBF3A9809B0 /* Pods-AmahiAnywhere.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = AmahiAnywhere/AmahiAnywhere.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = "";
 				ENABLE_BITCODE = NO;
@@ -928,6 +952,7 @@
 			baseConfigurationReference = 499AAFCDBDAB4C05C7264992 /* Pods-AmahiAnywhere.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = AmahiAnywhere/AmahiAnywhere.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = "";
 				ENABLE_BITCODE = NO;

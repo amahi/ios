@@ -19,6 +19,7 @@ struct ApiConfig {
     
     static let baseUrl =                       "https://example.com"
     static let proxyUrl =                       "https://example.com"
+    static let appID =                         "AAAAAAAA"
     
     private static let clientId =              "C-I-D"
     private static let clientSecret =          "C-S-T"

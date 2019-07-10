@@ -9,12 +9,38 @@
 import UIKit
 import Lightbox
 import AVFoundation
+import GoogleCast
 
-class FilesViewController: BaseUIViewController {
+class FilesViewController: BaseUIViewController, GCKSessionManagerListener,
+GCKRemoteMediaClientListener, GCKRequestDelegate {
+    
+    enum PlaybackMode: Int {
+        case none = 0
+        case local
+        case remote
+    }
+    
+    var mediaInfo: GCKMediaInformation? {
+        didSet {
+            print("setMediaInfo: \(String(describing: mediaInfo))")
+        }
+    }
+    
+    public var sessionManager: GCKSessionManager!
+    public var mediaInformation: GCKMediaInformation?
+    
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+        sessionManager = GCKCastContext.sharedInstance().sessionManager
+    }
+    
+    public var playbackMode = PlaybackMode.none
     
     // Mark - Server properties, will be set from presenting class
     public var directory: ServerFile?
     public var share: ServerShare!
+    
+    private var castButton: GCKUICastButton!
     
     // Mark - TableView data properties
     internal var serverFiles = [ServerFile]()
@@ -58,6 +84,24 @@ class FilesViewController: BaseUIViewController {
         setupCollectionView()
         updateFileSort(sortingMethod: GlobalFileSort.fileSort)
         presenter.getFiles(share, directory: directory)
+        
+        castButton = GCKUICastButton(frame: CGRect(x: CGFloat(0), y: CGFloat(0),
+                                                   width: CGFloat(24), height: CGFloat(24)))
+        castButton.tintColor = UIColor.white
+        navigationItem.rightBarButtonItem = UIBarButtonItem(customView: castButton)
+        
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(castDeviceDidChange),
+                                               name: NSNotification.Name.gckCastStateDidChange,
+                                               object: GCKCastContext.sharedInstance())
+    }
+    
+    @objc func castDeviceDidChange(_: Notification) {
+        if GCKCastContext.sharedInstance().castState != .noDevicesAvailable {
+            // You can present the instructions on how to use Google Cast on
+            // the first time the user uses you app
+            GCKCastContext.sharedInstance().presentCastInstructionsViewControllerOnce(with: castButton)
+        }
     }
     
     func setupLayoutView(){
@@ -100,6 +144,12 @@ class FilesViewController: BaseUIViewController {
         }
         
         presenter.loadOfflineFiles()
+        let hasConnectedSession: Bool = (sessionManager.hasConnectedSession())
+        if hasConnectedSession, (playbackMode != .remote) {
+            
+        } else if sessionManager.currentSession == nil, (playbackMode != .local) {
+        }
+        sessionManager.add(self)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -148,6 +198,7 @@ class FilesViewController: BaseUIViewController {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         searchController.searchBar.resignFirstResponder()
+        sessionManager.remove(self)
     }
     
     @objc func moreButtonTapped(sender: UIButton){
@@ -303,6 +354,56 @@ class FilesViewController: BaseUIViewController {
         if refreshCollectionView{
             updateFiles(serverFiles)
         }
+    }
+    
+    // MARK: - GCKSessionManagerListener
+    
+    func sessionManager(_: GCKSessionManager, didStart session: GCKSession) {
+        print("MediaViewController: sessionManager didStartSession \(session)")
+        //setQueueButtonVisible(true)
+        //switchToRemotePlayback()
+    }
+    
+    func sessionManager(_: GCKSessionManager, didResumeSession session: GCKSession) {
+        print("MediaViewController: sessionManager didResumeSession \(session)")
+        //setQueueButtonVisible(true)
+        //switchToRemotePlayback()
+    }
+    
+    func sessionManager(_: GCKSessionManager, didEnd _: GCKSession, withError error: Error?) {
+        print("session ended with error: \(String(describing: error))")
+        let message = "The Casting session has ended.\n\(String(describing: error))"
+        if let window = appDelegate!.window {
+            Toast.displayMessage(message, for: 3, in: window)
+        }
+        //setQueueButtonVisible(false)
+        //switchToLocalPlayback()
+    }
+    
+    func sessionManager(_: GCKSessionManager, didFailToStartSessionWithError error: Error?) {
+        if let error = error {
+            showAlert(withTitle: "Failed to start a session", message: error.localizedDescription)
+        }
+        //setQueueButtonVisible(false)
+    }
+    
+    func showAlert(withTitle title: String, message: String) {
+        let alert = UIAlertView(title: title,
+                                message: message,
+                                delegate: nil,
+                                cancelButtonTitle: "OK",
+                                otherButtonTitles: "")
+        alert.show()
+    }
+    
+    func sessionManager(_: GCKSessionManager,
+                        didFailToResumeSession _: GCKSession, withError _: Error?) {
+        if let window = UIApplication.shared.delegate?.window {
+            Toast.displayMessage("The Casting session could not be resumed.",
+                                 for: 3, in: window)
+        }
+        //setQueueButtonVisible(false)
+        //switchToLocalPlayback()
     }
     
 }

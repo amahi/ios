@@ -7,8 +7,11 @@
 //
 
 import UIKit
+import GoogleCast
 
 class ServerViewController: BaseUIViewController {
+    
+    private var castButton: GCKUICastButton!
     
     private var presenter: ServerPresenter!
     @IBOutlet var serversCollectionView: UICollectionView!
@@ -33,6 +36,24 @@ class ServerViewController: BaseUIViewController {
                 
         presenter = ServerPresenter(self)
         presenter.fetchServers()
+        
+        
+        castButton = GCKUICastButton(frame: CGRect(x: CGFloat(0), y: CGFloat(0),
+                                                   width: CGFloat(24), height: CGFloat(24)))
+        castButton.tintColor = UIColor.white
+        navigationItem.rightBarButtonItem = UIBarButtonItem(customView: castButton)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(castDeviceDidChange),
+                                               name: NSNotification.Name.gckCastStateDidChange,
+                                               object: GCKCastContext.sharedInstance())
+    }
+    
+    @objc func castDeviceDidChange(_: Notification) {
+        if GCKCastContext.sharedInstance().castState != .noDevicesAvailable {
+            // You can present the instructions on how to use Google Cast on
+            // the first time the user uses you app
+            GCKCastContext.sharedInstance().presentCastInstructionsViewControllerOnce(with: castButton)
+        }
     }
     
     @objc func handleRefresh(sender: UIRefreshControl) {

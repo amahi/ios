@@ -10,10 +10,16 @@ import UIKit
 import IQKeyboardManagerSwift
 import EVReflection
 import AVFoundation
+import GoogleCast
+
+let appDelegate = (UIApplication.shared.delegate as? AppDelegate)
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
-
+    
+    fileprivate var enableSDKLogging = true
+    private let appID = ApiConfig.appID
+    
     var window: UIWindow?
     let stack = CoreDataStack(modelName: "OfflineFilesModel")!
     var backgroundSessionCompletionHandler: (() -> Void)?
@@ -78,6 +84,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         // Start Autosaving, tries to do autosave every 5 minutes if any changes is waiting to be persisted.
         stack.autoSave(60 * 5)
+        
+        let options = GCKCastOptions(discoveryCriteria: GCKDiscoveryCriteria(applicationID: appID))
+        options.physicalVolumeButtonsWillControlDeviceVolume = true
+        GCKCastContext.setSharedInstanceWith(options)
+        
+        let logFilter = GCKLoggerFilter()
+        logFilter.minimumLevel = .verbose
+        GCKLogger.sharedInstance().filter = logFilter
+        GCKLogger.sharedInstance().delegate = self
         
         return true
     }
@@ -155,4 +170,44 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 // Helper function inserted by Swift 4.2 migrator.
 fileprivate func convertFromAVAudioSessionCategory(_ input: AVAudioSession.Category) -> String {
 	return input.rawValue
+}
+
+// MARK: - GCKLoggerDelegate
+
+extension AppDelegate: GCKLoggerDelegate {
+    func logMessage(_ message: String,
+                    at _: GCKLoggerLevel,
+                    fromFunction function: String,
+                    location: String) {
+        if enableSDKLogging {
+            // Send SDK's log messages directly to the console.
+            print("\(location): \(function) - \(message)")
+        }
+    }
+}
+
+// MARK: - GCKSessionManagerListener
+
+extension AppDelegate: GCKSessionManagerListener {
+    func sessionManager(_: GCKSessionManager, didEnd _: GCKSession, withError error: Error?) {
+        if error == nil {
+            if let view = window?.rootViewController?.view {
+                Toast.displayMessage("Session ended", for: 3, in: view)
+            }
+        } else {
+            let message = "Session ended unexpectedly:\n\(error?.localizedDescription ?? "")"
+            showAlert(withTitle: "Session error", message: message)
+        }
+    }
+    
+    func sessionManager(_: GCKSessionManager, didFailToStart _: GCKSession, withError error: Error) {
+        let message = "Failed to start session:\n\(error.localizedDescription)"
+        showAlert(withTitle: "Session error", message: message)
+    }
+    
+    func showAlert(withTitle title: String, message: String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Ok", style: .default))
+        window?.rootViewController?.present(alert, animated: true, completion: nil)
+    }
 }

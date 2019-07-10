@@ -9,6 +9,7 @@
 import AVKit
 import Foundation
 import MediaPlayer
+import GoogleCast
 
 // MARK: Files View implementations
 
@@ -59,11 +60,41 @@ extension FilesViewController: FilesView {
         self.navigationController?.pushViewController(webViewVc, animated: true)
     }
     
-    func playMedia(at url: URL) {
-        let videoPlayerVc = self.viewController(viewControllerClass: VideoPlayerViewController.self,
-                                                from: StoryBoardIdentifiers.videoPlayer)
-        videoPlayerVc.mediaURL = url
-        self.present(videoPlayerVc)
+    func playMedia(at url: URL, file: ServerFile) {
+        let hasConnectedSession: Bool = (sessionManager.hasConnectedSession())
+        if hasConnectedSession, (playbackMode != .remote) {
+            playVideoRemotely(mediaURL: url, mediafile: file)
+            
+        }
+        else if sessionManager.currentSession == nil, (playbackMode != .local) {
+            let videoPlayerVc = self.viewController(viewControllerClass: VideoPlayerViewController.self,
+                                                    from: StoryBoardIdentifiers.videoPlayer)
+            videoPlayerVc.mediaURL = url
+            self.present(videoPlayerVc)
+            
+        }
+    }
+    
+    func playVideoRemotely(mediaURL: URL, mediafile: ServerFile) {
+        GCKCastContext.sharedInstance().presentDefaultExpandedMediaControls()
+        
+        // Define media metadata.
+        let metadata = GCKMediaMetadata()
+        //let image = VideoThumbnailGenerator().getThumbnail(mediaURL)
+        metadata.setString("\(mediafile.name!)", forKey: kGCKMetadataKeyTitle)
+        let mediaInfoBuilder = GCKMediaInformationBuilder(contentURL: mediaURL)
+        mediaInfoBuilder.streamType = GCKMediaStreamType.none
+        mediaInfoBuilder.contentType = "\(mediafile.getExtension())"
+        mediaInfoBuilder.metadata = metadata
+        mediaInformation = mediaInfoBuilder.build()
+        
+        let mediaLoadRequestDataBuilder = GCKMediaLoadRequestDataBuilder()
+        mediaLoadRequestDataBuilder.mediaInformation = mediaInformation
+        
+        // Send a load request to the remote media client.
+        if let request = sessionManager.currentSession?.remoteMediaClient?.loadMedia(with: mediaLoadRequestDataBuilder.build()) {
+            request.delegate = self
+        }
     }
     
     func playAudio(_ items: [AVPlayerItem], startIndex: Int, currentIndex: Int,_ URLs: [URL]) {
