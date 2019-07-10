@@ -25,13 +25,10 @@ class FilesBaseCollectionCell: SwipeCollectionViewCell{
         }
         
         switch type {
-            
         case MimeType.image:
             iconImageView.sd_setImage(with: url, placeholderImage: UIImage(named: "image"), options: .refreshCached)
             break
-            
         case .video:
-            
             if let image = VideoThumbnailGenerator.imageFromMemory(for: url) {
                 iconImageView.image = image
             } else {
@@ -45,9 +42,7 @@ class FilesBaseCollectionCell: SwipeCollectionViewCell{
                 }
             }
             break
-            
         case .audio:
-            
             if let image = AudioThumbnailGenerator.imageFromMemory(for: url) {
                 iconImageView.image = image
             } else {
@@ -61,9 +56,7 @@ class FilesBaseCollectionCell: SwipeCollectionViewCell{
                 }
             }
             break
-            
         case .presentation, .document, .spreadsheet:
-            
             if let image = PDFThumbnailGenerator.imageFromMemory(for: url) {
                 iconImageView.image = image
             } else {
@@ -77,7 +70,6 @@ class FilesBaseCollectionCell: SwipeCollectionViewCell{
                     }
                 }
             }
-            
         default:
             iconImageView.image = UIImage(named: "file")
             break

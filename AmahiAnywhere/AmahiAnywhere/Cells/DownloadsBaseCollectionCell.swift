@@ -19,24 +19,14 @@ class DownloadsBaseCollectionCell: SwipeCollectionViewCell{
     
     func setupArtWork(offlineFile: OfflineFile, iconImageView: UIImageView){
         let fileManager = FileManager.default
-        
-        if !fileManager.fileExistsInDownloads(offlineFile) {
-            AmahiLogger.log("OFFLINE FILE DOES NOT EXIST IN EXPECTED LOCATION !!!")
-            return
-        }
-        
         let url = fileManager.localFilePathInDownloads(for: offlineFile)!
-        
         let type = offlineFile.mimeType
         
         switch type {
-            
         case .image:
             iconImageView.sd_setImage(with: url, placeholderImage: UIImage(named: "image"), options: .refreshCached)
             break
-            
         case .video:
-            
             if let image = VideoThumbnailGenerator.imageFromMemory(for: url) {
                 iconImageView.image = image
             } else {
@@ -50,9 +40,7 @@ class DownloadsBaseCollectionCell: SwipeCollectionViewCell{
                 }
             }
             break
-            
         case .audio:
-            
             if let image = AudioThumbnailGenerator.imageFromMemory(for: url) {
                 iconImageView.image = image
             } else {
@@ -66,9 +54,7 @@ class DownloadsBaseCollectionCell: SwipeCollectionViewCell{
                 }
             }
             break
-            
         case .presentation, .document, .spreadsheet:
-            
             if let image = PDFThumbnailGenerator.imageFromMemory(for: url) {
                 iconImageView.image = image
             } else {
@@ -80,7 +66,6 @@ class DownloadsBaseCollectionCell: SwipeCollectionViewCell{
                     }
                 }
             }
-            
         default:
             iconImageView.image = UIImage(named: "file")
             break
