@@ -99,14 +99,52 @@ extension FilesViewController: FilesView {
     
     func playAudio(_ items: [AVPlayerItem], startIndex: Int, currentIndex: Int,_ URLs: [URL]) {
         
-        player = AVPlayer.init(playerItem: items[currentIndex])
-        let audioPlayerVc = self.viewController(viewControllerClass: AudioPlayerViewController.self,
-                                                from: StoryBoardIdentifiers.videoPlayer)
-        audioPlayerVc.player = self.player
-        audioPlayerVc.playerItems = items
-        audioPlayerVc.itemURLs = URLs
-        player.play()
-        self.present(audioPlayerVc)
+        let hasConnectedSession: Bool = (sessionManager.hasConnectedSession())
+        if hasConnectedSession, (playbackMode != .remote) {
+            playAudioRemotely(mediaURL: URLs[currentIndex], mediafile: items[currentIndex])
+            
+        }
+        else if sessionManager.currentSession == nil, (playbackMode != .local) {
+            player = AVPlayer.init(playerItem: items[currentIndex])
+            let audioPlayerVc = self.viewController(viewControllerClass: AudioPlayerViewController.self,
+                                                    from: StoryBoardIdentifiers.videoPlayer)
+            audioPlayerVc.player = self.player
+            audioPlayerVc.playerItems = items
+            audioPlayerVc.itemURLs = URLs
+            player.play()
+            self.present(audioPlayerVc)
+            
+        }
+    }
+    
+    func playAudioRemotely(mediaURL: URL, mediafile: AVPlayerItem) {
+        GCKCastContext.sharedInstance().presentDefaultExpandedMediaControls()
+        
+        var track: String = ""
+        var artist: String = ""
+        
+        let asset:AVAsset = AVAsset(url:mediaURL)
+        for metaDataItems in asset.commonMetadata {
+            if metaDataItems.commonKey == AVMetadataKey.commonKeyArtist {
+                track = metaDataItems.value as! String
+            }
+            if metaDataItems.commonKey == AVMetadataKey.commonKeyTitle {
+                artist = metaDataItems.value as! String
+            }
+        }
+        let metadata = GCKMediaMetadata()
+        metadata.setString("\(artist)", forKey: kGCKMetadataKeyTitle)
+        metadata.setString("\(track)", forKey: kGCKMetadataKeySubtitle)
+        metadata.addImage(GCKImage(url: URL(string:"http://alpha.amahi.org/cast/audio-play.jpg")!, width: 480, height: 720))
+        let mediaInfoBuilder = GCKMediaInformationBuilder(contentURL: mediaURL)
+        mediaInfoBuilder.streamType = GCKMediaStreamType.none
+        mediaInfoBuilder.metadata = metadata
+        mediaInformation = mediaInfoBuilder.build()
+        let mediaLoadRequestDataBuilder = GCKMediaLoadRequestDataBuilder()
+        mediaLoadRequestDataBuilder.mediaInformation = mediaInformation
+        if let request = sessionManager.currentSession?.remoteMediaClient?.loadMedia(with: mediaLoadRequestDataBuilder.build()) {
+            request.delegate = self
+        }
     }
     
     override class func keyPathsForValuesAffectingValue(forKey key: String) -> Set<String> {
@@ -128,7 +166,7 @@ extension FilesViewController: FilesView {
         if keyPath == #keyPath(FilesViewController.player.rate) {
             let newRate = (change?[NSKeyValueChangeKey.newKey] as! NSNumber).doubleValue
             guard player != nil else { return }
-
+            
             AmahiLogger.log("CURRENT RATE IS \(newRate)")
             
             if newRate == 0.0 {
