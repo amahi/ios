@@ -5,6 +5,7 @@ PODS:
     - Alamofire
     - EVReflection/Core
   - EVReflection/Core (5.10.1)
+  - Floaty (4.2.0)
   - google-cast-sdk (4.4.2):
     - google-cast-sdk/Core (= 4.4.2)
     - Protobuf (~> 3.0)
@@ -28,6 +29,7 @@ PODS:
 DEPENDENCIES:
   - Alamofire
   - EVReflection/Alamofire
+  - Floaty
   - google-cast-sdk
   - IQKeyboardManagerSwift
   - Lightbox
@@ -43,6 +45,7 @@ SPEC REPOS:
     - Alamofire
     - Cache
     - EVReflection
+    - Floaty
     - google-cast-sdk
     - Imaginary
     - IQKeyboardManagerSwift
@@ -59,6 +62,7 @@ SPEC CHECKSUMS:
   Alamofire: ae5c501addb7afdbb13687d7f2f722c78734c2d3
   Cache: 807c5d86d01a177f06ede9865add3aea269bbfd4
   EVReflection: 8124de482178d34ccd56473e16cd95990f9a1113
+  Floaty: e2bd5a0f6f7f70899e26ff2da31081c8bee8d1b0
   google-cast-sdk: ac9ea41d61026406869bf696b2e7f87971a4cf1f
   Imaginary: dae33d06dbc2ada22f98afef5eb45cc061311a2c
   IQKeyboardManagerSwift: a8228c257614af98743b4cd8584637025f36358f
@@ -71,6 +75,6 @@ SPEC CHECKSUMS:
   SkyFloatingLabelTextField: 4b46db0ab1ccde0919cded29c656e6b4805eda04
   SwipeCellKit: 935ca28c187ec6e1ffb2b578cf8ddca842bfdcbb
 
-PODFILE CHECKSUM: 055ee8fbc128ae486df924df4747704684c4adf1
+PODFILE CHECKSUM: 2fa917969f1f4a5176ea9be1efba38200556eac5
 
 COCOAPODS: 1.7.2

@@ -907,14 +907,47 @@
                                     <action selector="layoutButtonTapped:" destination="NEa-Le-UPn" eventType="touchUpInside" id="CXf-ub-blm"/>
                                 </connections>
                             </button>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="v6D-5a-cNH" customClass="Floaty" customModule="Floaty">
+                                <rect key="frame" x="305" y="597" width="50" height="50"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="50" id="Qvc-uZ-VXj"/>
+                                    <constraint firstAttribute="height" constant="50" id="xha-94-WCv"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="buttonColor">
+                                        <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="plusColor">
+                                        <color key="value" red="0.12156862745098039" green="0.12941176470588234" blue="0.14117647058823529" alpha="1" colorSpace="calibratedRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="overlayColor">
+                                        <color key="value" white="0.0" alpha="0.5" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="itemButtonColor">
+                                        <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="itemTitleColor">
+                                        <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="itemImageColor">
+                                        <color key="value" red="0.12156862745098039" green="0.12941176470588234" blue="0.14117647058823529" alpha="1" colorSpace="calibratedRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="itemSize">
+                                        <real key="value" value="50"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="0.1215686275" green="0.12941176469999999" blue="0.14117647059999999" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="oS2-ac-k4k" firstAttribute="top" secondItem="t7z-77-5Bc" secondAttribute="top" constant="20" id="BIB-qN-EMv"/>
                             <constraint firstItem="jIQ-g1-h7s" firstAttribute="leading" secondItem="t7z-77-5Bc" secondAttribute="leading" id="H93-Vk-aiM"/>
                             <constraint firstItem="t7z-77-5Bc" firstAttribute="trailing" secondItem="jIQ-g1-h7s" secondAttribute="trailing" id="HBq-9l-bzP"/>
+                            <constraint firstItem="t7z-77-5Bc" firstAttribute="bottom" secondItem="v6D-5a-cNH" secondAttribute="bottom" constant="20" id="JMR-Ru-06i"/>
                             <constraint firstItem="oS2-ac-k4k" firstAttribute="leading" secondItem="t7z-77-5Bc" secondAttribute="leading" id="WK8-7p-8aN"/>
                             <constraint firstItem="t7z-77-5Bc" firstAttribute="trailing" secondItem="cvr-GH-KjM" secondAttribute="trailing" constant="4" id="Xd7-dY-nXb"/>
+                            <constraint firstItem="t7z-77-5Bc" firstAttribute="trailing" secondItem="v6D-5a-cNH" secondAttribute="trailing" constant="20" id="h0n-Ho-jYO"/>
                             <constraint firstItem="cvr-GH-KjM" firstAttribute="centerY" secondItem="oS2-ac-k4k" secondAttribute="centerY" id="hba-NI-Pbj"/>
                             <constraint firstAttribute="bottom" secondItem="jIQ-g1-h7s" secondAttribute="bottom" id="ij1-eE-GIM"/>
                             <constraint firstItem="jIQ-g1-h7s" firstAttribute="top" secondItem="oS2-ac-k4k" secondAttribute="bottom" constant="20" id="jLo-V3-rLs"/>
@@ -925,6 +958,7 @@
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
                         <outlet property="filesCollectionView" destination="jIQ-g1-h7s" id="h1J-Bf-E18"/>
+                        <outlet property="floaty" destination="v6D-5a-cNH" id="skm-Sf-9PQ"/>
                         <outlet property="layoutButton" destination="cvr-GH-KjM" id="kPH-5M-e5k"/>
                         <outlet property="sortButton" destination="oS2-ac-k4k" id="AHK-SI-aD7"/>
                     </connections>

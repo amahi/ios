@@ -10,6 +10,7 @@ import UIKit
 import Lightbox
 import AVFoundation
 import GoogleCast
+import Floaty
 
 class FilesViewController: BaseUIViewController, GCKSessionManagerListener,
 GCKRemoteMediaClientListener, GCKRequestDelegate {
@@ -74,9 +75,13 @@ GCKRemoteMediaClientListener, GCKRequestDelegate {
     @IBOutlet var layoutButton: UIButton!
     var layoutView: LayoutView!
     
+    @IBOutlet var floaty: Floaty!
+    var imagePicker: UIImagePickerController!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         presenter = FilesPresenter(self)
+        setupFloaty()
         setupLayoutView()
         setupRefreshControl()
         setupNavigationItem()
@@ -94,6 +99,36 @@ GCKRemoteMediaClientListener, GCKRequestDelegate {
         NotificationCenter.default.addObserver(self, selector: #selector(castDeviceDidChange),
                                                name: NSNotification.Name.gckCastStateDidChange,
                                                object: GCKCastContext.sharedInstance())
+    }
+    
+    func setupImagePicker(){
+        imagePicker = UIImagePickerController()
+        imagePicker.allowsEditing = true
+        imagePicker.delegate = self
+    }
+    
+    func setupFloaty(){
+        floaty.addItem("Upload an image", icon: UIImage(named: "camera")) { (item) in
+            self.uploadImageTapped()
+        }
+    }
+    
+    func uploadImageTapped(){
+        let alertVC = UIAlertController(title: "Select your source", message: nil, preferredStyle: .actionSheet)
+        
+        alertVC.addAction(UIAlertAction(title: "Camera", style: .default, handler: { (_) in
+            self.imagePicker.sourceType = .camera
+            self.present(self.imagePicker, animated: true, completion: nil)
+        }))
+        
+        alertVC.addAction(UIAlertAction(title: "Photo Library", style: .default, handler: { (_) in
+            self.imagePicker.sourceType = .photoLibrary
+            self.present(self.imagePicker, animated: true, completion: nil)
+        }))
+        
+        alertVC.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        
+        self.present(alertVC, animated: true, completion: nil)
     }
     
     @objc func castDeviceDidChange(_: Notification) {
@@ -155,6 +190,9 @@ GCKRemoteMediaClientListener, GCKRequestDelegate {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         setupNotifications()
+        if imagePicker == nil{
+            setupImagePicker()
+        }
     }
     
     func setupNotifications(){
@@ -428,5 +466,15 @@ extension FilesViewController: SortViewDelegate{
         }
         
         updateFileSort(sortingMethod: sortingMethod, refreshCollectionView: true)
+    }
+}
+
+extension FilesViewController: UINavigationControllerDelegate, UIImagePickerControllerDelegate{
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        picker.dismiss(animated: true, completion: nil)
+        
+        guard let _ = info[.editedImage] as? UIImage else {
+            return
+        }
     }
 }

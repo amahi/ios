@@ -16,4 +16,6 @@ use_frameworks!
     pod 'SDWebImage'
     pod 'SwipeCellKit'
     pod 'google-cast-sdk'
+    pod 'Floaty'
+    
 end
