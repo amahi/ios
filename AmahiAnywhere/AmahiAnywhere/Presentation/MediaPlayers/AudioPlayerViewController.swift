@@ -12,16 +12,15 @@ import MediaPlayer
 
 class AudioPlayerViewController: UIViewController {
     
+    @IBOutlet var backgroundImageView: UIImageView!
     @IBOutlet weak var durationLabel: UILabel!
     @IBOutlet weak var doneButton: UIButton!
     @IBOutlet weak var nextButton: UIButton!
     @IBOutlet weak var prevButton: UIButton!
     @IBOutlet weak var musicArtImageView: UIImageView!
     @IBOutlet weak var playPauseButton: UIButton!
-    @IBOutlet weak var rootView: UIView!
     @IBOutlet weak var timeElapsedLabel: UILabel!
     @IBOutlet weak var timeSlider: UISlider!
-    @IBOutlet weak var audioControlsView: UIView!
     @IBOutlet weak var repeatButton: UIButton!
     @IBOutlet weak var shuffleButton: UIButton!
     @IBOutlet weak var artistName: UILabel!
@@ -42,7 +41,6 @@ class AudioPlayerViewController: UIViewController {
     
     @IBAction func doneButtonPressed(_ sender: Any) {
         player.pause()
-        player = nil
         AppUtility.lockOrientation(.all)
         self.dismiss(animated: true, completion: nil)
     }
@@ -84,10 +82,11 @@ class AudioPlayerViewController: UIViewController {
     }
     
     @IBAction func nextButtonPressed(_ sender: Any) {
-       var index =  playerItems.index(of: player.currentItem!) ?? 0
+       let index =  playerItems.index(of: player.currentItem!) ?? 0
         if index == playerItems.count - 1 {
             repeatButton.setImage(UIImage(named:"repeatAll"), for: .normal)
         }
+        
        playNextSong()
     }
     
@@ -222,11 +221,20 @@ class AudioPlayerViewController: UIViewController {
     }
     
     func setArtWork(){
-        DispatchQueue.global(qos: .background).async {
-            let image = AudioThumbnailGenerator().getThumbnail(self.itemURLs[self.playerItems.index(of: self.player.currentItem!) ?? 0])
-            DispatchQueue.main.async {
-                self.musicArtImageView.image = image
-                self.setLockScreenMetadata()
+        let url = self.itemURLs[self.playerItems.index(of: self.player.currentItem!) ?? 0]
+    
+        if let image = AudioThumbnailGenerator.imageFromMemory(for: url){
+            self.musicArtImageView.image = image
+            self.backgroundImageView.image = image
+            self.setLockScreenMetadata()
+        }else{
+            DispatchQueue.global(qos: .userInitiated).async {
+                let image = AudioThumbnailGenerator().getThumbnail(self.itemURLs[self.playerItems.index(of: self.player.currentItem!) ?? 0])
+                DispatchQueue.main.async {
+                    self.musicArtImageView.image = image
+                    self.backgroundImageView.image = image
+                    self.setLockScreenMetadata()
+                }
             }
         }
     }
@@ -314,6 +322,7 @@ class AudioPlayerViewController: UIViewController {
         
         if !(sender is UIButton) {
             self.player.timeControlStatus == .playing ? self.player.pause() : self.player.play()
+            
         }
     }
     
@@ -354,24 +363,6 @@ class AudioPlayerViewController: UIViewController {
         timeSlider!.isContinuous = false
         timeSlider?.addTarget(self, action: #selector(timeSliderValueChanged(_:)), for: .valueChanged)
     }
-
-    override func viewWillAppear(_ animated: Bool) {
-        timeSlider!.minimumValue = 0
-        setTimeSlider()
-        player!.addPeriodicTimeObserver(forInterval: CMTimeMakeWithSeconds(1, preferredTimescale: 1), queue: DispatchQueue.main) { (CMTime) -> Void in
-            if self.player?.currentItem?.status == .readyToPlay {
-                let time : Float64 = CMTimeGetSeconds(self.player!.currentTime());
-                self.setLabelText(self.timeElapsedLabel, Int(time))
-                self.timeSlider.value = Float (time )
-                if self.timeElapsedLabel.text != "--:--" && self.timeElapsedLabel.text == self.durationLabel.text {
-                    if self.nextButton.isEnabled == true {
-                        self.playNextSong()
-                    }
-                }
-                self.configurePlayButton()
-            }
-        }
-    }
     
     func configurePlayButton() {
         if ((self.player.rate != 0) && (self.player.error == nil)) {
@@ -394,12 +385,11 @@ class AudioPlayerViewController: UIViewController {
     }
     
     override func viewDidLoad() {
+        player.automaticallyWaitsToMinimizeStalling = false
         AppUtility.lockOrientation(.portrait)
         timeSlider.isUserInteractionEnabled = true
-        setDurationLabel()
-        setArtWork()
         timeSlider.setThumbImage(UIImage(named: "sliderKnobIcon"), for: .normal)
-        self.setLockScreenMetadata()
+        
         setupNotifications()
         MPRemoteCommandCenter.shared().togglePlayPauseCommand.addTarget(self, action: #selector(playandPause(_:)))
         MPRemoteCommandCenter.shared().nextTrackCommand.addTarget(self, action: #selector(nextButtonPressed(_:)))
@@ -410,6 +400,26 @@ class AudioPlayerViewController: UIViewController {
         UIApplication.shared.beginReceivingRemoteControlEvents()
         if canBecomeFirstResponder {
             becomeFirstResponder()
+        }
+        
+        setArtWork()
+        setTimeSlider()
+        setDurationLabel()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        player!.addPeriodicTimeObserver(forInterval: CMTimeMakeWithSeconds(1, preferredTimescale: 1), queue: DispatchQueue.main) { (CMTime) -> Void in
+            if self.player?.currentItem?.status == .readyToPlay {
+                let time : Float64 = CMTimeGetSeconds(self.player!.currentTime());
+                self.setLabelText(self.timeElapsedLabel, Int(time))
+                self.timeSlider.value = Float (time )
+                if self.timeElapsedLabel.text != "--:--" && self.timeElapsedLabel.text == self.durationLabel.text {
+                    if self.nextButton.isEnabled == true {
+                        self.playNextSong()
+                    }
+                }
+                self.configurePlayButton()
+            }
         }
     }
     

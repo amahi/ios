@@ -13,7 +13,6 @@ import MediaPlayer
 
 class VideoPlayerViewController: UIViewController {
     
-    @IBOutlet private weak var rootView: UIView!
     @IBOutlet private weak var movieView: UIView!
     @IBOutlet private weak var playButton: UIButton!
     @IBOutlet private weak var fastForwardButton: UIButton!
