@@ -181,6 +181,7 @@ class FilesPresenter: BasePresenter {
                                       context: stack.context)
         
         OfflineFileIndexes.offlineFilesIndexPaths[offlineFile] = indexPath
+        OfflineFileIndexes.indexPathsForOfflineFiles[indexPath] = offlineFile
         
         try? stack.saveContext()
         

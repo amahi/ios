@@ -168,16 +168,20 @@ extension FilesViewController: UICollectionViewDataSource, UICollectionViewDeleg
                     return [downloadAction]
                 }else if state == .downloaded{
                     let removeDownloadAction = SwipeAction(style: .default, title: "Remove Download") { (action, indexPath) in
-                        // Remove the downloaded file
+                        self.removeOfflineFile(indexPath: indexPath)
                     }
+                    
                     removeDownloadAction.backgroundColor = #colorLiteral(red: 0.9490196078, green: 0.1215686275, blue: 0.1882352941, alpha: 1)
                     removeDownloadAction.textColor = .white
                     removeDownloadAction.font = UIFont.systemFont(ofSize: 18, weight: .bold)
                     return [removeDownloadAction]
                 }else if state == .downloading{
                     let cancelDownloadAction = SwipeAction(style: .default, title: "Cancel Download") { (action, indexPath) in
-                        // Cancel download
+                        if let offlineFile = OfflineFileIndexes.indexPathsForOfflineFiles[indexPath]{
+                            DownloadService.shared.cancelDownload(offlineFile)
+                        }
                     }
+                    
                     cancelDownloadAction.backgroundColor = #colorLiteral(red: 0.9490196078, green: 0.1215686275, blue: 0.1882352941, alpha: 1)
                     cancelDownloadAction.textColor = .white
                     cancelDownloadAction.font = UIFont.systemFont(ofSize: 18, weight: .bold)

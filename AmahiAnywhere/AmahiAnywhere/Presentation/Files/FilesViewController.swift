@@ -80,6 +80,7 @@ GCKRemoteMediaClientListener, GCKRequestDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupNotifications()
         presenter = FilesPresenter(self)
         setupFloaty()
         setupLayoutView()
@@ -189,7 +190,6 @@ GCKRemoteMediaClientListener, GCKRequestDelegate {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        setupNotifications()
         if imagePicker == nil{
             setupImagePicker()
         }
@@ -219,6 +219,27 @@ GCKRemoteMediaClientListener, GCKRequestDelegate {
                     }
                 }
             }
+        }
+    }
+    
+    func removeOfflineFile(indexPath: IndexPath){
+        if let offlineFile = OfflineFileIndexes.indexPathsForOfflineFiles[indexPath]{
+            // Delete file in downloads directory
+            let fileManager = FileManager.default
+            do {
+                try fileManager.removeItem(at: fileManager.localFilePathInDownloads(for: offlineFile)!)
+            } catch let error {
+                AmahiLogger.log("Couldn't Delete file from Downloads \(error.localizedDescription)")
+            }
+            
+            let delegate = UIApplication.shared.delegate as! AppDelegate
+            let stack = delegate.stack
+            
+            // Delete Offline File from CoreData and persist new changes immediately
+            stack.context.delete(offlineFile)
+            try? stack.saveContext()
+            AmahiLogger.log("File was deleted from Downloads")
+            NotificationCenter.default.post(name: .OfflineFileDeleted, object: offlineFile, userInfo: ["loadOfflineFiles": true])
         }
     }
     
@@ -262,6 +283,10 @@ GCKRemoteMediaClientListener, GCKRequestDelegate {
             
             if file.isDirectory { return }
             
+            let open = self.creatAlertAction("Open", style: .default) { (action) in
+                self.presenter.handleFileOpening(selectedFile: file, indexPath: indexPath, files: self.filteredFiles, from: self.filesCollectionView.cellForItem(at: indexPath))
+            }!
+            
             let download = self.creatAlertAction(StringLiterals.download, style: .default) { (action) in
                 self.presenter.makeFileAvailableOffline(file, indexPath)
                 }!
@@ -273,12 +298,17 @@ GCKRemoteMediaClientListener, GCKRequestDelegate {
                 }!
             
             let removeOffline = self.creatAlertAction(StringLiterals.removeOfflineMessage, style: .default) { (action) in
+                    self.removeOfflineFile(indexPath: indexPath)
                 }!
             
             let stop = self.creatAlertAction(StringLiterals.stopDownload, style: .default) { (action) in
-                }!
+                if let offlineFile = OfflineFileIndexes.indexPathsForOfflineFiles[indexPath]{
+                    DownloadService.shared.cancelDownload(offlineFile)
+                }
+            }!
             
             var actions = [UIAlertAction]()
+            actions.append(open)
             actions.append(share)
             
             if state == .none {

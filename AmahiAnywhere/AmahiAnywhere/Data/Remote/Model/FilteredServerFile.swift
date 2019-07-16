@@ -87,6 +87,7 @@ struct FilteredServerFiles{
         
         if let offlineFile = file.getOfflineFile(){
             OfflineFileIndexes.offlineFilesIndexPaths[offlineFile] = IndexPath(item: itemIndex, section: sectionIndex)
+            OfflineFileIndexes.indexPathsForOfflineFiles[IndexPath(item: itemIndex, section: sectionIndex)] = offlineFile
         }
     }
     

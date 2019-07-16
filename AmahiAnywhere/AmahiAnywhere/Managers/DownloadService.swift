@@ -62,7 +62,23 @@ class DownloadService : NSObject {
         }
         
         updateTabBarCompleted()
-        NotificationCenter.default.post(name: .DownloadCancelled, object: offlineFile, userInfo: [:])
+        
+        // Delete file in downloads directory
+        let fileManager = FileManager.default
+        do {
+            try fileManager.removeItem(at: fileManager.localFilePathInDownloads(for: offlineFile)!)
+        } catch let error {
+            AmahiLogger.log("Couldn't Delete file from Downloads \(error.localizedDescription)")
+        }
+        
+        let delegate = UIApplication.shared.delegate as! AppDelegate
+        let stack = delegate.stack
+        
+        // Delete Offline File from CoreData and persist new changes immediately
+        stack.context.delete(offlineFile)
+        try? stack.saveContext()
+        AmahiLogger.log("File was deleted from Downloads")
+        NotificationCenter.default.post(name: .DownloadCancelled, object: offlineFile, userInfo: ["loadOfflineFiles":true])
     }
     
     func resumeDownload(_ offlineFile: OfflineFile) {

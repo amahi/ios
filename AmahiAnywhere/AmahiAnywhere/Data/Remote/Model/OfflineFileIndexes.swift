@@ -10,4 +10,5 @@ import Foundation
 
 struct OfflineFileIndexes{
     static var offlineFilesIndexPaths = [OfflineFile: IndexPath]()
+    static var indexPathsForOfflineFiles = [IndexPath: OfflineFile]()
 }
