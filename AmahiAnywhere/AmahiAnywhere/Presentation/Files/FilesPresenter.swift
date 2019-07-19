@@ -155,6 +155,13 @@ class FilesPresenter: BasePresenter {
         }
     }
     
+    func deleteFiles(_ file: ServerFile, _ share: ServerShare, directory: ServerFile? = nil) {
+        ServerApi.shared!.deleteFiles(file: file, share: share, directory: directory, completion: {
+            (success) in
+            return success
+        })
+    }
+    
     public func makeFileAvailableOffline(_ serverFile: ServerFile, _ indexPath: IndexPath) {
         
         let delegate = UIApplication.shared.delegate as! AppDelegate

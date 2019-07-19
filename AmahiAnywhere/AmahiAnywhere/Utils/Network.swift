@@ -73,6 +73,18 @@ public class Network {
         }
     }
     
+    public func delete(_ url: String!, method: HTTPMethod! = .delete, parameters: Parameters = [:], headers: HTTPHeaders = [:], completion: @escaping (_ isSuccessful: Bool ) -> Void) {
+        Alamofire.request(url, method: method, parameters: parameters, headers: getFinalHeaders(headers))
+            .response { response in
+                if response.response?.statusCode == 200 {
+                    completion(true)
+                }
+                else {
+                    completion(false)
+                }
+        }
+    }
+    
     public func downloadFileToStorage(file: ServerFile,
                                       progressCompletion: @escaping (_ percent: Float) -> Void,
                                       completion: @escaping (_ isSuccessful: Bool ) -> Void) {

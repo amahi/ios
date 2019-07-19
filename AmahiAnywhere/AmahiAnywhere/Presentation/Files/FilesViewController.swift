@@ -279,13 +279,11 @@ GCKRemoteMediaClientListener, GCKRequestDelegate {
     func handleMoreMenu(touchPoint: CGPoint){
         if let indexPath = filesCollectionView.indexPathForItem(at: touchPoint) {
             
+            let fileShare = self.share!
+            
             let file = self.filteredFiles.getFileFromIndexPath(indexPath)
             
             if file.isDirectory { return }
-            
-            let open = self.creatAlertAction("Open", style: .default) { (action) in
-                self.presenter.handleFileOpening(selectedFile: file, indexPath: indexPath, files: self.filteredFiles, from: self.filesCollectionView.cellForItem(at: indexPath))
-            }!
             
             let download = self.creatAlertAction(StringLiterals.download, style: .default) { (action) in
                 self.presenter.makeFileAvailableOffline(file, indexPath)
@@ -298,17 +296,16 @@ GCKRemoteMediaClientListener, GCKRequestDelegate {
                 }!
             
             let removeOffline = self.creatAlertAction(StringLiterals.removeOfflineMessage, style: .default) { (action) in
-                    self.removeOfflineFile(indexPath: indexPath)
+                }!
+            
+            let delete = self.creatAlertAction(StringLiterals.delete, style: .destructive) { (action) in
+                self.deleteFile(file)
                 }!
             
             let stop = self.creatAlertAction(StringLiterals.stopDownload, style: .default) { (action) in
-                if let offlineFile = OfflineFileIndexes.indexPathsForOfflineFiles[indexPath]{
-                    DownloadService.shared.cancelDownload(offlineFile)
-                }
-            }!
+                }!
             
             var actions = [UIAlertAction]()
-            actions.append(open)
             actions.append(share)
             
             if state == .none {
@@ -319,6 +316,8 @@ GCKRemoteMediaClientListener, GCKRequestDelegate {
                 actions.append(stop)
             }
             
+            actions.append(delete)
+            
             let cancel = self.creatAlertAction(StringLiterals.cancel, style: .cancel, clicked: nil)!
             actions.append(cancel)
             
@@ -328,6 +327,21 @@ GCKRemoteMediaClientListener, GCKRequestDelegate {
                                    preferredActionPosition: 0,
                                    sender: filesCollectionView.cellForItem(at: indexPath))
         }
+    }
+    
+    func deleteFile(_ file: ServerFile) {
+        let deleteAlert = UIAlertController(title: "Are you sure?", message: "The selected file will be permanently deleted.", preferredStyle: UIAlertController.Style.alert)
+        
+        deleteAlert.addAction(UIAlertAction(title: "OK", style: .default, handler: { (action: UIAlertAction!) in
+            self.presenter.deleteFiles(file, self.share, directory: self.directory)
+            self.presenter.getFiles(self.share, directory: self.directory)
+        }))
+        
+        deleteAlert.addAction(UIAlertAction(title: "Cancel", style: .destructive, handler: { (action: UIAlertAction!) in
+            return
+        }))
+        
+        present(deleteAlert, animated: true, completion: nil)
     }
     
     @objc func handleLongPress(sender: UIGestureRecognizer) {

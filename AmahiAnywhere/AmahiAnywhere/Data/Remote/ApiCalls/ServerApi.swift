@@ -124,6 +124,26 @@ class ServerApi {
         Network.shared.request(ApiEndPoints.getServerFiles(serverAddress), parameters: params, headers: getSessionHeader(), completion: updateFiles)
     }
     
+    public func deleteFiles(file: ServerFile, share: ServerShare, directory: ServerFile? = nil, completion: @escaping (_ success: Bool) -> Bool ) {
+        
+        var params: Parameters = ["s": share.name!]
+        params["p"] = "\(file.getPath())"
+        print(file.getPath())
+        print(params)
+        
+        Network.shared.delete(ApiEndPoints.getServerFiles(serverAddress), parameters: params, headers: getSessionHeader(), completion: {
+            (success) in
+            if success {
+                let message = "The file was deleted successfully."
+                Toast.displayMessage(message, for: 3, in: appDelegate?.window)
+            }
+            else {
+                let message = "An error occurred!"
+                Toast.displayMessage(message, for: 3, in: appDelegate?.window)
+            }
+        })
+    }
+    
     public func getFileUri(_ file: ServerFile) -> URL? {
         var components = URLComponents(string: serverAddress!)!
         components.path = "/files"
