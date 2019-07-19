@@ -108,7 +108,7 @@ extension ServerViewController: UICollectionViewDelegate, UICollectionViewDataSo
         let server = servers[indexPath.item]
         if server.active{
             ServerApi.initialize(server: servers[indexPath.item])
-            let sharesVc = viewController(viewControllerClass: SharesTableViewController.self, from: StoryBoardIdentifiers.main)
+            let sharesVc = viewController(viewControllerClass: SharesViewController.self, from: StoryBoardIdentifiers.main)
             navigationController?.pushViewController(sharesVc, animated: true)
         }else{
             showErrorView()

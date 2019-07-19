@@ -26,6 +26,7 @@
 		3B33326022BAB2A800BC61EB /* SortViewTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B33325F22BAB2A800BC61EB /* SortViewTableViewCell.swift */; };
 		3B4DB99722A0431100AF287B /* ServerCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B4DB99622A0431100AF287B /* ServerCollectionViewCell.swift */; };
 		3B84E87D2299587B00E37A74 /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B84E87C2299587B00E37A74 /* UIView.swift */; };
+		3BB315D422E1143600A0FDAD /* SharesCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BB315D322E1143600A0FDAD /* SharesCollectionViewCell.swift */; };
 		3BCAFBA122C537C10044057E /* DownloadsListCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BCAFBA022C537C10044057E /* DownloadsListCollectionCell.swift */; };
 		3BCAFBA322C537DE0044057E /* DownloadsGridCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BCAFBA222C537DE0044057E /* DownloadsGridCollectionCell.swift */; };
 		3BCAFBA522C5385D0044057E /* DownloadsBaseCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BCAFBA422C5385D0044057E /* DownloadsBaseCollectionCell.swift */; };
@@ -40,7 +41,7 @@
 		3BF4592822CD702C00C020A4 /* GlobalLayoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BF4592722CD702C00C020A4 /* GlobalLayoutView.swift */; };
 		4605963F204E24DF004FA066 /* ServerPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4605963E204E24DF004FA066 /* ServerPresenter.swift */; };
 		46059643204E8B41004FA066 /* BaseUITableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46059642204E8B41004FA066 /* BaseUITableViewController.swift */; };
-		46059646204EE17D004FA066 /* SharesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46059644204EE17D004FA066 /* SharesTableViewController.swift */; };
+		46059646204EE17D004FA066 /* SharesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46059644204EE17D004FA066 /* SharesViewController.swift */; };
 		4605964B204F35E9004FA066 /* ServerRoute.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4605964A204F35E9004FA066 /* ServerRoute.swift */; };
 		4605964D204F3666004FA066 /* ServerShare.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4605964C204F3666004FA066 /* ServerShare.swift */; };
 		46098D02204FDBEE00752EB6 /* ApiEndPoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46098D01204FDBEE00752EB6 /* ApiEndPoints.swift */; };
@@ -130,6 +131,7 @@
 		3B33325F22BAB2A800BC61EB /* SortViewTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortViewTableViewCell.swift; sourceTree = "<group>"; };
 		3B4DB99622A0431100AF287B /* ServerCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerCollectionViewCell.swift; sourceTree = "<group>"; };
 		3B84E87C2299587B00E37A74 /* UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIView.swift; sourceTree = "<group>"; };
+		3BB315D322E1143600A0FDAD /* SharesCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharesCollectionViewCell.swift; sourceTree = "<group>"; };
 		3BCAFBA022C537C10044057E /* DownloadsListCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadsListCollectionCell.swift; sourceTree = "<group>"; };
 		3BCAFBA222C537DE0044057E /* DownloadsGridCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadsGridCollectionCell.swift; sourceTree = "<group>"; };
 		3BCAFBA422C5385D0044057E /* DownloadsBaseCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadsBaseCollectionCell.swift; sourceTree = "<group>"; };
@@ -144,7 +146,7 @@
 		3BF4592722CD702C00C020A4 /* GlobalLayoutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalLayoutView.swift; sourceTree = "<group>"; };
 		4605963E204E24DF004FA066 /* ServerPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerPresenter.swift; sourceTree = "<group>"; };
 		46059642204E8B41004FA066 /* BaseUITableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseUITableViewController.swift; sourceTree = "<group>"; };
-		46059644204EE17D004FA066 /* SharesTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharesTableViewController.swift; sourceTree = "<group>"; };
+		46059644204EE17D004FA066 /* SharesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharesViewController.swift; sourceTree = "<group>"; };
 		4605964A204F35E9004FA066 /* ServerRoute.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerRoute.swift; sourceTree = "<group>"; };
 		4605964C204F3666004FA066 /* ServerShare.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerShare.swift; sourceTree = "<group>"; };
 		46098D01204FDBEE00752EB6 /* ApiEndPoints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiEndPoints.swift; sourceTree = "<group>"; };
@@ -450,7 +452,7 @@
 		C8CE05C7206B1F57006F6807 /* Shares */ = {
 			isa = PBXGroup;
 			children = (
-				46059644204EE17D004FA066 /* SharesTableViewController.swift */,
+				46059644204EE17D004FA066 /* SharesViewController.swift */,
 				46CB896A204FB0FC0031151F /* SharesPresenter.swift */,
 			);
 			path = Shares;
@@ -495,6 +497,7 @@
 				3B33325322BAA29700BC61EB /* FilesCollectionHeaderView.swift */,
 				3B33325522BAA2AF00BC61EB /* FilesCollectionFooterView.swift */,
 				3B33325F22BAB2A800BC61EB /* SortViewTableViewCell.swift */,
+				3BB315D322E1143600A0FDAD /* SharesCollectionViewCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -695,7 +698,7 @@
 				3B33325E22BAB05C00BC61EB /* FilesBaseCollectionViewCell.swift in Sources */,
 				C83C63952038D5B30089B9D8 /* ApiConfig.swift in Sources */,
 				46657183205085FC000E0D45 /* FilesPresenter.swift in Sources */,
-				46059646204EE17D004FA066 /* SharesTableViewController.swift in Sources */,
+				46059646204EE17D004FA066 /* SharesViewController.swift in Sources */,
 				3B24FE1A22970B860044721D /* WalkthroughCollectionCell.swift in Sources */,
 				C8DA5B3520D8741000F5A527 /* String.swift in Sources */,
 				AD8F2FDC226E9331009C8C4B /* CoreDataStack+AutoSaving.swift in Sources */,
@@ -766,6 +769,7 @@
 				04BA8996211D56F400E7A868 /* AmahiLogger.swift in Sources */,
 				3BCAFBB122C6DC460044057E /* OfflineFilesViewController+FilesView.swift in Sources */,
 				AD8F2FDB226E9331009C8C4B /* CoreDataStack+DropDatabase.swift in Sources */,
+				3BB315D422E1143600A0FDAD /* SharesCollectionViewCell.swift in Sources */,
 				3BF4592822CD702C00C020A4 /* GlobalLayoutView.swift in Sources */,
 				3BCAFBAD22C6DBCB0044057E /* OfflineFilesViewController+UICollectionViewDelegates.swift in Sources */,
 				46098D08204FFFBE00752EB6 /* ServerApi.swift in Sources */,
