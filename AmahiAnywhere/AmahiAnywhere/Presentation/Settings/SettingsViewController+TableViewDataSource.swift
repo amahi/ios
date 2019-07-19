@@ -16,33 +16,22 @@ extension SettingsViewController {
         return titleForSections.count
     }
     
-    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return titleForSections[section]
-    }
-    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
         return settingItems[section].count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
         let section = indexPath.section
         let row = indexPath.row
         
         var cell: UITableViewCell
         
-        if section == 1 || (section == 2 && row == 0) {
-            
+        if section == 1{
             cell = tableView.dequeueReusableCell(withIdentifier: CellIdentifiers.settingsCellWithDetails, for: indexPath)
             cell.textLabel?.text = settingItems[section][row]
-            cell.textLabel?.textColor = UIColor.white
-            cell.detailTextLabel?.textColor = UIColor.lightGray
-            let selectedBackgroundView = UIView()
-            selectedBackgroundView.backgroundColor = UIColor(hex: "1E2023")
-            cell.selectedBackgroundView = selectedBackgroundView
-            
-            if section == 1 && row == 0 {
+            formatCell(cell: &cell)
+    
+            if row == 0 {
                 let connectionMode = LocalStorage.shared.userConnectionPreference
                 
                 if connectionMode == ConnectionMode.auto {
@@ -56,29 +45,51 @@ extension SettingsViewController {
                 } else {
                     cell.detailTextLabel?.text =  LocalStorage.shared.userConnectionPreference.rawValue
                 }
-            }
-            else if section == 1 && row == 1 {
-                
+            }else if row == 1 {
                 let cacheFolderPath = FileManager.default.temporaryDirectory.appendingPathComponent("cache").path
-                
                 let cacheSize = FileManager.default.folderSizeAtPath(path: cacheFolderPath)
                 cell.detailTextLabel?.text = String(format: StringLiterals.currentSize, ByteCountFormatter().string(fromByteCount: cacheSize))
             }
-            else if section == 2 && row == 0 {
-                if let versionNumber = Bundle.main.object(forInfoDictionaryKey: StringLiterals.versionNumberDictionaryKey) as! String? {
-                    cell.detailTextLabel?.text = "v\(versionNumber)"
-                }
+        }else if section == 2 && row == 0{
+            cell = tableView.dequeueReusableCell(withIdentifier: CellIdentifiers.settingsCellRightDetail, for: indexPath)
+            cell.textLabel?.text = settingItems[section][row]
+            formatCell(cell: &cell)
+            if let versionNumber = Bundle.main.object(forInfoDictionaryKey: StringLiterals.versionNumberDictionaryKey) as! String? {
+                cell.detailTextLabel?.text = "v\(versionNumber)"
             }
-        } else {
-            
+        }else{
             cell = tableView.dequeueReusableCell(withIdentifier: CellIdentifiers.settingsCell, for: indexPath)
             cell.textLabel?.text = settingItems[section][row]
-            cell.textLabel?.textColor = UIColor.white
-            let selectedBackgroundView = UIView()
-            selectedBackgroundView.backgroundColor = UIColor(hex: "1E2023")
-            cell.selectedBackgroundView = selectedBackgroundView
+            formatCell(cell: &cell)
         }
         
         return cell
     }
+    
+    func formatCell(cell: inout UITableViewCell){
+        cell.textLabel?.textColor = UIColor.white
+        cell.detailTextLabel?.textColor = #colorLiteral(red: 0.8055401332, green: 0.8055401332, blue: 0.8055401332, alpha: 1)
+        let selectedBackgroundView = UIView()
+        selectedBackgroundView.backgroundColor = UIColor(hex: "1E2023")
+        cell.selectedBackgroundView = selectedBackgroundView
+    }
+    
+    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let view = UIView()
+        view.backgroundColor = UIColor(hex: "131517")
+        let label = UILabel()
+        view.addSubview(label)
+        label.text = titleForSections[section]
+        label.textColor = .white
+        label.font = UIFont.systemFont(ofSize: 17, weight: .semibold)
+        label.setAnchors(top: nil, leading: view.leadingAnchor, trailing: view.trailingAnchor, bottom: nil, topConstant: nil, leadingConstant: 12, trailingConstant: 20, bottomConstant: nil)
+        label.center(toVertically: view, toHorizontally: nil)
+        return view
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 50
+    }
+    
+    
 }
