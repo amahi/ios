@@ -290,6 +290,7 @@ class FilesViewController: BaseUIViewController, GCKRemoteMediaClientListener {
                 }!
             
             let removeOffline = self.creatAlertAction(StringLiterals.removeOfflineMessage, style: .default) { (action) in
+                    self.removeOfflineFile(indexPath: indexPath)
                 }!
             
             let delete = self.creatAlertAction(StringLiterals.delete, style: .destructive) { (action) in
@@ -297,6 +298,9 @@ class FilesViewController: BaseUIViewController, GCKRemoteMediaClientListener {
                 }!
             
             let stop = self.creatAlertAction(StringLiterals.stopDownload, style: .default) { (action) in
+                    if let offlineFile = OfflineFileIndexes.indexPathsForOfflineFiles[indexPath]{
+                        DownloadService.shared.cancelDownload(offlineFile)
+                    }
                 }!
             
             var actions = [UIAlertAction]()
@@ -326,13 +330,13 @@ class FilesViewController: BaseUIViewController, GCKRemoteMediaClientListener {
     func deleteFile(_ file: ServerFile) {
         let deleteAlert = UIAlertController(title: "Are you sure?", message: "The selected file will be permanently deleted.", preferredStyle: UIAlertController.Style.alert)
         
-        deleteAlert.addAction(UIAlertAction(title: "OK", style: .default, handler: { (action: UIAlertAction!) in
-            self.presenter.deleteFiles(file, self.share, directory: self.directory)
-            self.presenter.getFiles(self.share, directory: self.directory)
+        deleteAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { (action: UIAlertAction!) in
+            return
         }))
         
-        deleteAlert.addAction(UIAlertAction(title: "Cancel", style: .destructive, handler: { (action: UIAlertAction!) in
-            return
+        deleteAlert.addAction(UIAlertAction(title: "Delete", style: .destructive, handler: { (action: UIAlertAction!) in
+            self.presenter.deleteFiles(file, self.share, directory: self.directory)
+            self.presenter.getFiles(self.share, directory: self.directory)
         }))
         
         present(deleteAlert, animated: true, completion: nil)

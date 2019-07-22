@@ -183,7 +183,7 @@ class FilesPresenter: BasePresenter {
                                       mtime: serverFile.mtime!,
                                       fileUri: url.absoluteString,
                                       localPath: path,
-                                      progress: 1,
+                                      progress: 0,
                                       state: OfflineFileState.downloading,
                                       context: stack.context)
         

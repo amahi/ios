@@ -149,10 +149,7 @@ class OfflineFilesViewController: BaseUIViewController{
         if let indexPath = filesCollectionView.indexPathForItem(at: touchPoint){
             let offlineFile = filteredFiles.getFileFromIndexPath(indexPath)
             
-            let delete = self.creatAlertAction(StringLiterals.delete, style: .default) { (action) in
-                if offlineFile.stateEnum != .downloading {
-                    DownloadService.shared.cancelDownload(offlineFile)
-                }
+            let delete = self.creatAlertAction(StringLiterals.delete, style: .destructive) { (action) in
                 self.delete(file: offlineFile)
                 }!
             
@@ -167,12 +164,12 @@ class OfflineFilesViewController: BaseUIViewController{
             
             let stop = self.creatAlertAction(StringLiterals.stopDownload, style: .default) { (action) in
                 DownloadService.shared.cancelDownload(offlineFile)
-                self.delete(file: offlineFile)
                 }!
             
             var actions = [UIAlertAction]()
             
             let state = offlineFile.stateEnum
+            
             if state == .downloaded {
                 if offlineFile.mimeType != .sharedFile {
                     actions.append(open)
@@ -183,7 +180,6 @@ class OfflineFilesViewController: BaseUIViewController{
                 actions.append(delete)
             } else if state == .downloading {
                 actions.append(stop)
-                actions.append(delete)
             }
             
             let cancel = self.creatAlertAction(StringLiterals.cancel, style: .cancel, clicked: nil)!
@@ -202,7 +198,7 @@ class OfflineFilesViewController: BaseUIViewController{
         handleMoreMenu(touchPoint: bounds.origin)
     }
     
-    private func delete(file offlineFile: OfflineFile) {
+    func delete(file offlineFile: OfflineFile) {
         // Delete file in downloads directory
         let fileManager = FileManager.default
         do {
@@ -279,7 +275,11 @@ extension OfflineFilesViewController: NSFetchedResultsControllerDelegate {
             }
         }else if type == .update, let file = anObject as? OfflineFile{
             if let updatedIndexPath = filteredFiles.getIndexPathFromFile(file: file){
-                filesCollectionView.reloadItems(at: [updatedIndexPath])
+                if let cell = filesCollectionView.cellForItem(at: updatedIndexPath) as? DownloadsListCollectionCell{
+                    cell.updateProgress(offlineFile: file)
+                }else if let cell = filesCollectionView.cellForItem(at: updatedIndexPath) as? DownloadsGridCollectionCell{
+                    cell.updateProgress(offlineFile: file)
+                }
             }
         }else if type == .delete, let file = anObject as? OfflineFile, let deletedIndex = offlineFiles.index(of: file){
             offlineFiles.remove(at: deletedIndex)

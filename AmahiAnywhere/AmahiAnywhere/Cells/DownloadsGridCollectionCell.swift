@@ -24,7 +24,7 @@ class DownloadsGridCollectionCell: DownloadsBaseCollectionCell{
         brokenIndicatorImageView.image = templateImage
         brokenIndicatorImageView.tintColor = UIColor.brokenIndicatorRed
         
-        progressView.setProgress(offlineFile.progress, animated: false)
+        setupProgressView(offlineFile: offlineFile, progressView: progressView)
         
         if offlineFile.stateEnum == .downloading {
             if let remoteUrl = offlineFile.remoteFileURL() {
@@ -41,8 +41,10 @@ class DownloadsGridCollectionCell: DownloadsBaseCollectionCell{
             brokenIndicatorImageView.isHidden = true
         }
         
-        progressView.isHidden = offlineFile.progress == 1.0
-        
         setupArtWork(offlineFile: offlineFile, iconImageView: iconImageView)
+    }
+    
+    func updateProgress(offlineFile: OfflineFile){
+        updateProgress(offlineFile: offlineFile, progressView: progressView, brokenIndicator: brokenIndicatorImageView, iconImageView: iconImageView)
     }
 }

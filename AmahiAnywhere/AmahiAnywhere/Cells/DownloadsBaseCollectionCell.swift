@@ -72,4 +72,38 @@ class DownloadsBaseCollectionCell: SwipeCollectionViewCell{
         }
     }
     
+    
+    func updateProgress(offlineFile: OfflineFile, progressView: UIProgressView, brokenIndicator: UIImageView, iconImageView: UIImageView){
+        setupProgressView(offlineFile: offlineFile, progressView: progressView)
+        
+        if offlineFile.stateEnum == .downloading {
+            if let remoteUrl = offlineFile.remoteFileURL() {
+                let keyExists = DownloadService.shared.activeDownloads[remoteUrl] != nil
+                if !keyExists {
+                    offlineFile.stateEnum = .completedWithError
+                }
+            }
+        }
+        
+        if offlineFile.stateEnum == .completedWithError {
+            brokenIndicator.isHidden = false
+        } else {
+            brokenIndicator.isHidden = true
+        }
+        
+        if offlineFile.progress == 1.0{
+            setupArtWork(offlineFile: offlineFile, iconImageView: iconImageView)
+        }
+    }
+    
+    func setupProgressView(offlineFile: OfflineFile, progressView: UIProgressView){
+        progressView.isHidden = offlineFile.progress == 1.0
+        if progressView.progress == 1.0 && offlineFile.progress != 0{
+            progressView.setProgress(offlineFile.progress, animated: false)
+        }else{
+            progressView.setProgress(offlineFile.progress, animated: false)
+        }
+    }
+    
+    
 }

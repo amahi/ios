@@ -137,7 +137,20 @@ extension OfflineFilesViewController: UICollectionViewDelegate, UICollectionView
             shareAction.font = UIFont.systemFont(ofSize: 18, weight: .bold)
             shareAction.textColor = .white
             return [shareAction]
-        }else{
+        }else if orientation == .right && offlineFile.stateEnum == .downloading{
+            let cancelDownloadAction = SwipeAction(style: .default, title: StringLiterals.stopDownload) { (action, indexPath) in
+                // Cancel download
+                DownloadService.shared.cancelDownload(offlineFile)
+            }
+            
+            cancelDownloadAction.backgroundColor = #colorLiteral(red: 0.9490196078, green: 0.1215686275, blue: 0.1882352941, alpha: 1)
+            cancelDownloadAction.textColor = .white
+            cancelDownloadAction.font = UIFont.systemFont(ofSize: 18, weight: .bold)
+            return [cancelDownloadAction]
+        }
+        
+        
+        else{
             return nil
         }
     }
