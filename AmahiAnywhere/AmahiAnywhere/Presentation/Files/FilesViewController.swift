@@ -12,13 +12,18 @@ import AVFoundation
 import GoogleCast
 import Floaty
 
-class FilesViewController: BaseUIViewController, GCKSessionManagerListener,
-GCKRemoteMediaClientListener, GCKRequestDelegate {
+class FilesViewController: BaseUIViewController, GCKRemoteMediaClientListener {
     
     enum PlaybackMode: Int {
         case none = 0
         case local
         case remote
+    }
+    
+    enum QueueMedia: Int {
+        case none = 0
+        case queueItem
+        case playItem
     }
     
     var mediaInfo: GCKMediaInformation? {
@@ -29,6 +34,7 @@ GCKRemoteMediaClientListener, GCKRequestDelegate {
     
     public var sessionManager: GCKSessionManager!
     public var mediaInformation: GCKMediaInformation?
+    public var mediaClient: GCKRemoteMediaClient!
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
@@ -36,6 +42,7 @@ GCKRemoteMediaClientListener, GCKRequestDelegate {
     }
     
     public var playbackMode = PlaybackMode.none
+    public var queueMedia = QueueMedia.none
     
     // Mark - Server properties, will be set from presenting class
     public var directory: ServerFile?
@@ -95,11 +102,6 @@ GCKRemoteMediaClientListener, GCKRequestDelegate {
                                                    width: CGFloat(24), height: CGFloat(24)))
         castButton.tintColor = UIColor.white
         navigationItem.rightBarButtonItem = UIBarButtonItem(customView: castButton)
-        
-        
-        NotificationCenter.default.addObserver(self, selector: #selector(castDeviceDidChange),
-                                               name: NSNotification.Name.gckCastStateDidChange,
-                                               object: GCKCastContext.sharedInstance())
     }
     
     func setupImagePicker(){
@@ -130,14 +132,6 @@ GCKRemoteMediaClientListener, GCKRequestDelegate {
         alertVC.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         
         self.present(alertVC, animated: true, completion: nil)
-    }
-    
-    @objc func castDeviceDidChange(_: Notification) {
-        if GCKCastContext.sharedInstance().castState != .noDevicesAvailable {
-            // You can present the instructions on how to use Google Cast on
-            // the first time the user uses you app
-            GCKCastContext.sharedInstance().presentCastInstructionsViewControllerOnce(with: castButton)
-        }
     }
     
     func setupLayoutView(){
@@ -447,56 +441,6 @@ GCKRemoteMediaClientListener, GCKRequestDelegate {
         if refreshCollectionView{
             updateFiles(serverFiles)
         }
-    }
-    
-    // MARK: - GCKSessionManagerListener
-    
-    func sessionManager(_: GCKSessionManager, didStart session: GCKSession) {
-        print("MediaViewController: sessionManager didStartSession \(session)")
-        //setQueueButtonVisible(true)
-        //switchToRemotePlayback()
-    }
-    
-    func sessionManager(_: GCKSessionManager, didResumeSession session: GCKSession) {
-        print("MediaViewController: sessionManager didResumeSession \(session)")
-        //setQueueButtonVisible(true)
-        //switchToRemotePlayback()
-    }
-    
-    func sessionManager(_: GCKSessionManager, didEnd _: GCKSession, withError error: Error?) {
-        print("session ended with error: \(String(describing: error))")
-        let message = "The Casting session has ended.\n\(String(describing: error))"
-        if let window = appDelegate!.window {
-            Toast.displayMessage(message, for: 3, in: window)
-        }
-        //setQueueButtonVisible(false)
-        //switchToLocalPlayback()
-    }
-    
-    func sessionManager(_: GCKSessionManager, didFailToStartSessionWithError error: Error?) {
-        if let error = error {
-            showAlert(withTitle: "Failed to start a session", message: error.localizedDescription)
-        }
-        //setQueueButtonVisible(false)
-    }
-    
-    func showAlert(withTitle title: String, message: String) {
-        let alert = UIAlertView(title: title,
-                                message: message,
-                                delegate: nil,
-                                cancelButtonTitle: "OK",
-                                otherButtonTitles: "")
-        alert.show()
-    }
-    
-    func sessionManager(_: GCKSessionManager,
-                        didFailToResumeSession _: GCKSession, withError _: Error?) {
-        if let window = UIApplication.shared.delegate?.window {
-            Toast.displayMessage("The Casting session could not be resumed.",
-                                 for: 3, in: window)
-        }
-        //setQueueButtonVisible(false)
-        //switchToLocalPlayback()
     }
     
 }

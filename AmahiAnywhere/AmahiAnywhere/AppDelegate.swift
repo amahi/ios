@@ -12,18 +12,27 @@ import EVReflection
 import AVFoundation
 import GoogleCast
 
+let kPrefPreloadTime = "preload_time_sec"
+let kPrefEnableAnalyticsLogging = "enable_analytics_logging"
+let kPrefAppVersion = "app_version"
+let kPrefSDKVersion = "sdk_version"
+let kPrefEnableMediaNotifications = "enable_media_notifications"
+
 let appDelegate = (UIApplication.shared.delegate as? AppDelegate)
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
     
+    fileprivate var firstUserDefaultsSync = false
     fileprivate var enableSDKLogging = true
-    private let appID = ApiConfig.appID
+    
+    let appID = ApiConfig.appID
+    let stack = CoreDataStack(modelName: "OfflineFilesModel")!
     
     var window: UIWindow?
-    let stack = CoreDataStack(modelName: "OfflineFilesModel")!
     var backgroundSessionCompletionHandler: (() -> Void)?
-    
+    var mediaNotificationsEnabled = false
+    var isCastControlBarsEnabled: Bool!
     
     var orientationLock = UIInterfaceOrientationMask.all
     
@@ -32,6 +41,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        
+        populateRegistrationDomain()
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(syncWithUserDefaults),
+                                               name: UserDefaults.didChangeNotification,
+                                               object: nil)
+        firstUserDefaultsSync = true
+        syncWithUserDefaults()
+        GCKCastContext.sharedInstance().sessionManager.add(self)
+        
+        let options = GCKCastOptions(discoveryCriteria: GCKDiscoveryCriteria(applicationID: appID))
+        options.physicalVolumeButtonsWillControlDeviceVolume = true
+        GCKCastContext.setSharedInstanceWith(options)
+        
+        let logFilter = GCKLoggerFilter()
+        logFilter.minimumLevel = .verbose
+        GCKLogger.sharedInstance().filter = logFilter
+        GCKLogger.sharedInstance().delegate = self
+        
         // Override point for customization after application launch.
         IQKeyboardManager.shared.enable = true
     
@@ -84,16 +112,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         // Start Autosaving, tries to do autosave every 5 minutes if any changes is waiting to be persisted.
         stack.autoSave(60 * 5)
-        
-        let options = GCKCastOptions(discoveryCriteria: GCKDiscoveryCriteria(applicationID: appID))
-        options.physicalVolumeButtonsWillControlDeviceVolume = true
-        GCKCastContext.setSharedInstanceWith(options)
-        
-        let logFilter = GCKLoggerFilter()
-        logFilter.minimumLevel = .verbose
-        GCKLogger.sharedInstance().filter = logFilter
-        GCKLogger.sharedInstance().delegate = self
-        
         return true
     }
     
@@ -134,6 +152,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+        NotificationCenter.default.removeObserver(self,
+                                                  name: NSNotification.Name.gckExpandedMediaControlsTriggered,
+                                                  object: nil)
     }
     
     // Mark - Only for debug
@@ -209,5 +230,50 @@ extension AppDelegate: GCKSessionManagerListener {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Ok", style: .default))
         window?.rootViewController?.present(alert, animated: true, completion: nil)
+    }
+}
+
+// MARK: - Working with default values
+
+extension AppDelegate {
+    func populateRegistrationDomain() {
+        let appVersion = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString")
+        var appDefaults = [String: Any]()
+        if let settingsBundleURL = Bundle.main.url(forResource: "Settings", withExtension: "bundle") {
+            loadDefaults(&appDefaults, fromSettingsPage: "Root", inSettingsBundleAt: settingsBundleURL)
+        }
+        let userDefaults = UserDefaults.standard
+        userDefaults.register(defaults: appDefaults)
+        userDefaults.setValue(appVersion, forKey: kPrefAppVersion)
+        userDefaults.setValue(kGCKFrameworkVersion, forKey: kPrefSDKVersion)
+        userDefaults.synchronize()
+    }
+    
+    func loadDefaults(_ appDefaults: inout [String: Any], fromSettingsPage plistName: String,
+                      inSettingsBundleAt settingsBundleURL: URL) {
+        let plistFileName = plistName.appending(".plist")
+        let settingsDict = NSDictionary(contentsOf: settingsBundleURL.appendingPathComponent(plistFileName))
+        if let prefSpecifierArray = settingsDict?["PreferenceSpecifiers"] as? [[AnyHashable: Any]] {
+            for prefItem in prefSpecifierArray {
+                let prefItemType = prefItem["Type"] as? String
+                let prefItemKey = prefItem["Key"] as? String
+                let prefItemDefaultValue = prefItem["DefaultValue"] as? String
+                if prefItemType == "PSChildPaneSpecifier" {
+                    if let prefItemFile = prefItem["File"] as? String {
+                        loadDefaults(&appDefaults, fromSettingsPage: prefItemFile, inSettingsBundleAt: settingsBundleURL)
+                    }
+                } else if let prefItemKey = prefItemKey, let prefItemDefaultValue = prefItemDefaultValue {
+                    appDefaults[prefItemKey] = prefItemDefaultValue
+                }
+            }
+        }
+    }
+    
+    @objc func syncWithUserDefaults() {
+        let userDefaults = UserDefaults.standard
+        
+        let mediaNotificationsEnabled = userDefaults.bool(forKey: kPrefEnableMediaNotifications)
+        GCKLogger.sharedInstance().delegate?.logMessage?("Notifications on? \(mediaNotificationsEnabled)", at: .debug, fromFunction: #function, location: "AppDelegate.swift")
+        firstUserDefaultsSync = false
     }
 }

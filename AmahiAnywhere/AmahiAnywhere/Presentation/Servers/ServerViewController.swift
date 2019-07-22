@@ -11,7 +11,13 @@ import GoogleCast
 
 class ServerViewController: BaseUIViewController {
     
+    private var sessionManager: GCKSessionManager!
     private var castButton: GCKUICastButton!
+    
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+        sessionManager = GCKCastContext.sharedInstance().sessionManager
+    }
     
     private var presenter: ServerPresenter!
     @IBOutlet var serversCollectionView: UICollectionView!
@@ -29,6 +35,7 @@ class ServerViewController: BaseUIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        sessionManager.add(self)
         serversCollectionView.delegate = self
         serversCollectionView.dataSource = self
         serversCollectionView.addSubview(refreshControl)
@@ -37,23 +44,14 @@ class ServerViewController: BaseUIViewController {
         presenter = ServerPresenter(self)
         presenter.fetchServers()
         
+        NotificationCenter.default.addObserver(self, selector: #selector(deviceOrientationDidChange),
+                                               name: UIDevice.orientationDidChangeNotification, object: nil)
+        UIDevice.current.beginGeneratingDeviceOrientationNotifications()
         
         castButton = GCKUICastButton(frame: CGRect(x: CGFloat(0), y: CGFloat(0),
                                                    width: CGFloat(24), height: CGFloat(24)))
         castButton.tintColor = UIColor.white
         navigationItem.rightBarButtonItem = UIBarButtonItem(customView: castButton)
-        
-        NotificationCenter.default.addObserver(self, selector: #selector(castDeviceDidChange),
-                                               name: NSNotification.Name.gckCastStateDidChange,
-                                               object: GCKCastContext.sharedInstance())
-    }
-    
-    @objc func castDeviceDidChange(_: Notification) {
-        if GCKCastContext.sharedInstance().castState != .noDevicesAvailable {
-            // You can present the instructions on how to use Google Cast on
-            // the first time the user uses you app
-            GCKCastContext.sharedInstance().presentCastInstructionsViewControllerOnce(with: castButton)
-        }
     }
     
     @objc func handleRefresh(sender: UIRefreshControl) {
@@ -82,7 +80,16 @@ class ServerViewController: BaseUIViewController {
         
         self.errorView.isHidden = true
     }
-
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        appDelegate?.isCastControlBarsEnabled = true
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        sessionManager.remove(self)
+    }
 }
 
 // Mark - CollectionView Delegates Implementations

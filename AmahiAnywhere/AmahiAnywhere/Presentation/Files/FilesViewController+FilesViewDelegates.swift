@@ -63,9 +63,33 @@ extension FilesViewController: FilesView {
     func playMedia(at url: URL, file: ServerFile) {
         let hasConnectedSession: Bool = (sessionManager.hasConnectedSession())
         if hasConnectedSession, (playbackMode != .remote) {
-            playVideoRemotely(mediaURL: url, mediafile: file)
+            let playNow = self.creatAlertAction("Play Now", style: .default) { (action) in
+                self.playVideoRemotely(mediaURL: url, mediafile: file, queueMedia: .playItem)
+                }!
             
+            let addQueue = self.creatAlertAction("Add to Queue", style: .default) { (action) in
+                self.playVideoRemotely(mediaURL: url, mediafile: file, queueMedia: .queueItem)
+                }!
+            
+            if sessionManager.currentCastSession?.remoteMediaClient!.mediaQueue.itemCount == 0 {
+                addQueue.isEnabled = false
+            }
+            else {
+                addQueue.isEnabled = true
+            }
+            var actions = [UIAlertAction]()
+            actions.append(playNow)
+            actions.append(addQueue)
+            let cancel = self.creatAlertAction(StringLiterals.cancel, style: .cancel, clicked: nil)!
+            actions.append(cancel)
+            
+            self.createActionSheet(title: "Play Item",
+                                   message: "Select an action",
+                                   ltrActions: actions,
+                                   preferredActionPosition: 0,
+                                   sender: filesCollectionView)
         }
+
         else if sessionManager.currentSession == nil, (playbackMode != .local) {
             let videoPlayerVc = self.viewController(viewControllerClass: VideoPlayerViewController.self,
                                                     from: StoryBoardIdentifiers.videoPlayer)
@@ -75,33 +99,80 @@ extension FilesViewController: FilesView {
         }
     }
     
-    func playVideoRemotely(mediaURL: URL, mediafile: ServerFile) {
-        GCKCastContext.sharedInstance().presentDefaultExpandedMediaControls()
+    func playVideoRemotely(mediaURL: URL, mediafile: ServerFile, queueMedia: QueueMedia) {
         
         // Define media metadata.
         let metadata = GCKMediaMetadata()
-        //let image = VideoThumbnailGenerator().getThumbnail(mediaURL)
         metadata.setString("\(mediafile.name!)", forKey: kGCKMetadataKeyTitle)
         let mediaInfoBuilder = GCKMediaInformationBuilder(contentURL: mediaURL)
         mediaInfoBuilder.streamType = GCKMediaStreamType.none
         mediaInfoBuilder.contentType = "\(mediafile.getExtension())"
         mediaInfoBuilder.metadata = metadata
         mediaInformation = mediaInfoBuilder.build()
-        
         let mediaLoadRequestDataBuilder = GCKMediaLoadRequestDataBuilder()
         mediaLoadRequestDataBuilder.mediaInformation = mediaInformation
         
-        // Send a load request to the remote media client.
-        if let request = sessionManager.currentSession?.remoteMediaClient?.loadMedia(with: mediaLoadRequestDataBuilder.build()) {
-            request.delegate = self
+        if let remoteMediaClient = sessionManager.currentCastSession?.remoteMediaClient {
+            if queueMedia == .playItem {
+                GCKCastContext.sharedInstance().presentDefaultExpandedMediaControls()
+                let mediaQueueItemBuilder = GCKMediaQueueItemBuilder()
+                mediaQueueItemBuilder.mediaInformation = mediaInformation
+                mediaQueueItemBuilder.autoplay = true
+                mediaQueueItemBuilder.preloadTime = TimeInterval(UserDefaults.standard.integer(forKey: "preload_time_sec"))
+                let mediaQueueItem = mediaQueueItemBuilder.build()
+                let queueDataBuilder = GCKMediaQueueDataBuilder(queueType: .generic)
+                queueDataBuilder.items = [mediaQueueItem]
+                queueDataBuilder.repeatMode = remoteMediaClient.mediaStatus?.queueRepeatMode ?? .off
+                
+                let mediaLoadRequestDataBuilder = GCKMediaLoadRequestDataBuilder()
+                mediaLoadRequestDataBuilder.queueData = queueDataBuilder.build()
+                
+                let request = remoteMediaClient.loadMedia(with: mediaLoadRequestDataBuilder.build())
+                request.delegate = self
+            }
+            else if queueMedia == .queueItem {
+                let mediaQueueItemBuilder = GCKMediaQueueItemBuilder()
+                mediaQueueItemBuilder.mediaInformation = mediaInformation
+                mediaQueueItemBuilder.autoplay = true
+                mediaQueueItemBuilder.preloadTime = TimeInterval(UserDefaults.standard.integer(forKey: "preload_time_sec"))
+                let mediaQueueItem = mediaQueueItemBuilder.build()
+                let request = remoteMediaClient.queueInsert(mediaQueueItem, beforeItemWithID: kGCKMediaQueueInvalidItemID)
+                request.delegate = self
+                let message = "Selected media addded to queue."
+                Toast.displayMessage(message, for: 3, in: appDelegate?.window)
+            }
         }
     }
     
     func playAudio(_ items: [AVPlayerItem], startIndex: Int, currentIndex: Int,_ URLs: [URL]) {
-        
         let hasConnectedSession: Bool = (sessionManager.hasConnectedSession())
         if hasConnectedSession, (playbackMode != .remote) {
-            playAudioRemotely(mediaURL: URLs[currentIndex], mediafile: items[currentIndex])
+            let playNow = self.creatAlertAction("Play Now", style: .default) { (action) in
+                self.playAudioRemotely(mediaURL: URLs[currentIndex], mediafile: items[currentIndex], queueMedia: .playItem)
+                
+                }!
+            
+            let addQueue = self.creatAlertAction("Add to Queue", style: .default) { (action) in
+                self.playAudioRemotely(mediaURL: URLs[currentIndex], mediafile: items[currentIndex], queueMedia: .queueItem)
+                }!
+            
+            if sessionManager.currentCastSession?.remoteMediaClient!.mediaQueue.itemCount == 0 {
+                addQueue.isEnabled = false
+            }
+            else {
+                addQueue.isEnabled = true
+            }
+            var actions = [UIAlertAction]()
+            actions.append(playNow)
+            actions.append(addQueue)
+            let cancel = self.creatAlertAction(StringLiterals.cancel, style: .cancel, clicked: nil)!
+            actions.append(cancel)
+            
+            self.createActionSheet(title: "Play Item",
+                                   message: "Select an action",
+                                   ltrActions: actions,
+                                   preferredActionPosition: 0,
+                                   sender: filesCollectionView)
             
         }
         else if sessionManager.currentSession == nil, (playbackMode != .local) {
@@ -117,8 +188,7 @@ extension FilesViewController: FilesView {
         }
     }
     
-    func playAudioRemotely(mediaURL: URL, mediafile: AVPlayerItem) {
-        GCKCastContext.sharedInstance().presentDefaultExpandedMediaControls()
+    func playAudioRemotely(mediaURL: URL, mediafile: AVPlayerItem, queueMedia: QueueMedia) {
         
         var track: String = ""
         var artist: String = ""
@@ -142,8 +212,35 @@ extension FilesViewController: FilesView {
         mediaInformation = mediaInfoBuilder.build()
         let mediaLoadRequestDataBuilder = GCKMediaLoadRequestDataBuilder()
         mediaLoadRequestDataBuilder.mediaInformation = mediaInformation
-        if let request = sessionManager.currentSession?.remoteMediaClient?.loadMedia(with: mediaLoadRequestDataBuilder.build()) {
-            request.delegate = self
+        if let remoteMediaClient = sessionManager.currentCastSession?.remoteMediaClient {
+            if queueMedia == .playItem {
+                GCKCastContext.sharedInstance().presentDefaultExpandedMediaControls()
+                let mediaQueueItemBuilder = GCKMediaQueueItemBuilder()
+                mediaQueueItemBuilder.mediaInformation = mediaInformation
+                mediaQueueItemBuilder.autoplay = true
+                mediaQueueItemBuilder.preloadTime = TimeInterval(UserDefaults.standard.integer(forKey: "preload_time_sec"))
+                let mediaQueueItem = mediaQueueItemBuilder.build()
+                let queueDataBuilder = GCKMediaQueueDataBuilder(queueType: .generic)
+                queueDataBuilder.items = [mediaQueueItem]
+                queueDataBuilder.repeatMode = remoteMediaClient.mediaStatus?.queueRepeatMode ?? .off
+                
+                let mediaLoadRequestDataBuilder = GCKMediaLoadRequestDataBuilder()
+                mediaLoadRequestDataBuilder.queueData = queueDataBuilder.build()
+                
+                let request = remoteMediaClient.loadMedia(with: mediaLoadRequestDataBuilder.build())
+                request.delegate = self
+            }
+            else if queueMedia == .queueItem {
+                let mediaQueueItemBuilder = GCKMediaQueueItemBuilder()
+                mediaQueueItemBuilder.mediaInformation = mediaInformation
+                mediaQueueItemBuilder.autoplay = true
+                mediaQueueItemBuilder.preloadTime = TimeInterval(UserDefaults.standard.integer(forKey: "preload_time_sec"))
+                let mediaQueueItem = mediaQueueItemBuilder.build()
+                let request = remoteMediaClient.queueInsert(mediaQueueItem, beforeItemWithID: kGCKMediaQueueInvalidItemID)
+                request.delegate = self
+                let message = "Selected media addded to queue."
+                Toast.displayMessage(message, for: 3, in: appDelegate?.window)
+            }
         }
     }
     

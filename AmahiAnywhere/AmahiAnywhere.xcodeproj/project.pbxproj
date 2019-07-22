@@ -57,6 +57,7 @@
 		8A0A88F8227CE39C00A1360C /* MimeType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4612851D2051DB770061EC21 /* MimeType.swift */; };
 		8A67FC2B22666F81005A5038 /* OfflineFile+MimeType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A67FC2A22666F81005A5038 /* OfflineFile+MimeType.swift */; };
 		9938343D22CBAAA2002A8213 /* Toast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9938343C22CBAAA2002A8213 /* Toast.swift */; };
+		99CF9D7F22E288BB0060C0E5 /* QueueViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99CF9D7E22E288BB0060C0E5 /* QueueViewController.swift */; };
 		AD8F2FDB226E9331009C8C4B /* CoreDataStack+DropDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD8F2FD9226E9331009C8C4B /* CoreDataStack+DropDatabase.swift */; };
 		AD8F2FDC226E9331009C8C4B /* CoreDataStack+AutoSaving.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD8F2FDA226E9331009C8C4B /* CoreDataStack+AutoSaving.swift */; };
 		AD8F2FE0226E9351009C8C4B /* SettingsViewController+TableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD8F2FDD226E9351009C8C4B /* SettingsViewController+TableViewDataSource.swift */; };
@@ -165,6 +166,7 @@
 		8A67FC2A22666F81005A5038 /* OfflineFile+MimeType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OfflineFile+MimeType.swift"; sourceTree = "<group>"; };
 		9913634D22D5D2F100B48586 /* AmahiAnywhere.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = AmahiAnywhere.entitlements; sourceTree = "<group>"; };
 		9938343C22CBAAA2002A8213 /* Toast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Toast.swift; sourceTree = "<group>"; };
+		99CF9D7E22E288BB0060C0E5 /* QueueViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QueueViewController.swift; sourceTree = "<group>"; };
 		AD8F2FD9226E9331009C8C4B /* CoreDataStack+DropDatabase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CoreDataStack+DropDatabase.swift"; sourceTree = "<group>"; };
 		AD8F2FDA226E9331009C8C4B /* CoreDataStack+AutoSaving.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CoreDataStack+AutoSaving.swift"; sourceTree = "<group>"; };
 		AD8F2FDD226E9351009C8C4B /* SettingsViewController+TableViewDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SettingsViewController+TableViewDataSource.swift"; sourceTree = "<group>"; };
@@ -254,6 +256,14 @@
 				3B24FE1722970B6B0044721D /* WalkthroughCell.xib */,
 			);
 			path = Walkthrough;
+			sourceTree = "<group>";
+		};
+		99CF9D7D22E2889F0060C0E5 /* Cast */ = {
+			isa = PBXGroup;
+			children = (
+				99CF9D7E22E288BB0060C0E5 /* QueueViewController.swift */,
+			);
+			path = Cast;
 			sourceTree = "<group>";
 		};
 		C446600BA8E0E01249C2486F /* Frameworks */ = {
@@ -352,6 +362,7 @@
 		C83C639A2039921B0089B9D8 /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
+				99CF9D7D22E2889F0060C0E5 /* Cast */,
 				C86CA90A20D30EFC00C8EDCA /* Offline */,
 				C8A7A7EB2075A6FF00A9234E /* Settings */,
 				C8CE05C9206B21C5006F6807 /* MediaPlayers */,
@@ -750,6 +761,7 @@
 				C8DA5B1C20D5DEC200F5A527 /* FilesViewController+FilesViewDelegates.swift in Sources */,
 				C878C97C205DF4060039C23A /* UIColor.swift in Sources */,
 				3BCAFBA922C68CF70044057E /* FilteredOfflineFile.swift in Sources */,
+				99CF9D7F22E288BB0060C0E5 /* QueueViewController.swift in Sources */,
 				C86CA91520D3C65400C8EDCA /* CoreDataStack.swift in Sources */,
 				C8DA5B1820D5D7EA00F5A527 /* Download.swift in Sources */,
 				8A67FC2B22666F81005A5038 /* OfflineFile+MimeType.swift in Sources */,
