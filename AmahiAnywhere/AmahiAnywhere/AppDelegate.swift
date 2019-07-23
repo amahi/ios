@@ -25,6 +25,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     fileprivate var firstUserDefaultsSync = false
     fileprivate var enableSDKLogging = true
+    fileprivate var useCastContainerViewController = false
     
     let appID = ApiConfig.appID
     let stack = CoreDataStack(modelName: "OfflineFilesModel")!
@@ -32,17 +33,40 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     var backgroundSessionCompletionHandler: (() -> Void)?
     var mediaNotificationsEnabled = false
-    var isCastControlBarsEnabled: Bool!
+    var isCastControlBarsEnabled: Bool {
+        get {
+            if useCastContainerViewController {
+                let castContainerVC = (window?.rootViewController as? GCKUICastContainerViewController)
+                return castContainerVC!.miniMediaControlsItemEnabled
+            } else {
+                let rootContainerVC = (window?.rootViewController as? RootContainerViewController)
+                return rootContainerVC!.miniMediaControlsViewEnabled
+            }
+        }
+        set(notificationsEnabled) {
+            if useCastContainerViewController {
+                var castContainerVC: GCKUICastContainerViewController?
+                castContainerVC = (window?.rootViewController as? GCKUICastContainerViewController)
+                castContainerVC?.miniMediaControlsItemEnabled = notificationsEnabled
+            } else {
+                var rootContainerVC: RootContainerViewController?
+                rootContainerVC = (window?.rootViewController as? RootContainerViewController)
+                rootContainerVC?.miniMediaControlsViewEnabled = notificationsEnabled
+            }
+        }
+    }
     
     var orientationLock = UIInterfaceOrientationMask.all
     
     func application(_ application: UIApplication, supportedInterfaceOrientationsFor window: UIWindow?) -> UIInterfaceOrientationMask {
         return self.orientationLock
     }
-
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
         populateRegistrationDomain()
+        
+        useCastContainerViewController = false
         
         NotificationCenter.default.addObserver(self, selector: #selector(syncWithUserDefaults),
                                                name: UserDefaults.didChangeNotification,
@@ -54,6 +78,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let options = GCKCastOptions(discoveryCriteria: GCKDiscoveryCriteria(applicationID: appID))
         options.physicalVolumeButtonsWillControlDeviceVolume = true
         GCKCastContext.setSharedInstanceWith(options)
+        GCKCastContext.sharedInstance().useDefaultExpandedMediaControls = true
         
         let logFilter = GCKLoggerFilter()
         logFilter.minimumLevel = .verbose
@@ -62,7 +87,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         // Override point for customization after application launch.
         IQKeyboardManager.shared.enable = true
-    
+        
         //LocalStorage.shared.delete(key: "walkthrough")
         
         self.window = UIWindow(frame: UIScreen.main.bounds)
@@ -70,8 +95,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         var initialViewController: UIViewController? = nil
         
         if LocalStorage.shared.contains(key: PersistenceIdentifiers.accessToken) {
-            // User logged in previously
-            initialViewController = mainStoryboard.instantiateViewController(withIdentifier: StoryBoardIdentifiers.tabBarController)
+            
+            if useCastContainerViewController {
+                guard let navigationController = mainStoryboard.instantiateViewController(withIdentifier: "NavigationViewController")
+                    as? UINavigationController else { return false }
+                let castContainerVC = GCKCastContext.sharedInstance().createCastContainerController(for: navigationController)
+                    as GCKUICastContainerViewController
+                castContainerVC.miniMediaControlsItemEnabled = true
+                window = UIWindow(frame: UIScreen.main.bounds)
+                window?.rootViewController = castContainerVC
+                window?.makeKeyAndVisible()
+            } else {
+                initialViewController = mainStoryboard.instantiateViewController(withIdentifier: "RootVC")
+                self.window?.rootViewController = initialViewController
+                self.window?.makeKeyAndVisible()
+            }
         } else {
             if LocalStorage.shared.contains(key: "walkthrough"){
                 // User already completed the onboarding
@@ -80,10 +118,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 // User didn't complete the onboarding yet
                 initialViewController = mainStoryboard.instantiateViewController(withIdentifier: StoryBoardIdentifiers.walktrhoughViewController)
             }
+            self.window?.rootViewController = initialViewController
+            self.window?.makeKeyAndVisible()
         }
-        
-        self.window?.rootViewController = initialViewController
-        self.window?.makeKeyAndVisible()
         
         // Setting default layout view value
         GlobalLayoutView.setDefaultLayout()
@@ -103,16 +140,38 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             AmahiLogger.log("Setting category to AVAudioSessionCategoryPlayback failed.")
         }
         application.beginReceivingRemoteControlEvents()
-
+        
         // Remove previous data in core data and delete all files in download folders.
-//        removeAllDataFromDownloadsAndCoreData()
+        //        removeAllDataFromDownloadsAndCoreData()
         
         // The Load some offline files. Only used for debug
-//         preloadData()
+        //         preloadData()
         
         // Start Autosaving, tries to do autosave every 5 minutes if any changes is waiting to be persisted.
         stack.autoSave(60 * 5)
         return true
+    }
+    
+    func setupMiniController(){
+        
+        self.window = UIWindow(frame: UIScreen.main.bounds)
+        let mainStoryboard: UIStoryboard = UIStoryboard(name: StoryBoardIdentifiers.main, bundle: nil)
+        var initialViewController: UIViewController? = nil
+        
+        if useCastContainerViewController {
+            guard let navigationController = mainStoryboard.instantiateViewController(withIdentifier: "NavigationViewController")
+                as? UINavigationController else { return }
+            let castContainerVC = GCKCastContext.sharedInstance().createCastContainerController(for: navigationController)
+                as GCKUICastContainerViewController
+            castContainerVC.miniMediaControlsItemEnabled = true
+            window = UIWindow(frame: UIScreen.main.bounds)
+            window?.rootViewController = castContainerVC
+            window?.makeKeyAndVisible()
+        } else {
+            initialViewController = mainStoryboard.instantiateViewController(withIdentifier: "RootVC")
+            self.window?.rootViewController = initialViewController
+            self.window?.makeKeyAndVisible()
+        }
     }
     
     func application(_ application: UIApplication, handleEventsForBackgroundURLSession
@@ -130,7 +189,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             AmahiLogger.log("Error while saving. \(error.localizedDescription)")
         }
     }
-
+    
     func applicationDidEnterBackground(_ application: UIApplication) {
         // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
         // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
@@ -141,15 +200,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             AmahiLogger.log("Error while saving. \(error.localizedDescription)")
         }
     }
-
+    
     func applicationWillEnterForeground(_ application: UIApplication) {
         // Called as part of the transition from the background to the active state; here you can undo many of the changes made on entering the background.
     }
-
+    
     func applicationDidBecomeActive(_ application: UIApplication) {
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
     }
-
+    
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
         NotificationCenter.default.removeObserver(self,
@@ -176,21 +235,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         for i in 1..<6 {
             // Create some offline files for test
             let _ = OfflineFile(name: "Offline File: \(i)",
-                                          mime: "text/plain",
-                                          size: 7 * 1024 * 1024,
-                                          mtime: Date(),
-                                          fileUri: "",
-                                          localPath: "",
-                                          progress: Float(i) * 0.11,
-                                          state: OfflineFileState.downloading,
-                                          context: stack.context)
+                mime: "text/plain",
+                size: 7 * 1024 * 1024,
+                mtime: Date(),
+                fileUri: "",
+                localPath: "",
+                progress: Float(i) * 0.11,
+                state: OfflineFileState.downloading,
+                context: stack.context)
         }
     }
 }
 
 // Helper function inserted by Swift 4.2 migrator.
 fileprivate func convertFromAVAudioSessionCategory(_ input: AVAudioSession.Category) -> String {
-	return input.rawValue
+    return input.rawValue
 }
 
 // MARK: - GCKLoggerDelegate
@@ -274,6 +333,17 @@ extension AppDelegate {
         
         let mediaNotificationsEnabled = userDefaults.bool(forKey: kPrefEnableMediaNotifications)
         GCKLogger.sharedInstance().delegate?.logMessage?("Notifications on? \(mediaNotificationsEnabled)", at: .debug, fromFunction: #function, location: "AppDelegate.swift")
+        
+        if firstUserDefaultsSync || (self.mediaNotificationsEnabled != mediaNotificationsEnabled) {
+            self.mediaNotificationsEnabled = mediaNotificationsEnabled
+            if useCastContainerViewController {
+                let castContainerVC = (window?.rootViewController as? GCKUICastContainerViewController)
+                castContainerVC?.miniMediaControlsItemEnabled = mediaNotificationsEnabled
+            } else {
+                let rootContainerVC = (window?.rootViewController as? RootContainerViewController)
+                rootContainerVC?.miniMediaControlsViewEnabled = mediaNotificationsEnabled
+            }
+        }
         firstUserDefaultsSync = false
     }
 }

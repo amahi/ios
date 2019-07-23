@@ -57,6 +57,7 @@
 		8A0A88F8227CE39C00A1360C /* MimeType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4612851D2051DB770061EC21 /* MimeType.swift */; };
 		8A67FC2B22666F81005A5038 /* OfflineFile+MimeType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A67FC2A22666F81005A5038 /* OfflineFile+MimeType.swift */; };
 		9938343D22CBAAA2002A8213 /* Toast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9938343C22CBAAA2002A8213 /* Toast.swift */; };
+		993EC87522E6959800AF5F1F /* RootContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 993EC87422E6959800AF5F1F /* RootContainerViewController.swift */; };
 		99CF9D7F22E288BB0060C0E5 /* QueueViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99CF9D7E22E288BB0060C0E5 /* QueueViewController.swift */; };
 		AD8F2FDB226E9331009C8C4B /* CoreDataStack+DropDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD8F2FD9226E9331009C8C4B /* CoreDataStack+DropDatabase.swift */; };
 		AD8F2FDC226E9331009C8C4B /* CoreDataStack+AutoSaving.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD8F2FDA226E9331009C8C4B /* CoreDataStack+AutoSaving.swift */; };
@@ -166,6 +167,7 @@
 		8A67FC2A22666F81005A5038 /* OfflineFile+MimeType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OfflineFile+MimeType.swift"; sourceTree = "<group>"; };
 		9913634D22D5D2F100B48586 /* AmahiAnywhere.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = AmahiAnywhere.entitlements; sourceTree = "<group>"; };
 		9938343C22CBAAA2002A8213 /* Toast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Toast.swift; sourceTree = "<group>"; };
+		993EC87422E6959800AF5F1F /* RootContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootContainerViewController.swift; sourceTree = "<group>"; };
 		99CF9D7E22E288BB0060C0E5 /* QueueViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QueueViewController.swift; sourceTree = "<group>"; };
 		AD8F2FD9226E9331009C8C4B /* CoreDataStack+DropDatabase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CoreDataStack+DropDatabase.swift"; sourceTree = "<group>"; };
 		AD8F2FDA226E9331009C8C4B /* CoreDataStack+AutoSaving.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CoreDataStack+AutoSaving.swift"; sourceTree = "<group>"; };
@@ -262,6 +264,7 @@
 			isa = PBXGroup;
 			children = (
 				99CF9D7E22E288BB0060C0E5 /* QueueViewController.swift */,
+				993EC87422E6959800AF5F1F /* RootContainerViewController.swift */,
 			);
 			path = Cast;
 			sourceTree = "<group>";
@@ -780,6 +783,7 @@
 				C8DA5B2020D5E09000F5A527 /* FilesViewController+UISearchDelegate.swift in Sources */,
 				04BA8996211D56F400E7A868 /* AmahiLogger.swift in Sources */,
 				3BCAFBB122C6DC460044057E /* OfflineFilesViewController+FilesView.swift in Sources */,
+				993EC87522E6959800AF5F1F /* RootContainerViewController.swift in Sources */,
 				AD8F2FDB226E9331009C8C4B /* CoreDataStack+DropDatabase.swift in Sources */,
 				3BB315D422E1143600A0FDAD /* SharesCollectionViewCell.swift in Sources */,
 				3BF4592822CD702C00C020A4 /* GlobalLayoutView.swift in Sources */,
