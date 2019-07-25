@@ -114,7 +114,6 @@ extension FilesViewController: FilesView {
         
         if let remoteMediaClient = sessionManager.currentCastSession?.remoteMediaClient {
             if queueMedia == .playItem {
-                GCKCastContext.sharedInstance().presentDefaultExpandedMediaControls()
                 let mediaQueueItemBuilder = GCKMediaQueueItemBuilder()
                 mediaQueueItemBuilder.mediaInformation = mediaInformation
                 mediaQueueItemBuilder.autoplay = true
@@ -214,7 +213,6 @@ extension FilesViewController: FilesView {
         mediaLoadRequestDataBuilder.mediaInformation = mediaInformation
         if let remoteMediaClient = sessionManager.currentCastSession?.remoteMediaClient {
             if queueMedia == .playItem {
-                GCKCastContext.sharedInstance().presentDefaultExpandedMediaControls()
                 let mediaQueueItemBuilder = GCKMediaQueueItemBuilder()
                 mediaQueueItemBuilder.mediaInformation = mediaInformation
                 mediaQueueItemBuilder.autoplay = true
