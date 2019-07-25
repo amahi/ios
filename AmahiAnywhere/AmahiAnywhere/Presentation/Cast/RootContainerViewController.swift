@@ -57,9 +57,11 @@ class RootContainerViewController: UIViewController, GCKUIMiniMediaControlsViewC
     
     func updateControlBarsVisibility() {
         if miniMediaControlsViewEnabled, miniMediaControlsViewController.active {
+            NotificationCenter.default.post(name: .ShowMiniController, object: nil)
             _miniMediaControlsHeightConstraint.constant = miniMediaControlsViewController.minHeight
             view.bringSubviewToFront(_miniMediaControlsContainerView)
         } else {
+            NotificationCenter.default.post(name: .HideMiniController, object: nil)
             _miniMediaControlsHeightConstraint.constant = 0
         }
         UIView.animate(withDuration: kCastControlBarsAnimationDuration, animations: { () -> Void in

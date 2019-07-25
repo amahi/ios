@@ -83,6 +83,7 @@ class FilesViewController: BaseUIViewController, GCKRemoteMediaClientListener {
     var layoutView: LayoutView!
     
     @IBOutlet var floaty: Floaty!
+    @IBOutlet var floatyBottomConstraint: NSLayoutConstraint!
     var imagePicker: UIImagePickerController!
     
     override func viewDidLoad() {
@@ -111,6 +112,7 @@ class FilesViewController: BaseUIViewController, GCKRemoteMediaClientListener {
     }
     
     func setupFloaty(){
+        
         floaty.addItem("Upload an image", icon: UIImage(named: "camera")) { (item) in
             self.uploadImageTapped()
         }
@@ -196,6 +198,16 @@ class FilesViewController: BaseUIViewController, GCKRemoteMediaClientListener {
         NotificationCenter.default.addObserver(self, selector: #selector(offlineFileUpdated(_:)), name: .DownloadStarted, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(offlineFileUpdated(_:)), name: .DownloadCancelled, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(offlineFileUpdated(_:)), name: .DownloadCompletedWithError, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(miniControllerOn), name: .ShowMiniController, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(miniControllerOff), name: .HideMiniController, object: nil)
+    }
+    
+    @objc func miniControllerOn(){
+        floatyBottomConstraint.constant = 80
+    }
+    
+    @objc func miniControllerOff(){
+        floatyBottomConstraint.constant = 20
     }
     
     @objc func offlineFileUpdated(_ notification: Notification){

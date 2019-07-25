@@ -30,4 +30,7 @@ extension Notification.Name {
     
     /// Notification that is posted when the internal AVPlayer rate did change.
     static let PlayerRateDidChangeNotification = Notification.Name("PlayerRateDidChangeNotification")
+    
+    static let ShowMiniController = Notification.Name("ShowMiniController")
+    static let HideMiniController = Notification.Name("HideMiniController")
 }
