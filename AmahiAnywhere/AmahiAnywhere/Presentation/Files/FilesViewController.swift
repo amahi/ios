@@ -98,11 +98,6 @@ class FilesViewController: BaseUIViewController, GCKRemoteMediaClientListener {
         setupCollectionView()
         updateFileSort(sortingMethod: GlobalFileSort.fileSort)
         presenter.getFiles(share, directory: directory)
-        
-        castButton = GCKUICastButton(frame: CGRect(x: CGFloat(0), y: CGFloat(0),
-                                                   width: CGFloat(24), height: CGFloat(24)))
-        castButton.tintColor = UIColor.white
-        navigationItem.rightBarButtonItem = UIBarButtonItem(customView: castButton)
     }
     
     func setupImagePicker(){
@@ -251,7 +246,12 @@ class FilesViewController: BaseUIViewController, GCKRemoteMediaClientListener {
     
     func setupSearchBar(){
         let searchButton = UIBarButtonItem(barButtonSystemItem: .search, target: self, action: #selector(searchTapped))
-        self.navigationItem.rightBarButtonItem = searchButton
+        if self.navigationItem.rightBarButtonItems != nil && self.navigationItem.rightBarButtonItems!.count > 0{
+            self.navigationItem.rightBarButtonItems?.insert(searchButton, at: 0)
+        }else{
+            self.navigationItem.rightBarButtonItem = searchButton
+        }
+        
         
         searchController = UISearchController(searchResultsController: nil)
         searchController.obscuresBackgroundDuringPresentation = false

@@ -40,7 +40,7 @@ GCKSessionManagerListener, GCKRemoteMediaClientListener, GCKRequestDelegate, GCK
     }
     
     func setItemsLabel(){
-        itemsLabel.text = "Items in the queue: \(mediaClient.mediaQueue.itemCount)"
+        itemsLabel.text = "Items in the queue: \(mediaClient?.mediaQueue.itemCount ?? 0)"
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -52,7 +52,7 @@ GCKSessionManagerListener, GCKRemoteMediaClientListener, GCKRequestDelegate, GCK
         super.viewDidAppear(animated)
         queueRequest = nil
         _tableView.isUserInteractionEnabled = true
-        if mediaClient.mediaQueue.itemCount == 0 {
+        if (mediaClient?.mediaQueue.itemCount ?? 0) == 0 {
             _editButton.isEnabled = false
         } else {
             _editButton.isEnabled = true

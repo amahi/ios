@@ -44,28 +44,26 @@ class BaseUIViewController: UIViewController, GCKSessionManagerListener, GCKRequ
     @objc func didTapQueueButton(){
         if self.sessionManager.currentSession == nil {
             setQueueButtonVisible(false)
+            return
         }
+        
         let queueVC = self.instantiateViewController (withIdentifier: StoryBoardIdentifiers.navigationBarController, from: StoryBoardIdentifiers.main)
         self.present(queueVC, animated: true, completion: nil)
     }
     
     func setQueueButtonVisible(_ visible: Bool) {
         var barItems = navigationItem.rightBarButtonItems
-        if barItems!.count > 2 {
-            return
-        }
+
         if visible {
-            if barItems!.count >= 2 {
+            if barItems != nil && barItems!.contains(queueButton){
                 return
             }
             barItems?.append(queueButton)
             navigationItem.rightBarButtonItems = barItems
-        } else if !visible {
-            let index = barItems?.index(of: queueButton)
-            if index == 1 {
-                barItems?.remove(at: 1)
+        } else{
+            if let index = barItems?.index(of: queueButton){
+                navigationItem.rightBarButtonItems?.remove(at: index)
             }
-            navigationItem.rightBarButtonItems = barItems
         }
     }
     
