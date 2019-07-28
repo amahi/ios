@@ -16,6 +16,20 @@ class SettingsViewController: BaseUITableViewController {
         super.viewDidLoad()
         tableView.contentInset = UIEdgeInsets(top: 20, left: 0, bottom: 0, right: 0)
         tableView.sectionFooterHeight = 0
+        
+        print(getFreeSize())
+    }
+    
+    func getFreeSize() -> Int64? {
+        let paths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)
+        if let dictionary = try? FileManager.default.attributesOfFileSystem(forPath: paths.last!) {
+            if let freeSize = dictionary[FileAttributeKey.systemFreeSize] as? NSNumber {
+                return freeSize.int64Value
+            }
+        }else{
+            print("Error Obtaining System Memory Info:")
+        }
+        return nil
     }
     
     internal func configureMailComposeViewController(recipient: String,

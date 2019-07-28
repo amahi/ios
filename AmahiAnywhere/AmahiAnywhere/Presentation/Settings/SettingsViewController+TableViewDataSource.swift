@@ -48,7 +48,12 @@ extension SettingsViewController {
             }else if row == 1 {
                 let cacheFolderPath = FileManager.default.temporaryDirectory.appendingPathComponent("cache").path
                 let cacheSize = FileManager.default.folderSizeAtPath(path: cacheFolderPath)
-                cell.detailTextLabel?.text = String(format: StringLiterals.currentSize, ByteCountFormatter().string(fromByteCount: cacheSize))
+                var sizeString = String(format: StringLiterals.currentSize, ByteCountFormatter().string(fromByteCount: cacheSize))
+                if let freeSpaceBytes = getFreeSize(){
+                    let freeSpaceString = Units(bytes: freeSpaceBytes).getReadableUnit()
+                    sizeString.append(contentsOf: "\t•\tAvailable space: \(freeSpaceString)")
+                }
+                cell.detailTextLabel?.text = sizeString
             }
         }else if section == 2 && row == 0{
             cell = tableView.dequeueReusableCell(withIdentifier: CellIdentifiers.settingsCellRightDetail, for: indexPath)
