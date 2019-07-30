@@ -21,6 +21,7 @@ extension FilesViewController : UISearchBarDelegate, UISearchControllerDelegate 
     }
     
     func willDismissSearchController(_ searchController: UISearchController) {
+        addSearchBarButton()
         self.navigationItem.searchController = nil
         self.navigationController?.view.setNeedsLayout()
         self.navigationController?.view.layoutIfNeeded()

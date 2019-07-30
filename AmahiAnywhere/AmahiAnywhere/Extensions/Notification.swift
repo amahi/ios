@@ -33,4 +33,7 @@ extension Notification.Name {
     
     static let ShowMiniController = Notification.Name("ShowMiniController")
     static let HideMiniController = Notification.Name("HideMiniController")
+    
+    static let UpdateTabBarCompleted = Notification.Name("UpdateTabBarCompleted")
+    static let UpdateTabBarStarted = Notification.Name("UpdateTabBarStarted")
 }

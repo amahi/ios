@@ -21,6 +21,9 @@ extension OfflineFilesViewController: UISearchBarDelegate, UISearchControllerDel
         self.navigationItem.searchController = nil
         self.navigationController?.view.setNeedsLayout()
         self.navigationController?.view.layoutIfNeeded()
+        
+        let searchButton = UIBarButtonItem(barButtonSystemItem: .search, target: self, action: #selector(searchTapped))
+        self.navigationItem.rightBarButtonItem = searchButton
     }
     
     func filterFiles(_ searchText: String, files: [OfflineFile]) {

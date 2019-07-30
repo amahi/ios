@@ -40,7 +40,7 @@ class BaseUIViewController: UIViewController, GCKSessionManagerListener, GCKRequ
                                                name: UIDevice.orientationDidChangeNotification, object: nil)
         scheduledTimerWithTimeInterval()
     }
-    
+
     @objc func didTapQueueButton(){
         if self.sessionManager.currentSession == nil {
             setQueueButtonVisible(false)
@@ -94,6 +94,8 @@ class BaseUIViewController: UIViewController, GCKSessionManagerListener, GCKRequ
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        NotificationCenter.default.addObserver(self, selector: #selector(updateTabBarStarted), name: .UpdateTabBarStarted, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(updateTabBarCompleted), name: .UpdateTabBarCompleted, object: nil)
         
         appDelegate?.isCastControlBarsEnabled = true
         checkCastConnection()
@@ -104,7 +106,28 @@ class BaseUIViewController: UIViewController, GCKSessionManagerListener, GCKRequ
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
+        NotificationCenter.default.removeObserver(self, name: .UpdateTabBarStarted, object: nil)
+        NotificationCenter.default.removeObserver(self, name: .UpdateTabBarCompleted, object: nil)
+        
         sessionManager.remove(self)
+    }
+    
+    @objc func updateTabBarCompleted(){
+        if var downloadsTabCounter = Int(tabBarController?.tabBar.items?[1].badgeValue ?? "1"){
+            downloadsTabCounter -= 1
+            if downloadsTabCounter >= 1{
+                tabBarController?.tabBar.items?[1].badgeValue = String(downloadsTabCounter)
+            }else{
+                tabBarController?.tabBar.items?[1].badgeValue = nil
+            }
+        }
+    }
+    
+    @objc func updateTabBarStarted(){
+        if var downloadsTabCounter = Int(tabBarController?.tabBar.items?[1].badgeValue ?? "0"){
+            downloadsTabCounter += 1
+            tabBarController?.tabBar.items?[1].badgeValue = String(downloadsTabCounter)
+        }
     }
         
     deinit {

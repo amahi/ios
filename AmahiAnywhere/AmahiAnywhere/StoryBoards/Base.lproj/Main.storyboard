@@ -1453,7 +1453,7 @@
                                 </constraints>
                             </containerView>
                         </subviews>
-                        <color key="backgroundColor" red="0.1623205543" green="0.17308300730000001" blue="0.18661126489999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="foD-v2-PKP" firstAttribute="width" secondItem="i3P-mu-uGU" secondAttribute="width" id="5bq-FZ-S2P"/>
                             <constraint firstItem="foD-v2-PKP" firstAttribute="bottom" secondItem="7lo-ZG-yem" secondAttribute="top" constant="-49" id="Thn-Fy-9Lr"/>

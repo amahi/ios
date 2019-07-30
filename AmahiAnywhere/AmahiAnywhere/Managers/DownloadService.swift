@@ -95,25 +95,11 @@ class DownloadService : NSObject {
     }
     
     func updateTabBarCompleted(){
-        if let tabBarController = UIApplication.topViewController()?.tabBarController {
-            if var downloadsTabCounter = Int(tabBarController.tabBar.items?[1].badgeValue ?? "1"){
-                downloadsTabCounter -= 1
-                if downloadsTabCounter >= 1{
-                    tabBarController.tabBar.items?[1].badgeValue = String(downloadsTabCounter)
-                }else{
-                    tabBarController.tabBar.items?[1].badgeValue = nil
-                }
-            }
-        }
+        NotificationCenter.default.post(name: .UpdateTabBarCompleted, object: nil)
     }
     
     func updateTabBarStarted(){
-        if let tabBarController = UIApplication.topViewController()?.tabBarController{
-            if var downloadsTabCounter = Int(tabBarController.tabBar.items?[1].badgeValue ?? "0"){
-                downloadsTabCounter += 1
-                tabBarController.tabBar.items?[1].badgeValue = String(downloadsTabCounter)
-            }
-        }
+        NotificationCenter.default.post(name: .UpdateTabBarStarted, object: nil)
     }
 }
 

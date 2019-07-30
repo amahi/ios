@@ -41,7 +41,40 @@ class BaseUITableViewController: UITableViewController, GCKSessionManagerListene
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        NotificationCenter.default.addObserver(self, selector: #selector(updateTabBarStarted), name: .UpdateTabBarStarted, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(updateTabBarCompleted), name: .UpdateTabBarCompleted, object: nil)
+        
         checkCastConnection()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        NotificationCenter.default.removeObserver(self, name: .UpdateTabBarStarted, object: nil)
+        NotificationCenter.default.removeObserver(self, name: .UpdateTabBarCompleted, object: nil)
+        
+        sessionManager.remove(self)
+    }
+    
+    @objc func updateTabBarCompleted(){
+        if var downloadsTabCounter = Int(tabBarController?.tabBar.items?[1].badgeValue ?? "1"){
+            downloadsTabCounter -= 1
+            if downloadsTabCounter >= 1{
+                tabBarController?.tabBar.items?[1].badgeValue = String(downloadsTabCounter)
+            }else{
+                tabBarController?.tabBar.items?[1].badgeValue = nil
+            }
+        }
+    }
+    
+    @objc func updateTabBarStarted(){
+        if var downloadsTabCounter = Int(tabBarController?.tabBar.items?[1].badgeValue ?? "0"){
+            downloadsTabCounter += 1
+            tabBarController?.tabBar.items?[1].badgeValue = String(downloadsTabCounter)
+        }
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
     }
     
     @objc func castDeviceDidChange(_: Notification) {
@@ -85,10 +118,5 @@ class BaseUITableViewController: UITableViewController, GCKSessionManagerListene
             setQueueButtonVisible(false)
         }
     }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        sessionManager.remove(self)
-        NotificationCenter.default.removeObserver(self)
-    }
+
 }

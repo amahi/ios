@@ -245,14 +245,7 @@ class FilesViewController: BaseUIViewController, GCKRemoteMediaClientListener {
     }
     
     func setupSearchBar(){
-        let searchButton = UIBarButtonItem(barButtonSystemItem: .search, target: self, action: #selector(searchTapped))
-        if self.navigationItem.rightBarButtonItems != nil && self.navigationItem.rightBarButtonItems!.count > 0{
-            self.navigationItem.rightBarButtonItems?.insert(searchButton, at: 0)
-        }else{
-            self.navigationItem.rightBarButtonItem = searchButton
-        }
-        
-        
+        addSearchBarButton()
         searchController = UISearchController(searchResultsController: nil)
         searchController.obscuresBackgroundDuringPresentation = false
         searchController.searchBar.placeholder = "Search"
@@ -260,6 +253,7 @@ class FilesViewController: BaseUIViewController, GCKRemoteMediaClientListener {
         UITextField.appearance(whenContainedInInstancesOf: [UISearchBar.self]).defaultTextAttributes = [.foregroundColor: UIColor.white]
         searchController.delegate = self
         searchController.searchBar.delegate = self
+        searchController.hidesNavigationBarDuringPresentation = false
         
         definesPresentationContext = true
         navigationController?.view.backgroundColor = self.view.backgroundColor
@@ -269,6 +263,25 @@ class FilesViewController: BaseUIViewController, GCKRemoteMediaClientListener {
         self.navigationItem.searchController = searchController
         self.navigationItem.hidesSearchBarWhenScrolling = false
         searchController.isActive = true
+        
+        removeSearchBarButton()
+    }
+    
+    func addSearchBarButton(){
+        let searchButton = UIBarButtonItem(barButtonSystemItem: .search, target: self, action: #selector(searchTapped))
+        if self.navigationItem.rightBarButtonItems != nil && self.navigationItem.rightBarButtonItems!.count > 0{
+            self.navigationItem.rightBarButtonItems?.insert(searchButton, at: 0)
+        }else{
+            self.navigationItem.rightBarButtonItem = searchButton
+        }
+    }
+    
+    func removeSearchBarButton(){
+        if self.navigationItem.rightBarButtonItems?.count == 1{
+            self.navigationItem.rightBarButtonItem = nil
+        }else{
+            self.navigationItem.rightBarButtonItems?.remove(at: 0)
+        }
     }
     
     override func viewWillDisappear(_ animated: Bool) {

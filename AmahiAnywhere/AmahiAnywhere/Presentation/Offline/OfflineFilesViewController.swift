@@ -96,6 +96,7 @@ class OfflineFilesViewController: BaseUIViewController{
         UITextField.appearance(whenContainedInInstancesOf: [UISearchBar.self]).defaultTextAttributes = [.foregroundColor: UIColor.white]
         searchController.delegate = self
         searchController.searchBar.delegate = self
+        searchController.hidesNavigationBarDuringPresentation = false
         definesPresentationContext = true
         navigationController?.view.backgroundColor = self.view.backgroundColor
     }
@@ -138,8 +139,10 @@ class OfflineFilesViewController: BaseUIViewController{
     @objc func searchTapped(){
         self.navigationItem.searchController = searchController
         self.navigationItem.hidesSearchBarWhenScrolling = false
+        self.navigationItem.rightBarButtonItem = nil
         searchController.isActive = true
     }
+    
     
     @objc func handleLongPress(sender: UIGestureRecognizer){
         handleMoreMenu(touchPoint: sender.location(in: filesCollectionView))
