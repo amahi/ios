@@ -22,7 +22,6 @@ class ServerViewController: BaseUIViewController {
     private var presenter: ServerPresenter!
     @IBOutlet var serversCollectionView: UICollectionView!
     @IBOutlet var availableLabel: UILabel!
-    @IBOutlet var errorView: UIView!
     private var servers: [Server] = [Server]()
     
     let refreshControl: UIRefreshControl = {
@@ -62,25 +61,7 @@ class ServerViewController: BaseUIViewController {
         super.viewWillLayoutSubviews()
         serversCollectionView.collectionViewLayout.invalidateLayout()
     }
-    
-    func showErrorView(){
-        UIView.animate(withDuration: 0.3, delay: 0.0, options: .curveEaseIn, animations: {
-            self.errorView.alpha = 1.0
-        }) { (_) in
-            UIView.animate(withDuration: 1.0, delay: 2.0, options: .curveEaseOut, animations: {
-                self.errorView.alpha = 0.0
-            }, completion: nil)
-        }
-    }
-    
-    func hideErrorView(){
-        UIView.animate(withDuration: 0.5) {
-            self.errorView.alpha = 0.0
-        }
         
-        self.errorView.isHidden = true
-    }
-    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         appDelegate?.isCastControlBarsEnabled = true
@@ -127,7 +108,7 @@ extension ServerViewController: UICollectionViewDelegate, UICollectionViewDataSo
                 }
             }
         }else{
-            showErrorView()
+            self.showStatusAlert(title: "The selected HDA is currently not available")
         }
     }
     

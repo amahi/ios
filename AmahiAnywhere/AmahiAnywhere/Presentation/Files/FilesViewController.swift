@@ -375,11 +375,21 @@ class FilesViewController: BaseUIViewController, GCKRemoteMediaClientListener {
         }))
         
         deleteAlert.addAction(UIAlertAction(title: "Delete", style: .destructive, handler: { (action: UIAlertAction!) in
-            self.presenter.deleteFiles(file, self.share, directory: self.directory)
+            self.deleteFiles(file, self.share, directory: self.directory)
             self.presenter.getFiles(self.share, directory: self.directory)
         }))
         
         present(deleteAlert, animated: true, completion: nil)
+    }
+    
+    func deleteFiles(_ file: ServerFile, _ share: ServerShare, directory: ServerFile? = nil) {
+        ServerApi.shared!.deleteFiles(file: file, share: share, directory: directory) { (success) in
+            if success{
+                self.showStatusAlert(title: "File was successfully deleted", true)
+            }else{
+                self.showStatusAlert(title: "An error occured while deleting the file", true)
+            }
+        }
     }
     
     @objc func handleLongPress(sender: UIGestureRecognizer) {

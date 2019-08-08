@@ -191,6 +191,38 @@ class BaseUIViewController: UIViewController, GCKSessionManagerListener, GCKRequ
     func request(_ request: GCKRequest, didFailWithError error: GCKError) {
         print("request \(Int(request.requestID)) failed with error \(error)")
     }
+    
+    func showStatusAlert(title: String, _ extraSpace: Bool = false){
+        let statusView = UIView()
+        statusView.backgroundColor = UIColor(hex: "1E2023")
+        statusView.layer.cornerRadius = 8
+        statusView.alpha = 1
+        
+        let label = UILabel()
+        label.text = title
+        label.textColor = .white
+        label.font = UIFont.systemFont(ofSize: 13, weight: .medium)
+        label.textAlignment = .center
+        
+        self.view.addSubview(statusView)
+        statusView.addSubview(label)
+        
+        let bottomConstant: CGFloat = extraSpace ? 80 : 20
+        
+        statusView.setAnchors(top: nil, leading: self.view.leadingAnchor, trailing: self.view.trailingAnchor, bottom: self.view.safeAreaLayoutGuide.bottomAnchor, topConstant: nil, leadingConstant: 20, trailingConstant: 20, bottomConstant: bottomConstant)
+        statusView.setAnchorSize(width: nil, height: 50)
+        
+        label.setAnchors(top: statusView.topAnchor, leading: statusView.leadingAnchor, trailing: statusView.trailingAnchor, bottom: statusView.bottomAnchor, topConstant: 0, leadingConstant: 10, trailingConstant: 10, bottomConstant: 0)
+
+        UIView.animate(withDuration: 0.3, delay: 0.0, options: .curveEaseIn, animations: {
+            statusView.alpha = 1.0
+        }) { (_) in
+            UIView.animate(withDuration: 1.0, delay: 2.0, options: .curveEaseOut, animations: {
+                statusView.alpha = 0.0
+            }, completion: nil)
+        }
+    }
+    
 }
 
 
@@ -206,6 +238,38 @@ extension BaseUIViewController: UITextFieldDelegate {
     func resignIfFirstResponder(_ textField: UITextField) {
         if textField.isFirstResponder {
             textField.resignFirstResponder()
+        }
+    }
+}
+
+extension BaseUITableViewController{
+    func showStatusAlert(title: String){
+        let statusView = UIView()
+        statusView.backgroundColor = UIColor(hex: "1E2023")
+        statusView.layer.cornerRadius = 8
+        statusView.alpha = 1
+        
+        let label = UILabel()
+        label.text = title
+        label.textColor = .white
+        label.font = UIFont.systemFont(ofSize: 13, weight: .medium)
+        label.textAlignment = .center
+        
+        self.view.addSubview(statusView)
+        statusView.addSubview(label)
+        
+        statusView.setAnchors(top: nil, leading: nil, trailing: nil, bottom: self.view.safeAreaLayoutGuide.bottomAnchor, topConstant: nil, leadingConstant: nil, trailingConstant: nil, bottomConstant: 20)
+        statusView.setAnchorSize(width: self.tableView.frame.width-40, height: 50)
+        statusView.center(toVertically: nil, toHorizontally: self.tableView)
+        
+        label.setAnchors(top: statusView.topAnchor, leading: statusView.leadingAnchor, trailing: statusView.trailingAnchor, bottom: statusView.bottomAnchor, topConstant: 0, leadingConstant: 10, trailingConstant: 10, bottomConstant: 0)
+        
+        UIView.animate(withDuration: 0.3, delay: 0.0, options: .curveEaseIn, animations: {
+            statusView.alpha = 1.0
+        }) { (_) in
+            UIView.animate(withDuration: 1.0, delay: 2.0, options: .curveEaseOut, animations: {
+                statusView.alpha = 0.0
+            }, completion: nil)
         }
     }
 }

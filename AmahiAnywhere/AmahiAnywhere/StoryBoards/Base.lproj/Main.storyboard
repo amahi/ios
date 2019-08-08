@@ -355,30 +355,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="odh-ji-ZnE">
-                                <rect key="frame" x="20" y="484" width="335" height="50"/>
-                                <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="The selected HDA is currently not available" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="7" translatesAutoresizingMaskIntoConstraints="NO" id="Nae-3S-Fzo">
-                                        <rect key="frame" x="10" y="0.0" width="315" height="50"/>
-                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="13"/>
-                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                </subviews>
-                                <color key="backgroundColor" red="0.1176470588" green="0.12549019610000001" blue="0.13725490200000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="trailing" secondItem="Nae-3S-Fzo" secondAttribute="trailing" constant="10" id="2Zi-ts-W7U"/>
-                                    <constraint firstItem="Nae-3S-Fzo" firstAttribute="top" secondItem="odh-ji-ZnE" secondAttribute="top" id="Or9-9U-2VR"/>
-                                    <constraint firstAttribute="height" constant="50" id="PLb-bG-hnu"/>
-                                    <constraint firstAttribute="bottom" secondItem="Nae-3S-Fzo" secondAttribute="bottom" id="rbl-gW-AvK"/>
-                                    <constraint firstItem="Nae-3S-Fzo" firstAttribute="leading" secondItem="odh-ji-ZnE" secondAttribute="leading" constant="10" id="wVJ-4x-Tjo"/>
-                                </constraints>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                        <real key="value" value="8"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                            </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Available HDAs: " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="atT-2S-a7r">
                                 <rect key="frame" x="136" y="20" width="103" height="16"/>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="13"/>
@@ -439,10 +415,7 @@
                             <constraint firstAttribute="bottom" secondItem="VNe-vj-6KD" secondAttribute="bottom" constant="49" id="7n5-m7-vqd"/>
                             <constraint firstItem="VNe-vj-6KD" firstAttribute="top" secondItem="atT-2S-a7r" secondAttribute="bottom" constant="20" id="FiL-2P-Tmy"/>
                             <constraint firstItem="VNe-vj-6KD" firstAttribute="trailing" secondItem="uLf-mB-k5b" secondAttribute="trailing" id="H4Y-4p-Tkd"/>
-                            <constraint firstItem="uLf-mB-k5b" firstAttribute="trailing" secondItem="odh-ji-ZnE" secondAttribute="trailing" constant="20" id="LNu-N0-n0m"/>
-                            <constraint firstItem="uLf-mB-k5b" firstAttribute="bottom" secondItem="odh-ji-ZnE" secondAttribute="bottom" constant="20" id="hVu-Tv-58C"/>
                             <constraint firstItem="atT-2S-a7r" firstAttribute="top" secondItem="uLf-mB-k5b" secondAttribute="top" constant="20" id="jPb-9J-r43"/>
-                            <constraint firstItem="odh-ji-ZnE" firstAttribute="leading" secondItem="uLf-mB-k5b" secondAttribute="leading" constant="20" id="kU6-nW-RqZ"/>
                             <constraint firstItem="VNe-vj-6KD" firstAttribute="leading" secondItem="uLf-mB-k5b" secondAttribute="leading" id="pjO-aa-fxR"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="uLf-mB-k5b"/>
@@ -452,7 +425,6 @@
                     </navigationItem>
                     <connections>
                         <outlet property="availableLabel" destination="atT-2S-a7r" id="bHu-FY-A71"/>
-                        <outlet property="errorView" destination="odh-ji-ZnE" id="FOd-Op-nbu"/>
                         <outlet property="serversCollectionView" destination="VNe-vj-6KD" id="EPP-WL-EfD"/>
                     </connections>
                 </viewController>
@@ -1476,6 +1448,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="Queue" id="4DB-qn-E9G">
                         <barButtonItem key="leftBarButtonItem" title="Edit" id="KV7-Hi-c5S">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <connections>
                                 <action selector="toggleEditing:" destination="Vyj-1d-WzD" id="UBw-Xn-jMo"/>
                             </connections>

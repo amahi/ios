@@ -30,14 +30,15 @@ extension FileManager {
         return folderPath
     }
     
-    func deleteFolder(in directory: URL, folderName: String) {
+    func deleteFolder(in directory: URL, folderName: String, completion: @escaping(_ success: Bool)->() ) {
         do {
             let fileManager =  self
-            
             let folderPath = directory.appendingPathComponent(folderName)
             try fileManager.removeItem(at: folderPath)
+            completion(true)
         } catch let error {
             AmahiLogger.log("Error while trying to delete files: \(error.localizedDescription)")
+            completion(false)
         }
     }
     

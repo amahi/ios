@@ -82,8 +82,11 @@ class SettingsViewController: BaseUITableViewController {
         
         clearCacheAlert.addAction(UIAlertAction(title: StringLiterals.confirm,
                                                 style: .destructive, handler: { (action: UIAlertAction!) in
-                                                    FileManager.default.deleteFolder(in: FileManager.default.temporaryDirectory,
-                                                                                     folderName: "cache")
+                                                    FileManager.default.deleteFolder(in: FileManager.default.temporaryDirectory, folderName: "cache", completion: { (success) in
+                                                        if success{
+                                                            self.showStatusAlert(title: "Successfully cleared temporary downloads")
+                                                        }
+                                                    })
                                                     self.tableView.reloadData()
         }))
         

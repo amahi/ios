@@ -100,10 +100,13 @@ class VideoPlayerSettings: NSObject, UICollectionViewDelegate, UICollectionViewD
             screen.addSubview(darkView)
             screen.addSubview(collectionView)
             
-            let height: CGFloat = CGFloat(currentArray.count) * cellHeight
+            let height: CGFloat = CGFloat(currentArray.count) * cellHeight + screen.safeAreaInsets.bottom
             let y = screen.frame.height - height
-            collectionView.frame = CGRect(x: 0, y: screen.frame.height, width: screen.frame.width, height: height)
             
+            collectionView.frame = CGRect(x: 0, y: screen.frame.height, width: screen.frame.width, height: height)
+            let collectionViewLayout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout
+            collectionViewLayout?.sectionInset = UIEdgeInsets(top: 0, left: screen.safeAreaInsets.left + 20, bottom: 0, right: 0)
+            collectionViewLayout?.invalidateLayout()
             darkView.frame = screen.frame
             darkView.alpha = 0
             

@@ -226,7 +226,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         
         let documentsPath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
-        FileManager.default.deleteFolder(in: documentsPath, folderName: "downloads")
+        FileManager.default.deleteFolder(in: documentsPath, folderName: "downloads") { (_) in }
     }
     
     // MARK: Preload Data

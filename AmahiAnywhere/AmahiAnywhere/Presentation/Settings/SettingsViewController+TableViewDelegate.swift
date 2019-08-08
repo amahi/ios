@@ -27,7 +27,14 @@ extension SettingsViewController {
             if row == 0 {
                 performSegue(withIdentifier: SegueIdentfiers.connection, sender: nil)
             } else if row == 1 {
-                performCacheInvalidation()
+                let cacheFolderPath = FileManager.default.temporaryDirectory.appendingPathComponent("cache").path
+                let cacheSize = FileManager.default.folderSizeAtPath(path: cacheFolderPath)
+                if cacheSize == 0{
+                    // Cache is empty already
+                    self.showStatusAlert(title: "Temporary downloads folder is empty")
+                }else{
+                    performCacheInvalidation()
+                }
             }
             
             break
