@@ -201,4 +201,19 @@ class ServerApi {
         
         return components.url
     }
+    
+    public func getFileThumbnailUri(_ file: ServerFile) -> URL? {
+        var components = URLComponents(string: serverAddress!)!
+        components.path = "/cache"
+        components.queryItems = [
+            URLQueryItem(name: "s", value: file.parentShare!.name),
+            URLQueryItem(name: "p", value: file.getPath()),
+            URLQueryItem(name: "mtime", value: String(file.getLastModifiedEpoch())),
+            URLQueryItem(name: "session", value: server.session_token)
+        ]
+        components.percentEncodedQuery = components.percentEncodedQuery?
+            .replacingOccurrences(of: "+", with: "%2B")
+        
+        return components.url
+    }
 }
