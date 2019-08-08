@@ -115,11 +115,33 @@ extension ServerViewController: UICollectionViewDelegate, UICollectionViewDataSo
         let server = servers[indexPath.item]
         if server.active{
             ServerApi.initialize(server: servers[indexPath.item])
-            let sharesVc = viewController(viewControllerClass: SharesViewController.self, from: StoryBoardIdentifiers.main)
-            navigationController?.pushViewController(sharesVc, animated: true)
+            
+            if server.name == "Welcome to Amahi"{
+                showSharesVC(server: server)
+            }else{
+                if let authToken = LocalStorage.shared.getString(key: server.name ?? ""){
+                    ServerApi.shared!.setAuthToken(token: authToken)
+                    showSharesVC(server: server)
+                }else{
+                    showPinVC(server: server)
+                }
+            }
         }else{
             showErrorView()
         }
+    }
+    
+    func showPinVC(server: Server){
+        let pinVC = viewController(viewControllerClass: HDAPinAuthVC.self, from: StoryBoardIdentifiers.main)
+        pinVC.server = server
+        navigationController?.pushViewController(pinVC, animated: true)
+
+    }
+    
+    func showSharesVC(server: Server){
+        let sharesVc = viewController(viewControllerClass: SharesViewController.self, from: StoryBoardIdentifiers.main)
+        sharesVc.server = server
+        navigationController?.pushViewController(sharesVc, animated: true)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {

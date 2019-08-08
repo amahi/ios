@@ -89,7 +89,7 @@ class ConnectionModeManager {
         AmahiLogger.log("Making server availability request  \(url!)")
 
         Alamofire.SessionManager.default.requestWithoutCache(url!,
-                                                             headers: ServerApi.shared!.getSessionHeader(),
+                                                             headers: ServerApi.shared!.getServerHeaders(),
                                                              timeoutInterval: 3.0)?
             .responseJSON(completionHandler: { (response) in
 

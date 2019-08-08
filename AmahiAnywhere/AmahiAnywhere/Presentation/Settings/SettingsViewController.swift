@@ -47,7 +47,7 @@ class SettingsViewController: BaseUITableViewController {
     
     internal func signOut() {
         self.dismiss(animated: false, completion: nil)
-        LocalStorage.shared.logout {}
+        LocalStorage.shared.logout{}
         let loginVc = self.viewController(viewControllerClass: LoginViewController.self, from: StoryBoardIdentifiers.main)
         self.present(loginVc, animated: true, completion: nil)
     }

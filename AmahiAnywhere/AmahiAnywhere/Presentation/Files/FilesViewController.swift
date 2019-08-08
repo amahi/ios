@@ -100,6 +100,8 @@ class FilesViewController: BaseUIViewController, GCKRemoteMediaClientListener {
         setupCollectionView()
         updateFileSort(sortingMethod: GlobalFileSort.fileSort)
         presenter.getFiles(share, directory: directory)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(expiredAuthTokenHDA), name: .HDATokenExpired, object: nil)
     }
     
     func setupImagePicker(){
@@ -113,6 +115,17 @@ class FilesViewController: BaseUIViewController, GCKRemoteMediaClientListener {
         floaty.addItem("Upload an image", icon: UIImage(named: "camera")) { (item) in
             self.uploadImageTapped()
         }
+    }
+    
+    @objc func expiredAuthTokenHDA(){
+        let alertVC = UIAlertController(title: "HDA Auth Token Expired", message: "You have been logged out!", preferredStyle: .alert)
+        alertVC.addAction(UIAlertAction(title: "OK", style: .default, handler: { (_) in
+            if let serverName = ServerApi.shared?.getServer()?.name{
+                LocalStorage.shared.delete(key: serverName)
+            }
+            self.navigationController?.popToRootViewController(animated: true)
+        }))
+        self.present(alertVC, animated: true, completion: nil)
     }
     
     func uploadImageTapped(){

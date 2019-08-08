@@ -13,3 +13,7 @@ extension String {
         return self.trimmingCharacters(in: NSCharacterSet.whitespaces)
     }
 }
+
+extension Notification.Name {
+    static let HDATokenExpired = Notification.Name("HDATokenExpired")
+}

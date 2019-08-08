@@ -27,6 +27,11 @@ class SharesViewController: BaseUIViewController, UICollectionViewDelegate, UICo
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        if server?.name != "Welcome to Amahi"{
+            navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Log out", style: .done, target: self, action: #selector(logOutTapped))
+        }
+
+        removePinVC()
         sharesCollectionView.delegate = self
         sharesCollectionView.dataSource = self
         sharesCollectionView.addSubview(refreshControl)
@@ -36,6 +41,37 @@ class SharesViewController: BaseUIViewController, UICollectionViewDelegate, UICo
         
         presenter = SharesPresenter(self)
         presenter.loadServerRoute()
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(expiredAuthTokenHDA), name: .HDATokenExpired, object: nil)
+    }
+    
+    @objc func expiredAuthTokenHDA(){
+        let alertVC = UIAlertController(title: "HDA Auth Token Expired", message: "You have been logged out!", preferredStyle: .alert)
+        alertVC.addAction(UIAlertAction(title: "OK", style: .default, handler: { (_) in
+            if let serverName = ServerApi.shared?.getServer()?.name{
+                LocalStorage.shared.delete(key: serverName)
+            }
+            self.navigationController?.popToRootViewController(animated: true)
+        }))
+        self.present(alertVC, animated: true, completion: nil)
+    }
+    
+    @objc func logOutTapped(){
+        let serverName = ServerApi.shared!.getServer()?.name ?? ""
+        LocalStorage.shared.delete(key: serverName)
+        ServerApi.shared!.logoutHDA()
+        navigationController?.popViewController(animated: true)
+    }
+    
+    func removePinVC(){
+        var navigationVCs = self.navigationController!.viewControllers
+        for (index, vc) in navigationVCs.enumerated(){
+            if vc is HDAPinAuthVC{
+                navigationVCs.remove(at: index)
+                self.navigationController!.viewControllers = navigationVCs
+                break
+            }
+        }
     }
     
     override func viewWillLayoutSubviews() {

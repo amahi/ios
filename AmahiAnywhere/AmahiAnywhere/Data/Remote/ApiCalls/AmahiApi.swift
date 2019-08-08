@@ -19,7 +19,7 @@ class AmahiApi {
     func login(username: String! , password: String!, completion: @escaping (_ oauthResponse: OAuthResponse?) -> Void ) {
         
         let headers = [ "Content-Type": "application/x-www-form-urlencoded" ]
-
+        
         Network.shared.request(ApiEndPoints.authenticate(), method: .post, parameters: ApiConfig.oauthCredentials(username: username, password: password),
                         headers: headers, completion: completion)
     }

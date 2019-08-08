@@ -37,8 +37,8 @@ final class LocalStorage: NSObject {
     }
     
     public func logout(_ complete: () -> Void){
-        delete(key: PersistenceIdentifiers.accessToken)
-        UserDefaults.standard.synchronize()
+        clearAll()
+        persistString(string: "completed", key: "walkthrough")
         complete();
     }
     

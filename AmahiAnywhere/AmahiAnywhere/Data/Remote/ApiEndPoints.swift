@@ -26,6 +26,14 @@ struct ApiEndPoints {
         return "\(serverUrl!)/shares"
     }
     
+    static func authenticateServerWithPin(_ serverUrl: String!) -> String! {
+        return "\(serverUrl!)/auth"
+    }
+    
+    static func logoutHDA(_ serverUrl: String!) -> String!{
+        return "\(serverUrl!)/logout"
+    }
+    
     static func getServerFiles(_ serverUrl: String!) -> String! {
         return "\(serverUrl!)/files"
     }

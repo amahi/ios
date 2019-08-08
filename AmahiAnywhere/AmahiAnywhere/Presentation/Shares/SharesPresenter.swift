@@ -26,15 +26,31 @@ class SharesPresenter: BasePresenter {
     }
     
     func loadServerRoute() {
-        
-        self.view?.updateRefreshing(isRefreshing: true)
-        
-        ServerApi.shared!.loadServerRoute() { (isLoadSuccessful) in
-            if !isLoadSuccessful {
-                self.view?.updateRefreshing(isRefreshing: false)
-                return
+        if !ServerApi.shared!.isServerRouteLoaded{
+            self.view?.updateRefreshing(isRefreshing: true)
+            
+            ServerApi.shared!.loadServerRoute() { (isLoadSuccessful) in
+                if !isLoadSuccessful {
+                    self.view?.updateRefreshing(isRefreshing: false)
+                    return
+                }
+                
+                if ServerApi.shared!.getServer()!.name == "Welcome to Amahi"{
+                    ServerApi.shared!.authenticateServerWithPIN(pin: "123", completion: { (authTokenResponse) in
+                        if let response = authTokenResponse, let authToken = response.auth_token{
+                            ServerApi.shared!.setAuthToken(token: authToken)
+                            self.getShares()
+                        }else{
+                            self.view?.updateRefreshing(isRefreshing: false)
+                            return
+                        }
+                    })
+                }else{
+                    self.getShares()
+                }
             }
-            self.getShares()
+        }else{
+            getShares()
         }
     }
     

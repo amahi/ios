@@ -25,6 +25,8 @@
 		3B33325E22BAB05C00BC61EB /* FilesBaseCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B33325D22BAB05C00BC61EB /* FilesBaseCollectionViewCell.swift */; };
 		3B33326022BAB2A800BC61EB /* SortViewTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B33325F22BAB2A800BC61EB /* SortViewTableViewCell.swift */; };
 		3B37EBAF22ED11650065CB77 /* Units.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B37EBAE22ED11650065CB77 /* Units.swift */; };
+		3B37EBB622F204030065CB77 /* HDAPinAuthVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B37EBB522F204020065CB77 /* HDAPinAuthVC.swift */; };
+		3B37EBB822F2D9F60065CB77 /* AuthTokenResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B37EBB722F2D9F60065CB77 /* AuthTokenResponse.swift */; };
 		3B4DB99722A0431100AF287B /* ServerCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B4DB99622A0431100AF287B /* ServerCollectionViewCell.swift */; };
 		3B84E87D2299587B00E37A74 /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B84E87C2299587B00E37A74 /* UIView.swift */; };
 		3BB315D422E1143600A0FDAD /* SharesCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BB315D322E1143600A0FDAD /* SharesCollectionViewCell.swift */; };
@@ -133,6 +135,8 @@
 		3B33325D22BAB05C00BC61EB /* FilesBaseCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilesBaseCollectionViewCell.swift; sourceTree = "<group>"; };
 		3B33325F22BAB2A800BC61EB /* SortViewTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortViewTableViewCell.swift; sourceTree = "<group>"; };
 		3B37EBAE22ED11650065CB77 /* Units.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Units.swift; sourceTree = "<group>"; };
+		3B37EBB522F204020065CB77 /* HDAPinAuthVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDAPinAuthVC.swift; sourceTree = "<group>"; };
+		3B37EBB722F2D9F60065CB77 /* AuthTokenResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthTokenResponse.swift; sourceTree = "<group>"; };
 		3B4DB99622A0431100AF287B /* ServerCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerCollectionViewCell.swift; sourceTree = "<group>"; };
 		3B84E87C2299587B00E37A74 /* UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIView.swift; sourceTree = "<group>"; };
 		3BB315D322E1143600A0FDAD /* SharesCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharesCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -252,6 +256,14 @@
 			path = Managers;
 			sourceTree = "<group>";
 		};
+		3B37EBB422F203DE0065CB77 /* HDA PIN Authentication */ = {
+			isa = PBXGroup;
+			children = (
+				3B37EBB522F204020065CB77 /* HDAPinAuthVC.swift */,
+			);
+			path = "HDA PIN Authentication";
+			sourceTree = "<group>";
+		};
 		3BEBFAE02296F3E10075E8A4 /* Walkthrough */ = {
 			isa = PBXGroup;
 			children = (
@@ -355,6 +367,7 @@
 			isa = PBXGroup;
 			children = (
 				C83C638E2038D5B30089B9D8 /* AuthResponses.swift */,
+				3B37EBB722F2D9F60065CB77 /* AuthTokenResponse.swift */,
 				4605964C204F3666004FA066 /* ServerShare.swift */,
 				46F87396204CC69500F1AF37 /* Server.swift */,
 				4605964A204F35E9004FA066 /* ServerRoute.swift */,
@@ -368,6 +381,7 @@
 		C83C639A2039921B0089B9D8 /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
+				3B37EBB422F203DE0065CB77 /* HDA PIN Authentication */,
 				99CF9D7D22E2889F0060C0E5 /* Cast */,
 				C86CA90A20D30EFC00C8EDCA /* Offline */,
 				C8A7A7EB2075A6FF00A9234E /* Settings */,
@@ -759,6 +773,7 @@
 				C8DA5B2D20D7283400F5A527 /* DownloadService+URLSessionDelegate.swift in Sources */,
 				80F60700206BE1530098BC60 /* SettingsViewController.swift in Sources */,
 				C83C63912038D5B30089B9D8 /* StringLiterals.swift in Sources */,
+				3B37EBB822F2D9F60065CB77 /* AuthTokenResponse.swift in Sources */,
 				FDF80E94229FB2060087F9B8 /* VideoMenuCellSettings.swift in Sources */,
 				AD8F2FE1226E9351009C8C4B /* SettingsViewController+MFMailComposeViewControllerDelegate.swift in Sources */,
 				AD8F2FE2226E9351009C8C4B /* SettingsViewController+TableViewDelegate.swift in Sources */,
@@ -803,6 +818,7 @@
 				3B33325C22BAA4BA00BC61EB /* FilesViewController+Sorting.swift in Sources */,
 				3B33325222BAA27E00BC61EB /* FilesListCollectionViewCell.swift in Sources */,
 				ADAFF8DA22501F7A00287409 /* VideoThumbnailGenerator.swift in Sources */,
+				3B37EBB622F204030065CB77 /* HDAPinAuthVC.swift in Sources */,
 				46098D0A2050114C00752EB6 /* Network.swift in Sources */,
 				C83C639F2039B16C0089B9D8 /* ServerViewController.swift in Sources */,
 				3B33326022BAB2A800BC61EB /* SortViewTableViewCell.swift in Sources */,

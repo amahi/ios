@@ -16,14 +16,18 @@ class ServerApi {
     private var server: Server!
     private var serverRoute: ServerRoute?
     private var serverAddress: String?
+    private var auth_token: String? // if nil -> server is default welcome to amahi
     
     private init() {}
     
     public static func initialize(server: Server!) {
-        if shared == nil {
-            shared = ServerApi()
-        }
+        destroySharedManager() // remove previous server's data
+        shared = ServerApi()
         shared?.server = server
+    }
+    
+    func setAuthToken(token: String){
+        auth_token = token
     }
     
     class func destroySharedManager() {
@@ -34,12 +38,16 @@ class ServerApi {
         return self.server
     }
     
-    private var isServerRouteLoaded : Bool {
+    var isServerRouteLoaded : Bool {
         return serverRoute != nil
     }
     
-    public func getSessionHeader() -> HTTPHeaders {
-        return [ "Session": server.session_token! ]
+    public func getServerHeaders() -> HTTPHeaders {
+        if let authToken = auth_token{
+            return [ "Session": server.session_token!, "Authorization": authToken]
+        }else{
+            return [ "Session": server.session_token! ]
+        }
     }
     
     func loadServerRoute(completion: @escaping (_ isLoadSuccessful: Bool) -> Void ) {
@@ -62,7 +70,7 @@ class ServerApi {
             completion(true)
         }
         
-        Network.shared.request(ApiEndPoints.getServerRoute(), headers: getSessionHeader(), completion: updateServerRoute)
+        Network.shared.request(ApiEndPoints.getServerRoute(), headers: getServerHeaders(), completion: updateServerRoute)
     }
     
     func configureConnection() {
@@ -94,12 +102,41 @@ class ServerApi {
     }
     
     func getShares(completion: @escaping (_ serverShares: [ServerShare]?) -> Void ) {
-        if !isServerRouteLoaded {
+        if serverRoute == nil{
+            completion(nil)
+        }
+        
+        if serverAddress == nil{
+            serverAddress = ConnectionModeManager.shared.currentConnectionBaseURL(serverRoute: serverRoute!)
+        }
+        
+        Network.shared.request(ApiEndPoints.getServerShares(serverAddress), headers: getServerHeaders(), completion: completion)
+    }
+    
+    func authenticateServerWithPIN(pin: String, completion: @escaping (_ authResponse: AuthTokenResponse?) -> Void){
+        if serverRoute == nil{
+            completion(nil)
+        }
+        
+        if serverAddress == nil{
+            serverAddress = ConnectionModeManager.shared.currentConnectionBaseURL(serverRoute: serverRoute!)
+        }
+        
+        let requestAddress = ApiEndPoints.authenticateServerWithPin(serverAddress)!
+        Network.shared.authenticateHDAWithPin(requestAddress, pin: pin, completion: completion)
+    }
+    
+    func logoutHDA(){
+        if serverRoute == nil{
             return
         }
         
-        serverAddress = ConnectionModeManager.shared.currentConnectionBaseURL(serverRoute: serverRoute!)
-        Network.shared.request(ApiEndPoints.getServerShares(serverAddress), headers: getSessionHeader(), completion: completion)
+        if serverAddress == nil{
+            serverAddress = ConnectionModeManager.shared.currentConnectionBaseURL(serverRoute: serverRoute!)
+        }
+        
+        let requestAddress = ApiEndPoints.logoutHDA(serverAddress)!
+        Network.shared.requestWithoutResponse(requestAddress, method: .post, headers: getServerHeaders())
     }
     
     public func getFiles(share: ServerShare, directory: ServerFile? = nil, completion: @escaping (_ serverFiles: [ServerFile]?) -> Void ) {
@@ -121,7 +158,9 @@ class ServerApi {
             params["p"] = directory?.getPath()
         }
         
-        Network.shared.request(ApiEndPoints.getServerFiles(serverAddress), parameters: params, headers: getSessionHeader(), completion: updateFiles)
+        print(ApiEndPoints.getServerFiles(serverAddress))
+        print(getServerHeaders())
+        Network.shared.request(ApiEndPoints.getServerFiles(serverAddress), parameters: params, headers: getServerHeaders(), completion: updateFiles)
     }
     
     public func deleteFiles(file: ServerFile, share: ServerShare, directory: ServerFile? = nil, completion: @escaping (_ success: Bool) -> Bool ) {
@@ -131,7 +170,7 @@ class ServerApi {
         print(file.getPath())
         print(params)
         
-        Network.shared.delete(ApiEndPoints.getServerFiles(serverAddress), parameters: params, headers: getSessionHeader(), completion: {
+        Network.shared.delete(ApiEndPoints.getServerFiles(serverAddress), parameters: params, headers: getServerHeaders(), completion: {
             (success) in
             if success {
                 let message = "The file was deleted successfully."
@@ -151,8 +190,12 @@ class ServerApi {
             URLQueryItem(name: "s", value: file.parentShare!.name),
             URLQueryItem(name: "p", value: file.getPath()),
             URLQueryItem(name: "mtime", value: String(file.getLastModifiedEpoch())),
-            URLQueryItem(name: "session", value: server.session_token)
+            URLQueryItem(name: "session", value: server.session_token),
         ]
+        
+        if let authToken = auth_token{
+            components.queryItems?.append(URLQueryItem(name: "auth", value: authToken))
+        }
         components.percentEncodedQuery = components.percentEncodedQuery?
             .replacingOccurrences(of: "+", with: "%2B")
         

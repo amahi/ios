@@ -40,10 +40,18 @@ class ServerPresenter: BasePresenter {
         AmahiApi.shared.getServers() { (serverResponse) in
             self.view?.updateRefreshing(isRefreshing: false)
 
-            guard let servers = serverResponse else {
+            guard var servers = serverResponse else {
                 self.view?.showError(message: StringLiterals.genericNetworkError)
                 return
             }
+            
+            // Uncomment these lines to test your local hda running from the terminal
+//            let myServer = Server()
+//            myServer.name = "My Server"
+//            myServer.session_token = "abc"
+//            myServer.active = true
+//            servers.append(myServer)
+            
             self.view?.updateServerList(servers)
         }
     }
