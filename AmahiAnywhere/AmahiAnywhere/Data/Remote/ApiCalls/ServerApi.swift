@@ -170,7 +170,7 @@ class ServerApi {
         print(file.getPath())
         print(params)
         
-        Network.shared.delete(ApiEndPoints.getServerFiles(serverAddress), parameters: params, headers: getSessionHeader(), completion: completion)
+        Network.shared.delete(ApiEndPoints.getServerFiles(serverAddress), parameters: params, headers: getServerHeaders(), completion: completion)
     }
     
     public func getFileUri(_ file: ServerFile) -> URL? {
