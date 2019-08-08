@@ -29,7 +29,13 @@ extension FilesViewController: FilesView {
         if downloadJustStarted {
             setupDownloadProgressIndicator()
             let file = self.filteredFiles.getFileFromIndexPath(IndexPath(row: row, section: section))
-            downloadProgressAlertController?.title = String(format: StringLiterals.downloadingFile, file.name!)
+            downloadTitleLabel?.text = String(format: StringLiterals.downloadingFile, file.name!)
+            if let cell = filesCollectionView.cellForItem(at: IndexPath(row: row, section: section)) as? FilesGridCollectionCell{
+                downloadImageView?.image = cell.iconImageView.image
+            }else if let cell = filesCollectionView.cellForItem(at: IndexPath(row: row, section: section)) as? FilesListCollectionViewCell{
+                downloadImageView?.image = cell.iconImageView.image
+            }
+            
         }
         
         if !isAlertShowing {

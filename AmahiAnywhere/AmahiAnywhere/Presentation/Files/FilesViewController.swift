@@ -66,6 +66,8 @@ class FilesViewController: BaseUIViewController, GCKRemoteMediaClientListener {
     internal var refreshControl: UIRefreshControl!
     internal var downloadProgressAlertController : UIAlertController?
     internal var progressView: UIProgressView?
+    internal var downloadImageView: UIImageView?
+    internal var downloadTitleLabel: UILabel?
     internal var docController: UIDocumentInteractionController?
     
     @objc internal var player: AVPlayer!
@@ -388,12 +390,33 @@ class FilesViewController: BaseUIViewController, GCKRemoteMediaClientListener {
     
     internal func setupDownloadProgressIndicator() {
         downloadProgressAlertController = UIAlertController(title: "", message: "", preferredStyle: .alert)
+        downloadProgressAlertController?.view.setAnchorSize(width: nil, height: 190)
+
+    
+        downloadTitleLabel = UILabel()
+        downloadTitleLabel?.font = UIFont.systemFont(ofSize: 16, weight: .semibold)
+        downloadTitleLabel?.numberOfLines = 2
+        downloadTitleLabel?.textAlignment = .center
+        downloadProgressAlertController?.view.addSubview(downloadTitleLabel!)
+        
+    
+        downloadImageView = UIImageView(image: nil)
+        downloadImageView?.contentMode = .scaleAspectFit
+        downloadImageView?.setAnchorSize(width: 80, height: 80)
+        
         progressView = UIProgressView(progressViewStyle: .bar)
+        progressView?.trackTintColor = .white
         progressView?.setProgress(0.0, animated: true)
-        progressView?.frame = CGRect(x: 10, y: 100, width: 250, height: 2)
-        downloadProgressAlertController?.view.addSubview(progressView!)
-        let height:NSLayoutConstraint = NSLayoutConstraint(item: downloadProgressAlertController!.view, attribute: NSLayoutConstraint.Attribute.height, relatedBy: NSLayoutConstraint.Relation.equal, toItem: nil, attribute: NSLayoutConstraint.Attribute.notAnAttribute, multiplier: 1, constant: 120)
-        downloadProgressAlertController?.view.addConstraint(height);
+        progressView?.setAnchorSize(width: nil, height: 2)
+    
+        let stackView = UIStackView(arrangedSubviews: [downloadTitleLabel!, downloadImageView!, progressView!])
+        stackView.axis = .vertical
+        stackView.distribution = .equalSpacing
+        stackView.spacing = 10
+        stackView.alignment = .fill
+        
+        downloadProgressAlertController?.view.addSubview(stackView)
+        stackView.setAnchors(top: downloadProgressAlertController?.view.topAnchor, leading: downloadProgressAlertController?.view.leadingAnchor, trailing: downloadProgressAlertController?.view.trailingAnchor, bottom: downloadProgressAlertController?.view.bottomAnchor, topConstant: 20, leadingConstant: 20, trailingConstant: 20, bottomConstant: 20)
     }
     
     // MARK: - Navigation
