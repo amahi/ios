@@ -181,13 +181,13 @@ extension FilesViewController: FilesView {
             
         }
         else if sessionManager.currentSession == nil, (playbackMode != .local) {
-            player = AVPlayer.init(playerItem: items[currentIndex])
             let audioPlayerVc = self.viewController(viewControllerClass: AudioPlayerViewController.self,
                                                     from: StoryBoardIdentifiers.videoPlayer)
-            audioPlayerVc.player = self.player
+            audioPlayerVc.startPlayerItem = items[currentIndex]
             audioPlayerVc.playerItems = items
             audioPlayerVc.itemURLs = URLs
-            player.play()
+            audioPlayerVc.transitioningDelegate = self
+            audioPlayerVc.interactor = interactor
             self.present(audioPlayerVc)
             
         }

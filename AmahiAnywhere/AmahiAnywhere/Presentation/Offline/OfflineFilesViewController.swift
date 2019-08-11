@@ -31,6 +31,8 @@ class OfflineFilesViewController: BaseUIViewController{
     internal var offlineFiles = [OfflineFile]()
     internal var filteredFiles = FilteredOfflineFiles()
     
+    let interactor = Interactor()
+    
     var fetchedResultsController : NSFetchedResultsController<NSFetchRequestResult>? {
         didSet {
             // Whenever the frc changes, we execute the search and
@@ -289,6 +291,16 @@ extension OfflineFilesViewController: NSFetchedResultsControllerDelegate {
             organiseFilesSections(offlineFiles)
             NotificationCenter.default.post(name: .OfflineFileDeleted, object: file, userInfo: ["loadOfflineFiles": true])
         }
+    }
+}
+
+extension OfflineFilesViewController: UIViewControllerTransitioningDelegate {
+    func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        return DismissAnimator()
+    }
+    
+    func interactionControllerForDismissal(using animator: UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning? {
+        return interactor.hasStarted ? interactor : nil
     }
 }
 

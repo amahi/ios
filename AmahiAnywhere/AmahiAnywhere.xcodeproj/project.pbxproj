@@ -27,6 +27,13 @@
 		3B37EBAF22ED11650065CB77 /* Units.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B37EBAE22ED11650065CB77 /* Units.swift */; };
 		3B37EBB622F204030065CB77 /* HDAPinAuthVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B37EBB522F204020065CB77 /* HDAPinAuthVC.swift */; };
 		3B37EBB822F2D9F60065CB77 /* AuthTokenResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B37EBB722F2D9F60065CB77 /* AuthTokenResponse.swift */; };
+		3B3F43DA22FD812700BB42B0 /* AudioPlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B3F43D922FD812700BB42B0 /* AudioPlayerViewController.swift */; };
+		3B3F43DC22FECF3800BB42B0 /* AudioPlayerViewController+Gesture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B3F43DB22FECF3700BB42B0 /* AudioPlayerViewController+Gesture.swift */; };
+		3B3F43DF22FECF7300BB42B0 /* DissmissAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B3F43DE22FECF7300BB42B0 /* DissmissAnimator.swift */; };
+		3B3F43E122FECF9300BB42B0 /* Interactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B3F43E022FECF9300BB42B0 /* Interactor.swift */; };
+		3B3F43E322FED06A00BB42B0 /* AudioPlayerViewController+UpdatesUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B3F43E222FED06A00BB42B0 /* AudioPlayerViewController+UpdatesUI.swift */; };
+		3B3F43E522FED10100BB42B0 /* AudioPlayerViewController+Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B3F43E422FED10100BB42B0 /* AudioPlayerViewController+Player.swift */; };
+		3B3F43E722FED14900BB42B0 /* AudioPlayerViewController+Remote.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B3F43E622FED14900BB42B0 /* AudioPlayerViewController+Remote.swift */; };
 		3B4DB99722A0431100AF287B /* ServerCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B4DB99622A0431100AF287B /* ServerCollectionViewCell.swift */; };
 		3B84E87D2299587B00E37A74 /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B84E87C2299587B00E37A74 /* UIView.swift */; };
 		3BB315D422E1143600A0FDAD /* SharesCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BB315D322E1143600A0FDAD /* SharesCollectionViewCell.swift */; };
@@ -112,7 +119,7 @@
 		FB71BE9D201CB2FC0005492C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FB71BE9B201CB2FC0005492C /* Main.storyboard */; };
 		FB71BE9F201CB2FC0005492C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FB71BE9E201CB2FC0005492C /* Assets.xcassets */; };
 		FB71BEA2201CB2FC0005492C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FB71BEA0201CB2FC0005492C /* LaunchScreen.storyboard */; };
-		FD40DD1322A8C889005D97EB /* AudioPlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD40DD1222A8C889005D97EB /* AudioPlayerViewController.swift */; };
+		FD40DD1322A8C889005D97EB /* Audio2PlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD40DD1222A8C889005D97EB /* Audio2PlayerViewController.swift */; };
 		FDF80E92229FA41A0087F9B8 /* VideoPlayerSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDF80E91229FA41A0087F9B8 /* VideoPlayerSettings.swift */; };
 		FDF80E94229FB2060087F9B8 /* VideoMenuCellSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDF80E93229FB2060087F9B8 /* VideoMenuCellSettings.swift */; };
 /* End PBXBuildFile section */
@@ -137,6 +144,13 @@
 		3B37EBAE22ED11650065CB77 /* Units.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Units.swift; sourceTree = "<group>"; };
 		3B37EBB522F204020065CB77 /* HDAPinAuthVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDAPinAuthVC.swift; sourceTree = "<group>"; };
 		3B37EBB722F2D9F60065CB77 /* AuthTokenResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthTokenResponse.swift; sourceTree = "<group>"; };
+		3B3F43D922FD812700BB42B0 /* AudioPlayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioPlayerViewController.swift; sourceTree = "<group>"; };
+		3B3F43DB22FECF3700BB42B0 /* AudioPlayerViewController+Gesture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AudioPlayerViewController+Gesture.swift"; sourceTree = "<group>"; };
+		3B3F43DE22FECF7300BB42B0 /* DissmissAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DissmissAnimator.swift; sourceTree = "<group>"; };
+		3B3F43E022FECF9300BB42B0 /* Interactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Interactor.swift; sourceTree = "<group>"; };
+		3B3F43E222FED06A00BB42B0 /* AudioPlayerViewController+UpdatesUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AudioPlayerViewController+UpdatesUI.swift"; sourceTree = "<group>"; };
+		3B3F43E422FED10100BB42B0 /* AudioPlayerViewController+Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AudioPlayerViewController+Player.swift"; sourceTree = "<group>"; };
+		3B3F43E622FED14900BB42B0 /* AudioPlayerViewController+Remote.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AudioPlayerViewController+Remote.swift"; sourceTree = "<group>"; };
 		3B4DB99622A0431100AF287B /* ServerCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerCollectionViewCell.swift; sourceTree = "<group>"; };
 		3B84E87C2299587B00E37A74 /* UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIView.swift; sourceTree = "<group>"; };
 		3BB315D322E1143600A0FDAD /* SharesCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharesCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -229,7 +243,7 @@
 		FB71BE9E201CB2FC0005492C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FB71BEA1201CB2FC0005492C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		FB71BEA3201CB2FC0005492C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		FD40DD1222A8C889005D97EB /* AudioPlayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioPlayerViewController.swift; sourceTree = "<group>"; };
+		FD40DD1222A8C889005D97EB /* Audio2PlayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Audio2PlayerViewController.swift; sourceTree = "<group>"; };
 		FDF80E91229FA41A0087F9B8 /* VideoPlayerSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPlayerSettings.swift; sourceTree = "<group>"; };
 		FDF80E93229FB2060087F9B8 /* VideoMenuCellSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoMenuCellSettings.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -262,6 +276,38 @@
 				3B37EBB522F204020065CB77 /* HDAPinAuthVC.swift */,
 			);
 			path = "HDA PIN Authentication";
+			sourceTree = "<group>";
+		};
+		3B3F43D722FD80E100BB42B0 /* Video Player */ = {
+			isa = PBXGroup;
+			children = (
+				C866E5542042D02A0083A606 /* VideoPlayerViewController.swift */,
+				FDF80E91229FA41A0087F9B8 /* VideoPlayerSettings.swift */,
+				FDF80E93229FB2060087F9B8 /* VideoMenuCellSettings.swift */,
+			);
+			path = "Video Player";
+			sourceTree = "<group>";
+		};
+		3B3F43D822FD80F000BB42B0 /* Audio Player */ = {
+			isa = PBXGroup;
+			children = (
+				3B3F43DD22FECF5A00BB42B0 /* Animation */,
+				3B3F43D922FD812700BB42B0 /* AudioPlayerViewController.swift */,
+				3B3F43DB22FECF3700BB42B0 /* AudioPlayerViewController+Gesture.swift */,
+				3B3F43E222FED06A00BB42B0 /* AudioPlayerViewController+UpdatesUI.swift */,
+				3B3F43E422FED10100BB42B0 /* AudioPlayerViewController+Player.swift */,
+				3B3F43E622FED14900BB42B0 /* AudioPlayerViewController+Remote.swift */,
+			);
+			path = "Audio Player";
+			sourceTree = "<group>";
+		};
+		3B3F43DD22FECF5A00BB42B0 /* Animation */ = {
+			isa = PBXGroup;
+			children = (
+				3B3F43DE22FECF7300BB42B0 /* DissmissAnimator.swift */,
+				3B3F43E022FECF9300BB42B0 /* Interactor.swift */,
+			);
+			path = Animation;
 			sourceTree = "<group>";
 		};
 		3BEBFAE02296F3E10075E8A4 /* Walkthrough */ = {
@@ -506,10 +552,9 @@
 		C8CE05C9206B21C5006F6807 /* MediaPlayers */ = {
 			isa = PBXGroup;
 			children = (
-				C866E5542042D02A0083A606 /* VideoPlayerViewController.swift */,
-				FDF80E91229FA41A0087F9B8 /* VideoPlayerSettings.swift */,
-				FDF80E93229FB2060087F9B8 /* VideoMenuCellSettings.swift */,
-				FD40DD1222A8C889005D97EB /* AudioPlayerViewController.swift */,
+				3B3F43D822FD80F000BB42B0 /* Audio Player */,
+				3B3F43D722FD80E100BB42B0 /* Video Player */,
+				FD40DD1222A8C889005D97EB /* Audio2PlayerViewController.swift */,
 			);
 			path = MediaPlayers;
 			sourceTree = "<group>";
@@ -735,6 +780,7 @@
 				AD8F2FDC226E9331009C8C4B /* CoreDataStack+AutoSaving.swift in Sources */,
 				C8DEBFAD20BB1AEF00B09AED /* Alamofire.swift in Sources */,
 				C866E5552042D02A0083A606 /* VideoPlayerViewController.swift in Sources */,
+				3B3F43DC22FECF3800BB42B0 /* AudioPlayerViewController+Gesture.swift in Sources */,
 				C83C63902038D5B30089B9D8 /* PersistenceIdentifiers.swift in Sources */,
 				C83C637520386DD90089B9D8 /* BaseUIViewController.swift in Sources */,
 				3BCAFBA522C5385D0044057E /* DownloadsBaseCollectionCell.swift in Sources */,
@@ -745,6 +791,7 @@
 				4605964D204F3666004FA066 /* ServerShare.swift in Sources */,
 				3BCAFBAF22C6DC1A0044057E /* OfflineFilesViewController+Sorting.swift in Sources */,
 				AD8F2FE0226E9351009C8C4B /* SettingsViewController+TableViewDataSource.swift in Sources */,
+				3B3F43E522FED10100BB42B0 /* AudioPlayerViewController+Player.swift in Sources */,
 				FB71BE98201CB2FC0005492C /* AppDelegate.swift in Sources */,
 				4605964B204F35E9004FA066 /* ServerRoute.swift in Sources */,
 				3B4DB99722A0431100AF287B /* ServerCollectionViewCell.swift in Sources */,
@@ -764,8 +811,9 @@
 				4605963F204E24DF004FA066 /* ServerPresenter.swift in Sources */,
 				46098D02204FDBEE00752EB6 /* ApiEndPoints.swift in Sources */,
 				C84BBA5E20F37EF20030536F /* Notification.swift in Sources */,
+				3B3F43E322FED06A00BB42B0 /* AudioPlayerViewController+UpdatesUI.swift in Sources */,
 				C83C63922038D5B30089B9D8 /* AmahiApi.swift in Sources */,
-				FD40DD1322A8C889005D97EB /* AudioPlayerViewController.swift in Sources */,
+				FD40DD1322A8C889005D97EB /* Audio2PlayerViewController.swift in Sources */,
 				46CB896B204FB0FC0031151F /* SharesPresenter.swift in Sources */,
 				C8DA5B2F20D7A1CA00F5A527 /* OfflineFileSort.swift in Sources */,
 				C80F3F4A20D47423000901B4 /* OfflineFileState.swift in Sources */,
@@ -791,6 +839,7 @@
 				C83C638F2038D5B30089B9D8 /* LocalStorage.swift in Sources */,
 				C83C637420386DD90089B9D8 /* BaseUIViewController+BaseView.swift in Sources */,
 				C86CA91020D3937A00C8EDCA /* OfflineFilesPresenter.swift in Sources */,
+				3B3F43DF22FECF7300BB42B0 /* DissmissAnimator.swift in Sources */,
 				C83C637E2038D5150089B9D8 /* StringIdentifiers.swift in Sources */,
 				3B33325022BAA26600BC61EB /* FilesGridCollectionCell.swift in Sources */,
 				3BCAFBA322C537DE0044057E /* DownloadsGridCollectionCell.swift in Sources */,
@@ -809,12 +858,14 @@
 				3BCAFBAD22C6DBCB0044057E /* OfflineFilesViewController+UICollectionViewDelegates.swift in Sources */,
 				46098D08204FFFBE00752EB6 /* ServerApi.swift in Sources */,
 				3B33325422BAA29700BC61EB /* FilesCollectionHeaderView.swift in Sources */,
+				3B3F43E122FECF9300BB42B0 /* Interactor.swift in Sources */,
 				C8D86160209490230014D8AC /* WebViewController.swift in Sources */,
 				3BF1E81A22D0288700C531CD /* OfflineFileIndexes.swift in Sources */,
 				3BCAFBA722C53E2A0044057E /* OfflineFilesViewController.swift in Sources */,
 				C83C63992038D5B30089B9D8 /* AuthResponses.swift in Sources */,
 				3B33324E22BAA17C00BC61EB /* FilteredServerFile.swift in Sources */,
 				3B84E87D2299587B00E37A74 /* UIView.swift in Sources */,
+				3B3F43E722FED14900BB42B0 /* AudioPlayerViewController+Remote.swift in Sources */,
 				3B33325C22BAA4BA00BC61EB /* FilesViewController+Sorting.swift in Sources */,
 				3B33325222BAA27E00BC61EB /* FilesListCollectionViewCell.swift in Sources */,
 				ADAFF8DA22501F7A00287409 /* VideoThumbnailGenerator.swift in Sources */,
@@ -825,6 +876,7 @@
 				FDF80E92229FA41A0087F9B8 /* VideoPlayerSettings.swift in Sources */,
 				4665718120507847000E0D45 /* FilesViewController.swift in Sources */,
 				3BCAFBAB22C6DB830044057E /* OfflineFilesViewController+SearchDelegates.swift in Sources */,
+				3B3F43DA22FD812700BB42B0 /* AudioPlayerViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

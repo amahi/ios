@@ -88,6 +88,8 @@ class FilesViewController: BaseUIViewController, GCKRemoteMediaClientListener {
     @IBOutlet var floatyBottomConstraint: NSLayoutConstraint!
     var imagePicker: UIImagePickerController!
     
+    let interactor = Interactor()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupNotifications()
@@ -539,5 +541,15 @@ extension FilesViewController: UINavigationControllerDelegate, UIImagePickerCont
         guard let _ = info[.editedImage] as? UIImage else {
             return
         }
+    }
+}
+
+extension FilesViewController: UIViewControllerTransitioningDelegate {
+    func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        return DismissAnimator()
+    }
+    
+    func interactionControllerForDismissal(using animator: UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning? {
+        return interactor.hasStarted ? interactor : nil
     }
 }

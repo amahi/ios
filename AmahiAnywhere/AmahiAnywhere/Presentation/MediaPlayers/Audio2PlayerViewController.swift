@@ -10,7 +10,7 @@ import UIKit
 import AVFoundation
 import MediaPlayer
 
-class AudioPlayerViewController: UIViewController {
+class Audio2PlayerViewController: UIViewController {
     
     @IBOutlet var backgroundImageView: UIImageView!
     @IBOutlet weak var durationLabel: UILabel!
@@ -69,7 +69,7 @@ class AudioPlayerViewController: UIViewController {
         }
         
     }
-    
+
     @IBAction func playPauseButtonPressed(_ sender: Any) {
         if playPauseButton.currentImage == UIImage(named: "playIcon") {
             player.play()
@@ -326,14 +326,6 @@ class AudioPlayerViewController: UIViewController {
         }
     }
     
-    func setupNotifications() {
-        let notificationCenter = NotificationCenter.default
-        notificationCenter.addObserver(self,
-                                       selector: #selector(handleInterruption),
-                                       name: AVAudioSession.interruptionNotification,
-                                       object: nil)
-    }
-    
     // Dealing with call interruption
     @objc func handleInterruption(notification: Notification) {
         guard let userInfo = notification.userInfo,
@@ -384,24 +376,7 @@ class AudioPlayerViewController: UIViewController {
         }
     }
     
-    override func viewDidLoad() {
-        player.automaticallyWaitsToMinimizeStalling = false
-        AppUtility.lockOrientation(.portrait)
-        timeSlider.isUserInteractionEnabled = true
-        timeSlider.setThumbImage(UIImage(named: "sliderKnobIcon"), for: .normal)
-        
-        setupNotifications()
-        MPRemoteCommandCenter.shared().togglePlayPauseCommand.addTarget(self, action: #selector(playandPause(_:)))
-        MPRemoteCommandCenter.shared().nextTrackCommand.addTarget(self, action: #selector(nextButtonPressed(_:)))
-        MPRemoteCommandCenter.shared().previousTrackCommand.addTarget(self, action: #selector(prevButtonPressed(_:)))
-    }
-    
     override func viewDidAppear(_ animated: Bool) {
-        UIApplication.shared.beginReceivingRemoteControlEvents()
-        if canBecomeFirstResponder {
-            becomeFirstResponder()
-        }
-        
         setArtWork()
         setTimeSlider()
         setDurationLabel()
