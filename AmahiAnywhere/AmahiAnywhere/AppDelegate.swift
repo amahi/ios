@@ -214,6 +214,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         NotificationCenter.default.removeObserver(self,
                                                   name: NSNotification.Name.gckExpandedMediaControlsTriggered,
                                                   object: nil)
+        RecentsPersistenceService.saveContext()
     }
     
     // Mark - Only for debug

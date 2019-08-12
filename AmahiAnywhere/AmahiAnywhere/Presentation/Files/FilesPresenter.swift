@@ -95,6 +95,19 @@ class FilesPresenter: BasePresenter {
         let type = selectedFile.mimeType
         AmahiLogger.log(": Matched type is (type), FILE MIMETYPE \(selectedFile.mime_type ?? "")")
         AmahiLogger.log(": Matched type is \(type) , File MIMETYPE \(selectedFile.mime_type ?? "")")
+        
+        let date = Date()
+        let calendar = Calendar.current
+        let components = calendar.dateComponents([.year, .month, .day], from: date)
+        
+        let year =  components.year
+        let month = components.month
+        let day = Int16(components.day!)
+        
+        let fileURL = "\(ServerApi.shared!.getFileUri(selectedFile)!)"
+        let dict = ["day":day, "month":month!, "year":year!, "fileURL":fileURL, "serverName":ServerApi.shared!.getServer()!.name!, "size":selectedFile.size!] as [String : Any]
+        
+        RecentsDatabaseHelper.shareInstance.save(object: dict)
 
         switch type {
 

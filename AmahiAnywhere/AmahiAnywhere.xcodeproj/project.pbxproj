@@ -66,6 +66,11 @@
 		80F60700206BE1530098BC60 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80F606FF206BE1530098BC60 /* SettingsViewController.swift */; };
 		8A0A88F8227CE39C00A1360C /* MimeType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4612851D2051DB770061EC21 /* MimeType.swift */; };
 		8A67FC2B22666F81005A5038 /* OfflineFile+MimeType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A67FC2A22666F81005A5038 /* OfflineFile+MimeType.swift */; };
+		9935DAAC2301EB2F004816E1 /* RecentsPersistenceService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9935DAAB2301EB2F004816E1 /* RecentsPersistenceService.swift */; };
+		9935DAAF2301ED86004816E1 /* RecentFile+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9935DAAD2301ED85004816E1 /* RecentFile+CoreDataProperties.swift */; };
+		9935DAB02301ED86004816E1 /* RecentFile+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9935DAAE2301ED86004816E1 /* RecentFile+CoreDataClass.swift */; };
+		9935DAB22301EE24004816E1 /* RecentsDatabaseHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9935DAB12301EE24004816E1 /* RecentsDatabaseHelper.swift */; };
+		9935DAB42301FA21004816E1 /* RecentFiles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9935DAB32301FA21004816E1 /* RecentFiles.swift */; };
 		9938343D22CBAAA2002A8213 /* Toast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9938343C22CBAAA2002A8213 /* Toast.swift */; };
 		993EC87522E6959800AF5F1F /* RootContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 993EC87422E6959800AF5F1F /* RootContainerViewController.swift */; };
 		99CF9D7F22E288BB0060C0E5 /* QueueViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99CF9D7E22E288BB0060C0E5 /* QueueViewController.swift */; };
@@ -186,6 +191,11 @@
 		80F606FF206BE1530098BC60 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		8A67FC2A22666F81005A5038 /* OfflineFile+MimeType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OfflineFile+MimeType.swift"; sourceTree = "<group>"; };
 		9913634D22D5D2F100B48586 /* AmahiAnywhere.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = AmahiAnywhere.entitlements; sourceTree = "<group>"; };
+		9935DAAB2301EB2F004816E1 /* RecentsPersistenceService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentsPersistenceService.swift; sourceTree = "<group>"; };
+		9935DAAD2301ED85004816E1 /* RecentFile+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "RecentFile+CoreDataProperties.swift"; path = "/Users/iswiftshek/Desktop/ios/AmahiAnywhere/AmahiAnywhere/Data/Local/Models/RecentFile+CoreDataProperties.swift"; sourceTree = "<absolute>"; };
+		9935DAAE2301ED86004816E1 /* RecentFile+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "RecentFile+CoreDataClass.swift"; path = "/Users/iswiftshek/Desktop/ios/AmahiAnywhere/AmahiAnywhere/Data/Local/Models/RecentFile+CoreDataClass.swift"; sourceTree = "<absolute>"; };
+		9935DAB12301EE24004816E1 /* RecentsDatabaseHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentsDatabaseHelper.swift; sourceTree = "<group>"; };
+		9935DAB32301FA21004816E1 /* RecentFiles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentFiles.swift; sourceTree = "<group>"; };
 		9938343C22CBAAA2002A8213 /* Toast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Toast.swift; sourceTree = "<group>"; };
 		993EC87422E6959800AF5F1F /* RootContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootContainerViewController.swift; sourceTree = "<group>"; };
 		99CF9D7E22E288BB0060C0E5 /* QueueViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QueueViewController.swift; sourceTree = "<group>"; };
@@ -361,6 +371,7 @@
 				ADAFF8DB2250209700287409 /* AudioThumbnailGenerator.swift */,
 				9938343C22CBAAA2002A8213 /* Toast.swift */,
 				3B37EBAE22ED11650065CB77 /* Units.swift */,
+				9935DAB32301FA21004816E1 /* RecentFiles.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -379,6 +390,8 @@
 			children = (
 				AD8F2FDA226E9331009C8C4B /* CoreDataStack+AutoSaving.swift */,
 				AD8F2FD9226E9331009C8C4B /* CoreDataStack+DropDatabase.swift */,
+				9935DAAB2301EB2F004816E1 /* RecentsPersistenceService.swift */,
+				9935DAB12301EE24004816E1 /* RecentsDatabaseHelper.swift */,
 				C86CA91620D3C76C00C8EDCA /* Models */,
 				C83C63812038D5B30089B9D8 /* LocalStorage.swift */,
 				C86CA91420D3C65400C8EDCA /* CoreDataStack.swift */,
@@ -475,6 +488,8 @@
 				8A67FC2A22666F81005A5038 /* OfflineFile+MimeType.swift */,
 				C8DA5B1720D5D7EA00F5A527 /* Download.swift */,
 				3BCAFBA822C68CF70044057E /* FilteredOfflineFile.swift */,
+				9935DAAE2301ED86004816E1 /* RecentFile+CoreDataClass.swift */,
+				9935DAAD2301ED85004816E1 /* RecentFile+CoreDataProperties.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -776,6 +791,7 @@
 				46657183205085FC000E0D45 /* FilesPresenter.swift in Sources */,
 				46059646204EE17D004FA066 /* SharesViewController.swift in Sources */,
 				3B24FE1A22970B860044721D /* WalkthroughCollectionCell.swift in Sources */,
+				9935DAAF2301ED86004816E1 /* RecentFile+CoreDataProperties.swift in Sources */,
 				C8DA5B3520D8741000F5A527 /* String.swift in Sources */,
 				AD8F2FDC226E9331009C8C4B /* CoreDataStack+AutoSaving.swift in Sources */,
 				C8DEBFAD20BB1AEF00B09AED /* Alamofire.swift in Sources */,
@@ -783,6 +799,7 @@
 				3B3F43DC22FECF3800BB42B0 /* AudioPlayerViewController+Gesture.swift in Sources */,
 				C83C63902038D5B30089B9D8 /* PersistenceIdentifiers.swift in Sources */,
 				C83C637520386DD90089B9D8 /* BaseUIViewController.swift in Sources */,
+				9935DAB02301ED86004816E1 /* RecentFile+CoreDataClass.swift in Sources */,
 				3BCAFBA522C5385D0044057E /* DownloadsBaseCollectionCell.swift in Sources */,
 				9938343D22CBAAA2002A8213 /* Toast.swift in Sources */,
 				FB71BE9A201CB2FC0005492C /* LoginViewController.swift in Sources */,
@@ -800,6 +817,7 @@
 				C8ED025920B3E30300015846 /* URL.swift in Sources */,
 				C8DA5B1A20D5DC2200F5A527 /* DownloadService.swift in Sources */,
 				46098D04204FDF5500752EB6 /* ServerFile.swift in Sources */,
+				9935DAB42301FA21004816E1 /* RecentFiles.swift in Sources */,
 				C88E5A7620B66B46006518B6 /* Date.swift in Sources */,
 				ADAFF8D6224F6DB700287409 /* ThumbnailGenerator.swift in Sources */,
 				46059643204E8B41004FA066 /* BaseUITableViewController.swift in Sources */,
@@ -810,10 +828,12 @@
 				ADAFF8D822501F5B00287409 /* PDFThumbnailGenerator.swift in Sources */,
 				4605963F204E24DF004FA066 /* ServerPresenter.swift in Sources */,
 				46098D02204FDBEE00752EB6 /* ApiEndPoints.swift in Sources */,
+				9935DAB22301EE24004816E1 /* RecentsDatabaseHelper.swift in Sources */,
 				C84BBA5E20F37EF20030536F /* Notification.swift in Sources */,
 				3B3F43E322FED06A00BB42B0 /* AudioPlayerViewController+UpdatesUI.swift in Sources */,
 				C83C63922038D5B30089B9D8 /* AmahiApi.swift in Sources */,
 				FD40DD1322A8C889005D97EB /* Audio2PlayerViewController.swift in Sources */,
+				9935DAAC2301EB2F004816E1 /* RecentsPersistenceService.swift in Sources */,
 				46CB896B204FB0FC0031151F /* SharesPresenter.swift in Sources */,
 				C8DA5B2F20D7A1CA00F5A527 /* OfflineFileSort.swift in Sources */,
 				C80F3F4A20D47423000901B4 /* OfflineFileState.swift in Sources */,
