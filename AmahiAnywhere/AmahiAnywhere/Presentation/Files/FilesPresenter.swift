@@ -104,8 +104,21 @@ class FilesPresenter: BasePresenter {
         let month = components.month
         let day = Int16(components.day!)
         
+        let mimeType = "\(selectedFile.mimeType)"
+        
+        /* When the server provides thumbnails for all types of files, add thumbnailURL attribute to the database */
         let fileURL = "\(ServerApi.shared!.getFileUri(selectedFile)!)"
-        let dict = ["day":day, "month":month!, "year":year!, "fileURL":fileURL, "serverName":ServerApi.shared!.getServer()!.name!, "size":selectedFile.size!] as [String : Any]
+        
+        /* Storing file name to display the same in the table directly */
+        let fileName = "\(selectedFile.name!)"
+        
+        /* File creation date */
+        let mtimeDate = selectedFile.mtime
+        
+        /* Auth-token for HDA authorisation in PIN */
+        let authToken = ServerApi.shared?.auth_token
+        
+        let dict = ["day":day, "month":month!, "year":year!, "fileName":fileName, "fileURL":fileURL, "serverName":ServerApi.shared!.getServer()!.name!, "size":selectedFile.getFileSize(), "mimeType":mimeType, "mtimeDate":mtimeDate!, "authToken":authToken!] as [String : Any]
         
         RecentsDatabaseHelper.shareInstance.save(object: dict)
 

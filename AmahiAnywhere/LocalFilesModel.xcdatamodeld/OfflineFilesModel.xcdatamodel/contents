@@ -17,15 +17,19 @@
         </uniquenessConstraints>
     </entity>
     <entity name="RecentFile" representedClassName="RecentFile" syncable="YES">
+        <attribute name="authToken" optional="YES" attributeType="String"/>
         <attribute name="day" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="fileName" optional="YES" attributeType="String"/>
         <attribute name="fileURL" optional="YES" attributeType="String"/>
+        <attribute name="mimeType" optional="YES" attributeType="String"/>
         <attribute name="month" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="mtimeDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="serverName" optional="YES" attributeType="String"/>
-        <attribute name="size" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="size" optional="YES" attributeType="String"/>
         <attribute name="year" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
     </entity>
     <elements>
         <element name="OfflineFile" positionX="-1206" positionY="-729" width="128" height="180"/>
-        <element name="RecentFile" positionX="-1206" positionY="-657" width="128" height="133"/>
+        <element name="RecentFile" positionX="-1206" positionY="-657" width="128" height="193"/>
     </elements>
 </model>

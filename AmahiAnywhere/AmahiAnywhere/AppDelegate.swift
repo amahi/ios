@@ -28,7 +28,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     fileprivate var useCastContainerViewController = false
     
     let appID = ApiConfig.appID
-    let stack = CoreDataStack(modelName: "OfflineFilesModel")!
+    let stack = CoreDataStack(modelName: "LocalFilesModel")!
     
     var window: UIWindow?
     var backgroundSessionCompletionHandler: (() -> Void)?

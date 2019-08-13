@@ -31,9 +31,13 @@ class RecentsDatabaseHelper {
         recentFile.day = object["day"] as! NSNumber
         recentFile.month = object["month"] as! NSNumber
         recentFile.year = object["year"] as! NSNumber
+        recentFile.authToken = object["authToken"] as? String
+        recentFile.fileName = object["fileName"] as? String
         recentFile.fileURL = object["fileURL"] as? String
         recentFile.serverName = object["serverName"] as? String
-        recentFile.size = object["size"] as! NSNumber
+        recentFile.size = object["size"] as? String
+        recentFile.mimeType = object["mimeType"] as? String
+        recentFile.mtimeDate = (object["mtimeDate"] as? Date)!
         do{
             try context.save()
         } catch {

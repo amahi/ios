@@ -13,10 +13,14 @@ import UIKit
 class RecentFiles {
     
     struct Recent {
+        var mtimeDate: Date
+        var fileName: String
         var fileURL: String
         var serverName: String
-        var filesSize: Int64
+        var mimeType: String
+        var filesSize: String
         var fileDisplayText: String
+        var authToken: String
     }
     
     static var sharedInstance = RecentFiles()
@@ -30,7 +34,7 @@ class RecentFiles {
         for index in 0..<(recents.count) {
             
             let displayText = displayTextGenerator(day: Int(recents[index].day), month: Int(recents[index].month), year: Int(recents[index].year))
-            let recent: Recent = Recent(fileURL: recents[index].fileURL!, serverName: recents[index].serverName!, filesSize: Int64(recents[index].size), fileDisplayText: displayText)
+            let recent: Recent = Recent(mtimeDate: recents[index].mtimeDate, fileName: recents[index].fileName!, fileURL: recents[index].fileURL!, serverName: recents[index].serverName!, mimeType: recents[index].mimeType!, filesSize: recents[index].size!, fileDisplayText: displayText, authToken: recents[index].authToken!)
             recentFiles.append(recent)
         }
         do{
