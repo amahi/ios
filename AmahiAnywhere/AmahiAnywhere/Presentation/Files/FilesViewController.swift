@@ -11,6 +11,7 @@ import Lightbox
 import AVFoundation
 import GoogleCast
 import Floaty
+import MobileCoreServices
 
 class FilesViewController: BaseUIViewController, GCKRemoteMediaClientListener {
     
@@ -90,6 +91,9 @@ class FilesViewController: BaseUIViewController, GCKRemoteMediaClientListener {
     
     let interactor = Interactor()
     
+    let documentUploadTypes = [kUTTypePDF as String, kUTTypeText as String, kUTTypeImage as String]
+    var documentPicker: UIDocumentPickerViewController!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupNotifications()
@@ -112,11 +116,30 @@ class FilesViewController: BaseUIViewController, GCKRemoteMediaClientListener {
         imagePicker.delegate = self
     }
     
+    func setupDocumentPicker(){
+        documentPicker = UIDocumentPickerViewController(documentTypes: documentUploadTypes, in: .import)
+        documentPicker.delegate = self
+        documentPicker.allowsMultipleSelection = false
+        documentPicker.modalPresentationStyle = .formSheet
+    }
+    
     func setupFloaty(){
-        
         floaty.addItem("Upload an image", icon: UIImage(named: "camera")) { (item) in
-            self.uploadImageTapped()
+            self.uploadImageVideoTapped(isTypePhoto: true)
         }
+        
+        floaty.addItem("Upload a video", icon: UIImage(named: "videoFloaty")) { (item) in
+            self.uploadImageVideoTapped(isTypePhoto: false)
+        }
+        
+        floaty.addItem("Upload a document", icon: UIImage(named: "document")) { (item) in
+            self.uploadDocumentTapped()
+        }
+        
+    }
+    
+    @objc func uploadDocumentTapped(){
+        self.present(documentPicker, animated: true, completion: nil)
     }
     
     @objc func expiredAuthTokenHDA(){
@@ -130,7 +153,10 @@ class FilesViewController: BaseUIViewController, GCKRemoteMediaClientListener {
         self.present(alertVC, animated: true, completion: nil)
     }
     
-    func uploadImageTapped(){
+    func uploadImageVideoTapped(isTypePhoto: Bool){
+        imagePicker.mediaTypes = isTypePhoto ? [kUTTypeImage as String] : [kUTTypeMovie as String]
+        let libraryTitle = isTypePhoto ? "Photo Library" : "Video Library"
+        
         let alertVC = UIAlertController(title: "Select your source", message: nil, preferredStyle: .actionSheet)
         
         alertVC.addAction(UIAlertAction(title: "Camera", style: .default, handler: { (_) in
@@ -138,7 +164,7 @@ class FilesViewController: BaseUIViewController, GCKRemoteMediaClientListener {
             self.present(self.imagePicker, animated: true, completion: nil)
         }))
         
-        alertVC.addAction(UIAlertAction(title: "Photo Library", style: .default, handler: { (_) in
+        alertVC.addAction(UIAlertAction(title: libraryTitle, style: .default, handler: { (_) in
             self.imagePicker.sourceType = .photoLibrary
             self.present(self.imagePicker, animated: true, completion: nil)
         }))
@@ -200,6 +226,10 @@ class FilesViewController: BaseUIViewController, GCKRemoteMediaClientListener {
         super.viewDidAppear(animated)
         if imagePicker == nil{
             setupImagePicker()
+        }
+        
+        if documentPicker == nil{
+            setupDocumentPicker()
         }
     }
     
@@ -552,4 +582,15 @@ extension FilesViewController: UIViewControllerTransitioningDelegate {
     func interactionControllerForDismissal(using animator: UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning? {
         return interactor.hasStarted ? interactor : nil
     }
+}
+
+extension FilesViewController: UIDocumentPickerDelegate{
+    func documentPicker(_ controller: UIDocumentPickerViewController, didPickDocumentsAt urls: [URL]) {
+        guard let myURL = urls.first else {
+            return
+        }
+        
+        print("selected document url : \(myURL)")
+    }
+    
 }
