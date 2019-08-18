@@ -97,7 +97,6 @@ class FilesViewController: BaseUIViewController, GCKRemoteMediaClientListener {
         setupFloaty()
         setupLayoutView()
         setupRefreshControl()
-        setupNavigationItem()
         setupSearchBar()
         setupCollectionView()
         updateFileSort(sortingMethod: GlobalFileSort.fileSort)
@@ -167,6 +166,8 @@ class FilesViewController: BaseUIViewController, GCKRemoteMediaClientListener {
     }
     
     func setupNavigationItem(){
+        let title = getTitle() ?? "Files"
+        setNavigationTitleConnection(title: title)
         self.navigationItem.title = getTitle()
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title: getTitle(), style: .plain, target: nil, action: nil)
     }
@@ -182,6 +183,8 @@ class FilesViewController: BaseUIViewController, GCKRemoteMediaClientListener {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        setupNavigationItem()
+        
         if fileSort != GlobalFileSort.fileSort || layoutView != GlobalLayoutView.layoutView{
             setupLayoutView()
             updateFileSort(sortingMethod: GlobalFileSort.fileSort, refreshCollectionView: true)

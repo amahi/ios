@@ -45,6 +45,11 @@ class SharesViewController: BaseUIViewController, UICollectionViewDelegate, UICo
         NotificationCenter.default.addObserver(self, selector: #selector(expiredAuthTokenHDA), name: .HDATokenExpired, object: nil)
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        setNavigationTitleConnection(title: "Shares")
+    }
+    
     @objc func expiredAuthTokenHDA(){
         let alertVC = UIAlertController(title: "HDA Auth Token Expired", message: "You have been logged out!", preferredStyle: .alert)
         alertVC.addAction(UIAlertAction(title: "OK", style: .default, handler: { (_) in

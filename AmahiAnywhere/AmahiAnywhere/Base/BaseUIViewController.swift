@@ -223,6 +223,27 @@ class BaseUIViewController: UIViewController, GCKSessionManagerListener, GCKRequ
         }
     }
     
+    func setNavigationTitleConnection(title: String){
+        let connectionMode = ConnectionModeManager.shared.currentMode
+        
+        if connectionMode == ConnectionMode.auto {
+            let isLocalInUse = ConnectionModeManager.shared.isLocalInUse()
+            if isLocalInUse {
+                navigationItem.titleView = nil
+                navigationItem.title = title
+            } else {
+                navigationItem.setTitleWithRemoteIcon(title: title)
+            }
+        } else{
+            if connectionMode == .local{
+                navigationItem.titleView = nil
+                navigationItem.title = title
+            }else{
+                navigationItem.setTitleWithRemoteIcon(title: title)
+            }
+        }
+    }
+    
 }
 
 

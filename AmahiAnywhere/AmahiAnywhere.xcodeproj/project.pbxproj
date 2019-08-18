@@ -10,6 +10,7 @@
 		04BA8996211D56F400E7A868 /* AmahiLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04BA8995211D56F400E7A868 /* AmahiLogger.swift */; };
 		07A3AB2E5DFE0D2AD44B0F33 /* Pods_AmahiAnywhere.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F5293AC0952F87B50DCD644D /* Pods_AmahiAnywhere.framework */; };
 		0AA5E185203F36DD0010FD47 /* Amahi Logo White Font.png in Resources */ = {isa = PBXBuildFile; fileRef = 0AA5E184203F36DD0010FD47 /* Amahi Logo White Font.png */; };
+		3B1B35A423080E710058B1D8 /* UINavigationItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B1B35A323080E710058B1D8 /* UINavigationItem.swift */; };
 		3B24FE122296F4330044721D /* WalkthroughViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B24FE112296F4330044721D /* WalkthroughViewController.swift */; };
 		3B24FE162297086A0044721D /* WalkthroughAmahiCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3B24FE152297086A0044721D /* WalkthroughAmahiCell.xib */; };
 		3B24FE1822970B6B0044721D /* WalkthroughCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3B24FE1722970B6B0044721D /* WalkthroughCell.xib */; };
@@ -127,6 +128,7 @@
 /* Begin PBXFileReference section */
 		04BA8995211D56F400E7A868 /* AmahiLogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmahiLogger.swift; sourceTree = "<group>"; };
 		0AA5E184203F36DD0010FD47 /* Amahi Logo White Font.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Amahi Logo White Font.png"; sourceTree = "<group>"; };
+		3B1B35A323080E710058B1D8 /* UINavigationItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UINavigationItem.swift; sourceTree = "<group>"; };
 		3B24FE112296F4330044721D /* WalkthroughViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalkthroughViewController.swift; sourceTree = "<group>"; };
 		3B24FE152297086A0044721D /* WalkthroughAmahiCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WalkthroughAmahiCell.xib; sourceTree = "<group>"; };
 		3B24FE1722970B6B0044721D /* WalkthroughCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WalkthroughCell.xib; sourceTree = "<group>"; };
@@ -491,6 +493,7 @@
 				C84BBA5D20F37EF20030536F /* Notification.swift */,
 				3B84E87C2299587B00E37A74 /* UIView.swift */,
 				3BF1E81B22D07E9800C531CD /* UIApplication.swift */,
+				3B1B35A323080E710058B1D8 /* UINavigationItem.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -836,6 +839,7 @@
 				C8DA5B1820D5D7EA00F5A527 /* Download.swift in Sources */,
 				8A67FC2B22666F81005A5038 /* OfflineFile+MimeType.swift in Sources */,
 				80F3FDC7206C0D4D0061CD51 /* ConnectionViewController.swift in Sources */,
+				3B1B35A423080E710058B1D8 /* UINavigationItem.swift in Sources */,
 				C83C638F2038D5B30089B9D8 /* LocalStorage.swift in Sources */,
 				C83C637420386DD90089B9D8 /* BaseUIViewController+BaseView.swift in Sources */,
 				C86CA91020D3937A00C8EDCA /* OfflineFilesPresenter.swift in Sources */,

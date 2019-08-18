@@ -432,10 +432,10 @@
             </objects>
             <point key="canvasLocation" x="1101.5999999999999" y="-1189.6551724137933"/>
         </scene>
-        <!--Shares-->
+        <!--Shares View Controller-->
         <scene sceneID="yld-jc-3HM">
             <objects>
-                <viewController storyboardIdentifier="SharesViewController" title="Shares" id="vlL-j8-ksh" customClass="SharesViewController" customModule="AmahiAnywhere" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SharesViewController" id="vlL-j8-ksh" customClass="SharesViewController" customModule="AmahiAnywhere" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ttH-my-MBX">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -532,7 +532,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JQx-a3-lNZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1814" y="-1186"/>
+            <point key="canvasLocation" x="1813.5999999999999" y="-1186.0569715142431"/>
         </scene>
         <!--Settings-->
         <scene sceneID="VyZ-qs-6yT">
@@ -807,7 +807,7 @@
         <!--Server Files-->
         <scene sceneID="Vnd-DO-naV">
             <objects>
-                <viewController storyboardIdentifier="FilesViewController" title="Server Files" id="NEa-Le-UPn" userLabel="Server Files" customClass="FilesViewController" customModule="AmahiAnywhere" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="FilesViewController" id="NEa-Le-UPn" userLabel="Server Files" customClass="FilesViewController" customModule="AmahiAnywhere" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="1gk-kz-VmG" userLabel="Server Files">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
