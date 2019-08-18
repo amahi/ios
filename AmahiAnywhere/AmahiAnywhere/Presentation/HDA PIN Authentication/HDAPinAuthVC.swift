@@ -17,6 +17,7 @@ class HDAPinAuthVC: BaseUIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        hideKeyboardWhenTappedAround()
         HDALabel.text = server?.name
         pinTextField.delegate = self
         
@@ -53,7 +54,7 @@ class HDAPinAuthVC: BaseUIViewController {
                 self.saveToken(token: authToken)
                 self.showShares()
             }else{
-                self.showError(title: "Access Denied", message: "Incorrect PIN! Try again")
+                self.showError(title: "Access Denied", message: "Your PIN access may be incorrect. It can be changed on the HDA's dashboard")
             }
         }
     }
