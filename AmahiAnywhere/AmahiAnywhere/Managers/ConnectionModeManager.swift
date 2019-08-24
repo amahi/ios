@@ -102,8 +102,12 @@ class ConnectionModeManager {
                         }
                     
                     case .failure(let error):
-                        self.lastCheckPassed = false
-                        AmahiLogger.log("local availability check return with error \(error)")
+                        if response.response?.statusCode == 401{
+                            self.lastCheckPassed = true
+                        }else{
+                            self.lastCheckPassed = false
+                            AmahiLogger.log("local availability check return with error \(error)")
+                        }
                 }
                 
                 self.lastCheckedAt = Date()

@@ -201,6 +201,10 @@ class ServerApi {
             URLQueryItem(name: "mtime", value: String(file.getLastModifiedEpoch())),
             URLQueryItem(name: "session", value: server.session_token)
         ]
+        
+        if let authToken = auth_token{
+            components.queryItems?.append(URLQueryItem(name: "auth", value: authToken))
+        }
         components.percentEncodedQuery = components.percentEncodedQuery?
             .replacingOccurrences(of: "+", with: "%2B")
         
