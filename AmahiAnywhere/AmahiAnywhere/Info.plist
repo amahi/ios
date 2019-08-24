@@ -29,6 +29,8 @@
 	</dict>
 	<key>NSCameraUsageDescription</key>
 	<string>Please allow access to your camera to take pictures for your HDA server</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>Please allow access to your microphone to record a video for upload</string>
 	<key>NSPhotoLibraryAddUsageDescription</key>
 	<string>Please allow access to your photo library to select photos for upload</string>
 	<key>UIBackgroundModes</key>
