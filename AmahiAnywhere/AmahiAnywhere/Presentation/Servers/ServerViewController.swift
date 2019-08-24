@@ -71,6 +71,11 @@ class ServerViewController: BaseUIViewController {
         super.viewWillDisappear(animated)
         sessionManager.remove(self)
     }
+    
+    @IBAction func recentsButtonPressed(_ sender: Any) {
+        let recentsVC = self.instantiateViewController (withIdentifier: StoryBoardIdentifiers.recentsNavigationController, from: StoryBoardIdentifiers.main)
+        self.present(recentsVC, animated: true, completion: nil)
+    }
 }
 
 // Mark - CollectionView Delegates Implementations
