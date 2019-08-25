@@ -120,6 +120,36 @@ public class Network {
         }
     }
     
+    func downloadRecentFileToStorage(recentFile: Recent,
+                                            progressCompletion: @escaping (_ percent: Float) -> Void,
+                                            completion: @escaping (_ isSuccessful: Bool ) -> Void) {
+        // Create destination URL
+        let destination: DownloadRequest.DownloadFileDestination = { _, _ in
+            
+            let tempDirectoryURL = FileManager.default.findOrCreateFolder(in: FileManager.default.temporaryDirectory,
+                                                                          folderName: "cache")
+            
+            let destinationFileUrl = tempDirectoryURL?.appendingPathComponent(recentFile.path)
+            
+            return (destinationFileUrl!, [.removePreviousFile, .createIntermediateDirectories])
+        }
+        
+        guard let fileURL = URL(string: recentFile.fileURL) else { return }
+        
+        Alamofire.download(fileURL, to: destination)
+            .downloadProgress { progress in
+                progressCompletion(Float(progress.fractionCompleted))
+            }
+            .response { response in
+        
+                if response.error == nil {
+                    completion(true)
+                } else {
+                    completion(false)
+                }
+        }
+    }
+    
     public func downloadFileToStorage(file: ServerFile,
                                       progressCompletion: @escaping (_ percent: Float) -> Void,
                                       completion: @escaping (_ isSuccessful: Bool ) -> Void) {

@@ -87,6 +87,9 @@ class RootContainerViewController: UIViewController, GCKUIMiniMediaControlsViewC
     
     override func prepare(for segue: UIStoryboardSegue, sender _: Any?) {
         if segue.identifier == "NavigationVCEmbedSegue" {
+            if let tabBarController = segue.destination as? UITabBarController{
+                tabBarController.selectedIndex = 1
+            }
             navigationController = (segue.destination as? UINavigationController)
         }
     }

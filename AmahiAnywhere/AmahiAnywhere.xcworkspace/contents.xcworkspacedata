@@ -2,6 +2,9 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:RecentFile+CoreDataProperties.swift">
+   </FileRef>
+   <FileRef
       location = "group:AmahiAnywhere.xcodeproj">
    </FileRef>
    <FileRef

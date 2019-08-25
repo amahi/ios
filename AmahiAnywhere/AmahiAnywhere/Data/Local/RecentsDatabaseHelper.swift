@@ -38,6 +38,9 @@ class RecentsDatabaseHelper {
         recentFile.size = object["size"] as? String
         recentFile.mimeType = object["mimeType"] as? String
         recentFile.mtimeDate = (object["mtimeDate"] as? Date)!
+        recentFile.path = object["path"] as? String
+        recentFile.sizeNumber = object["sizeNumber"] as! Int64
+        
         do{
             try context.save()
         } catch {

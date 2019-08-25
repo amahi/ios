@@ -15,6 +15,13 @@
 		3B24FE162297086A0044721D /* WalkthroughAmahiCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3B24FE152297086A0044721D /* WalkthroughAmahiCell.xib */; };
 		3B24FE1822970B6B0044721D /* WalkthroughCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3B24FE1722970B6B0044721D /* WalkthroughCell.xib */; };
 		3B24FE1A22970B860044721D /* WalkthroughCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B24FE1922970B860044721D /* WalkthroughCollectionCell.swift */; };
+		3B2805E42312CA1C0022ED48 /* RecentFile+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B2805E32312CA1C0022ED48 /* RecentFile+CoreDataProperties.swift */; };
+		3B2805E62312DE930022ED48 /* RecentFilesViewController+CollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B2805E52312DE930022ED48 /* RecentFilesViewController+CollectionView.swift */; };
+		3B2805E82312DEFE0022ED48 /* RecentFilesVIewController+SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B2805E72312DEFE0022ED48 /* RecentFilesVIewController+SearchBar.swift */; };
+		3B2805EA2312DF6A0022ED48 /* RecentFilesViewController+Offline.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B2805E92312DF6A0022ED48 /* RecentFilesViewController+Offline.swift */; };
+		3B2805EC2312DFFF0022ED48 /* RecentFilesViewController+Remote.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B2805EB2312DFFF0022ED48 /* RecentFilesViewController+Remote.swift */; };
+		3B2805EE2312E0BA0022ED48 /* RecentFilesViewController+Media.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B2805ED2312E0BA0022ED48 /* RecentFilesViewController+Media.swift */; };
+		3B2805F02312E1470022ED48 /* RecentFilesViewController+UI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B2805EF2312E1470022ED48 /* RecentFilesViewController+UI.swift */; };
 		3B33324E22BAA17C00BC61EB /* FilteredServerFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B33324D22BAA17C00BC61EB /* FilteredServerFile.swift */; };
 		3B33325022BAA26600BC61EB /* FilesGridCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B33324F22BAA26600BC61EB /* FilesGridCollectionCell.swift */; };
 		3B33325222BAA27E00BC61EB /* FilesListCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B33325122BAA27E00BC61EB /* FilesListCollectionViewCell.swift */; };
@@ -47,6 +54,7 @@
 		3BCAFBAD22C6DBCB0044057E /* OfflineFilesViewController+UICollectionViewDelegates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BCAFBAC22C6DBCB0044057E /* OfflineFilesViewController+UICollectionViewDelegates.swift */; };
 		3BCAFBAF22C6DC1A0044057E /* OfflineFilesViewController+Sorting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BCAFBAE22C6DC1A0044057E /* OfflineFilesViewController+Sorting.swift */; };
 		3BCAFBB122C6DC460044057E /* OfflineFilesViewController+FilesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BCAFBB022C6DC460044057E /* OfflineFilesViewController+FilesView.swift */; };
+		3BEA683E2311899D0017779A /* RecentFilesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BEA683D2311899D0017779A /* RecentFilesViewController.swift */; };
 		3BF1E81A22D0288700C531CD /* OfflineFileIndexes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BF1E81922D0288700C531CD /* OfflineFileIndexes.swift */; };
 		3BF1E81C22D07E9800C531CD /* UIApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BF1E81B22D07E9800C531CD /* UIApplication.swift */; };
 		3BF4592822CD702C00C020A4 /* GlobalLayoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BF4592722CD702C00C020A4 /* GlobalLayoutView.swift */; };
@@ -68,11 +76,9 @@
 		8A0A88F8227CE39C00A1360C /* MimeType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4612851D2051DB770061EC21 /* MimeType.swift */; };
 		8A67FC2B22666F81005A5038 /* OfflineFile+MimeType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A67FC2A22666F81005A5038 /* OfflineFile+MimeType.swift */; };
 		9935DAAC2301EB2F004816E1 /* RecentsPersistenceService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9935DAAB2301EB2F004816E1 /* RecentsPersistenceService.swift */; };
-		9935DAAF2301ED86004816E1 /* RecentFile+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9935DAAD2301ED85004816E1 /* RecentFile+CoreDataProperties.swift */; };
 		9935DAB02301ED86004816E1 /* RecentFile+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9935DAAE2301ED86004816E1 /* RecentFile+CoreDataClass.swift */; };
 		9935DAB22301EE24004816E1 /* RecentsDatabaseHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9935DAB12301EE24004816E1 /* RecentsDatabaseHelper.swift */; };
 		9935DAB42301FA21004816E1 /* RecentFiles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9935DAB32301FA21004816E1 /* RecentFiles.swift */; };
-		9936660F23030C4C00D78A8F /* RecentFilesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9936660E23030C4C00D78A8F /* RecentFilesViewController.swift */; };
 		9938343D22CBAAA2002A8213 /* Toast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9938343C22CBAAA2002A8213 /* Toast.swift */; };
 		993EC87522E6959800AF5F1F /* RootContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 993EC87422E6959800AF5F1F /* RootContainerViewController.swift */; };
 		99CF9D7F22E288BB0060C0E5 /* QueueViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99CF9D7E22E288BB0060C0E5 /* QueueViewController.swift */; };
@@ -139,6 +145,13 @@
 		3B24FE152297086A0044721D /* WalkthroughAmahiCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WalkthroughAmahiCell.xib; sourceTree = "<group>"; };
 		3B24FE1722970B6B0044721D /* WalkthroughCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WalkthroughCell.xib; sourceTree = "<group>"; };
 		3B24FE1922970B860044721D /* WalkthroughCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalkthroughCollectionCell.swift; sourceTree = "<group>"; };
+		3B2805E32312CA1C0022ED48 /* RecentFile+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "RecentFile+CoreDataProperties.swift"; path = "../../../../RecentFile+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		3B2805E52312DE930022ED48 /* RecentFilesViewController+CollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RecentFilesViewController+CollectionView.swift"; sourceTree = "<group>"; };
+		3B2805E72312DEFE0022ED48 /* RecentFilesVIewController+SearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RecentFilesVIewController+SearchBar.swift"; sourceTree = "<group>"; };
+		3B2805E92312DF6A0022ED48 /* RecentFilesViewController+Offline.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RecentFilesViewController+Offline.swift"; sourceTree = "<group>"; };
+		3B2805EB2312DFFF0022ED48 /* RecentFilesViewController+Remote.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RecentFilesViewController+Remote.swift"; sourceTree = "<group>"; };
+		3B2805ED2312E0BA0022ED48 /* RecentFilesViewController+Media.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RecentFilesViewController+Media.swift"; sourceTree = "<group>"; };
+		3B2805EF2312E1470022ED48 /* RecentFilesViewController+UI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RecentFilesViewController+UI.swift"; sourceTree = "<group>"; };
 		3B33324D22BAA17C00BC61EB /* FilteredServerFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilteredServerFile.swift; sourceTree = "<group>"; };
 		3B33324F22BAA26600BC61EB /* FilesGridCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilesGridCollectionCell.swift; sourceTree = "<group>"; };
 		3B33325122BAA27E00BC61EB /* FilesListCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilesListCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -171,6 +184,7 @@
 		3BCAFBAC22C6DBCB0044057E /* OfflineFilesViewController+UICollectionViewDelegates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OfflineFilesViewController+UICollectionViewDelegates.swift"; sourceTree = "<group>"; };
 		3BCAFBAE22C6DC1A0044057E /* OfflineFilesViewController+Sorting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OfflineFilesViewController+Sorting.swift"; sourceTree = "<group>"; };
 		3BCAFBB022C6DC460044057E /* OfflineFilesViewController+FilesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OfflineFilesViewController+FilesView.swift"; sourceTree = "<group>"; };
+		3BEA683D2311899D0017779A /* RecentFilesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentFilesViewController.swift; sourceTree = "<group>"; };
 		3BF1E81922D0288700C531CD /* OfflineFileIndexes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfflineFileIndexes.swift; sourceTree = "<group>"; };
 		3BF1E81B22D07E9800C531CD /* UIApplication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIApplication.swift; sourceTree = "<group>"; };
 		3BF4592722CD702C00C020A4 /* GlobalLayoutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalLayoutView.swift; sourceTree = "<group>"; };
@@ -195,11 +209,9 @@
 		8A67FC2A22666F81005A5038 /* OfflineFile+MimeType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OfflineFile+MimeType.swift"; sourceTree = "<group>"; };
 		9913634D22D5D2F100B48586 /* AmahiAnywhere.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = AmahiAnywhere.entitlements; sourceTree = "<group>"; };
 		9935DAAB2301EB2F004816E1 /* RecentsPersistenceService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentsPersistenceService.swift; sourceTree = "<group>"; };
-		9935DAAD2301ED85004816E1 /* RecentFile+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RecentFile+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		9935DAAE2301ED86004816E1 /* RecentFile+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RecentFile+CoreDataClass.swift"; sourceTree = "<group>"; };
 		9935DAB12301EE24004816E1 /* RecentsDatabaseHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentsDatabaseHelper.swift; sourceTree = "<group>"; };
 		9935DAB32301FA21004816E1 /* RecentFiles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentFiles.swift; sourceTree = "<group>"; };
-		9936660E23030C4C00D78A8F /* RecentFilesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentFilesViewController.swift; sourceTree = "<group>"; };
 		9938343C22CBAAA2002A8213 /* Toast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Toast.swift; sourceTree = "<group>"; };
 		993EC87422E6959800AF5F1F /* RootContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootContainerViewController.swift; sourceTree = "<group>"; };
 		99CF9D7E22E288BB0060C0E5 /* QueueViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QueueViewController.swift; sourceTree = "<group>"; };
@@ -324,6 +336,20 @@
 			path = Animation;
 			sourceTree = "<group>";
 		};
+		3BEA683C2311897E0017779A /* Recent Files */ = {
+			isa = PBXGroup;
+			children = (
+				3BEA683D2311899D0017779A /* RecentFilesViewController.swift */,
+				3B2805EF2312E1470022ED48 /* RecentFilesViewController+UI.swift */,
+				3B2805ED2312E0BA0022ED48 /* RecentFilesViewController+Media.swift */,
+				3B2805E92312DF6A0022ED48 /* RecentFilesViewController+Offline.swift */,
+				3B2805E52312DE930022ED48 /* RecentFilesViewController+CollectionView.swift */,
+				3B2805EB2312DFFF0022ED48 /* RecentFilesViewController+Remote.swift */,
+				3B2805E72312DEFE0022ED48 /* RecentFilesVIewController+SearchBar.swift */,
+			);
+			path = "Recent Files";
+			sourceTree = "<group>";
+		};
 		3BEBFAE02296F3E10075E8A4 /* Walkthrough */ = {
 			isa = PBXGroup;
 			children = (
@@ -444,6 +470,7 @@
 		C83C639A2039921B0089B9D8 /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
+				3BEA683C2311897E0017779A /* Recent Files */,
 				3B37EBB422F203DE0065CB77 /* HDA PIN Authentication */,
 				99CF9D7D22E2889F0060C0E5 /* Cast */,
 				C86CA90A20D30EFC00C8EDCA /* Offline */,
@@ -455,7 +482,6 @@
 				C83C639B2039922A0089B9D8 /* Login */,
 				3BEBFAE02296F3E10075E8A4 /* Walkthrough */,
 				C8D8615F209490230014D8AC /* WebViewController.swift */,
-				9936660E23030C4C00D78A8F /* RecentFilesViewController.swift */,
 			);
 			path = Presentation;
 			sourceTree = "<group>";
@@ -494,7 +520,7 @@
 				C8DA5B1720D5D7EA00F5A527 /* Download.swift */,
 				3BCAFBA822C68CF70044057E /* FilteredOfflineFile.swift */,
 				9935DAAE2301ED86004816E1 /* RecentFile+CoreDataClass.swift */,
-				9935DAAD2301ED85004816E1 /* RecentFile+CoreDataProperties.swift */,
+				3B2805E32312CA1C0022ED48 /* RecentFile+CoreDataProperties.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -797,10 +823,10 @@
 				46657183205085FC000E0D45 /* FilesPresenter.swift in Sources */,
 				46059646204EE17D004FA066 /* SharesViewController.swift in Sources */,
 				3B24FE1A22970B860044721D /* WalkthroughCollectionCell.swift in Sources */,
-				9935DAAF2301ED86004816E1 /* RecentFile+CoreDataProperties.swift in Sources */,
 				C8DA5B3520D8741000F5A527 /* String.swift in Sources */,
 				AD8F2FDC226E9331009C8C4B /* CoreDataStack+AutoSaving.swift in Sources */,
 				C8DEBFAD20BB1AEF00B09AED /* Alamofire.swift in Sources */,
+				3B2805F02312E1470022ED48 /* RecentFilesViewController+UI.swift in Sources */,
 				C866E5552042D02A0083A606 /* VideoPlayerViewController.swift in Sources */,
 				3B3F43DC22FECF3800BB42B0 /* AudioPlayerViewController+Gesture.swift in Sources */,
 				C83C63902038D5B30089B9D8 /* PersistenceIdentifiers.swift in Sources */,
@@ -832,7 +858,6 @@
 				3BF1E81C22D07E9800C531CD /* UIApplication.swift in Sources */,
 				C86CA91320D3A84A00C8EDCA /* LocalFilesModel.xcdatamodeld in Sources */,
 				ADAFF8D822501F5B00287409 /* PDFThumbnailGenerator.swift in Sources */,
-				9936660F23030C4C00D78A8F /* RecentFilesViewController.swift in Sources */,
 				4605963F204E24DF004FA066 /* ServerPresenter.swift in Sources */,
 				46098D02204FDBEE00752EB6 /* ApiEndPoints.swift in Sources */,
 				9935DAB22301EE24004816E1 /* RecentsDatabaseHelper.swift in Sources */,
@@ -847,6 +872,7 @@
 				C83C637320386DD90089B9D8 /* BaseContract.swift in Sources */,
 				C8DA5B2D20D7283400F5A527 /* DownloadService+URLSessionDelegate.swift in Sources */,
 				80F60700206BE1530098BC60 /* SettingsViewController.swift in Sources */,
+				3BEA683E2311899D0017779A /* RecentFilesViewController.swift in Sources */,
 				C83C63912038D5B30089B9D8 /* StringLiterals.swift in Sources */,
 				3B37EBB822F2D9F60065CB77 /* AuthTokenResponse.swift in Sources */,
 				FDF80E94229FB2060087F9B8 /* VideoMenuCellSettings.swift in Sources */,
@@ -857,16 +883,21 @@
 				3BCAFBA122C537C10044057E /* DownloadsListCollectionCell.swift in Sources */,
 				C8DA5B1C20D5DEC200F5A527 /* FilesViewController+FilesViewDelegates.swift in Sources */,
 				C878C97C205DF4060039C23A /* UIColor.swift in Sources */,
+				3B2805E82312DEFE0022ED48 /* RecentFilesVIewController+SearchBar.swift in Sources */,
 				3BCAFBA922C68CF70044057E /* FilteredOfflineFile.swift in Sources */,
 				99CF9D7F22E288BB0060C0E5 /* QueueViewController.swift in Sources */,
 				C86CA91520D3C65400C8EDCA /* CoreDataStack.swift in Sources */,
 				C8DA5B1820D5D7EA00F5A527 /* Download.swift in Sources */,
+				3B2805E62312DE930022ED48 /* RecentFilesViewController+CollectionView.swift in Sources */,
 				8A67FC2B22666F81005A5038 /* OfflineFile+MimeType.swift in Sources */,
 				80F3FDC7206C0D4D0061CD51 /* ConnectionViewController.swift in Sources */,
 				3B1B35A423080E710058B1D8 /* UINavigationItem.swift in Sources */,
+				3B2805EC2312DFFF0022ED48 /* RecentFilesViewController+Remote.swift in Sources */,
 				C83C638F2038D5B30089B9D8 /* LocalStorage.swift in Sources */,
 				C83C637420386DD90089B9D8 /* BaseUIViewController+BaseView.swift in Sources */,
+				3B2805EE2312E0BA0022ED48 /* RecentFilesViewController+Media.swift in Sources */,
 				C86CA91020D3937A00C8EDCA /* OfflineFilesPresenter.swift in Sources */,
+				3B2805E42312CA1C0022ED48 /* RecentFile+CoreDataProperties.swift in Sources */,
 				3B3F43DF22FECF7300BB42B0 /* DissmissAnimator.swift in Sources */,
 				C83C637E2038D5150089B9D8 /* StringIdentifiers.swift in Sources */,
 				3B33325022BAA26600BC61EB /* FilesGridCollectionCell.swift in Sources */,
@@ -897,6 +928,7 @@
 				3B33325C22BAA4BA00BC61EB /* FilesViewController+Sorting.swift in Sources */,
 				3B33325222BAA27E00BC61EB /* FilesListCollectionViewCell.swift in Sources */,
 				ADAFF8DA22501F7A00287409 /* VideoThumbnailGenerator.swift in Sources */,
+				3B2805EA2312DF6A0022ED48 /* RecentFilesViewController+Offline.swift in Sources */,
 				3B37EBB622F204030065CB77 /* HDAPinAuthVC.swift in Sources */,
 				46098D0A2050114C00752EB6 /* Network.swift in Sources */,
 				C83C639F2039B16C0089B9D8 /* ServerViewController.swift in Sources */,

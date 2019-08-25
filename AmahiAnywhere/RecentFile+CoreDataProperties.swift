@@ -2,7 +2,7 @@
 //  RecentFile+CoreDataProperties.swift
 //  
 //
-//  Created by Abhishek Sansanwal on 13/08/19.
+//  Created by Marton Zeisler on 2019. 08. 25..
 //
 //
 
@@ -26,5 +26,7 @@ extension RecentFile {
     @NSManaged public var day: NSNumber
     @NSManaged public var month: NSNumber
     @NSManaged public var year: NSNumber
+    @NSManaged public var path: String?
+    @NSManaged public var sizeNumber: Int64
 
 }

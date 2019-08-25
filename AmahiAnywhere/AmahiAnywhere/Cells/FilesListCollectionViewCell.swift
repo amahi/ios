@@ -33,6 +33,15 @@ class FilesListCollectionViewCell: FilesBaseCollectionCell {
         }
     }
     
+    func setupData(recentFile: Recent){
+        nameLabel.text = recentFile.fileName
+        showFile()
+        
+        sizeModifiedLabel.text = "\(recentFile.fileDisplayText), \(recentFile.filesSize)"
+        
+        setupArtWork(recentFile: recentFile, iconImageView: iconImageView)
+    }
+    
     func showDirectory(){
         sizeModifiedLabel.isHidden = true
         moreButton.isHidden = true

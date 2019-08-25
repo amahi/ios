@@ -12,3 +12,8 @@ struct OfflineFileIndexes{
     static var offlineFilesIndexPaths = [OfflineFile: IndexPath]()
     static var indexPathsForOfflineFiles = [IndexPath: OfflineFile]()
 }
+
+struct OfflineFileIndexesRecents{
+    static var offlineFilesIndexPaths = [OfflineFile: IndexPath]()
+    static var indexPathsForOfflineFiles = [IndexPath: OfflineFile]()
+}

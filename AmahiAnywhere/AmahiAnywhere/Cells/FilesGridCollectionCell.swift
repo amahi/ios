@@ -26,6 +26,13 @@ class FilesGridCollectionCell: FilesBaseCollectionCell {
         }
     }
     
+    func setupData(recentFile: Recent){
+        nameLabel.text = recentFile.fileName
+        showFile()
+        
+        setupArtWork(recentFile: recentFile, iconImageView: iconImageView)
+    }
+    
     func showDirectory(){
         moreButton.isHidden = true
         iconImageView.image = UIImage(named: "folderIcon")
