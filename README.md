@@ -17,7 +17,7 @@ Amahi iOS App, new from scratch, in Swift.
 - You may require to run `$ pod update`
 - `$ open AmahiAnywhere.xcworkspace` and build.
 - The build may fail with a missing ApiConfig.swift file
-- This file has developer/production credentials/endpoints and should not be shared. Email support at amahi dot org a copy of this file. 
+- This file has developer/production credentials/endpoints and should not be shared. Email support at amahi dot org for a copy of this file. 
 
 ### Code Practices
 Please help us follow the best practice to make it easy for the reviewer as well as the contributor.

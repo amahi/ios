@@ -8,6 +8,10 @@ This app uses the **[MVP](https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80
 * **Presentation** module contains Views and Presenters. Each sub-module in Presentation represents a simple user story or feature like Login, Shares. This pattern is known as package by feature.
 * **Base** module contains reusable functionalities for MVP Views and common UIViewController functionalities and
 * **Extension** module contains extensions to first-class Swift classes and iOS Framework classes.
+* **Managers** module contains different Service Managers
+* **Storyboards** module contains various storyboards
+* **Cells**  module contains IBOutlets for table view cells
+* **Utils** module contains miscellaneous swift files like StringIdentifiers and Loggers
 
 ##### Presentation Logic
 * `View` - delegates user interaction events to the `Presenter` and displays data passed by the `Presenter`
@@ -23,6 +27,7 @@ This app uses the **[MVP](https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80
 #### MVP & Other presentation patterns
 
 * [Using MVP in iOS](http://iyadagha.com/using-mvp-ios-swift)
+* [MVP Design Pattern in iOS (Video Explanation)](https://www.youtube.com/watch?v=1vpGW9BRxeY)
 * [MVP Pattern in iOS](https://dzone.com/articles/mvp-pattern-in-ios)
 * [iOS Architecture Patterns](https://medium.com/ios-os-x-development/ios-architecture-patterns-ecba4c38de52#.67lieoiim)
 * [Architecture Wars - A New Hope](https://swifting.io/blog/2016/09/07/architecture-wars-a-new-hope/)
