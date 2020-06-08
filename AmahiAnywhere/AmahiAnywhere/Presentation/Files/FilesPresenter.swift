@@ -27,7 +27,7 @@ internal protocol FilesView : BaseView {
     func webViewOpenContent(at url: URL, mimeType: MimeType)
     
     func shareFile(at url: URL, from sender : UIView?)
-
+    
     func updateDownloadProgress(for row: Int, downloadJustStarted: Bool, progress: Float)
     
     func dismissProgressIndicator(at url: URL, completion: @escaping () -> Void)
@@ -118,7 +118,7 @@ internal class FilesPresenter: BasePresenter {
         case MimeType.audio:
             let audioURLs = prepareAudioItems(files)
             var arrangedURLs = [URL]()
-                
+            
             for (index, url) in audioURLs.enumerated() {
                 if (index < fileIndex) {
                     arrangedURLs.insert(url, at: arrangedURLs.endIndex)
@@ -163,7 +163,7 @@ internal class FilesPresenter: BasePresenter {
     
     public func shareFile(_ file: ServerFile, fileIndex: Int,from sender : UIView?) {
         let type = Mimes.shared.match(file.mime_type!)
-
+        
         if FileManager.default.fileExistsInCache(file){
             let path = FileManager.default.localPathInCache(for: file)
             self.view?.shareFile(at: path, from: sender)
@@ -200,10 +200,10 @@ internal class FilesPresenter: BasePresenter {
     }
     
     private func downloadFile(at fileIndex: Int ,
-                      _ serverFile: ServerFile,
-                      mimeType: MimeType,
-                      from sender : UIView?,
-                      completion: @escaping (_ filePath: URL) -> Void) {
+                              _ serverFile: ServerFile,
+                              mimeType: MimeType,
+                              from sender : UIView?,
+                              completion: @escaping (_ filePath: URL) -> Void) {
         
         self.view?.updateDownloadProgress(for: fileIndex, downloadJustStarted: true, progress: 0.0)
         
@@ -240,19 +240,19 @@ internal class FilesPresenter: BasePresenter {
         return images
     }
     
-//    private func prepareAudioItems(_ files: [ServerFile]) -> [AVPlayerItem] {
-//        var audioItems = [AVPlayerItem]()
-//
-//        for file in files {
-//            if (Mimes.shared.match(file.mime_type!) == MimeType.audio) {
-//                let url = ServerApi.shared!.getFileUri(file)
-//                let item = AVPlayerItem(url: url)
-//                audioItems.append(item)
-//            }
-//        }
-//        return audioItems
-//    }
-//
+    //    private func prepareAudioItems(_ files: [ServerFile]) -> [AVPlayerItem] {
+    //        var audioItems = [AVPlayerItem]()
+    //
+    //        for file in files {
+    //            if (Mimes.shared.match(file.mime_type!) == MimeType.audio) {
+    //                let url = ServerApi.shared!.getFileUri(file)
+    //                let item = AVPlayerItem(url: url)
+    //                audioItems.append(item)
+    //            }
+    //        }
+    //        return audioItems
+    //    }
+    //
     private func prepareAudioItems(_ files: [ServerFile]) -> [URL] {
         var audioURLs = [URL]()
         
@@ -269,15 +269,15 @@ internal class FilesPresenter: BasePresenter {
         
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "OfflineFile")
         fetchRequest.sortDescriptors = [NSSortDescriptor(key: "downloadDate", ascending: false)]
-
+        
         let delegate = UIApplication.shared.delegate as! AppDelegate
         let stack = delegate.stack
-                
+        
         fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest,
                                                               managedObjectContext: stack.context,
                                                               sectionNameKeyPath: nil, cacheName: nil)
         if let files = fetchedResultsController?.fetchedObjects as! [OfflineFile]? {
-     
+            
             var dictionary = [String : OfflineFile]()
             
             for file in files {

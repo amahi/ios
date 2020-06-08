@@ -9,6 +9,7 @@
 import UIKit
 import Lightbox
 import AVFoundation
+import MediaPlayer
 
 class FilesViewController: BaseUIViewController {
     
@@ -39,10 +40,10 @@ class FilesViewController: BaseUIViewController {
     
     internal var isAlertShowing = false
     internal var presenter: FilesPresenter!
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         presenter = FilesPresenter(self)
         
         refreshControl = UIRefreshControl()
@@ -56,6 +57,7 @@ class FilesViewController: BaseUIViewController {
         self.navigationItem.title = getTitle()
         
         presenter.getFiles(share, directory: directory)
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -79,23 +81,23 @@ class FilesViewController: BaseUIViewController {
             let download = self.creatAlertAction(StringLiterals.DOWNLOAD, style: .default) { (action) in
                 let file = self.filteredFiles[indexPath.row]
                 self.presenter.makeFileAvailableOffline(file)
-            }!
+                }!
             let state = presenter.checkFileOfflineState(file)
-
+            
             let share = self.creatAlertAction(StringLiterals.SHARE, style: .default) { (action) in
                 self.presenter.shareFile(file, fileIndex: indexPath.row,
                                          from: self.filesTableView.cellForRow(at: indexPath))
-            }!
+                }!
             
             let removeOffline = self.creatAlertAction(StringLiterals.REMOVE_OFFLINE, style: .default) { (action) in
-            }!
+                }!
             
             let stop = self.creatAlertAction(StringLiterals.STOP_DOWNLOAD, style: .default) { (action) in
-            }!
+                }!
             
             var actions = [UIAlertAction]()            
             actions.append(share)
-
+            
             if state == .none {
                 actions.append(download)
             } else if state == .downloaded {

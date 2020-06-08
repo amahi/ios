@@ -17,12 +17,12 @@ class OfflineFilesTableViewController : CoreDataTableViewController {
     @objc internal var player: AVQueuePlayer!
     
     internal var presenter: OfflineFilesPresenter!
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         AmahiLogger.log("Active Downloads \(DownloadService.shared.activeDownloads)")
         presenter = OfflineFilesPresenter(self)
-
+        
         self.navigationItem.title = StringLiterals.OFFLINE
         
         let longPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(handleLongPress))
@@ -39,37 +39,37 @@ class OfflineFilesTableViewController : CoreDataTableViewController {
     }
     
     @objc func handleLongPress(sender: UIGestureRecognizer) {
-    
+        
         if tableView.isEditing {
             return
         }
         
         let touchPoint = sender.location(in: tableView)
         if let indexPath = tableView.indexPathForRow(at: touchPoint) {
-
+            
             let offlineFile = self.fetchedResultsController!.object(at: indexPath) as! OfflineFile
-
+            
             let delete = self.creatAlertAction(StringLiterals.DELETE, style: .default) { (action) in
                 if offlineFile.stateEnum != .downloading {
                     DownloadService.shared.cancelDownload(offlineFile)
                 }
                 self.delete(file: offlineFile)
-            }!
+                }!
             
             let open = self.creatAlertAction(StringLiterals.OPEN, style: .default) { (action) in
                 let offlineFiles : [OfflineFile] = self.fetchedResultsController?.fetchedObjects as! [OfflineFile]
                 self.presenter.handleOfflineFile(fileIndex: indexPath.row, files: offlineFiles, from: self.tableView.cellForRow(at: indexPath))
-            }!
+                }!
             
             let share = self.creatAlertAction(StringLiterals.SHARE, style: .default) { (action) in
                 guard let url = FileManager.default.localFilePathInDownloads(for: offlineFile) else { return }
                 self.shareFile(at: url, from: self.tableView.cellForRow(at: indexPath))
-            }!
+                }!
             
             let stop = self.creatAlertAction(StringLiterals.STOP_DOWNLOAD, style: .default) { (action) in
                 DownloadService.shared.cancelDownload(offlineFile)
                 self.delete(file: offlineFile)
-            }!
+                }!
             
             var actions = [UIAlertAction]()
             
@@ -95,7 +95,7 @@ class OfflineFilesTableViewController : CoreDataTableViewController {
                                    ltrActions: actions,
                                    preferredActionPosition: 0,
                                    sender: tableView.cellForRow(at: indexPath))
-            }
+        }
     }
     
     @objc func userClickMenu(sender: UIGestureRecognizer) {

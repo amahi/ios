@@ -2,22 +2,46 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "image@3x-2.png",
-      "scale" : "1x"
+      "filename" : "amahi-logo-a36008f915e1ad5efaaf8e468ac614d888ece91aca11db69666e2055f1307964.png"
+    },
+    {
+      "idiom" : "universal",
+      "filename" : "amahi-logo-a36008f915e1ad5efaaf8e468ac614d888ece91aca11db69666e2055f1307964-1.png",
+      "appearances" : [
+        {
+          "appearance" : "luminosity",
+          "value" : "light"
+        }
+      ]
+    },
+    {
+      "idiom" : "universal",
+      "filename" : "Amahi Logo White Font.png",
+      "appearances" : [
+        {
+          "appearance" : "luminosity",
+          "value" : "dark"
+        }
+      ]
     },
     {
       "idiom" : "universal",
       "filename" : "image@3x-1.png",
+      "unassigned" : true,
       "scale" : "2x"
     },
     {
       "idiom" : "universal",
       "filename" : "image@3x.png",
+      "unassigned" : true,
       "scale" : "3x"
     }
   ],
   "info" : {
     "version" : 1,
     "author" : "xcode"
+  },
+  "properties" : {
+    "preserves-vector-representation" : true
   }
 }

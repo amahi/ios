@@ -9,7 +9,7 @@
 import Foundation
 
 extension OfflineFilesTableViewController: UISearchBarDelegate {
- 
+    
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         refetch(with: searchText)
     }

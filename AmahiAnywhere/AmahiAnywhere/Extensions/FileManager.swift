@@ -48,7 +48,7 @@ extension FileManager {
             let folderPath = directory.appendingPathComponent(folderName)
             
             let resourceKeys : [URLResourceKey] = [.contentAccessDateKey, .isDirectoryKey]
-       
+            
             if !fileExists(atPath: folderPath.path) {
                 AmahiLogger.log("Cache is empty, no need to proceed with cleanup")
                 return
@@ -131,7 +131,7 @@ extension FileManager {
     func fileExistsInCache(_ file: ServerFile) -> Bool {
         let fileManager =  self
         let pathComponent = localPathInCache(for: file)
-
+        
         if fileManager.fileExists(atPath: pathComponent.path) {
             return true
         } else {
@@ -142,7 +142,7 @@ extension FileManager {
     func fileExistsInDownloads(_ file: OfflineFile) -> Bool {
         let fileManager =  self
         let pathComponent = localFilePathInDownloads(for: file)
-
+        
         if let filePath = pathComponent?.path {
             if fileManager.fileExists(atPath: filePath) {
                 return true

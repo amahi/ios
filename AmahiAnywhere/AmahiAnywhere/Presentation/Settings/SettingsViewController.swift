@@ -38,29 +38,29 @@ class SettingsViewController: BaseUITableViewController, MFMailComposeViewContro
     func mailComposeController(_ controller:MFMailComposeViewController,
                                didFinishWith result:MFMailComposeResult, error:Error?) {
         switch result {
-            case .cancelled:
-                let myalert = UIAlertController(title: StringLiterals.CANCEL_TITLE, message: StringLiterals.CANCEL_MESSAGE, preferredStyle: UIAlertController.Style.alert)
-                
-                myalert.addAction(UIAlertAction(title: StringLiterals.ALERT_ACTION, style: .default) { (action:UIAlertAction!) in
-                })
-                self.present(myalert, animated: true)
-            case .saved:
-                let myalert = UIAlertController(title: StringLiterals.SAVED_TITLE, message: StringLiterals.SAVED_MESSAGE, preferredStyle: UIAlertController.Style.alert)
-                
-                myalert.addAction(UIAlertAction(title: StringLiterals.ALERT_ACTION, style: .default) { (action:UIAlertAction!) in
-                })
-                self.present(myalert, animated: true)
-            case .sent:
-                let myalert = UIAlertController(title: StringLiterals.SENT_TITLE, message: StringLiterals.SENT_MESSAGE, preferredStyle: UIAlertController.Style.alert)
-                
-                myalert.addAction(UIAlertAction(title: StringLiterals.ALERT_ACTION, style: .default) { (action:UIAlertAction!) in
-                })
-                self.present(myalert, animated: true)
+        case .cancelled:
+            let myalert = UIAlertController(title: StringLiterals.CANCEL_TITLE, message: StringLiterals.CANCEL_MESSAGE, preferredStyle: UIAlertController.Style.alert)
             
-            case .failed:
-                AmahiLogger.log("Mail sent failure: \(String(describing: error?.localizedDescription))")
-                // default:
-                break
+            myalert.addAction(UIAlertAction(title: StringLiterals.ALERT_ACTION, style: .default) { (action:UIAlertAction!) in
+            })
+            self.present(myalert, animated: true)
+        case .saved:
+            let myalert = UIAlertController(title: StringLiterals.SAVED_TITLE, message: StringLiterals.SAVED_MESSAGE, preferredStyle: UIAlertController.Style.alert)
+            
+            myalert.addAction(UIAlertAction(title: StringLiterals.ALERT_ACTION, style: .default) { (action:UIAlertAction!) in
+            })
+            self.present(myalert, animated: true)
+        case .sent:
+            let myalert = UIAlertController(title: StringLiterals.SENT_TITLE, message: StringLiterals.SENT_MESSAGE, preferredStyle: UIAlertController.Style.alert)
+            
+            myalert.addAction(UIAlertAction(title: StringLiterals.ALERT_ACTION, style: .default) { (action:UIAlertAction!) in
+            })
+            self.present(myalert, animated: true)
+            
+        case .failed:
+            AmahiLogger.log("Mail sent failure: \(String(describing: error?.localizedDescription))")
+            // default:
+            break
         }
         self.dismiss(animated: true, completion: nil)
     }
@@ -96,7 +96,7 @@ class SettingsViewController: BaseUITableViewController, MFMailComposeViewContro
         var cell: UITableViewCell
         
         if section == 1 || (section == 2 && row == 0) {
-        
+            
             cell = tableView.dequeueReusableCell(withIdentifier: CellIdentifiers.SETTING_CELL_WITH_DETAILS, for: indexPath)
             cell.textLabel?.text = settingItems[section][row]
             cell.textLabel?.textColor = UIColor.white
@@ -114,7 +114,7 @@ class SettingsViewController: BaseUITableViewController, MFMailComposeViewContro
                         cell.detailTextLabel?.text =  StringLiterals.AUTO_CONNECTION_REMOTE
                     }
                 } else {
-                  cell.detailTextLabel?.text =  LocalStorage.shared.userConnectionPreference.rawValue
+                    cell.detailTextLabel?.text =  LocalStorage.shared.userConnectionPreference.rawValue
                 }
             }
             else if section == 1 && row == 1 {
@@ -147,79 +147,79 @@ class SettingsViewController: BaseUITableViewController, MFMailComposeViewContro
         
         switch section {
             
-            case 0:
-                let refreshAlert = UIAlertController(title: StringLiterals.SIGNOUT_TITLE,
-                                                     message:StringLiterals.SIGNOUT_MESSAGE,
-                                                     preferredStyle: UIAlertController.Style.alert)
-                refreshAlert.addAction(UIAlertAction(title: StringLiterals.CONFIRM,
-                                                     style: .destructive, handler: { (action: UIAlertAction!) in
-                    self.signOut()
-                }))
-                refreshAlert.addAction(UIAlertAction(title: StringLiterals.CANCEL, style: .default, handler: { (action: UIAlertAction!) in
-                    refreshAlert .dismiss(animated: true, completion: nil)
-                }))
-                present(refreshAlert, animated: true, completion: nil)
-                break
-            case 1:
-                if row == 0 {
-                    performSegue(withIdentifier: SegueIdentfiers.CONNECTION, sender: nil)
-                } else if row == 1 {
-                    // Clear temp storage
-                    
-                    let clearCacheAlert = UIAlertController(title: StringLiterals.CLEAR_CACHE_TITLE,
-                                                         message:StringLiterals.CLEAR_CACHE_MESSAGE,
-                                                         preferredStyle: UIAlertController.Style.alert)
-                    clearCacheAlert.addAction(UIAlertAction(title: StringLiterals.CONFIRM,
-                                                         style: .destructive, handler: { (action: UIAlertAction!) in
-                                                            
-                                FileManager.default.deleteFolder(in: FileManager.default.temporaryDirectory,
-                                                                                             folderName: "cache")
-                                self.tableView.reloadData()
-                    }))
-                    clearCacheAlert.addAction(UIAlertAction(title: StringLiterals.CANCEL, style: .default, handler: { (action: UIAlertAction!) in
-                        clearCacheAlert .dismiss(animated: true, completion: nil)
-                    }))
-                    present(clearCacheAlert, animated: true, completion: nil)
-                }
+        case 0:
+            let refreshAlert = UIAlertController(title: StringLiterals.SIGNOUT_TITLE,
+                                                 message:StringLiterals.SIGNOUT_MESSAGE,
+                                                 preferredStyle: UIAlertController.Style.alert)
+            refreshAlert.addAction(UIAlertAction(title: StringLiterals.CONFIRM,
+                                                 style: .destructive, handler: { (action: UIAlertAction!) in
+                                                    self.signOut()
+            }))
+            refreshAlert.addAction(UIAlertAction(title: StringLiterals.CANCEL, style: .default, handler: { (action: UIAlertAction!) in
+                refreshAlert .dismiss(animated: true, completion: nil)
+            }))
+            present(refreshAlert, animated: true, completion: nil)
+            break
+        case 1:
+            if row == 0 {
+                performSegue(withIdentifier: SegueIdentfiers.CONNECTION, sender: nil)
+            } else if row == 1 {
+                // Clear temp storage
                 
-                break
-            case 2: 
-                if row == 1 {
-                    let urlStr = StringLiterals.URL
-                    if let url = URL(string: urlStr), UIApplication.shared.canOpenURL(url) {
-                        if #available(iOS 10.0, *) {
-                            UIApplication.shared.open(url, options: convertToUIApplicationOpenExternalURLOptionsKeyDictionary([:]), completionHandler: nil)
-                        } else {
-                            UIApplication.shared.openURL(url)
-                        }
-                    }
-                } else if row == 2 {
-                    let mailVc = configureMailComposeViewController(recipient: StringLiterals.FEEDBACK_RECEPIENT,
-                                                                    subject: StringLiterals.FEEDBACK_SUBJECT,
-                                                                    message: StringLiterals.FEEDBACK_MSG)
-                    if MFMailComposeViewController.canSendMail() {
-                        self.present(mailVc, animated: true, completion: nil)
+                let clearCacheAlert = UIAlertController(title: StringLiterals.CLEAR_CACHE_TITLE,
+                                                        message:StringLiterals.CLEAR_CACHE_MESSAGE,
+                                                        preferredStyle: UIAlertController.Style.alert)
+                clearCacheAlert.addAction(UIAlertAction(title: StringLiterals.CONFIRM,
+                                                        style: .destructive, handler: { (action: UIAlertAction!) in
+                                                            
+                                                            FileManager.default.deleteFolder(in: FileManager.default.temporaryDirectory,
+                                                                                             folderName: "cache")
+                                                            self.tableView.reloadData()
+                }))
+                clearCacheAlert.addAction(UIAlertAction(title: StringLiterals.CANCEL, style: .default, handler: { (action: UIAlertAction!) in
+                    clearCacheAlert .dismiss(animated: true, completion: nil)
+                }))
+                present(clearCacheAlert, animated: true, completion: nil)
+            }
+            
+            break
+        case 2:
+            if row == 1 {
+                let urlStr = StringLiterals.URL
+                if let url = URL(string: urlStr), UIApplication.shared.canOpenURL(url) {
+                    if #available(iOS 10.0, *) {
+                        UIApplication.shared.open(url, options: convertToUIApplicationOpenExternalURLOptionsKeyDictionary([:]), completionHandler: nil)
                     } else {
-                        self.showSendMailErrorAlert()
-                    }
-                } else if row == 3 {
-                    let mailVc = configureMailComposeViewController(recipient: "",
-                                                                    subject: StringLiterals.SHARE_SUBJECT,
-                                                                    message: StringLiterals.SHARE_MESSAGE)
-                    if MFMailComposeViewController.canSendMail() {
-                        self.present(mailVc, animated: true, completion: nil)
-                    } else {
-                        self.showSendMailErrorAlert()
+                        UIApplication.shared.openURL(url)
                     }
                 }
-                break
-            default:
-                break
+            } else if row == 2 {
+                let mailVc = configureMailComposeViewController(recipient: StringLiterals.FEEDBACK_RECEPIENT,
+                                                                subject: StringLiterals.FEEDBACK_SUBJECT,
+                                                                message: StringLiterals.FEEDBACK_MSG)
+                if MFMailComposeViewController.canSendMail() {
+                    self.present(mailVc, animated: true, completion: nil)
+                } else {
+                    self.showSendMailErrorAlert()
+                }
+            } else if row == 3 {
+                let mailVc = configureMailComposeViewController(recipient: "",
+                                                                subject: StringLiterals.SHARE_SUBJECT,
+                                                                message: StringLiterals.SHARE_MESSAGE)
+                if MFMailComposeViewController.canSendMail() {
+                    self.present(mailVc, animated: true, completion: nil)
+                } else {
+                    self.showSendMailErrorAlert()
+                }
+            }
+            break
+        default:
+            break
         }
     }
 }
 
 // Helper function inserted by Swift 4.2 migrator.
 fileprivate func convertToUIApplicationOpenExternalURLOptionsKeyDictionary(_ input: [String: Any]) -> [UIApplication.OpenExternalURLOptionsKey: Any] {
-	return Dictionary(uniqueKeysWithValues: input.map { key, value in (UIApplication.OpenExternalURLOptionsKey(rawValue: key), value)})
+    return Dictionary(uniqueKeysWithValues: input.map { key, value in (UIApplication.OpenExternalURLOptionsKey(rawValue: key), value)})
 }
