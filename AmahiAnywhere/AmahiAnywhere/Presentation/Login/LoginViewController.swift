@@ -61,6 +61,7 @@ extension LoginViewController: LoginView {
     func showHome() {
         
         let serverVc = self.instantiateViewController(withIdentifier: "NavigationViewController", from: StoryBoardIdentifiers.MAIN)
+        serverVc.modalPresentationStyle = .fullScreen
         self.present(serverVc, animated: true, completion: nil)
     }
     

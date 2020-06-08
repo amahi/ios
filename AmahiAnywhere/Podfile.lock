@@ -1,10 +1,10 @@
 PODS:
   - Alamofire (4.7.3)
   - Cache (5.2.0)
-  - EVReflection/Alamofire (5.8.0):
+  - EVReflection/Alamofire (5.10.1):
     - Alamofire
     - EVReflection/Core
-  - EVReflection/Core (5.8.0)
+  - EVReflection/Core (5.10.1)
   - Imaginary (4.2.0):
     - Cache (~> 5.0)
   - IQKeyboardManagerSwift (6.2.0)
@@ -17,7 +17,7 @@ PODS:
 
 DEPENDENCIES:
   - Alamofire
-  - EVReflection/Alamofire
+  - EVReflection/Alamofire (~> 5.10.1)
   - IQKeyboardManagerSwift
   - Lightbox
   - MBProgressHUD
@@ -26,7 +26,7 @@ DEPENDENCIES:
   - SkyFloatingLabelTextField
 
 SPEC REPOS:
-  https://github.com/cocoapods/specs.git:
+  https://github.com/CocoaPods/Specs.git:
     - Alamofire
     - Cache
     - EVReflection
@@ -41,7 +41,7 @@ SPEC REPOS:
 SPEC CHECKSUMS:
   Alamofire: c7287b6e5d7da964a70935e5db17046b7fde6568
   Cache: 807c5d86d01a177f06ede9865add3aea269bbfd4
-  EVReflection: 1f1813b5d1e2c0dbafa2bbc2ec84f8dfb3b72f8b
+  EVReflection: 8124de482178d34ccd56473e16cd95990f9a1113
   Imaginary: dae33d06dbc2ada22f98afef5eb45cc061311a2c
   IQKeyboardManagerSwift: b07ccf9d8cafe993dcd6cb794eb4ba34611a0c4e
   Lightbox: d317750e4132bfb871a5307cfe0a2c7d6a583c65
@@ -50,6 +50,6 @@ SPEC CHECKSUMS:
   ReachabilitySwift: 408477d1b6ed9779dba301953171e017c31241f3
   SkyFloatingLabelTextField: 38164979b79512f9ff9288ad8acfc4bbf5d843e3
 
-PODFILE CHECKSUM: 05f4f94ccd14414605545108b00372bb54dd2d6d
+PODFILE CHECKSUM: 1c2067e14954ec9f8bb2aa3b3e8a669f9f029281
 
-COCOAPODS: 1.5.3
+COCOAPODS: 1.8.4

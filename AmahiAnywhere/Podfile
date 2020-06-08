@@ -7,7 +7,7 @@ use_frameworks!
 
     pod 'Alamofire'
     pod 'MBProgressHUD'
-    pod 'EVReflection/Alamofire'
+    pod 'EVReflection/Alamofire', '~> 5.10.1'
     pod 'IQKeyboardManagerSwift'
     pod 'SkyFloatingLabelTextField'
     pod 'MobileVLCKit'
