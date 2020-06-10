@@ -15,7 +15,13 @@ class SharesCollectionViewCell: UICollectionViewCell {
     override func awakeFromNib() {
         let view = UIView()
         view.layer.cornerRadius = 8
-        view.backgroundColor = UIColor(hex: "1E2023")
+    
+        if #available(iOS 13.0, *) {
+            view.backgroundColor = UIColor.secondarySystemBackground
+        } else {
+            view.backgroundColor = UIColor(hex: "1E2023")
+        }
+        
         selectedBackgroundView = view
     }
     

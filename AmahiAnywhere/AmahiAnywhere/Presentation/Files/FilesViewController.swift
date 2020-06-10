@@ -159,8 +159,16 @@ class FilesViewController: BaseUIViewController, GCKRemoteMediaClientListener {
     
     func setupRefreshControl(){
         refreshControl = UIRefreshControl()
-        refreshControl.tintColor = .white
-        refreshControl.attributedTitle = NSAttributedString(string: "Pull to Refresh", attributes: [.foregroundColor: UIColor.white])
+        if #available(iOS 13.0, *) {
+            refreshControl.tintColor = .label
+        } else {
+            refreshControl.tintColor = .white
+        }
+        if #available(iOS 13.0, *) {
+            refreshControl.attributedTitle = NSAttributedString(string: "Pull to Refresh", attributes: [.foregroundColor: UIColor.label])
+        } else {
+            refreshControl.attributedTitle = NSAttributedString(string: "Pull to Refresh", attributes: [.foregroundColor: UIColor.white])
+        }
         self.refreshControl?.addTarget(self, action: #selector(handleRefresh), for: UIControl.Event.valueChanged)
         filesCollectionView.addSubview(refreshControl)
     }
@@ -269,8 +277,16 @@ class FilesViewController: BaseUIViewController, GCKRemoteMediaClientListener {
         searchController = UISearchController(searchResultsController: nil)
         searchController.obscuresBackgroundDuringPresentation = false
         searchController.searchBar.placeholder = "Search"
-        searchController.searchBar.tintColor = .white
-        UITextField.appearance(whenContainedInInstancesOf: [UISearchBar.self]).defaultTextAttributes = [.foregroundColor: UIColor.white]
+        if #available(iOS 13.0, *) {
+            searchController.searchBar.tintColor = .label
+        } else {
+            searchController.searchBar.tintColor = .white
+        }
+        if #available(iOS 13.0, *) {
+            UITextField.appearance(whenContainedInInstancesOf: [UISearchBar.self]).defaultTextAttributes = [.foregroundColor: UIColor.systemGray6]
+        } else {
+            UITextField.appearance(whenContainedInInstancesOf: [UISearchBar.self]).defaultTextAttributes = [.foregroundColor: UIColor.white]
+        }
         searchController.delegate = self
         searchController.searchBar.delegate = self
         searchController.hidesNavigationBarDuringPresentation = false
@@ -433,7 +449,11 @@ class FilesViewController: BaseUIViewController, GCKRemoteMediaClientListener {
         downloadImageView?.setAnchorSize(width: 80, height: 80)
         
         progressView = UIProgressView(progressViewStyle: .bar)
-        progressView?.trackTintColor = .white
+        if #available(iOS 13.0, *) {
+            progressView?.trackTintColor = .label
+        } else {
+            progressView?.trackTintColor = .white
+        }
         progressView?.setProgress(0.0, animated: true)
         progressView?.setAnchorSize(width: nil, height: 2)
     
@@ -464,7 +484,11 @@ class FilesViewController: BaseUIViewController, GCKRemoteMediaClientListener {
     
     func showSortViews(){
         sortBackgroundView = UIView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height))
-        sortBackgroundView.backgroundColor = UIColor.black.withAlphaComponent(0.6)
+        if #available(iOS 13.0, *) {
+            sortBackgroundView.backgroundColor = UIColor.systemGray6.withAlphaComponent(0.6)
+        } else {
+            sortBackgroundView.backgroundColor = UIColor.black.withAlphaComponent(0.6)
+        }
         sortBackgroundView.isHidden = true
         sortBackgroundView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(dismissSortView)))
         

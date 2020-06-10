@@ -5,7 +5,7 @@ target 'AmahiAnywhere' do
 
 use_frameworks!
 
-    pod 'Alamofire'
+    pod 'Alamofire', '~> 4.7'
     pod 'MBProgressHUD'
     pod 'EVReflection/Alamofire'
     pod 'IQKeyboardManagerSwift'

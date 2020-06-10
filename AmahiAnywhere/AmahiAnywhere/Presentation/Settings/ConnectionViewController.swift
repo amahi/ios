@@ -39,10 +39,24 @@ class ConnectionViewController: BaseUITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: CellIdentifiers.connectionCell, for: indexPath)
         
         cell.textLabel?.text = connectionItem[indexPath.row].rawValue
-        cell.textLabel?.textColor = UIColor.white
+        //cell.textLabel?.textColor = UIColor.white
+        
+        if #available(iOS 13.0, *) {
+            cell.textLabel?.textColor = UIColor.label
+        } else {
+             cell.textLabel?.textColor = UIColor.white
+            
+        }
         
         let selectedBackgroundView = UIView()
-        selectedBackgroundView.backgroundColor = UIColor(hex: "1E2023")
+        //selectedBackgroundView.backgroundColor = UIColor(hex: "1E2023")
+        if #available(iOS 13.0, *) {
+            selectedBackgroundView.backgroundColor = UIColor.tertiarySystemBackground
+        } else {
+               selectedBackgroundView.backgroundColor = UIColor(hex: "1E2023")
+            
+        }
+        
         cell.selectedBackgroundView = selectedBackgroundView
         
         if connectionItem[indexPath.row] == LocalStorage.shared.userConnectionPreference {

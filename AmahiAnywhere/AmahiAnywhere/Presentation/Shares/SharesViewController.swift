@@ -20,8 +20,17 @@ class SharesViewController: BaseUIViewController, UICollectionViewDelegate, UICo
     let refreshControl: UIRefreshControl = {
         let control = UIRefreshControl()
         control.addTarget(self, action: #selector(handleRefresh), for: .valueChanged)
-        control.tintColor = .white
-        control.attributedTitle = NSAttributedString(string: "Pull To Refresh", attributes: [NSAttributedString.Key.foregroundColor: UIColor.white])
+        if #available(iOS 13.0, *) {
+            control.tintColor = .label
+        } else {
+            control.tintColor = .white
+            
+        }
+        if #available(iOS 13.0, *) {
+            control.attributedTitle = NSAttributedString(string: "Pull To Refresh", attributes: [NSAttributedString.Key.foregroundColor: UIColor.systemGray6])
+        } else {
+            control.attributedTitle = NSAttributedString(string: "Pull To Refresh", attributes: [NSAttributedString.Key.foregroundColor: UIColor.white])
+        }
         return control
     }()
     

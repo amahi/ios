@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina6_1" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -301,17 +299,17 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <stackView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="999" spacing="50" translatesAutoresizingMaskIntoConstraints="NO" id="gAA-Hm-ENq">
-                                <rect key="frame" x="106" y="742" width="202" height="70"/>
+                                <rect key="frame" x="90" y="742" width="234" height="70"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zNL-qI-2hv">
-                                        <rect key="frame" x="0.0" y="0.0" width="16" height="70"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="32" height="70"/>
                                         <state key="normal" image="prevButton"/>
                                         <connections>
                                             <action selector="prevButtonPressed:" destination="cll-dP-OW0" eventType="touchUpInside" id="1FT-O3-NZi"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oKO-Dj-1vV">
-                                        <rect key="frame" x="66" y="0.0" width="70" height="70"/>
+                                        <rect key="frame" x="82" y="0.0" width="70" height="70"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="70" id="Ylz-gx-bcj"/>
                                             <constraint firstAttribute="width" constant="70" id="cDN-ad-nPT"/>
@@ -322,7 +320,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="D7Y-Ml-44J">
-                                        <rect key="frame" x="186" y="0.0" width="16" height="70"/>
+                                        <rect key="frame" x="202" y="0.0" width="32" height="70"/>
                                         <state key="normal" image="nextButton"/>
                                         <connections>
                                             <action selector="nextButtonPressed:" destination="cll-dP-OW0" eventType="touchUpInside" id="YXG-o9-gUg"/>
