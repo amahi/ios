@@ -1,6 +1,6 @@
 PODS:
   - Alamofire (4.9.1)
-  - Cache (5.2.0)
+  - Cache (5.3.0)
   - EVReflection/Alamofire (5.10.1):
     - Alamofire
     - EVReflection/Core
@@ -11,13 +11,13 @@ PODS:
     - Protobuf (~> 3.0)
   - google-cast-sdk/Core (4.4.7):
     - Protobuf (~> 3.0)
-  - Imaginary (4.2.0):
-    - Cache (~> 5.0)
+  - Imaginary (4.3.1):
+    - Cache (~> 5.3.0)
   - IQKeyboardManagerSwift (6.5.5)
   - Lightbox (2.3.0):
     - Imaginary (~> 4.0)
   - MBProgressHUD (1.2.0)
-  - MobileVLCKit (3.3.11)
+  - MobileVLCKit (3.3.12)
   - Protobuf (3.12.0)
   - ReachabilitySwift (5.0.0)
   - SDWebImage (5.8.0):
@@ -60,15 +60,15 @@ SPEC REPOS:
 
 SPEC CHECKSUMS:
   Alamofire: 85e8a02c69d6020a0d734f6054870d7ecb75cf18
-  Cache: 807c5d86d01a177f06ede9865add3aea269bbfd4
+  Cache: 48762993ec44e1d93483c4d4a13edd18452326f4
   EVReflection: 8124de482178d34ccd56473e16cd95990f9a1113
   Floaty: e2bd5a0f6f7f70899e26ff2da31081c8bee8d1b0
   google-cast-sdk: 5fb55ce696a3d37f213b64b4f508577ccabd1a36
-  Imaginary: dae33d06dbc2ada22f98afef5eb45cc061311a2c
+  Imaginary: 18c5bba364229eef383b925199db442e71d175e1
   IQKeyboardManagerSwift: 0fb93310284665245591f50f7a5e38de615960b7
   Lightbox: d317750e4132bfb871a5307cfe0a2c7d6a583c65
   MBProgressHUD: 3ee5efcc380f6a79a7cc9b363dd669c5e1ae7406
-  MobileVLCKit: 8b7f955e96686d3aea9660fd711215ea34bcebc8
+  MobileVLCKit: 4ed689aa34244fbe3e8aaaa6c8d80958bd6a1abf
   Protobuf: 2793fcd0622a00b546c60e7cbbcc493e043e9bb9
   ReachabilitySwift: 985039c6f7b23a1da463388634119492ff86c825
   SDWebImage: 84000f962cbfa70c07f19d2234cbfcf5d779b5dc
