@@ -50,7 +50,6 @@ class HDAPinAuthVC: BaseUIViewController {
     func checkPin(pin: String){
         ServerApi.shared!.authenticateServerWithPIN(pin: pin) { (authResponse) in
             if let authToken = authResponse?.auth_token{
-                print("Marton: Access token gained for hda: \(authToken)")
                 self.saveToken(token: authToken)
                 self.showShares()
             }else{

@@ -44,9 +44,6 @@ class RootContainerViewController: UIViewController, GCKUIMiniMediaControlsViewC
         updateControlBarsVisibility()
         installViewController(miniMediaControlsViewController,
                               inContainerView: _miniMediaControlsContainerView)
-        for _ in 1...20 {
-            print("HEEYA")
-        }
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
