@@ -125,7 +125,11 @@ extension OfflineFilesViewController: UICollectionViewDelegate, UICollectionView
             }
             
             deleteAction.backgroundColor = #colorLiteral(red: 0.9490196078, green: 0.1215686275, blue: 0.1882352941, alpha: 1)
-            deleteAction.textColor = .white
+            if #available(iOS 13.0, *) {
+                deleteAction.textColor = .label
+            } else {
+                deleteAction.textColor = .white
+            }
             deleteAction.font = UIFont.systemFont(ofSize: 18, weight: .bold)
             return [deleteAction]
         }else if orientation == .left && offlineFile.stateEnum == .downloaded, let url = FileManager.default.localFilePathInDownloads(for: offlineFile){
@@ -135,7 +139,11 @@ extension OfflineFilesViewController: UICollectionViewDelegate, UICollectionView
             
             shareAction.backgroundColor = #colorLiteral(red: 0.2704460415, green: 0.5734752943, blue: 1, alpha: 1)
             shareAction.font = UIFont.systemFont(ofSize: 18, weight: .bold)
-            shareAction.textColor = .white
+            if #available(iOS 13.0, *) {
+                shareAction.textColor = .label
+            } else {
+                shareAction.textColor = .white
+            }
             return [shareAction]
         }else if orientation == .right && offlineFile.stateEnum == .downloading{
             let cancelDownloadAction = SwipeAction(style: .default, title: StringLiterals.stopDownload) { (action, indexPath) in
@@ -144,7 +152,11 @@ extension OfflineFilesViewController: UICollectionViewDelegate, UICollectionView
             }
             
             cancelDownloadAction.backgroundColor = #colorLiteral(red: 0.9490196078, green: 0.1215686275, blue: 0.1882352941, alpha: 1)
-            cancelDownloadAction.textColor = .white
+            if #available(iOS 13.0, *) {
+                cancelDownloadAction.textColor = .label
+            } else {
+                cancelDownloadAction.textColor = .white
+            }
             cancelDownloadAction.font = UIFont.systemFont(ofSize: 18, weight: .bold)
             return [cancelDownloadAction]
         }

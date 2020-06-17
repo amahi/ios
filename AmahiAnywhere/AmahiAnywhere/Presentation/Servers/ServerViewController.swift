@@ -27,8 +27,17 @@ class ServerViewController: BaseUIViewController {
     let refreshControl: UIRefreshControl = {
         let control = UIRefreshControl()
         control.addTarget(self, action: #selector(handleRefresh), for: .valueChanged)
-        control.tintColor = .white
-        control.attributedTitle = NSAttributedString(string: "Pull To Refresh", attributes: [NSAttributedString.Key.foregroundColor: UIColor.white])
+        if #available(iOS 13.0, *) {
+            control.tintColor = .label
+        } else {
+            control.tintColor = .white
+            
+        }
+        if #available(iOS 13.0, *) {
+            control.attributedTitle = NSAttributedString(string: "Pull To Refresh", attributes: [NSAttributedString.Key.foregroundColor: UIColor.systemBackground])
+        } else {
+            control.attributedTitle = NSAttributedString(string: "Pull To Refresh", attributes: [NSAttributedString.Key.foregroundColor: UIColor.white])
+        }
         return control
     }()
     
@@ -49,7 +58,11 @@ class ServerViewController: BaseUIViewController {
         
         castButton = GCKUICastButton(frame: CGRect(x: CGFloat(0), y: CGFloat(0),
                                                    width: CGFloat(24), height: CGFloat(24)))
-        castButton.tintColor = UIColor.white
+        if #available(iOS 13.0, *) {
+            castButton.tintColor = UIColor.label
+        } else {
+            castButton.tintColor = UIColor.white
+        }
         navigationItem.rightBarButtonItem = UIBarButtonItem(customView: castButton)
     }
     
@@ -165,6 +178,12 @@ extension ServerViewController: ServerView {
             availableLabel.text = "\(availableCounter) available HDAs"
         }else{
             availableLabel.text = "\(availableCounter) available HDA"
+        }
+        if #available(iOS 13.0, *) {
+            availableLabel.textColor = UIColor.label
+        } else {
+            availableLabel.textColor = UIColor.white
+            
         }
     }
 }

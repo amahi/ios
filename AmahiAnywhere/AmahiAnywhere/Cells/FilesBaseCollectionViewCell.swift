@@ -12,7 +12,11 @@ import SwipeCellKit
 class FilesBaseCollectionCell: SwipeCollectionViewCell{
     override func awakeFromNib() {
         let backgroundView = UIView()
-        backgroundView.backgroundColor = UIColor(hex: "1E2023")
+        if #available(iOS 13.0, *) {
+            backgroundView.backgroundColor = UIColor.tertiarySystemBackground
+        } else {
+           backgroundView.backgroundColor = UIColor(hex: "1E2023")
+        }
         selectedBackgroundView = backgroundView
     }
     

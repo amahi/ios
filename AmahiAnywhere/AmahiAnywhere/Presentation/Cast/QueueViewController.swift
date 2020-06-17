@@ -34,7 +34,7 @@ GCKSessionManagerListener, GCKRemoteMediaClientListener, GCKRequestDelegate, GCK
         if sessionManager.hasConnectedCastSession() {
             attach(to: sessionManager.currentCastSession!)
         }
-        _tableView.separatorColor = UIColor.gray
+        _tableView.separatorColor = UIColor.systemGray
         setItemsLabel()
         super.viewDidLoad()
     }

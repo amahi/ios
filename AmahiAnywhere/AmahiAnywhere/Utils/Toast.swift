@@ -32,7 +32,11 @@ class Toast: UIView {
                                             blue: CGFloat((50 / 255.0)), alpha: CGFloat(1))
             toast.messageLabel = UILabel(frame: CGRect(x: CGFloat(0), y: CGFloat(0), width: toastWidth, height: toastHeight))
             toast.messageLabel.text = message
-            toast.messageLabel.textColor = UIColor.white
+            if #available(iOS 13.0, *) {
+                toast.messageLabel.textColor = UIColor.label
+            } else {
+                toast.messageLabel.textColor = UIColor.white
+        }
             toast.messageLabel.textAlignment = .center
             toast.messageLabel.font = UIFont.systemFont(ofSize: CGFloat(18))
             toast.messageLabel.adjustsFontSizeToFitWidth = true
