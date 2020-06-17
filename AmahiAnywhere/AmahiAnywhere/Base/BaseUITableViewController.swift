@@ -29,7 +29,7 @@ class BaseUITableViewController: UITableViewController, GCKSessionManagerListene
         castButton = GCKUICastButton(frame: CGRect(x: CGFloat(0), y: CGFloat(0),
                                                    width: CGFloat(24), height: CGFloat(24)))
         if #available(iOS 13.0, *) {
-            castButton.tintColor = UIColor.systemGray6
+            castButton.tintColor = UIColor.secondarySystemBackground
         } else {
             castButton.tintColor = UIColor.white
         }

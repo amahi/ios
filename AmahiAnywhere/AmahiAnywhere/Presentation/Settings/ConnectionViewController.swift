@@ -9,6 +9,11 @@ class ConnectionViewController: BaseUITableViewController {
         
         tableView.contentInset = UIEdgeInsets(top: 20, left: 0, bottom: 0, right: 0)
         tableView.tableFooterView = UIView()
+        if #available(iOS 13.0, *) {
+            self.view.backgroundColor = UIColor.secondarySystemBackground
+        } else {
+            self.view.backgroundColor = UIColor(hex: "1E2023")
+        }
     }
     
     // MARK: - Table view data source
@@ -39,7 +44,8 @@ class ConnectionViewController: BaseUITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: CellIdentifiers.connectionCell, for: indexPath)
         
         cell.textLabel?.text = connectionItem[indexPath.row].rawValue
-        //cell.textLabel?.textColor = UIColor.white
+
+
         
         if #available(iOS 13.0, *) {
             cell.textLabel?.textColor = UIColor.label
@@ -49,14 +55,13 @@ class ConnectionViewController: BaseUITableViewController {
         }
         
         let selectedBackgroundView = UIView()
-        //selectedBackgroundView.backgroundColor = UIColor(hex: "1E2023")
+
         if #available(iOS 13.0, *) {
-            selectedBackgroundView.backgroundColor = UIColor.tertiarySystemBackground
+            selectedBackgroundView.backgroundColor = UIColor.secondarySystemBackground
         } else {
                selectedBackgroundView.backgroundColor = UIColor(hex: "1E2023")
-            
         }
-        
+
         cell.selectedBackgroundView = selectedBackgroundView
         
         if connectionItem[indexPath.row] == LocalStorage.shared.userConnectionPreference {
@@ -68,3 +73,4 @@ class ConnectionViewController: BaseUITableViewController {
         return cell
     }
 }
+

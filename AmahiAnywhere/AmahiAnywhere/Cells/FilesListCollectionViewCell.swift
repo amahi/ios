@@ -19,6 +19,17 @@ class FilesListCollectionViewCell: FilesBaseCollectionCell {
     
     func setupData(serverFile: ServerFile){
         nameLabel.text = serverFile.name
+        if #available(iOS 13.0, *) {
+            nameLabel.textColor = UIColor.label
+            sizeModifiedLabel.textColor = UIColor.label
+            downloadIcon.tintColor = UIColor.label
+            moreButton.tintColor = UIColor.label
+        } else {
+            nameLabel.textColor = UIColor.white
+            sizeModifiedLabel.textColor = UIColor.white
+            downloadIcon.tintColor = UIColor.white
+            moreButton.tintColor = UIColor.white
+        }
         
         if serverFile.isDirectory{
             showDirectory()

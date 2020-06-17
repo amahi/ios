@@ -75,18 +75,17 @@ extension SettingsViewController {
         
         if #available(iOS 13.0, *) {
             cell.textLabel?.textColor = UIColor.label
-        } else {
-            cell.textLabel?.textColor = UIColor.white        }
-        //cell.detailTextLabel?.textColor = #colorLiteral(red: 0.8055401332, green: 0.8055401332, blue: 0.8055401332, alpha: 1)
-        if #available(iOS 13.0, *) {
+
             cell.detailTextLabel?.textColor = UIColor.label
         } else {
+            cell.textLabel?.textColor = UIColor.white
             cell.detailTextLabel?.textColor = #colorLiteral(red: 0.8055401332, green: 0.8055401332, blue: 0.8055401332, alpha: 1)
         }
+       
         let selectedBackgroundView = UIView()
-       // selectedBackgroundView.backgroundColor = UIColor(hex: "1E2023")
         if #available(iOS 13.0, *) {
-            selectedBackgroundView.backgroundColor = UIColor.tertiarySystemBackground
+            selectedBackgroundView.backgroundColor = UIColor.secondarySystemBackground
+
         } else {
             selectedBackgroundView.backgroundColor = UIColor(hex: "1E2023")
         }
@@ -96,14 +95,14 @@ extension SettingsViewController {
     
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let view = UIView()
-        
-           // view.backgroundColor = UIColor(hex: "131517")
+
         if #available(iOS 13.0, *) {
             view.backgroundColor = UIColor.systemBackground
             
         } else {
             view.backgroundColor = UIColor(hex: "131517")
-            
+
+
         }
         
         let label = UILabel()

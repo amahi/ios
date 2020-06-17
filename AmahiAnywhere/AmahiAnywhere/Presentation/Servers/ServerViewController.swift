@@ -34,7 +34,9 @@ class ServerViewController: BaseUIViewController {
             
         }
         if #available(iOS 13.0, *) {
-            control.attributedTitle = NSAttributedString(string: "Pull To Refresh", attributes: [NSAttributedString.Key.foregroundColor: UIColor.systemBackground])
+
+            control.attributedTitle = NSAttributedString(string: "Pull To Refresh", attributes: [NSAttributedString.Key.foregroundColor: UIColor.label])
+
         } else {
             control.attributedTitle = NSAttributedString(string: "Pull To Refresh", attributes: [NSAttributedString.Key.foregroundColor: UIColor.white])
         }
@@ -60,8 +62,17 @@ class ServerViewController: BaseUIViewController {
                                                    width: CGFloat(24), height: CGFloat(24)))
         if #available(iOS 13.0, *) {
             castButton.tintColor = UIColor.label
+
+            availableLabel.textColor = UIColor.label
+            serversCollectionView.backgroundColor = UIColor.secondarySystemBackground
+            self.view.backgroundColor = UIColor.secondarySystemBackground
+            
         } else {
             castButton.tintColor = UIColor.white
+            availableLabel.textColor = UIColor.white
+            serversCollectionView.backgroundColor = UIColor(hex: "1E2023")
+             self.view.backgroundColor = UIColor(hex: "1E2023")
+
         }
         navigationItem.rightBarButtonItem = UIBarButtonItem(customView: castButton)
     }

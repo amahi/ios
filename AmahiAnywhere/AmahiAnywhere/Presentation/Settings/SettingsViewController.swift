@@ -16,9 +16,14 @@ class SettingsViewController: BaseUITableViewController {
         super.viewDidLoad()
         tableView.contentInset = UIEdgeInsets(top: 20, left: 0, bottom: 0, right: 0)
         tableView.sectionFooterHeight = 0
-        
+        if #available(iOS 13.0, *) {
+            self.view.backgroundColor = UIColor.secondarySystemBackground
+        } else {
+            self.view.backgroundColor = UIColor(hex: "1E2023")
+        }
         print(getFreeSize())
     }
+    
     
     func getFreeSize() -> Int64? {
         let paths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)
@@ -125,5 +130,6 @@ class SettingsViewController: BaseUITableViewController {
 
 // Mark: Helper function inserted by Swift 4.2 migrator.
 fileprivate func convertToUIApplicationOpenExternalURLOptionsKeyDictionary(_ input: [String: Any]) -> [UIApplication.OpenExternalURLOptionsKey: Any] {
-	return Dictionary(uniqueKeysWithValues: input.map { key, value in (UIApplication.OpenExternalURLOptionsKey(rawValue: key), value)})
+    return Dictionary(uniqueKeysWithValues: input.map { key, value in (UIApplication.OpenExternalURLOptionsKey(rawValue: key), value)})
 }
+
