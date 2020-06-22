@@ -11,8 +11,10 @@ Amahi iOS App, new from scratch, in Swift.
 - Xcode 9.0+
 
 ## Setup
+- Do a clean `command + shift + k` or `command + option + shift + K`
 - Close Xcode
 - Open a terminal window, and `$ cd` into your project directory.
+- Navigate to project directory where the Podfile exist.
 - Run `$ pod install`
 - You may require to run `$ pod update`
 - `$ open AmahiAnywhere.xcworkspace` and build.
@@ -23,6 +25,16 @@ Amahi iOS App, new from scratch, in Swift.
 Please help us follow the best practice to make it easy for the reviewer as well as the contributor.
 * Please follow the guides and code standards: [Swift Style Guide](https://github.com/linkedin/swift-style-guide)
 * Please follow the good iOS development practices: [iOS Good Practices](https://github.com/futurice/ios-good-practices)
+
+### Contributing and developing a feature
+* Create a new branch with a meaningful name `git checkout -b branch_name`.<br />
+* Develop your feature on Xcode IDE  and run it using the simulator or connecting your own iphone.<br />
+* Add the files you changed `git add file_name`.<br />
+* Commit your changes `git commit -m "Message briefly explaining the feature"`.<br />
+* Keep one commit per feature. If you forgot to add changes, you can edit the previous commit `git commit --amend`.<br />
+* Push to your repo `git push origin branch-name`.<br />
+* Go into [the Github repo](https://github.com/amahi/ios/) and create a pull request explaining your changes.<br />
+* If you are requested to make changes, edit your commit using `git commit --amend`, push again and the pull request will edit automatically.<br />
 * If the PR is related to any front end change, please attach relevant screenshots in the pull request description.
 * When creating PRs or commiting changes. Please ensure the sensitive contents of the ApiConfig.swift file are ignored. Such PRs will be declined.
 
