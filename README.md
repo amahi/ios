@@ -53,6 +53,12 @@ Please help us follow the best practice to make it easy for the reviewer as well
 
 - [LightBox](https://github.com/hyperoslo/Lightbox): Provides a convenient and easy to use image viewer for iOS app, packed with with features like swipe left/right to change, double tap to zoom, pinch to zoom, caching etc.
 
+- [Cache](https://github.com/hyperoslo/Cache): Cache is built based on Chain-of-responsibility pattern, in which there are many processing objects, each knows how to do 1 task and delegates to the next one, so can you compose Storages the way you like.
+
+- [Imaginary](https://github.com/hyperoslo/Imaginary): Using remote images in an application.This process should be easy, straight-forward and hassle free, and with Imaginary.
+
+- [ReachabilitySwift](https://github.com/ashleymills/Reachability.swift):Reachability.swift is a replacement for Apple's Reachability sample, re-written in Swift with closures.
+
 ## Support
 
 If you have questions about Amahi or just want to interact, you can contact us via [IRC channel](http://talk.amahi.org). Don't forget that we are open to suggestions, extensions or adaptations. Feel free to discuss or propose new ideas for projects!
