@@ -117,20 +117,20 @@ class BaseUIViewController: UIViewController, GCKSessionManagerListener, GCKRequ
     }
     
     @objc func updateTabBarCompleted(){
-        if var downloadsTabCounter = Int(tabBarController?.tabBar.items?[1].badgeValue ?? "1"){
+        if var downloadsTabCounter = Int(tabBarController?.tabBar.items?[2].badgeValue ?? "1"){
             downloadsTabCounter -= 1
             if downloadsTabCounter >= 1{
-                tabBarController?.tabBar.items?[1].badgeValue = String(downloadsTabCounter)
+                tabBarController?.tabBar.items?[2].badgeValue = String(downloadsTabCounter)
             }else{
-                tabBarController?.tabBar.items?[1].badgeValue = nil
+                tabBarController?.tabBar.items?[2].badgeValue = nil
             }
         }
     }
     
     @objc func updateTabBarStarted(){
-        if var downloadsTabCounter = Int(tabBarController?.tabBar.items?[1].badgeValue ?? "0"){
+        if var downloadsTabCounter = Int(tabBarController?.tabBar.items?[2].badgeValue ?? "0"){
             downloadsTabCounter += 1
-            tabBarController?.tabBar.items?[1].badgeValue = String(downloadsTabCounter)
+            tabBarController?.tabBar.items?[2].badgeValue = String(downloadsTabCounter)
         }
     }
         
