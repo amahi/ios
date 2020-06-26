@@ -103,6 +103,20 @@ class FilesViewController: BaseUIViewController, GCKRemoteMediaClientListener {
         presenter.getFiles(share, directory: directory)
         
         NotificationCenter.default.addObserver(self, selector: #selector(expiredAuthTokenHDA), name: .HDATokenExpired, object: nil)
+        if #available(iOS 13.0, *) {
+            self.view.backgroundColor = UIColor.secondarySystemBackground
+            filesCollectionView.backgroundColor = UIColor.secondarySystemBackground
+            sortButton.titleLabel?.textColor = UIColor.label
+            sortButton.tintColor = UIColor.label
+            floaty.tintColor = UIColor.label
+        } else {
+            self.view.backgroundColor = UIColor(hex: "1E2023")
+            filesCollectionView.backgroundColor = UIColor(hex: "1E2023")
+            sortButton.titleLabel?.textColor = UIColor.white
+            sortButton.tintColor = UIColor.white
+            floaty.tintColor = UIColor.white
+        }
+        
     }
     
     func setupImagePicker(){
@@ -435,15 +449,18 @@ class FilesViewController: BaseUIViewController, GCKRemoteMediaClientListener {
     internal func setupDownloadProgressIndicator() {
         downloadProgressAlertController = UIAlertController(title: "", message: "", preferredStyle: .alert)
         downloadProgressAlertController?.view.setAnchorSize(width: nil, height: 190)
-
-    
+        
         downloadTitleLabel = UILabel()
         downloadTitleLabel?.font = UIFont.systemFont(ofSize: 16, weight: .semibold)
         downloadTitleLabel?.numberOfLines = 2
         downloadTitleLabel?.textAlignment = .center
-        downloadProgressAlertController?.view.addSubview(downloadTitleLabel!)
+        if #available(iOS 13.0, *) {
+            downloadTitleLabel?.textColor = UIColor.label
+        } else {
+            downloadTitleLabel?.textColor = UIColor.white
+        }
         
-    
+        downloadProgressAlertController?.view.addSubview(downloadTitleLabel!)
         downloadImageView = UIImageView(image: nil)
         downloadImageView?.contentMode = .scaleAspectFit
         downloadImageView?.setAnchorSize(width: 80, height: 80)
@@ -454,6 +471,8 @@ class FilesViewController: BaseUIViewController, GCKRemoteMediaClientListener {
         } else {
             progressView?.trackTintColor = .white
         }
+
+        
         progressView?.setProgress(0.0, animated: true)
         progressView?.setAnchorSize(width: nil, height: 2)
     
@@ -537,6 +556,11 @@ class FilesViewController: BaseUIViewController, GCKRemoteMediaClientListener {
         UIView.performWithoutAnimation {
             self.sortButton.setTitle(sortingMethod.rawValue, for: .normal)
             self.sortButton.layoutIfNeeded()
+            if #available(iOS 13.0, *) {
+                self.sortButton.tintColor = UIColor.label
+            } else {
+                self.sortButton.tintColor = UIColor.white
+            }
         }
         
         GlobalFileSort.fileSort = sortingMethod

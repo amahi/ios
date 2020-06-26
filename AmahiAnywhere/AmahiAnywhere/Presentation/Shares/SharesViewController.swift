@@ -22,15 +22,13 @@ class SharesViewController: BaseUIViewController, UICollectionViewDelegate, UICo
         control.addTarget(self, action: #selector(handleRefresh), for: .valueChanged)
         if #available(iOS 13.0, *) {
             control.tintColor = .label
+
+            control.attributedTitle = NSAttributedString(string: "Pull To Refresh", attributes: [NSAttributedString.Key.foregroundColor: UIColor.label])
         } else {
             control.tintColor = .white
-            
-        }
-        if #available(iOS 13.0, *) {
-            control.attributedTitle = NSAttributedString(string: "Pull To Refresh", attributes: [NSAttributedString.Key.foregroundColor: UIColor.systemGray6])
-        } else {
             control.attributedTitle = NSAttributedString(string: "Pull To Refresh", attributes: [NSAttributedString.Key.foregroundColor: UIColor.white])
-        }
+            }
+
         return control
     }()
     
@@ -38,7 +36,19 @@ class SharesViewController: BaseUIViewController, UICollectionViewDelegate, UICo
         super.viewDidLoad()
         if server?.name != "Welcome to Amahi"{
             navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Log out", style: .done, target: self, action: #selector(logOutTapped))
+            
+           
         }
+        
+        if #available(iOS 13.0, *) {
+                       self.view.backgroundColor = UIColor.secondarySystemBackground
+                       sharesCollectionView.backgroundColor = UIColor.secondarySystemBackground
+            serverNameLabel.textColor = UIColor.label
+                   } else {
+                       self.view.backgroundColor = UIColor(hex: "1E2023")
+                       sharesCollectionView.backgroundColor = UIColor(hex: "1E2023")
+            serverNameLabel.textColor = UIColor.white
+                   }
 
         removePinVC()
         sharesCollectionView.delegate = self
@@ -114,6 +124,11 @@ class SharesViewController: BaseUIViewController, UICollectionViewDelegate, UICo
             return UICollectionViewCell()
         }
         
+        if #available(iOS 13.0, *) {
+            cell.titleLabel.textColor = UIColor.label
+        } else {
+            cell.titleLabel.textColor = UIColor.white
+        }
         cell.titleLabel.text = shares[indexPath.row].name
         return cell
     }
@@ -124,6 +139,11 @@ class SharesViewController: BaseUIViewController, UICollectionViewDelegate, UICo
         }
     
         footerCell.titleLabel.text = "\(shares.count) Shares"
+        if #available(iOS 13.0, *) {
+            footerCell.titleLabel.textColor = UIColor.label
+        } else {
+            footerCell.titleLabel.textColor = UIColor.white
+        }
         return footerCell
     }
     

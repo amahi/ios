@@ -33,7 +33,7 @@ class BaseUIViewController: UIViewController, GCKSessionManagerListener, GCKRequ
         castButton = GCKUICastButton(frame: CGRect(x: CGFloat(0), y: CGFloat(0),
                                                    width: CGFloat(24), height: CGFloat(24)))
         if #available(iOS 13.0, *) {
-            castButton.tintColor = UIColor.systemGray6
+            castButton.tintColor = UIColor.secondarySystemBackground
         } else {
             castButton.tintColor = UIColor.white
         }
@@ -200,7 +200,7 @@ class BaseUIViewController: UIViewController, GCKSessionManagerListener, GCKRequ
         let statusView = UIView()
        // statusView.backgroundColor = UIColor(hex: "1E2023")
         if #available(iOS 13.0, *) {
-            statusView.backgroundColor = UIColor.systemBackground
+            statusView.backgroundColor = UIColor.secondarySystemBackground
         } else {
             statusView.backgroundColor = UIColor(hex: "1E2023")
         }
@@ -281,7 +281,9 @@ extension BaseUITableViewController{
         let statusView = UIView()
        // statusView.backgroundColor = UIColor(hex: "1E2023")
         if #available(iOS 13.0, *) {
-            statusView.backgroundColor = UIColor.systemBackground
+
+            statusView.backgroundColor = UIColor.secondarySystemBackground
+
         } else {
             statusView.backgroundColor = UIColor(hex: "1E2023")
             

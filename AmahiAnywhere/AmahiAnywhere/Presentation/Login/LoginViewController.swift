@@ -27,6 +27,43 @@ class LoginViewController: BaseUIViewController {
         passwordInputField.delegate = self
         
         setupPasswordFieldPadding()
+        if #available(iOS 13.0, *) {
+            self.view.backgroundColor = UIColor.secondarySystemBackground
+            usernameInputField.textColor = UIColor.label
+            usernameInputField.placeholderColor = UIColor.secondaryLabel
+            usernameInputField.titleColor = UIColor.label
+            usernameInputField.lineColor = UIColor.secondaryLabel
+            usernameInputField.selectedTitleColor = UIColor.label
+            usernameInputField.selectedLineColor = UIColor.label
+            
+            passwordInputField.textColor = UIColor.label
+            passwordInputField.placeholderColor = UIColor.secondaryLabel
+            passwordInputField.titleColor = UIColor.label
+            passwordInputField.lineColor = UIColor.secondaryLabel
+            passwordInputField.selectedTitleColor = UIColor.label
+            passwordInputField.selectedLineColor = UIColor.label
+            
+            showHideButton.tintColor = UIColor.label
+            
+        } else {
+            self.view.backgroundColor = UIColor(hex: "1E2023")
+            usernameInputField.textColor = UIColor.white
+            usernameInputField.placeholderColor = UIColor.lightGray
+            usernameInputField.titleColor = UIColor.white
+            usernameInputField.lineColor = UIColor.lightGray
+            usernameInputField.selectedTitleColor = UIColor.lightGray
+            usernameInputField.selectedLineColor = UIColor.white
+            
+            passwordInputField.textColor = UIColor.white
+            passwordInputField.placeholderColor = UIColor.lightGray
+            passwordInputField.titleColor = UIColor.white
+            passwordInputField.lineColor = UIColor.lightGray
+            passwordInputField.selectedTitleColor = UIColor.lightGray
+            passwordInputField.selectedLineColor = UIColor.white
+            
+            showHideButton.tintColor = UIColor.white
+        }
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -116,3 +153,5 @@ extension LoginViewController: LoginView {
     }
     
 }
+
+

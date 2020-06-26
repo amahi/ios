@@ -20,9 +20,9 @@ PODS:
   - MobileVLCKit (3.3.12)
   - Protobuf (3.12.0)
   - ReachabilitySwift (5.0.0)
-  - SDWebImage (5.8.0):
-    - SDWebImage/Core (= 5.8.0)
-  - SDWebImage/Core (5.8.0)
+  - SDWebImage (5.8.1):
+    - SDWebImage/Core (= 5.8.1)
+  - SDWebImage/Core (5.8.1)
   - SkyFloatingLabelTextField (3.8.0)
   - SwipeCellKit (2.7.1)
 
@@ -71,7 +71,7 @@ SPEC CHECKSUMS:
   MobileVLCKit: 4ed689aa34244fbe3e8aaaa6c8d80958bd6a1abf
   Protobuf: 2793fcd0622a00b546c60e7cbbcc493e043e9bb9
   ReachabilitySwift: 985039c6f7b23a1da463388634119492ff86c825
-  SDWebImage: 84000f962cbfa70c07f19d2234cbfcf5d779b5dc
+  SDWebImage: e3eae2eda88578db0685a0c88597fdadd9433f05
   SkyFloatingLabelTextField: 5a338412114808e961fe2d14ea2c5452c8b6e4aa
   SwipeCellKit: 3972254a826da74609926daf59b08d6c72e619ea
 

@@ -11,3 +11,4 @@ import UIKit
 class FilesCollectionHeaderView: UICollectionReusableView {
     @IBOutlet var titleLabel: UILabel!
 }
+

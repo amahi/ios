@@ -58,7 +58,23 @@ class OfflineFilesViewController: BaseUIViewController{
         setupCollectionView()
         setupCoreData()
         setupSearchBar()
-    }
+        
+        if #available(iOS 13.0, *) {
+                    self.view.backgroundColor = UIColor.secondarySystemBackground
+          filesCollectionView.backgroundColor = UIColor.secondarySystemBackground
+          sortButton.backgroundColor = UIColor.secondarySystemBackground
+          sortButton.tintColor = UIColor.label
+          sortButton.titleLabel?.textColor = UIColor.label
+                    
+         } else {
+                    self.view.backgroundColor = UIColor(hex: "1E2023")
+          filesCollectionView.backgroundColor = UIColor(hex: "1E2023")
+                   
+          sortButton.backgroundColor = UIColor(hex: "1E2023")
+          sortButton.tintColor = UIColor.white
+          sortButton.titleLabel?.textColor = UIColor.white
+          }
+        }
     
     func setupLayoutView(){
         layoutView = GlobalLayoutView.layoutView

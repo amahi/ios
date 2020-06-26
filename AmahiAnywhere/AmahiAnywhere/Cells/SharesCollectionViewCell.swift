@@ -18,8 +18,12 @@ class SharesCollectionViewCell: UICollectionViewCell {
     
         if #available(iOS 13.0, *) {
             view.backgroundColor = UIColor.secondarySystemBackground
+
+            titleLabel.textColor = UIColor.label
         } else {
             view.backgroundColor = UIColor(hex: "1E2023")
+            titleLabel.textColor = UIColor.white
+
         }
         
         selectedBackgroundView = view

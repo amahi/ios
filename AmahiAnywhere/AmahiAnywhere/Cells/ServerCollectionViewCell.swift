@@ -44,7 +44,9 @@ class ServerCollectionViewCell: UICollectionViewCell {
         let view = UIView()
         view.layer.cornerRadius = 8
         if #available(iOS 13.0, *) {
-            view.backgroundColor = UIColor.tertiarySystemBackground
+
+            view.backgroundColor = UIColor.secondarySystemBackground
+
         } else {
            view.backgroundColor = UIColor(hex: "1E2023")
         }

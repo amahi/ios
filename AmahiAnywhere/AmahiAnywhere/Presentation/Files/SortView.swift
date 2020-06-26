@@ -50,7 +50,9 @@ class SortView: UIView, UITableViewDelegate, UITableViewDataSource{
     func setupViews(){
        // backgroundColor = #colorLiteral(red: 0.1529411765, green: 0.1607843137, blue: 0.1803921569, alpha: 1)
         if #available(iOS 13.0, *) {
-            backgroundColor = UIColor.systemBackground
+
+            backgroundColor = UIColor.secondarySystemBackground
+
         } else {
             backgroundColor = #colorLiteral(red: 0.1529411765, green: 0.1607843137, blue: 0.1803921569, alpha: 1)
             

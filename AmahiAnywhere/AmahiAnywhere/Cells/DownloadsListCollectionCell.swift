@@ -28,6 +28,17 @@ class DownloadsListCollectionCell: DownloadsBaseCollectionCell{
         let templateImage = image?.withRenderingMode(.alwaysTemplate)
         brokenIndicatorImageView.image = templateImage
         brokenIndicatorImageView.tintColor = UIColor.brokenIndicatorRed
+        if #available(iOS 13.0, *) {
+            nameLabel.textColor = UIColor.label
+            sizeDateLabel.textColor = UIColor.label
+            moreButton.tintColor = UIColor.label
+            brokenIndicatorImageView.tintColor = UIColor.label
+        } else {
+            nameLabel.textColor = UIColor.white
+            sizeDateLabel.textColor = UIColor.white
+            moreButton.tintColor = UIColor.white
+            brokenIndicatorImageView.tintColor = UIColor.white
+        }
         
         setupProgressView(offlineFile: offlineFile, progressView: progressView)
         

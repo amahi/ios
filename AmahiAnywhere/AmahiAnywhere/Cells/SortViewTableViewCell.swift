@@ -40,7 +40,9 @@ class SortViewTableViewCell: UITableViewCell {
         backgroundColor = .clear
         let backgroundView = UIView()
         if #available(iOS 13.0, *) {
-            backgroundView.backgroundColor = UIColor.systemBackground
+
+            backgroundView.backgroundColor = UIColor.secondarySystemBackground
+
         } else {
            backgroundView.backgroundColor = UIColor(hex: "1E2023")
         }

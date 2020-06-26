@@ -91,6 +91,11 @@ extension FilesViewController: UICollectionViewDataSource, UICollectionViewDeleg
                 return UICollectionReusableView()
             }
             headerCell.titleLabel.text = filteredFiles.sectionNames[indexPath.section]
+            if #available(iOS 13.0, *) {
+                headerCell.titleLabel.textColor = UIColor.label
+            } else {
+                headerCell.titleLabel.textColor = UIColor.white
+            }
             return headerCell
         }else{
             guard let footerCell = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "footer", for: indexPath) as? FilesCollectionFooterView else {
@@ -108,6 +113,11 @@ extension FilesViewController: UICollectionViewDataSource, UICollectionViewDeleg
                 footerCell.titleLabel.text = "\(filesCounter) Files"
             }else{
                 footerCell.titleLabel.text = "\(foldersCoutner) Folders"
+            }
+            if #available(iOS 13.0, *) {
+                footerCell.titleLabel.textColor = UIColor.label
+            } else {
+                footerCell.titleLabel.textColor = UIColor.white
             }
             
             return footerCell
