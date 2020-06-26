@@ -47,7 +47,7 @@ struct StringLiterals {
     static let disabled =                       "Disabled"
     static let accountSectionSubItems =         ["Sign Out"]
     static let settingsSectionSubItems =        ["Connection", clearCacheTitle]
-    static let aboutSectionSubItems =           ["Version",  "Rate", "Feedback", "Tell a friend"]
+    static let aboutSectionSubItems =           ["Version", "Tell a friend"]
     static let settingsSectionsTitle =          ["Account", "Settings", "About"]
     static let settingsSectionsSubItems =       [accountSectionSubItems, settingsSectionSubItems, aboutSectionSubItems]
     static let sortByName =                     "Sort by Name"

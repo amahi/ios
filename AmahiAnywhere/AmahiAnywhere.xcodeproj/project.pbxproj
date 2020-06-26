@@ -126,6 +126,8 @@
 		C8DEBFAB20BAE1D300B09AED /* ConnectionModeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8DEBFAA20BAE1D200B09AED /* ConnectionModeManager.swift */; };
 		C8DEBFAD20BB1AEF00B09AED /* Alamofire.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8DEBFAC20BB1AEF00B09AED /* Alamofire.swift */; };
 		C8ED025920B3E30300015846 /* URL.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8ED025820B3E2F800015846 /* URL.swift */; };
+		E6867B80249FC9E4000B939C /* AppStoreReviewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6867B7F249FC9E4000B939C /* AppStoreReviewManager.swift */; };
+		E6867B82249FE8F3000B939C /* UserDefaults+Key.swift .swift in Sources */ = {isa = PBXBuildFile; fileRef = E6867B81249FE8F3000B939C /* UserDefaults+Key.swift .swift */; };
 		FB71BE98201CB2FC0005492C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB71BE97201CB2FC0005492C /* AppDelegate.swift */; };
 		FB71BE9A201CB2FC0005492C /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB71BE99201CB2FC0005492C /* LoginViewController.swift */; };
 		FB71BE9D201CB2FC0005492C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FB71BE9B201CB2FC0005492C /* Main.storyboard */; };
@@ -259,6 +261,8 @@
 		C8DEBFAA20BAE1D200B09AED /* ConnectionModeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectionModeManager.swift; sourceTree = "<group>"; };
 		C8DEBFAC20BB1AEF00B09AED /* Alamofire.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alamofire.swift; sourceTree = "<group>"; };
 		C8ED025820B3E2F800015846 /* URL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URL.swift; sourceTree = "<group>"; };
+		E6867B7F249FC9E4000B939C /* AppStoreReviewManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppStoreReviewManager.swift; sourceTree = "<group>"; };
+		E6867B81249FE8F3000B939C /* UserDefaults+Key.swift .swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+Key.swift .swift"; sourceTree = "<group>"; };
 		F5293AC0952F87B50DCD644D /* Pods_AmahiAnywhere.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AmahiAnywhere.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FB71BE94201CB2FC0005492C /* AmahiAnywhere.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AmahiAnywhere.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FB71BE97201CB2FC0005492C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -290,6 +294,8 @@
 				C8DEBFAA20BAE1D200B09AED /* ConnectionModeManager.swift */,
 				C8DA5B1920D5DC2200F5A527 /* DownloadService.swift */,
 				C8DA5B2C20D7282E00F5A527 /* DownloadService+URLSessionDelegate.swift */,
+				E6867B7F249FC9E4000B939C /* AppStoreReviewManager.swift */,
+				E6867B81249FE8F3000B939C /* UserDefaults+Key.swift .swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -813,6 +819,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E6867B82249FE8F3000B939C /* UserDefaults+Key.swift .swift in Sources */,
 				3B33325822BAA3C200BC61EB /* SortView.swift in Sources */,
 				3B33325E22BAB05C00BC61EB /* FilesBaseCollectionViewCell.swift in Sources */,
 				C83C63952038D5B30089B9D8 /* ApiConfig.swift in Sources */,
@@ -920,6 +927,7 @@
 				C83C63992038D5B30089B9D8 /* AuthResponses.swift in Sources */,
 				3B33324E22BAA17C00BC61EB /* FilteredServerFile.swift in Sources */,
 				3B84E87D2299587B00E37A74 /* UIView.swift in Sources */,
+				E6867B80249FC9E4000B939C /* AppStoreReviewManager.swift in Sources */,
 				3B3F43E722FED14900BB42B0 /* AudioPlayerViewController+Remote.swift in Sources */,
 				3B33325C22BAA4BA00BC61EB /* FilesViewController+Sorting.swift in Sources */,
 				3B33325222BAA27E00BC61EB /* FilesListCollectionViewCell.swift in Sources */,
@@ -1082,6 +1090,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = AmahiAnywhere/AmahiAnywhere.entitlements;
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 330;
 				DEVELOPMENT_TEAM = "";
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = AmahiAnywhere/Info.plist;
@@ -1106,6 +1115,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = AmahiAnywhere/AmahiAnywhere.entitlements;
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 330;
 				DEVELOPMENT_TEAM = "";
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = AmahiAnywhere/Info.plist;

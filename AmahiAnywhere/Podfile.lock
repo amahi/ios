@@ -17,7 +17,7 @@ PODS:
   - Lightbox (2.3.0):
     - Imaginary (~> 4.0)
   - MBProgressHUD (1.2.0)
-  - MobileVLCKit (3.3.12)
+  - MobileVLCKit (3.3.13)
   - Protobuf (3.12.0)
   - ReachabilitySwift (5.0.0)
   - SDWebImage (5.8.1):
@@ -68,7 +68,7 @@ SPEC CHECKSUMS:
   IQKeyboardManagerSwift: 0fb93310284665245591f50f7a5e38de615960b7
   Lightbox: d317750e4132bfb871a5307cfe0a2c7d6a583c65
   MBProgressHUD: 3ee5efcc380f6a79a7cc9b363dd669c5e1ae7406
-  MobileVLCKit: 4ed689aa34244fbe3e8aaaa6c8d80958bd6a1abf
+  MobileVLCKit: 92e1ea43124259417f481c890821efb2399d25e3
   Protobuf: 2793fcd0622a00b546c60e7cbbcc493e043e9bb9
   ReachabilitySwift: 985039c6f7b23a1da463388634119492ff86c825
   SDWebImage: e3eae2eda88578db0685a0c88597fdadd9433f05

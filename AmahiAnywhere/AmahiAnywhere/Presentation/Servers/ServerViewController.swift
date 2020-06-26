@@ -139,6 +139,7 @@ extension ServerViewController: UICollectionViewDelegate, UICollectionViewDataSo
         }else{
             self.showStatusAlert(title: "The selected HDA is currently not available")
         }
+        AppStoreReviewManager.requestReviewIfAppropriate()
     }
     
     func showPinVC(server: Server){
