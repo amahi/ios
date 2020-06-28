@@ -126,6 +126,7 @@
 		C8DEBFAB20BAE1D300B09AED /* ConnectionModeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8DEBFAA20BAE1D200B09AED /* ConnectionModeManager.swift */; };
 		C8DEBFAD20BB1AEF00B09AED /* Alamofire.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8DEBFAC20BB1AEF00B09AED /* Alamofire.swift */; };
 		C8ED025920B3E30300015846 /* URL.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8ED025820B3E2F800015846 /* URL.swift */; };
+		E6367D9224A876C200C6E12D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E6367D9124A876C200C6E12D /* GoogleService-Info.plist */; };
 		E6867B80249FC9E4000B939C /* AppStoreReviewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6867B7F249FC9E4000B939C /* AppStoreReviewManager.swift */; };
 		E6867B82249FE8F3000B939C /* UserDefaults+Key.swift .swift in Sources */ = {isa = PBXBuildFile; fileRef = E6867B81249FE8F3000B939C /* UserDefaults+Key.swift .swift */; };
 		FB71BE98201CB2FC0005492C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB71BE97201CB2FC0005492C /* AppDelegate.swift */; };
@@ -261,6 +262,7 @@
 		C8DEBFAA20BAE1D200B09AED /* ConnectionModeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectionModeManager.swift; sourceTree = "<group>"; };
 		C8DEBFAC20BB1AEF00B09AED /* Alamofire.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alamofire.swift; sourceTree = "<group>"; };
 		C8ED025820B3E2F800015846 /* URL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URL.swift; sourceTree = "<group>"; };
+		E6367D9124A876C200C6E12D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		E6867B7F249FC9E4000B939C /* AppStoreReviewManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppStoreReviewManager.swift; sourceTree = "<group>"; };
 		E6867B81249FE8F3000B939C /* UserDefaults+Key.swift .swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+Key.swift .swift"; sourceTree = "<group>"; };
 		F5293AC0952F87B50DCD644D /* Pods_AmahiAnywhere.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AmahiAnywhere.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -661,6 +663,7 @@
 			isa = PBXGroup;
 			children = (
 				9913634D22D5D2F100B48586 /* AmahiAnywhere.entitlements */,
+				E6367D9124A876C200C6E12D /* GoogleService-Info.plist */,
 				0479B103210E0FB70052489F /* Managers */,
 				C8B70E1120FA937600873B3F /* StoryBoards */,
 				C8DA5B2120D5E0C600F5A527 /* Cells */,
@@ -690,6 +693,7 @@
 				FB71BE92201CB2FC0005492C /* Resources */,
 				F61A594FE5268D2316515601 /* [CP] Embed Pods Frameworks */,
 				AB0902F10DF6D8E8ED1D608E /* [CP] Copy Pods Resources */,
+				E6367D9324A8809F00C6E12D /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -754,6 +758,7 @@
 				3B24FE162297086A0044721D /* WalkthroughAmahiCell.xib in Resources */,
 				FB71BE9D201CB2FC0005492C /* Main.storyboard in Resources */,
 				C8490D1520C847F90052D636 /* VideoPlayer.storyboard in Resources */,
+				E6367D9224A876C200C6E12D /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -794,6 +799,23 @@
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
+		};
+		E6367D9324A8809F00C6E12D /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/FirebaseCrashlytics/run\"\n";
 		};
 		F61A594FE5268D2316515601 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;

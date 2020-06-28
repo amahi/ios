@@ -5,12 +5,81 @@ PODS:
     - Alamofire
     - EVReflection/Core
   - EVReflection/Core (5.10.1)
+  - Firebase/Analytics (6.27.0):
+    - Firebase/Core
+  - Firebase/Core (6.27.0):
+    - Firebase/CoreOnly
+    - FirebaseAnalytics (= 6.6.1)
+  - Firebase/CoreOnly (6.27.0):
+    - FirebaseCore (= 6.8.0)
+  - Firebase/Crashlytics (6.27.0):
+    - Firebase/CoreOnly
+    - FirebaseCrashlytics (~> 4.2.0)
+  - FirebaseAnalytics (6.6.1):
+    - FirebaseCore (~> 6.8)
+    - FirebaseInstallations (~> 1.4)
+    - GoogleAppMeasurement (= 6.6.1)
+    - GoogleUtilities/AppDelegateSwizzler (~> 6.0)
+    - GoogleUtilities/MethodSwizzler (~> 6.0)
+    - GoogleUtilities/Network (~> 6.0)
+    - "GoogleUtilities/NSData+zlib (~> 6.0)"
+    - nanopb (~> 1.30905.0)
+  - FirebaseCore (6.8.0):
+    - FirebaseCoreDiagnostics (~> 1.3)
+    - GoogleUtilities/Environment (~> 6.5)
+    - GoogleUtilities/Logger (~> 6.5)
+  - FirebaseCoreDiagnostics (1.4.0):
+    - GoogleDataTransportCCTSupport (~> 3.1)
+    - GoogleUtilities/Environment (~> 6.5)
+    - GoogleUtilities/Logger (~> 6.5)
+    - nanopb (~> 1.30905.0)
+  - FirebaseCrashlytics (4.2.0):
+    - FirebaseCore (~> 6.8)
+    - FirebaseInstallations (~> 1.1)
+    - GoogleDataTransport (~> 6.1)
+    - GoogleDataTransportCCTSupport (~> 3.1)
+    - nanopb (~> 1.30905.0)
+    - PromisesObjC (~> 1.2)
+  - FirebaseInstallations (1.4.0):
+    - FirebaseCore (~> 6.8)
+    - GoogleUtilities/Environment (~> 6.6)
+    - GoogleUtilities/UserDefaults (~> 6.6)
+    - PromisesObjC (~> 1.2)
   - Floaty (4.2.0)
   - google-cast-sdk (4.4.7):
     - google-cast-sdk/Core (= 4.4.7)
     - Protobuf (~> 3.0)
   - google-cast-sdk/Core (4.4.7):
     - Protobuf (~> 3.0)
+  - GoogleAppMeasurement (6.6.1):
+    - GoogleUtilities/AppDelegateSwizzler (~> 6.0)
+    - GoogleUtilities/MethodSwizzler (~> 6.0)
+    - GoogleUtilities/Network (~> 6.0)
+    - "GoogleUtilities/NSData+zlib (~> 6.0)"
+    - nanopb (~> 1.30905.0)
+  - GoogleDataTransport (6.2.1)
+  - GoogleDataTransportCCTSupport (3.2.0):
+    - GoogleDataTransport (~> 6.1)
+    - nanopb (~> 1.30905.0)
+  - GoogleUtilities/AppDelegateSwizzler (6.6.0):
+    - GoogleUtilities/Environment
+    - GoogleUtilities/Logger
+    - GoogleUtilities/Network
+  - GoogleUtilities/Environment (6.6.0):
+    - PromisesObjC (~> 1.2)
+  - GoogleUtilities/Logger (6.6.0):
+    - GoogleUtilities/Environment
+  - GoogleUtilities/MethodSwizzler (6.6.0):
+    - GoogleUtilities/Logger
+  - GoogleUtilities/Network (6.6.0):
+    - GoogleUtilities/Logger
+    - "GoogleUtilities/NSData+zlib"
+    - GoogleUtilities/Reachability
+  - "GoogleUtilities/NSData+zlib (6.6.0)"
+  - GoogleUtilities/Reachability (6.6.0):
+    - GoogleUtilities/Logger
+  - GoogleUtilities/UserDefaults (6.6.0):
+    - GoogleUtilities/Logger
   - Imaginary (4.3.1):
     - Cache (~> 5.3.0)
   - IQKeyboardManagerSwift (6.5.5)
@@ -18,6 +87,12 @@ PODS:
     - Imaginary (~> 4.0)
   - MBProgressHUD (1.2.0)
   - MobileVLCKit (3.3.13)
+  - nanopb (1.30905.0):
+    - nanopb/decode (= 1.30905.0)
+    - nanopb/encode (= 1.30905.0)
+  - nanopb/decode (1.30905.0)
+  - nanopb/encode (1.30905.0)
+  - PromisesObjC (1.2.9)
   - Protobuf (3.12.0)
   - ReachabilitySwift (5.0.0)
   - SDWebImage (5.8.1):
@@ -29,6 +104,8 @@ PODS:
 DEPENDENCIES:
   - Alamofire (~> 4.7)
   - EVReflection/Alamofire
+  - Firebase/Analytics
+  - Firebase/Crashlytics
   - Floaty
   - google-cast-sdk
   - IQKeyboardManagerSwift
@@ -45,13 +122,25 @@ SPEC REPOS:
     - Alamofire
     - Cache
     - EVReflection
+    - Firebase
+    - FirebaseAnalytics
+    - FirebaseCore
+    - FirebaseCoreDiagnostics
+    - FirebaseCrashlytics
+    - FirebaseInstallations
     - Floaty
     - google-cast-sdk
+    - GoogleAppMeasurement
+    - GoogleDataTransport
+    - GoogleDataTransportCCTSupport
+    - GoogleUtilities
     - Imaginary
     - IQKeyboardManagerSwift
     - Lightbox
     - MBProgressHUD
     - MobileVLCKit
+    - nanopb
+    - PromisesObjC
     - Protobuf
     - ReachabilitySwift
     - SDWebImage
@@ -62,19 +151,31 @@ SPEC CHECKSUMS:
   Alamofire: 85e8a02c69d6020a0d734f6054870d7ecb75cf18
   Cache: 48762993ec44e1d93483c4d4a13edd18452326f4
   EVReflection: 8124de482178d34ccd56473e16cd95990f9a1113
+  Firebase: fc4cbf6f1592636431821ef9a3c557e4dfd9f268
+  FirebaseAnalytics: 0ea640473474f036cabbc2576e20c2d63671c92f
+  FirebaseCore: feda061cb1ee6d8ad4824f4a4a8ffbcfe284f595
+  FirebaseCoreDiagnostics: 4505e4d4009b1d93f605088ee7d7764d5f0d1c84
+  FirebaseCrashlytics: 7d0fa02ea8842cc4b2ab07b0735edafde1ad77d6
+  FirebaseInstallations: 293f567159b6d66d1c990f13bb868066096c94ec
   Floaty: e2bd5a0f6f7f70899e26ff2da31081c8bee8d1b0
   google-cast-sdk: 5fb55ce696a3d37f213b64b4f508577ccabd1a36
+  GoogleAppMeasurement: 2fd5c5a56c069db635c8e7b92d4809a9591d0a69
+  GoogleDataTransport: 9a8a16f79feffc7f42096743de2a7c4815e84020
+  GoogleDataTransportCCTSupport: 489c1265d2c85b68187a83a911913d190012158d
+  GoogleUtilities: 39530bc0ad980530298e9c4af8549e991fd033b1
   Imaginary: 18c5bba364229eef383b925199db442e71d175e1
   IQKeyboardManagerSwift: 0fb93310284665245591f50f7a5e38de615960b7
   Lightbox: d317750e4132bfb871a5307cfe0a2c7d6a583c65
   MBProgressHUD: 3ee5efcc380f6a79a7cc9b363dd669c5e1ae7406
   MobileVLCKit: 92e1ea43124259417f481c890821efb2399d25e3
+  nanopb: c43f40fadfe79e8b8db116583945847910cbabc9
+  PromisesObjC: b48e0338dbbac2207e611750777895f7a5811b75
   Protobuf: 2793fcd0622a00b546c60e7cbbcc493e043e9bb9
   ReachabilitySwift: 985039c6f7b23a1da463388634119492ff86c825
   SDWebImage: e3eae2eda88578db0685a0c88597fdadd9433f05
   SkyFloatingLabelTextField: 5a338412114808e961fe2d14ea2c5452c8b6e4aa
   SwipeCellKit: 3972254a826da74609926daf59b08d6c72e619ea
 
-PODFILE CHECKSUM: 61f513bfe95231a9fec4a3a23bc3a645bf8f94a6
+PODFILE CHECKSUM: 8cb086f8b1e282dd974950911d74948276dc8fd2
 
 COCOAPODS: 1.9.1

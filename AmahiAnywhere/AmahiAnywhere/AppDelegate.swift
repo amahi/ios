@@ -11,6 +11,7 @@ import IQKeyboardManagerSwift
 import EVReflection
 import AVFoundation
 import GoogleCast
+import Firebase
 
 let kPrefPreloadTime = "preload_time_sec"
 let kPrefEnableAnalyticsLogging = "enable_analytics_logging"
@@ -63,6 +64,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        
+        FirebaseApp.configure()
         
         populateRegistrationDomain()
         
