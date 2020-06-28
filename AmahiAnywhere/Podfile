@@ -17,7 +17,5 @@ use_frameworks!
     pod 'SwipeCellKit'
     pod 'google-cast-sdk'
     pod 'Floaty'
-    pod 'Firebase/Crashlytics'
-    pod 'Firebase/Analytics'
     
 end
