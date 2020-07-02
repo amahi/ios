@@ -9,12 +9,18 @@
 /* Begin PBXBuildFile section */
 		04BA8996211D56F400E7A868 /* AmahiLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04BA8995211D56F400E7A868 /* AmahiLogger.swift */; };
 		07A3AB2E5DFE0D2AD44B0F33 /* Pods_AmahiAnywhere.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F5293AC0952F87B50DCD644D /* Pods_AmahiAnywhere.framework */; };
-		0AA5E185203F36DD0010FD47 /* Amahi Logo White Font.png in Resources */ = {isa = PBXBuildFile; fileRef = 0AA5E184203F36DD0010FD47 /* Amahi Logo White Font.png */; };
 		3B1B35A423080E710058B1D8 /* UINavigationItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B1B35A323080E710058B1D8 /* UINavigationItem.swift */; };
 		3B24FE122296F4330044721D /* WalkthroughViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B24FE112296F4330044721D /* WalkthroughViewController.swift */; };
 		3B24FE162297086A0044721D /* WalkthroughAmahiCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3B24FE152297086A0044721D /* WalkthroughAmahiCell.xib */; };
 		3B24FE1822970B6B0044721D /* WalkthroughCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3B24FE1722970B6B0044721D /* WalkthroughCell.xib */; };
 		3B24FE1A22970B860044721D /* WalkthroughCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B24FE1922970B860044721D /* WalkthroughCollectionCell.swift */; };
+		3B2805E42312CA1C0022ED48 /* RecentFile+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B2805E32312CA1C0022ED48 /* RecentFile+CoreDataProperties.swift */; };
+		3B2805E62312DE930022ED48 /* RecentFilesViewController+CollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B2805E52312DE930022ED48 /* RecentFilesViewController+CollectionView.swift */; };
+		3B2805E82312DEFE0022ED48 /* RecentFilesVIewController+SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B2805E72312DEFE0022ED48 /* RecentFilesVIewController+SearchBar.swift */; };
+		3B2805EA2312DF6A0022ED48 /* RecentFilesViewController+Offline.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B2805E92312DF6A0022ED48 /* RecentFilesViewController+Offline.swift */; };
+		3B2805EC2312DFFF0022ED48 /* RecentFilesViewController+Remote.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B2805EB2312DFFF0022ED48 /* RecentFilesViewController+Remote.swift */; };
+		3B2805EE2312E0BA0022ED48 /* RecentFilesViewController+Media.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B2805ED2312E0BA0022ED48 /* RecentFilesViewController+Media.swift */; };
+		3B2805F02312E1470022ED48 /* RecentFilesViewController+UI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B2805EF2312E1470022ED48 /* RecentFilesViewController+UI.swift */; };
 		3B33324E22BAA17C00BC61EB /* FilteredServerFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B33324D22BAA17C00BC61EB /* FilteredServerFile.swift */; };
 		3B33325022BAA26600BC61EB /* FilesGridCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B33324F22BAA26600BC61EB /* FilesGridCollectionCell.swift */; };
 		3B33325222BAA27E00BC61EB /* FilesListCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B33325122BAA27E00BC61EB /* FilesListCollectionViewCell.swift */; };
@@ -47,6 +53,7 @@
 		3BCAFBAD22C6DBCB0044057E /* OfflineFilesViewController+UICollectionViewDelegates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BCAFBAC22C6DBCB0044057E /* OfflineFilesViewController+UICollectionViewDelegates.swift */; };
 		3BCAFBAF22C6DC1A0044057E /* OfflineFilesViewController+Sorting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BCAFBAE22C6DC1A0044057E /* OfflineFilesViewController+Sorting.swift */; };
 		3BCAFBB122C6DC460044057E /* OfflineFilesViewController+FilesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BCAFBB022C6DC460044057E /* OfflineFilesViewController+FilesView.swift */; };
+		3BEA683E2311899D0017779A /* RecentFilesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BEA683D2311899D0017779A /* RecentFilesViewController.swift */; };
 		3BF1E81A22D0288700C531CD /* OfflineFileIndexes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BF1E81922D0288700C531CD /* OfflineFileIndexes.swift */; };
 		3BF1E81C22D07E9800C531CD /* UIApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BF1E81B22D07E9800C531CD /* UIApplication.swift */; };
 		3BF4592822CD702C00C020A4 /* GlobalLayoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BF4592722CD702C00C020A4 /* GlobalLayoutView.swift */; };
@@ -67,6 +74,10 @@
 		80F60700206BE1530098BC60 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80F606FF206BE1530098BC60 /* SettingsViewController.swift */; };
 		8A0A88F8227CE39C00A1360C /* MimeType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4612851D2051DB770061EC21 /* MimeType.swift */; };
 		8A67FC2B22666F81005A5038 /* OfflineFile+MimeType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A67FC2A22666F81005A5038 /* OfflineFile+MimeType.swift */; };
+		9935DAAC2301EB2F004816E1 /* RecentsPersistenceService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9935DAAB2301EB2F004816E1 /* RecentsPersistenceService.swift */; };
+		9935DAB02301ED86004816E1 /* RecentFile+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9935DAAE2301ED86004816E1 /* RecentFile+CoreDataClass.swift */; };
+		9935DAB22301EE24004816E1 /* RecentsDatabaseHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9935DAB12301EE24004816E1 /* RecentsDatabaseHelper.swift */; };
+		9935DAB42301FA21004816E1 /* RecentFiles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9935DAB32301FA21004816E1 /* RecentFiles.swift */; };
 		9938343D22CBAAA2002A8213 /* Toast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9938343C22CBAAA2002A8213 /* Toast.swift */; };
 		993EC87522E6959800AF5F1F /* RootContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 993EC87422E6959800AF5F1F /* RootContainerViewController.swift */; };
 		99CF9D7F22E288BB0060C0E5 /* QueueViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99CF9D7E22E288BB0060C0E5 /* QueueViewController.swift */; };
@@ -96,7 +107,7 @@
 		C84BBA5E20F37EF20030536F /* Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = C84BBA5D20F37EF20030536F /* Notification.swift */; };
 		C866E5552042D02A0083A606 /* VideoPlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C866E5542042D02A0083A606 /* VideoPlayerViewController.swift */; };
 		C86CA91020D3937A00C8EDCA /* OfflineFilesPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C86CA90F20D3937A00C8EDCA /* OfflineFilesPresenter.swift */; };
-		C86CA91320D3A84A00C8EDCA /* OfflineFilesModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C86CA91120D3A84A00C8EDCA /* OfflineFilesModel.xcdatamodeld */; };
+		C86CA91320D3A84A00C8EDCA /* LocalFilesModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C86CA91120D3A84A00C8EDCA /* LocalFilesModel.xcdatamodeld */; };
 		C86CA91520D3C65400C8EDCA /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = C86CA91420D3C65400C8EDCA /* CoreDataStack.swift */; };
 		C86CA92920D3D26300C8EDCA /* OfflineFile+CoreData.swift in Sources */ = {isa = PBXBuildFile; fileRef = C86CA92720D3D26300C8EDCA /* OfflineFile+CoreData.swift */; };
 		C86CA92A20D3D26300C8EDCA /* OfflineFile+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = C86CA92820D3D26300C8EDCA /* OfflineFile+CoreDataProperties.swift */; };
@@ -115,6 +126,8 @@
 		C8DEBFAB20BAE1D300B09AED /* ConnectionModeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8DEBFAA20BAE1D200B09AED /* ConnectionModeManager.swift */; };
 		C8DEBFAD20BB1AEF00B09AED /* Alamofire.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8DEBFAC20BB1AEF00B09AED /* Alamofire.swift */; };
 		C8ED025920B3E30300015846 /* URL.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8ED025820B3E2F800015846 /* URL.swift */; };
+		E6867B80249FC9E4000B939C /* AppStoreReviewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6867B7F249FC9E4000B939C /* AppStoreReviewManager.swift */; };
+		E6867B82249FE8F3000B939C /* UserDefaults+Key.swift .swift in Sources */ = {isa = PBXBuildFile; fileRef = E6867B81249FE8F3000B939C /* UserDefaults+Key.swift .swift */; };
 		FB71BE98201CB2FC0005492C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB71BE97201CB2FC0005492C /* AppDelegate.swift */; };
 		FB71BE9A201CB2FC0005492C /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB71BE99201CB2FC0005492C /* LoginViewController.swift */; };
 		FB71BE9D201CB2FC0005492C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FB71BE9B201CB2FC0005492C /* Main.storyboard */; };
@@ -127,12 +140,18 @@
 
 /* Begin PBXFileReference section */
 		04BA8995211D56F400E7A868 /* AmahiLogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmahiLogger.swift; sourceTree = "<group>"; };
-		0AA5E184203F36DD0010FD47 /* Amahi Logo White Font.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Amahi Logo White Font.png"; sourceTree = "<group>"; };
 		3B1B35A323080E710058B1D8 /* UINavigationItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UINavigationItem.swift; sourceTree = "<group>"; };
 		3B24FE112296F4330044721D /* WalkthroughViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalkthroughViewController.swift; sourceTree = "<group>"; };
 		3B24FE152297086A0044721D /* WalkthroughAmahiCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WalkthroughAmahiCell.xib; sourceTree = "<group>"; };
 		3B24FE1722970B6B0044721D /* WalkthroughCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WalkthroughCell.xib; sourceTree = "<group>"; };
 		3B24FE1922970B860044721D /* WalkthroughCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalkthroughCollectionCell.swift; sourceTree = "<group>"; };
+		3B2805E32312CA1C0022ED48 /* RecentFile+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "RecentFile+CoreDataProperties.swift"; path = "../../../../RecentFile+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		3B2805E52312DE930022ED48 /* RecentFilesViewController+CollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RecentFilesViewController+CollectionView.swift"; sourceTree = "<group>"; };
+		3B2805E72312DEFE0022ED48 /* RecentFilesVIewController+SearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RecentFilesVIewController+SearchBar.swift"; sourceTree = "<group>"; };
+		3B2805E92312DF6A0022ED48 /* RecentFilesViewController+Offline.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RecentFilesViewController+Offline.swift"; sourceTree = "<group>"; };
+		3B2805EB2312DFFF0022ED48 /* RecentFilesViewController+Remote.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RecentFilesViewController+Remote.swift"; sourceTree = "<group>"; };
+		3B2805ED2312E0BA0022ED48 /* RecentFilesViewController+Media.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RecentFilesViewController+Media.swift"; sourceTree = "<group>"; };
+		3B2805EF2312E1470022ED48 /* RecentFilesViewController+UI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RecentFilesViewController+UI.swift"; sourceTree = "<group>"; };
 		3B33324D22BAA17C00BC61EB /* FilteredServerFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilteredServerFile.swift; sourceTree = "<group>"; };
 		3B33324F22BAA26600BC61EB /* FilesGridCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilesGridCollectionCell.swift; sourceTree = "<group>"; };
 		3B33325122BAA27E00BC61EB /* FilesListCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilesListCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -165,6 +184,7 @@
 		3BCAFBAC22C6DBCB0044057E /* OfflineFilesViewController+UICollectionViewDelegates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OfflineFilesViewController+UICollectionViewDelegates.swift"; sourceTree = "<group>"; };
 		3BCAFBAE22C6DC1A0044057E /* OfflineFilesViewController+Sorting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OfflineFilesViewController+Sorting.swift"; sourceTree = "<group>"; };
 		3BCAFBB022C6DC460044057E /* OfflineFilesViewController+FilesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OfflineFilesViewController+FilesView.swift"; sourceTree = "<group>"; };
+		3BEA683D2311899D0017779A /* RecentFilesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentFilesViewController.swift; sourceTree = "<group>"; };
 		3BF1E81922D0288700C531CD /* OfflineFileIndexes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfflineFileIndexes.swift; sourceTree = "<group>"; };
 		3BF1E81B22D07E9800C531CD /* UIApplication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIApplication.swift; sourceTree = "<group>"; };
 		3BF4592722CD702C00C020A4 /* GlobalLayoutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalLayoutView.swift; sourceTree = "<group>"; };
@@ -188,6 +208,10 @@
 		80F606FF206BE1530098BC60 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		8A67FC2A22666F81005A5038 /* OfflineFile+MimeType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OfflineFile+MimeType.swift"; sourceTree = "<group>"; };
 		9913634D22D5D2F100B48586 /* AmahiAnywhere.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = AmahiAnywhere.entitlements; sourceTree = "<group>"; };
+		9935DAAB2301EB2F004816E1 /* RecentsPersistenceService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentsPersistenceService.swift; sourceTree = "<group>"; };
+		9935DAAE2301ED86004816E1 /* RecentFile+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RecentFile+CoreDataClass.swift"; sourceTree = "<group>"; };
+		9935DAB12301EE24004816E1 /* RecentsDatabaseHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentsDatabaseHelper.swift; sourceTree = "<group>"; };
+		9935DAB32301FA21004816E1 /* RecentFiles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentFiles.swift; sourceTree = "<group>"; };
 		9938343C22CBAAA2002A8213 /* Toast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Toast.swift; sourceTree = "<group>"; };
 		993EC87422E6959800AF5F1F /* RootContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootContainerViewController.swift; sourceTree = "<group>"; };
 		99CF9D7E22E288BB0060C0E5 /* QueueViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QueueViewController.swift; sourceTree = "<group>"; };
@@ -237,6 +261,8 @@
 		C8DEBFAA20BAE1D200B09AED /* ConnectionModeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectionModeManager.swift; sourceTree = "<group>"; };
 		C8DEBFAC20BB1AEF00B09AED /* Alamofire.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alamofire.swift; sourceTree = "<group>"; };
 		C8ED025820B3E2F800015846 /* URL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URL.swift; sourceTree = "<group>"; };
+		E6867B7F249FC9E4000B939C /* AppStoreReviewManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppStoreReviewManager.swift; sourceTree = "<group>"; };
+		E6867B81249FE8F3000B939C /* UserDefaults+Key.swift .swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+Key.swift .swift"; sourceTree = "<group>"; };
 		F5293AC0952F87B50DCD644D /* Pods_AmahiAnywhere.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AmahiAnywhere.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FB71BE94201CB2FC0005492C /* AmahiAnywhere.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AmahiAnywhere.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FB71BE97201CB2FC0005492C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -268,6 +294,8 @@
 				C8DEBFAA20BAE1D200B09AED /* ConnectionModeManager.swift */,
 				C8DA5B1920D5DC2200F5A527 /* DownloadService.swift */,
 				C8DA5B2C20D7282E00F5A527 /* DownloadService+URLSessionDelegate.swift */,
+				E6867B7F249FC9E4000B939C /* AppStoreReviewManager.swift */,
+				E6867B81249FE8F3000B939C /* UserDefaults+Key.swift .swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -310,6 +338,20 @@
 				3B3F43E022FECF9300BB42B0 /* Interactor.swift */,
 			);
 			path = Animation;
+			sourceTree = "<group>";
+		};
+		3BEA683C2311897E0017779A /* Recent Files */ = {
+			isa = PBXGroup;
+			children = (
+				3BEA683D2311899D0017779A /* RecentFilesViewController.swift */,
+				3B2805EF2312E1470022ED48 /* RecentFilesViewController+UI.swift */,
+				3B2805ED2312E0BA0022ED48 /* RecentFilesViewController+Media.swift */,
+				3B2805E92312DF6A0022ED48 /* RecentFilesViewController+Offline.swift */,
+				3B2805E52312DE930022ED48 /* RecentFilesViewController+CollectionView.swift */,
+				3B2805EB2312DFFF0022ED48 /* RecentFilesViewController+Remote.swift */,
+				3B2805E72312DEFE0022ED48 /* RecentFilesVIewController+SearchBar.swift */,
+			);
+			path = "Recent Files";
 			sourceTree = "<group>";
 		};
 		3BEBFAE02296F3E10075E8A4 /* Walkthrough */ = {
@@ -363,6 +405,7 @@
 				ADAFF8DB2250209700287409 /* AudioThumbnailGenerator.swift */,
 				9938343C22CBAAA2002A8213 /* Toast.swift */,
 				3B37EBAE22ED11650065CB77 /* Units.swift */,
+				9935DAB32301FA21004816E1 /* RecentFiles.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -381,6 +424,8 @@
 			children = (
 				AD8F2FDA226E9331009C8C4B /* CoreDataStack+AutoSaving.swift */,
 				AD8F2FD9226E9331009C8C4B /* CoreDataStack+DropDatabase.swift */,
+				9935DAAB2301EB2F004816E1 /* RecentsPersistenceService.swift */,
+				9935DAB12301EE24004816E1 /* RecentsDatabaseHelper.swift */,
 				C86CA91620D3C76C00C8EDCA /* Models */,
 				C83C63812038D5B30089B9D8 /* LocalStorage.swift */,
 				C86CA91420D3C65400C8EDCA /* CoreDataStack.swift */,
@@ -429,6 +474,7 @@
 		C83C639A2039921B0089B9D8 /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
+				3BEA683C2311897E0017779A /* Recent Files */,
 				3B37EBB422F203DE0065CB77 /* HDA PIN Authentication */,
 				99CF9D7D22E2889F0060C0E5 /* Cast */,
 				C86CA90A20D30EFC00C8EDCA /* Offline */,
@@ -477,6 +523,8 @@
 				8A67FC2A22666F81005A5038 /* OfflineFile+MimeType.swift */,
 				C8DA5B1720D5D7EA00F5A527 /* Download.swift */,
 				3BCAFBA822C68CF70044057E /* FilteredOfflineFile.swift */,
+				9935DAAE2301ED86004816E1 /* RecentFile+CoreDataClass.swift */,
+				3B2805E32312CA1C0022ED48 /* RecentFile+CoreDataProperties.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -593,7 +641,7 @@
 		FB71BE8B201CB2FB0005492C = {
 			isa = PBXGroup;
 			children = (
-				C86CA91120D3A84A00C8EDCA /* OfflineFilesModel.xcdatamodeld */,
+				C86CA91120D3A84A00C8EDCA /* LocalFilesModel.xcdatamodeld */,
 				FB71BE96201CB2FC0005492C /* AmahiAnywhere */,
 				FB71BE95201CB2FC0005492C /* Products */,
 				DDF3537D8AE1275A22FED2AA /* Pods */,
@@ -623,7 +671,6 @@
 				C83C63782038D5150089B9D8 /* Utils */,
 				FB71BE97201CB2FC0005492C /* AppDelegate.swift */,
 				FB71BE9E201CB2FC0005492C /* Assets.xcassets */,
-				0AA5E184203F36DD0010FD47 /* Amahi Logo White Font.png */,
 				FB71BEA3201CB2FC0005492C /* Info.plist */,
 				C866E5532042373D0083A606 /* AmahiAnywhere-Bridging-Header.h */,
 			);
@@ -665,7 +712,7 @@
 				TargetAttributes = {
 					FB71BE93201CB2FC0005492C = {
 						CreatedOnToolsVersion = 9.2;
-						LastSwiftMigration = 1000;
+						LastSwiftMigration = 1140;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.AccessWiFi = {
@@ -702,7 +749,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				FB71BEA2201CB2FC0005492C /* LaunchScreen.storyboard in Resources */,
-				0AA5E185203F36DD0010FD47 /* Amahi Logo White Font.png in Resources */,
 				FB71BE9F201CB2FC0005492C /* Assets.xcassets in Resources */,
 				3B24FE1822970B6B0044721D /* WalkthroughCell.xib in Resources */,
 				3B24FE162297086A0044721D /* WalkthroughAmahiCell.xib in Resources */,
@@ -773,6 +819,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E6867B82249FE8F3000B939C /* UserDefaults+Key.swift .swift in Sources */,
 				3B33325822BAA3C200BC61EB /* SortView.swift in Sources */,
 				3B33325E22BAB05C00BC61EB /* FilesBaseCollectionViewCell.swift in Sources */,
 				C83C63952038D5B30089B9D8 /* ApiConfig.swift in Sources */,
@@ -782,10 +829,12 @@
 				C8DA5B3520D8741000F5A527 /* String.swift in Sources */,
 				AD8F2FDC226E9331009C8C4B /* CoreDataStack+AutoSaving.swift in Sources */,
 				C8DEBFAD20BB1AEF00B09AED /* Alamofire.swift in Sources */,
+				3B2805F02312E1470022ED48 /* RecentFilesViewController+UI.swift in Sources */,
 				C866E5552042D02A0083A606 /* VideoPlayerViewController.swift in Sources */,
 				3B3F43DC22FECF3800BB42B0 /* AudioPlayerViewController+Gesture.swift in Sources */,
 				C83C63902038D5B30089B9D8 /* PersistenceIdentifiers.swift in Sources */,
 				C83C637520386DD90089B9D8 /* BaseUIViewController.swift in Sources */,
+				9935DAB02301ED86004816E1 /* RecentFile+CoreDataClass.swift in Sources */,
 				3BCAFBA522C5385D0044057E /* DownloadsBaseCollectionCell.swift in Sources */,
 				9938343D22CBAAA2002A8213 /* Toast.swift in Sources */,
 				FB71BE9A201CB2FC0005492C /* LoginViewController.swift in Sources */,
@@ -803,26 +852,30 @@
 				C8ED025920B3E30300015846 /* URL.swift in Sources */,
 				C8DA5B1A20D5DC2200F5A527 /* DownloadService.swift in Sources */,
 				46098D04204FDF5500752EB6 /* ServerFile.swift in Sources */,
+				9935DAB42301FA21004816E1 /* RecentFiles.swift in Sources */,
 				C88E5A7620B66B46006518B6 /* Date.swift in Sources */,
 				ADAFF8D6224F6DB700287409 /* ThumbnailGenerator.swift in Sources */,
 				46059643204E8B41004FA066 /* BaseUITableViewController.swift in Sources */,
 				3B37EBAF22ED11650065CB77 /* Units.swift in Sources */,
 				C88E5A7120B543B2006518B6 /* FileManager.swift in Sources */,
 				3BF1E81C22D07E9800C531CD /* UIApplication.swift in Sources */,
-				C86CA91320D3A84A00C8EDCA /* OfflineFilesModel.xcdatamodeld in Sources */,
+				C86CA91320D3A84A00C8EDCA /* LocalFilesModel.xcdatamodeld in Sources */,
 				ADAFF8D822501F5B00287409 /* PDFThumbnailGenerator.swift in Sources */,
 				4605963F204E24DF004FA066 /* ServerPresenter.swift in Sources */,
 				46098D02204FDBEE00752EB6 /* ApiEndPoints.swift in Sources */,
+				9935DAB22301EE24004816E1 /* RecentsDatabaseHelper.swift in Sources */,
 				C84BBA5E20F37EF20030536F /* Notification.swift in Sources */,
 				3B3F43E322FED06A00BB42B0 /* AudioPlayerViewController+UpdatesUI.swift in Sources */,
 				C83C63922038D5B30089B9D8 /* AmahiApi.swift in Sources */,
 				FD40DD1322A8C889005D97EB /* Audio2PlayerViewController.swift in Sources */,
+				9935DAAC2301EB2F004816E1 /* RecentsPersistenceService.swift in Sources */,
 				46CB896B204FB0FC0031151F /* SharesPresenter.swift in Sources */,
 				C8DA5B2F20D7A1CA00F5A527 /* OfflineFileSort.swift in Sources */,
 				C80F3F4A20D47423000901B4 /* OfflineFileState.swift in Sources */,
 				C83C637320386DD90089B9D8 /* BaseContract.swift in Sources */,
 				C8DA5B2D20D7283400F5A527 /* DownloadService+URLSessionDelegate.swift in Sources */,
 				80F60700206BE1530098BC60 /* SettingsViewController.swift in Sources */,
+				3BEA683E2311899D0017779A /* RecentFilesViewController.swift in Sources */,
 				C83C63912038D5B30089B9D8 /* StringLiterals.swift in Sources */,
 				3B37EBB822F2D9F60065CB77 /* AuthTokenResponse.swift in Sources */,
 				FDF80E94229FB2060087F9B8 /* VideoMenuCellSettings.swift in Sources */,
@@ -833,16 +886,21 @@
 				3BCAFBA122C537C10044057E /* DownloadsListCollectionCell.swift in Sources */,
 				C8DA5B1C20D5DEC200F5A527 /* FilesViewController+FilesViewDelegates.swift in Sources */,
 				C878C97C205DF4060039C23A /* UIColor.swift in Sources */,
+				3B2805E82312DEFE0022ED48 /* RecentFilesVIewController+SearchBar.swift in Sources */,
 				3BCAFBA922C68CF70044057E /* FilteredOfflineFile.swift in Sources */,
 				99CF9D7F22E288BB0060C0E5 /* QueueViewController.swift in Sources */,
 				C86CA91520D3C65400C8EDCA /* CoreDataStack.swift in Sources */,
 				C8DA5B1820D5D7EA00F5A527 /* Download.swift in Sources */,
+				3B2805E62312DE930022ED48 /* RecentFilesViewController+CollectionView.swift in Sources */,
 				8A67FC2B22666F81005A5038 /* OfflineFile+MimeType.swift in Sources */,
 				80F3FDC7206C0D4D0061CD51 /* ConnectionViewController.swift in Sources */,
 				3B1B35A423080E710058B1D8 /* UINavigationItem.swift in Sources */,
+				3B2805EC2312DFFF0022ED48 /* RecentFilesViewController+Remote.swift in Sources */,
 				C83C638F2038D5B30089B9D8 /* LocalStorage.swift in Sources */,
 				C83C637420386DD90089B9D8 /* BaseUIViewController+BaseView.swift in Sources */,
+				3B2805EE2312E0BA0022ED48 /* RecentFilesViewController+Media.swift in Sources */,
 				C86CA91020D3937A00C8EDCA /* OfflineFilesPresenter.swift in Sources */,
+				3B2805E42312CA1C0022ED48 /* RecentFile+CoreDataProperties.swift in Sources */,
 				3B3F43DF22FECF7300BB42B0 /* DissmissAnimator.swift in Sources */,
 				C83C637E2038D5150089B9D8 /* StringIdentifiers.swift in Sources */,
 				3B33325022BAA26600BC61EB /* FilesGridCollectionCell.swift in Sources */,
@@ -869,10 +927,12 @@
 				C83C63992038D5B30089B9D8 /* AuthResponses.swift in Sources */,
 				3B33324E22BAA17C00BC61EB /* FilteredServerFile.swift in Sources */,
 				3B84E87D2299587B00E37A74 /* UIView.swift in Sources */,
+				E6867B80249FC9E4000B939C /* AppStoreReviewManager.swift in Sources */,
 				3B3F43E722FED14900BB42B0 /* AudioPlayerViewController+Remote.swift in Sources */,
 				3B33325C22BAA4BA00BC61EB /* FilesViewController+Sorting.swift in Sources */,
 				3B33325222BAA27E00BC61EB /* FilesListCollectionViewCell.swift in Sources */,
 				ADAFF8DA22501F7A00287409 /* VideoThumbnailGenerator.swift in Sources */,
+				3B2805EA2312DF6A0022ED48 /* RecentFilesViewController+Offline.swift in Sources */,
 				3B37EBB622F204030065CB77 /* HDAPinAuthVC.swift in Sources */,
 				46098D0A2050114C00752EB6 /* Network.swift in Sources */,
 				C83C639F2039B16C0089B9D8 /* ServerViewController.swift in Sources */,
@@ -956,7 +1016,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -1012,7 +1072,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
@@ -1030,6 +1090,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = AmahiAnywhere/AmahiAnywhere.entitlements;
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 330;
 				DEVELOPMENT_TEAM = "";
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = AmahiAnywhere/Info.plist;
@@ -1042,7 +1103,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_ENFORCE_EXCLUSIVE_ACCESS = none;
 				SWIFT_OBJC_BRIDGING_HEADER = "AmahiAnywhere/AmahiAnywhere-Bridging-Header.h";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -1054,6 +1115,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = AmahiAnywhere/AmahiAnywhere.entitlements;
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 330;
 				DEVELOPMENT_TEAM = "";
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = AmahiAnywhere/Info.plist;
@@ -1066,7 +1128,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_ENFORCE_EXCLUSIVE_ACCESS = none;
 				SWIFT_OBJC_BRIDGING_HEADER = "AmahiAnywhere/AmahiAnywhere-Bridging-Header.h";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
@@ -1095,13 +1157,13 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		C86CA91120D3A84A00C8EDCA /* OfflineFilesModel.xcdatamodeld */ = {
+		C86CA91120D3A84A00C8EDCA /* LocalFilesModel.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
 				C86CA91220D3A84A00C8EDCA /* OfflineFilesModel.xcdatamodel */,
 			);
 			currentVersion = C86CA91220D3A84A00C8EDCA /* OfflineFilesModel.xcdatamodel */;
-			path = OfflineFilesModel.xcdatamodeld;
+			path = LocalFilesModel.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};

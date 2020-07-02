@@ -16,9 +16,14 @@ class SettingsViewController: BaseUITableViewController {
         super.viewDidLoad()
         tableView.contentInset = UIEdgeInsets(top: 20, left: 0, bottom: 0, right: 0)
         tableView.sectionFooterHeight = 0
-        
+        if #available(iOS 13.0, *) {
+            self.view.backgroundColor = UIColor.secondarySystemBackground
+        } else {
+            self.view.backgroundColor = UIColor(named: "formal")
+        }
         print(getFreeSize())
     }
+    
     
     func getFreeSize() -> Int64? {
         let paths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)
@@ -33,8 +38,8 @@ class SettingsViewController: BaseUITableViewController {
     }
     
     internal func configureMailComposeViewController(recipient: String,
-                                            subject: String,
-                                            message: String) ->MFMailComposeViewController {
+                                                     subject: String,
+                                                     message: String) ->MFMailComposeViewController {
         
         let mail = MFMailComposeViewController()
         mail.mailComposeDelegate = self
@@ -75,7 +80,7 @@ class SettingsViewController: BaseUITableViewController {
         let clearCacheAlert = UIAlertController(title: StringLiterals.clearCacheTitle,
                                                 message:StringLiterals.clearCacheMessage,
                                                 preferredStyle: UIAlertController.Style.alert)
-
+        
         clearCacheAlert.addAction(UIAlertAction(title: StringLiterals.cancel, style: .default, handler: { (action: UIAlertAction!) in
             clearCacheAlert .dismiss(animated: true, completion: nil)
         }))
@@ -93,37 +98,19 @@ class SettingsViewController: BaseUITableViewController {
         present(clearCacheAlert, animated: true, completion: nil)
     }
     
-    internal func openAmahiOnAppStore() {
-        let urlStr = StringLiterals.amahiUrlOnAppStore
-        if let url = URL(string: urlStr), UIApplication.shared.canOpenURL(url) {
-            if #available(iOS 10.0, *) {
-                UIApplication.shared.open(url, options: convertToUIApplicationOpenExternalURLOptionsKeyDictionary([:]), completionHandler: nil)
-            } else {
-                UIApplication.shared.openURL(url)
-            }
-        }
-    }
     
-    internal func handleFeedbackByEmail() {
-        let mailVc = configureMailComposeViewController(recipient: StringLiterals.feedbackEmailAddress,
-                                                        subject: StringLiterals.feedbackEmailSubject,
-                                                        message: StringLiterals.feedbackEmailHint)
-        if MFMailComposeViewController.canSendMail() {
-            self.present(mailVc, animated: true, completion: nil)
-        }
-    }
-    
-    internal func handleShareByEmail() {
-        let mailVc = configureMailComposeViewController(recipient: "",
-                                                        subject: StringLiterals.shareEmailSubject,
-                                                        message: StringLiterals.shareEmailMessage)
-        if MFMailComposeViewController.canSendMail() {
-            self.present(mailVc, animated: true, completion: nil)
-        }
+    func handleShareByEmail() {
+        let activityViewController = UIActivityViewController(activityItems: [productURL],
+                                                              applicationActivities: nil)
+        
+        present(activityViewController, animated: true, completion: nil)
     }
 }
 
+private let productURL = URL(string: "https://apps.apple.com/us/app/amahi/id761559919?ls=1")!
+
 // Mark: Helper function inserted by Swift 4.2 migrator.
 fileprivate func convertToUIApplicationOpenExternalURLOptionsKeyDictionary(_ input: [String: Any]) -> [UIApplication.OpenExternalURLOptionsKey: Any] {
-	return Dictionary(uniqueKeysWithValues: input.map { key, value in (UIApplication.OpenExternalURLOptionsKey(rawValue: key), value)})
+    return Dictionary(uniqueKeysWithValues: input.map { key, value in (UIApplication.OpenExternalURLOptionsKey(rawValue: key), value)})
 }
+

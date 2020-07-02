@@ -32,7 +32,11 @@ class BaseUIViewController: UIViewController, GCKSessionManagerListener, GCKRequ
         UIDevice.current.beginGeneratingDeviceOrientationNotifications()
         castButton = GCKUICastButton(frame: CGRect(x: CGFloat(0), y: CGFloat(0),
                                                    width: CGFloat(24), height: CGFloat(24)))
-        castButton.tintColor = UIColor.white
+        if #available(iOS 13.0, *) {
+            castButton.tintColor = UIColor.secondarySystemBackground
+        } else {
+            castButton.tintColor = UIColor.white
+        }
         navigationItem.rightBarButtonItem = UIBarButtonItem(customView: castButton)
         queueButton = UIBarButtonItem(image: UIImage(named: "queueIcon"),
                                       style: .plain, target: self, action: #selector(didTapQueueButton))
@@ -61,7 +65,7 @@ class BaseUIViewController: UIViewController, GCKSessionManagerListener, GCKRequ
             barItems?.append(queueButton)
             navigationItem.rightBarButtonItems = barItems
         } else{
-            if let index = barItems?.index(of: queueButton){
+            if let index = barItems?.firstIndex(of: queueButton){
                 navigationItem.rightBarButtonItems?.remove(at: index)
             }
         }
@@ -113,20 +117,20 @@ class BaseUIViewController: UIViewController, GCKSessionManagerListener, GCKRequ
     }
     
     @objc func updateTabBarCompleted(){
-        if var downloadsTabCounter = Int(tabBarController?.tabBar.items?[1].badgeValue ?? "1"){
+        if var downloadsTabCounter = Int(tabBarController?.tabBar.items?[2].badgeValue ?? "1"){
             downloadsTabCounter -= 1
             if downloadsTabCounter >= 1{
-                tabBarController?.tabBar.items?[1].badgeValue = String(downloadsTabCounter)
+                tabBarController?.tabBar.items?[2].badgeValue = String(downloadsTabCounter)
             }else{
-                tabBarController?.tabBar.items?[1].badgeValue = nil
+                tabBarController?.tabBar.items?[2].badgeValue = nil
             }
         }
     }
     
     @objc func updateTabBarStarted(){
-        if var downloadsTabCounter = Int(tabBarController?.tabBar.items?[1].badgeValue ?? "0"){
+        if var downloadsTabCounter = Int(tabBarController?.tabBar.items?[2].badgeValue ?? "0"){
             downloadsTabCounter += 1
-            tabBarController?.tabBar.items?[1].badgeValue = String(downloadsTabCounter)
+            tabBarController?.tabBar.items?[2].badgeValue = String(downloadsTabCounter)
         }
     }
         
@@ -194,13 +198,21 @@ class BaseUIViewController: UIViewController, GCKSessionManagerListener, GCKRequ
     
     func showStatusAlert(title: String, _ extraSpace: Bool = false){
         let statusView = UIView()
-        statusView.backgroundColor = UIColor(hex: "1E2023")
+        if #available(iOS 13.0, *) {
+            statusView.backgroundColor = UIColor.secondarySystemBackground
+        } else {
+            statusView.backgroundColor = UIColor(named: "formal")
+        }
         statusView.layer.cornerRadius = 8
         statusView.alpha = 1
         
         let label = UILabel()
         label.text = title
-        label.textColor = .white
+        if #available(iOS 13.0, *) {
+            label.textColor = .label
+        } else {
+                label.textColor = .white
+        }
         label.font = UIFont.systemFont(ofSize: 13, weight: .medium)
         label.textAlignment = .center
         
@@ -266,13 +278,21 @@ extension BaseUIViewController: UITextFieldDelegate {
 extension BaseUITableViewController{
     func showStatusAlert(title: String){
         let statusView = UIView()
-        statusView.backgroundColor = UIColor(hex: "1E2023")
+        if #available(iOS 13.0, *) {
+            statusView.backgroundColor = UIColor.secondarySystemBackground
+        } else {
+            statusView.backgroundColor = UIColor(named: "formal")
+        }
         statusView.layer.cornerRadius = 8
         statusView.alpha = 1
         
         let label = UILabel()
         label.text = title
-        label.textColor = .white
+        if #available(iOS 13.0, *) {
+            label.textColor = .label
+        } else {
+            label.textColor = .white
+        }
         label.font = UIFont.systemFont(ofSize: 13, weight: .medium)
         label.textAlignment = .center
         

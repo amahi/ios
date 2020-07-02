@@ -9,6 +9,11 @@ class ConnectionViewController: BaseUITableViewController {
         
         tableView.contentInset = UIEdgeInsets(top: 20, left: 0, bottom: 0, right: 0)
         tableView.tableFooterView = UIView()
+        if #available(iOS 13.0, *) {
+            self.view.backgroundColor = UIColor.secondarySystemBackground
+        } else {
+            self.view.backgroundColor = UIColor(named: "formal")
+        }
     }
     
     // MARK: - Table view data source
@@ -22,7 +27,7 @@ class ConnectionViewController: BaseUITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if let index = connectionItem.index(of: LocalStorage.shared.userConnectionPreference) {
+        if let index = connectionItem.firstIndex(of: LocalStorage.shared.userConnectionPreference) {
             let cell = tableView.cellForRow(at: IndexPath(row: index, section: 0))
             cell?.accessoryType = .none
         }
@@ -39,10 +44,24 @@ class ConnectionViewController: BaseUITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: CellIdentifiers.connectionCell, for: indexPath)
         
         cell.textLabel?.text = connectionItem[indexPath.row].rawValue
-        cell.textLabel?.textColor = UIColor.white
+
+
+        
+        if #available(iOS 13.0, *) {
+            cell.textLabel?.textColor = UIColor.label
+        } else {
+             cell.textLabel?.textColor = UIColor.white
+            
+        }
         
         let selectedBackgroundView = UIView()
-        selectedBackgroundView.backgroundColor = UIColor(hex: "1E2023")
+
+        if #available(iOS 13.0, *) {
+            selectedBackgroundView.backgroundColor = UIColor.secondarySystemBackground
+        } else {
+            selectedBackgroundView.backgroundColor = UIColor(named: "formal")
+        }
+
         cell.selectedBackgroundView = selectedBackgroundView
         
         if connectionItem[indexPath.row] == LocalStorage.shared.userConnectionPreference {
@@ -54,3 +73,4 @@ class ConnectionViewController: BaseUITableViewController {
         return cell
     }
 }
+

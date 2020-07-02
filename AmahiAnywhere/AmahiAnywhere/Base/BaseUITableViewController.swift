@@ -28,7 +28,11 @@ class BaseUITableViewController: UITableViewController, GCKSessionManagerListene
         
         castButton = GCKUICastButton(frame: CGRect(x: CGFloat(0), y: CGFloat(0),
                                                    width: CGFloat(24), height: CGFloat(24)))
-        castButton.tintColor = UIColor.white
+        if #available(iOS 13.0, *) {
+            castButton.tintColor = UIColor.secondarySystemBackground
+        } else {
+            castButton.tintColor = UIColor.white
+        }
         navigationItem.rightBarButtonItem = UIBarButtonItem(customView: castButton)
         
         queueButton = UIBarButtonItem(image: UIImage(named: "queueIcon"),
@@ -95,7 +99,7 @@ class BaseUITableViewController: UITableViewController, GCKSessionManagerListene
             return
         }
         if !visible {
-            let index = barItems?.index(of: queueButton)
+            let index = barItems?.firstIndex(of: queueButton)
             if index == 1 {
                 barItems?.remove(at: 1)
             }

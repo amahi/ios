@@ -10,7 +10,7 @@ import Foundation
 
 final class LocalStorage: NSObject {
     
-    override init() {
+    private override init() {
         super.init()
     }
     

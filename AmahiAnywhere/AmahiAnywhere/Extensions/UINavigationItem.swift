@@ -13,7 +13,11 @@ extension UINavigationItem{
         
         let one = UILabel()
         one.text = title
-        one.textColor = .white
+        if #available(iOS 13.0, *) {
+            one.textColor = .label
+        } else {
+            one.textColor = .white
+        }
         one.font = UIFont.systemFont(ofSize: 18, weight: .medium)
         one.sizeToFit()
         

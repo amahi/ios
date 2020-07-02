@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14492.1" systemVersion="18G87" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="OfflineFile" representedClassName=".OfflineFile" syncable="YES">
+        <attribute name="downloadDate" attributeType="Date" usesScalarValueType="NO" spotlightIndexingEnabled="YES">
+            <userInfo/>
+        </attribute>
+        <attribute name="localPath" attributeType="String">
+            <userInfo/>
+        </attribute>
+        <attribute name="mime" attributeType="String">
+            <userInfo/>
+        </attribute>
+        <attribute name="mtime" optional="YES" attributeType="Date" usesScalarValueType="NO">
+            <userInfo/>
+        </attribute>
+        <attribute name="name" attributeType="String" spotlightIndexingEnabled="YES">
+            <userInfo/>
+        </attribute>
+        <attribute name="progress" attributeType="Float" defaultValueString="0" usesScalarValueType="YES">
+            <userInfo/>
+        </attribute>
+        <attribute name="remoteFileUri" attributeType="String">
+            <userInfo/>
+        </attribute>
+        <attribute name="size" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" spotlightIndexingEnabled="YES">
+            <userInfo/>
+        </attribute>
+        <attribute name="state" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES">
+            <userInfo/>
+        </attribute>
+        <uniquenessConstraints>
+            <uniquenessConstraint>
+                <constraint value="localPath"/>
+            </uniquenessConstraint>
+        </uniquenessConstraints>
+    </entity>
+    <entity name="RecentFile" representedClassName="RecentFile" syncable="YES">
+        <attribute name="authToken" optional="YES" attributeType="String">
+            <userInfo/>
+        </attribute>
+        <attribute name="day" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES">
+            <userInfo/>
+        </attribute>
+        <attribute name="fileName" optional="YES" attributeType="String">
+            <userInfo/>
+        </attribute>
+        <attribute name="fileURL" optional="YES" attributeType="String">
+            <userInfo/>
+        </attribute>
+        <attribute name="mimeType" optional="YES" attributeType="String">
+            <userInfo/>
+        </attribute>
+        <attribute name="month" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES">
+            <userInfo/>
+        </attribute>
+        <attribute name="mtimeDate" optional="YES" attributeType="Date" usesScalarValueType="NO">
+            <userInfo/>
+        </attribute>
+        <attribute name="path" optional="YES" attributeType="String">
+            <userInfo/>
+        </attribute>
+        <attribute name="serverName" optional="YES" attributeType="String">
+            <userInfo/>
+        </attribute>
+        <attribute name="size" optional="YES" attributeType="String">
+            <userInfo/>
+        </attribute>
+        <attribute name="sizeNumber" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES">
+            <userInfo/>
+        </attribute>
+        <attribute name="year" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES">
+            <userInfo/>
+        </attribute>
+    </entity>
+    <elements>
+        <element name="OfflineFile" positionX="-1206" positionY="-729" width="128" height="180"/>
+        <element name="RecentFile" positionX="-1206" positionY="-657" width="128" height="225"/>
+    </elements>
+</model>

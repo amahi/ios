@@ -16,12 +16,32 @@ public class Network {
     
     static let shared = Network()
     
+    //eg. iOS/10_1
+       func deviceVersion() -> String {
+           let currentDevice = UIDevice.current
+           return "\(currentDevice.systemName)/\(currentDevice.systemVersion)"
+       }
+       //eg. iPhone5,2
+       func deviceName() -> String {
+           var sysinfo = utsname()
+           uname(&sysinfo)
+           return String(bytes: Data(bytes: &sysinfo.machine, count: Int(_SYS_NAMELEN)), encoding: .ascii)!.trimmingCharacters(in: .controlCharacters)
+       }
+       //eg. MyApp/1
+       func appNameAndVersion() -> String {
+           let dictionary = Bundle.main.infoDictionary!
+           let version = dictionary["CFBundleShortVersionString"] as! String
+           let name = dictionary["CFBundleName"] as! String
+           return "\(name)/\(version)"
+       }
+       
     private func getDefaultHeaders() -> HTTPHeaders {
         return [
-            "Accept": "application/json"
-            // TODO: Add User-Agent header
+            "Accept": "application/json",
+            "User-Agent": "\(appNameAndVersion()) \(deviceName()) \(deviceVersion())"
         ]
     }
+    
     
     private func getFinalHeaders(_ headers: HTTPHeaders) -> HTTPHeaders {
         var finalHeaders = getDefaultHeaders()
@@ -115,6 +135,36 @@ public class Network {
                     completion(true)
                 }
                 else {
+                    completion(false)
+                }
+        }
+    }
+    
+    func downloadRecentFileToStorage(recentFile: Recent,
+                                            progressCompletion: @escaping (_ percent: Float) -> Void,
+                                            completion: @escaping (_ isSuccessful: Bool ) -> Void) {
+        // Create destination URL
+        let destination: DownloadRequest.DownloadFileDestination = { _, _ in
+            
+            let tempDirectoryURL = FileManager.default.findOrCreateFolder(in: FileManager.default.temporaryDirectory,
+                                                                          folderName: "cache")
+            
+            let destinationFileUrl = tempDirectoryURL?.appendingPathComponent(recentFile.path)
+            
+            return (destinationFileUrl!, [.removePreviousFile, .createIntermediateDirectories])
+        }
+        
+        guard let fileURL = URL(string: recentFile.fileURL) else { return }
+        
+        Alamofire.download(fileURL, to: destination)
+            .downloadProgress { progress in
+                progressCompletion(Float(progress.fractionCompleted))
+            }
+            .response { response in
+        
+                if response.error == nil {
+                    completion(true)
+                } else {
                     completion(false)
                 }
         }

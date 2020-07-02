@@ -51,7 +51,7 @@ extension AudioPlayerViewController{
             player.replaceCurrentItem(with: playerItems[shuffledArray[0]])
             shuffledArray.removeFirst()
         }else{
-            var index =  playerItems.index(of: player.currentItem!) ?? 0
+            var index =  playerItems.firstIndex(of: player.currentItem!) ?? 0
             if index == playerItems.count - 1 {
                 index = 0
             }else {
@@ -72,7 +72,7 @@ extension AudioPlayerViewController{
         
         if timeElapsedLabel.text == "00:00" || timeElapsedLabel.text == "00:01" || timeElapsedLabel.text == "00:02"{
             // Previous song
-            var index =  playerItems.index(of: player.currentItem!) ?? 0
+            var index =  playerItems.firstIndex(of: player.currentItem!) ?? 0
             
             if index == 0 {
                 index = playerItems.count - 1

@@ -16,7 +16,7 @@ class ServerApi {
     private var server: Server!
     private var serverRoute: ServerRoute?
     private var serverAddress: String?
-    private var auth_token: String? // if nil -> server is default welcome to amahi
+    public var auth_token: String? // if nil -> server is default welcome to amahi
     
     private init() {}
     
