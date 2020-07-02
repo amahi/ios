@@ -30,9 +30,9 @@ class ConnectionModeManager {
     
     func setupReachability(_ hostName: String?) {
         if let hostName = hostName {
-            reachability = Reachability(hostname: hostName)
+         try!   reachability = Reachability(hostname: hostName)
         } else {
-            reachability = Reachability()
+          try!  reachability = Reachability()
         }
         
         NotificationCenter.default.addObserver(

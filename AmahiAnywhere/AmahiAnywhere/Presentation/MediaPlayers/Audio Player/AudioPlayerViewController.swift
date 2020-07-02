@@ -160,7 +160,7 @@ class AudioPlayerViewController: UIViewController {
     }
     
     @IBAction func nextButtonPressed(_ sender: Any) {
-        let index =  playerItems.index(of: player.currentItem!) ?? 0
+        let index =  playerItems.firstIndex(of: player.currentItem!) ?? 0
         if index == playerItems.count - 1 && repeatButton.currentImage != UIImage(named:"repeatCurrent"){
             repeatButton.setImage(UIImage(named:"repeatAll"), for: .normal)
         }

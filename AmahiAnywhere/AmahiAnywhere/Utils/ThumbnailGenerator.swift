@@ -20,7 +20,6 @@ extension ThumbnailGenerator {
         guard let toCache = toCache else { return }
         let manager = SDWebImageManager.shared
         if let key = manager.cacheKey(for: url) {
-            print("marton: image saved to cache")
             manager.imageCache.store(toCache, imageData: toCache.sd_imageData(), forKey: key, cacheType: .all, completion: completion)
         }
     }

@@ -23,6 +23,7 @@ struct StoryBoardIdentifiers {
     static let tabBarController =                  "UITabBarController"
     static let filesViewController =               "FilesViewController"
     static let navigationBarController =           "UINavigationBarController"
+    static let recentsNavigationController = "RecentsNavigationBarController"
 }
 
 struct CellIdentifiers {

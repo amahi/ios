@@ -15,12 +15,20 @@ class ServerCollectionViewCell: UICollectionViewCell {
     
     func enable(){
         serverImageView.image = UIImage(named: "serverWhite")
-        serverLabel.textColor = .white
+        if #available(iOS 13.0, *) {
+            serverLabel.textColor = .label
+        } else {
+            serverLabel.textColor = .white
+        }
     }
     
     func disable(){
         serverImageView.image = UIImage(named: "serverGrey")
-        serverLabel.textColor = UIColor(hex: "949494")
+        if #available(iOS 13.0, *) {
+            serverLabel.textColor = UIColor.tertiaryLabel
+        } else {
+            serverLabel.textColor = UIColor(named: "949494")
+        }
     }
     
     func isEnabled() -> Bool{
@@ -35,7 +43,13 @@ class ServerCollectionViewCell: UICollectionViewCell {
     override func awakeFromNib() {
         let view = UIView()
         view.layer.cornerRadius = 8
-        view.backgroundColor = UIColor(hex: "1E2023")
+        if #available(iOS 13.0, *) {
+
+            view.backgroundColor = UIColor.secondarySystemBackground
+
+        } else {
+            view.backgroundColor = UIColor(named: "formal")
+        }
         selectedBackgroundView = view
     }
 

@@ -24,6 +24,14 @@ class DownloadsGridCollectionCell: DownloadsBaseCollectionCell{
         brokenIndicatorImageView.image = templateImage
         brokenIndicatorImageView.tintColor = UIColor.brokenIndicatorRed
         
+        if #available(iOS 13.0, *) {
+            nameLabel.textColor = UIColor.label
+            moreButton.tintColor = UIColor.label
+        } else {
+            nameLabel.textColor = UIColor.white
+            moreButton.tintColor = UIColor.white
+        }
+        
         setupProgressView(offlineFile: offlineFile, progressView: progressView)
         
         if offlineFile.stateEnum == .downloading {

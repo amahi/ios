@@ -58,7 +58,23 @@ class OfflineFilesViewController: BaseUIViewController{
         setupCollectionView()
         setupCoreData()
         setupSearchBar()
-    }
+        
+        if #available(iOS 13.0, *) {
+                    self.view.backgroundColor = UIColor.secondarySystemBackground
+          filesCollectionView.backgroundColor = UIColor.secondarySystemBackground
+          sortButton.backgroundColor = UIColor.secondarySystemBackground
+          sortButton.tintColor = UIColor.label
+          sortButton.titleLabel?.textColor = UIColor.label
+                    
+         } else {
+            self.view.backgroundColor = UIColor(named: "formal")
+            filesCollectionView.backgroundColor = UIColor(named: "formal")
+                   
+            sortButton.backgroundColor = UIColor(named: "formal")
+          sortButton.tintColor = UIColor.white
+          sortButton.titleLabel?.textColor = UIColor.white
+          }
+        }
     
     func setupLayoutView(){
         layoutView = GlobalLayoutView.layoutView
@@ -94,7 +110,11 @@ class OfflineFilesViewController: BaseUIViewController{
         searchController = UISearchController(searchResultsController: nil)
         searchController.obscuresBackgroundDuringPresentation = false
         searchController.searchBar.placeholder = "Search"
-        searchController.searchBar.tintColor = .white
+        if #available(iOS 13.0, *) {
+            searchController.searchBar.tintColor = .label
+        } else {
+            searchController.searchBar.tintColor = .white
+        }
         UITextField.appearance(whenContainedInInstancesOf: [UISearchBar.self]).defaultTextAttributes = [.foregroundColor: UIColor.white]
         searchController.delegate = self
         searchController.searchBar.delegate = self
@@ -286,7 +306,7 @@ extension OfflineFilesViewController: NSFetchedResultsControllerDelegate {
                     cell.updateProgress(offlineFile: file)
                 }
             }
-        }else if type == .delete, let file = anObject as? OfflineFile, let deletedIndex = offlineFiles.index(of: file){
+        }else if type == .delete, let file = anObject as? OfflineFile, let deletedIndex = offlineFiles.firstIndex(of: file){
             offlineFiles.remove(at: deletedIndex)
             organiseFilesSections(offlineFiles)
             NotificationCenter.default.post(name: .OfflineFileDeleted, object: file, userInfo: ["loadOfflineFiles": true])

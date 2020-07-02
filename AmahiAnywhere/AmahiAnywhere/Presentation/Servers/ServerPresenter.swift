@@ -21,6 +21,7 @@ class ServerPresenter: BasePresenter {
         self.view = view
     }
     
+    
     func detachView() {
         self.view = nil
     }

@@ -33,6 +33,22 @@ enum MimeType: Int {
             return .document
         case "video":
             return .video
+        case "code":
+            return .code
+        case "sharedFile":
+            return .sharedFile
+        case "document":
+            return .document
+        case "directory":
+            return .directory
+        case "presentation":
+            return .presentation
+        case "spreadsheet":
+            return .spreadsheet
+        case "subtitle":
+            return .subtitle
+        case "flacMedia":
+            return .flacMedia
         default:
             return .undefined
         }

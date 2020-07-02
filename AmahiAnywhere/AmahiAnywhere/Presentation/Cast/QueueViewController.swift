@@ -18,6 +18,11 @@ GCKSessionManagerListener, GCKRemoteMediaClientListener, GCKRequestDelegate, GCK
     
     @IBAction func closeButtonPressed(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
+        if #available(iOS 13.0, *) {
+            self.view.tintColor = UIColor.label
+        } else {
+            self.view.tintColor = UIColor.white
+        }
     }
     
     private var _editing = false
@@ -34,8 +39,17 @@ GCKSessionManagerListener, GCKRemoteMediaClientListener, GCKRequestDelegate, GCK
         if sessionManager.hasConnectedCastSession() {
             attach(to: sessionManager.currentCastSession!)
         }
-        _tableView.separatorColor = UIColor.gray
+        _tableView.separatorColor = UIColor.systemGray
         setItemsLabel()
+        if #available(iOS 13.0, *) {
+            self.view.backgroundColor = UIColor.secondarySystemBackground
+            _tableView.backgroundColor = UIColor.secondarySystemBackground
+            _editButton.tintColor = UIColor.label
+        } else {
+            self.view.backgroundColor = UIColor(named: "formal")
+            _tableView.backgroundColor = UIColor(named: "formal")
+            _editButton.tintColor = UIColor.white
+        }
         super.viewDidLoad()
     }
     
@@ -270,3 +284,4 @@ GCKSessionManagerListener, GCKRemoteMediaClientListener, GCKRequestDelegate, GCK
         _tableView.reloadData();
     }
 }
+

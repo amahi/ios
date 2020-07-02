@@ -44,9 +44,6 @@ class RootContainerViewController: UIViewController, GCKUIMiniMediaControlsViewC
         updateControlBarsVisibility()
         installViewController(miniMediaControlsViewController,
                               inContainerView: _miniMediaControlsContainerView)
-        for _ in 1...20 {
-            print("HEEYA")
-        }
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -87,6 +84,9 @@ class RootContainerViewController: UIViewController, GCKUIMiniMediaControlsViewC
     
     override func prepare(for segue: UIStoryboardSegue, sender _: Any?) {
         if segue.identifier == "NavigationVCEmbedSegue" {
+            if let tabBarController = segue.destination as? UITabBarController{
+                tabBarController.selectedIndex = 1
+            }
             navigationController = (segue.destination as? UINavigationController)
         }
     }

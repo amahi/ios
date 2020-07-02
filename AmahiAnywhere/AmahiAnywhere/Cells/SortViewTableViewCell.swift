@@ -27,7 +27,11 @@ class SortViewTableViewCell: UITableViewCell {
     
     let label: UILabel = {
         let label = UILabel()
-        label.textColor = .white
+        if #available(iOS 13.0, *) {
+            label.textColor = .label
+        } else {
+            label.textColor = .white
+        }
         label.font = UIFont.systemFont(ofSize: 16, weight: .medium)
         return label
     }()
@@ -35,7 +39,13 @@ class SortViewTableViewCell: UITableViewCell {
     func setupViews(){
         backgroundColor = .clear
         let backgroundView = UIView()
-        backgroundView.backgroundColor = UIColor(hex: "1E2023")
+        if #available(iOS 13.0, *) {
+
+            backgroundView.backgroundColor = UIColor.secondarySystemBackground
+
+        } else {
+            backgroundView.backgroundColor = UIColor(named: "formal")
+        }
         selectedBackgroundView = backgroundView
         addSubview(iconImageView)
         addSubview(label)

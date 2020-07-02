@@ -27,8 +27,19 @@ class ServerViewController: BaseUIViewController {
     let refreshControl: UIRefreshControl = {
         let control = UIRefreshControl()
         control.addTarget(self, action: #selector(handleRefresh), for: .valueChanged)
-        control.tintColor = .white
-        control.attributedTitle = NSAttributedString(string: "Pull To Refresh", attributes: [NSAttributedString.Key.foregroundColor: UIColor.white])
+        if #available(iOS 13.0, *) {
+            control.tintColor = .label
+        } else {
+            control.tintColor = .white
+            
+        }
+        if #available(iOS 13.0, *) {
+
+            control.attributedTitle = NSAttributedString(string: "Pull To Refresh", attributes: [NSAttributedString.Key.foregroundColor: UIColor.label])
+
+        } else {
+            control.attributedTitle = NSAttributedString(string: "Pull To Refresh", attributes: [NSAttributedString.Key.foregroundColor: UIColor.white])
+        }
         return control
     }()
     
@@ -49,7 +60,20 @@ class ServerViewController: BaseUIViewController {
         
         castButton = GCKUICastButton(frame: CGRect(x: CGFloat(0), y: CGFloat(0),
                                                    width: CGFloat(24), height: CGFloat(24)))
-        castButton.tintColor = UIColor.white
+        if #available(iOS 13.0, *) {
+            castButton.tintColor = UIColor.label
+
+            availableLabel.textColor = UIColor.label
+            serversCollectionView.backgroundColor = UIColor.secondarySystemBackground
+            self.view.backgroundColor = UIColor.secondarySystemBackground
+            
+        } else {
+            castButton.tintColor = UIColor.white
+            availableLabel.textColor = UIColor.white
+            serversCollectionView.backgroundColor = UIColor(named: "formal")
+            self.view.backgroundColor = UIColor(named: "formal")
+
+        }
         navigationItem.rightBarButtonItem = UIBarButtonItem(customView: castButton)
     }
     
@@ -70,6 +94,11 @@ class ServerViewController: BaseUIViewController {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         sessionManager.remove(self)
+    }
+    
+    @IBAction func recentsButtonPressed(_ sender: Any) {
+        let recentsVC = self.instantiateViewController (withIdentifier: StoryBoardIdentifiers.recentsNavigationController, from: StoryBoardIdentifiers.main)
+        self.present(recentsVC, animated: true, completion: nil)
     }
 }
 
@@ -110,6 +139,7 @@ extension ServerViewController: UICollectionViewDelegate, UICollectionViewDataSo
         }else{
             self.showStatusAlert(title: "The selected HDA is currently not available")
         }
+        AppStoreReviewManager.requestReviewIfAppropriate()
     }
     
     func showPinVC(server: Server){
@@ -160,6 +190,12 @@ extension ServerViewController: ServerView {
             availableLabel.text = "\(availableCounter) available HDAs"
         }else{
             availableLabel.text = "\(availableCounter) available HDA"
+        }
+        if #available(iOS 13.0, *) {
+            availableLabel.textColor = UIColor.label
+        } else {
+            availableLabel.textColor = UIColor.white
+            
         }
     }
 }

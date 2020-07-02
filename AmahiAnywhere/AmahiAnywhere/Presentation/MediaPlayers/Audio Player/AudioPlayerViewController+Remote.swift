@@ -36,13 +36,9 @@ extension AudioPlayerViewController{
     }
     
     @objc func remotePlayPause(){
-        print("marton: remote play/pause tapped")
-        
         if isPaused(){
-            print("marton: player was paused, start playing")
             playPlayer()
         }else{
-            print("marton: player was playing, pause playing")
             pausePlayer()
         }
     }

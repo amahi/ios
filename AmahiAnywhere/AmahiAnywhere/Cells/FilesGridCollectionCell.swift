@@ -17,6 +17,15 @@ class FilesGridCollectionCell: FilesBaseCollectionCell {
     
     func setupData(serverFile: ServerFile){
         nameLabel.text = serverFile.name
+        if #available(iOS 13.0, *) {
+                   nameLabel.textColor = UIColor.label
+            downloadIcon.tintColor = UIColor.label
+                   moreButton.tintColor = UIColor.label
+               } else {
+                   nameLabel.textColor = UIColor.white
+                   downloadIcon.tintColor = UIColor.white
+                   moreButton.tintColor = UIColor.white
+               }
         
         if serverFile.isDirectory{
             showDirectory()
@@ -24,6 +33,13 @@ class FilesGridCollectionCell: FilesBaseCollectionCell {
             showFile()
             setupArtWork(serverFile: serverFile, iconImageView: iconImageView)
         }
+    }
+    
+    func setupData(recentFile: Recent){
+        nameLabel.text = recentFile.fileName
+        showFile()
+        
+        setupArtWork(recentFile: recentFile, iconImageView: iconImageView)
     }
     
     func showDirectory(){

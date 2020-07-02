@@ -13,7 +13,13 @@ class DownloadsBaseCollectionCell: SwipeCollectionViewCell{
     
     override func awakeFromNib() {
         let backgroundView = UIView()
-        backgroundView.backgroundColor = UIColor(hex: "1E2023")
+        if #available(iOS 13.0, *) {
+
+            backgroundView.backgroundColor = UIColor.secondarySystemBackground
+
+        } else {
+            backgroundView.backgroundColor = UIColor(named: "formal")
+        }
         selectedBackgroundView = backgroundView
     }
     

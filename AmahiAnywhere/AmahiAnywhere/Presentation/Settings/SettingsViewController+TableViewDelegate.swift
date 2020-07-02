@@ -40,10 +40,6 @@ extension SettingsViewController {
             break
         case 2:
             if row == 1 {
-                openAmahiOnAppStore()
-            } else if row == 2 {
-                handleFeedbackByEmail()
-            } else if row == 3 {
                 handleShareByEmail()
             }
             break

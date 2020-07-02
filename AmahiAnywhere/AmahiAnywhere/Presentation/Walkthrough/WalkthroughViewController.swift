@@ -17,7 +17,7 @@ class WalkthroughViewController: BaseUIViewController {
     let titles = ["Access your HDA", "Browse your photos", "Play Your Music", "Play your Movies and Video Library", "Ready"]
     let icons = ["network", "photos", "music", "movies", "tick"]
     let descriptions = ["Amahi lets you play your videos, view your photos, listen to your music and more!", "Browse your photo library easily, upload photos directly from your phone.", "Listen to your music library, at home or on the road.", "Watch your video and movie library on your phone any time anywhere.", "You're all set to go. Thanks for using Amahi."]
-    let colors = [UIColor(hex: "3949AB"), UIColor(hex: "444444"), UIColor(hex: "26A59A"), UIColor(hex: "FFAC00"), UIColor(hex: "303E9F")]
+    let colors = [UIColor(named: "3949AB"), UIColor(named: "444444"), UIColor(named: "26A59A"), UIColor(named: "FFAC00"), UIColor(named: "303E9F")]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -68,7 +68,7 @@ extension WalkthroughViewController: UICollectionViewDelegate, UICollectionViewD
             }
             
             let index = indexPath.item - 1
-            cell.setupData(title: titles[index], icon: icons[index], description: descriptions[index], color: colors[index])
+            cell.setupData(title: titles[index], icon: icons[index], description: descriptions[index], color: colors[index]!)
             return cell
         }
     }
@@ -82,7 +82,7 @@ extension WalkthroughViewController: UICollectionViewDelegate, UICollectionViewD
         pageControl.currentPage = pageNumber
         
         if pageNumber == pageControl.numberOfPages-1{
-            collectionView.backgroundColor = UIColor(hex: "303E9F")
+            collectionView.backgroundColor = UIColor(named: "303E9F")
         }else{
             collectionView.backgroundColor = .clear
         }
