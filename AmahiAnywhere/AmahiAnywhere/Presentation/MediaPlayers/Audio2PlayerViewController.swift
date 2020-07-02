@@ -82,7 +82,7 @@ class Audio2PlayerViewController: UIViewController {
     }
     
     @IBAction func nextButtonPressed(_ sender: Any) {
-       let index =  playerItems.index(of: player.currentItem!) ?? 0
+       let index =  playerItems.firstIndex(of: player.currentItem!) ?? 0
         if index == playerItems.count - 1 {
             repeatButton.setImage(UIImage(named:"repeatAll"), for: .normal)
         }
@@ -118,7 +118,7 @@ class Audio2PlayerViewController: UIViewController {
                 shuffledArray.removeFirst()
             }
             else{
-                var index =  playerItems.index(of: player.currentItem!) ?? 0
+                var index =  playerItems.firstIndex(of: player.currentItem!) ?? 0
                 if index == playerItems.count - 1 {
                     player.pause()
                     configurePlayButton()
@@ -152,7 +152,7 @@ class Audio2PlayerViewController: UIViewController {
                 shuffledArray.removeFirst()
             }
             else{
-                var index =  playerItems.index(of: player.currentItem!) ?? 0
+                var index =  playerItems.firstIndex(of: player.currentItem!) ?? 0
                 if index == playerItems.count - 1 {
                     index = 0
                 }
@@ -163,7 +163,7 @@ class Audio2PlayerViewController: UIViewController {
             }
         }
         if repeatButton.currentImage == UIImage(named:"repeatCurrent") {
-            let index =  playerItems.index(of: player.currentItem!) ?? 0
+            let index =  playerItems.firstIndex(of: player.currentItem!) ?? 0
             self.player?.seek(to: CMTime.zero)
             player.replaceCurrentItem(with: playerItems[index])
         }
@@ -177,7 +177,7 @@ class Audio2PlayerViewController: UIViewController {
         player.rate = 0
         configurePlayButton()
         player.seek(to: CMTime.zero)
-        var index =  playerItems.index(of: player.currentItem!) ?? 0
+        var index =  playerItems.firstIndex(of: player.currentItem!) ?? 0
         if index == 0 {
             index = playerItems.count - 1
         }
@@ -204,7 +204,7 @@ class Audio2PlayerViewController: UIViewController {
         var track: String = ""
         var artist: String = ""
         
-        let asset:AVAsset = AVAsset(url:itemURLs[playerItems.index(of: player.currentItem!) ?? 0])
+        let asset:AVAsset = AVAsset(url:itemURLs[playerItems.firstIndex(of: player.currentItem!) ?? 0])
         for metaDataItems in asset.commonMetadata {
             //getting the title of the song
             //getting the thumbnail image associated with file
@@ -221,7 +221,7 @@ class Audio2PlayerViewController: UIViewController {
     }
     
     func setArtWork(){
-        let url = self.itemURLs[self.playerItems.index(of: self.player.currentItem!) ?? 0]
+        let url = self.itemURLs[self.playerItems.firstIndex(of: self.player.currentItem!) ?? 0]
     
         if let image = AudioThumbnailGenerator.imageFromMemory(for: url){
             self.musicArtImageView.image = image
@@ -229,7 +229,7 @@ class Audio2PlayerViewController: UIViewController {
             self.setLockScreenMetadata()
         }else{
             DispatchQueue.global(qos: .userInitiated).async {
-                let image = AudioThumbnailGenerator().getThumbnail(self.itemURLs[self.playerItems.index(of: self.player.currentItem!) ?? 0])
+                let image = AudioThumbnailGenerator().getThumbnail(self.itemURLs[self.playerItems.firstIndex(of: self.player.currentItem!) ?? 0])
                 DispatchQueue.main.async {
                     self.musicArtImageView.image = image
                     self.backgroundImageView.image = image

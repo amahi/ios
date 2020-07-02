@@ -65,7 +65,7 @@ class BaseUIViewController: UIViewController, GCKSessionManagerListener, GCKRequ
             barItems?.append(queueButton)
             navigationItem.rightBarButtonItems = barItems
         } else{
-            if let index = barItems?.index(of: queueButton){
+            if let index = barItems?.firstIndex(of: queueButton){
                 navigationItem.rightBarButtonItems?.remove(at: index)
             }
         }

@@ -99,7 +99,7 @@ class BaseUITableViewController: UITableViewController, GCKSessionManagerListene
             return
         }
         if !visible {
-            let index = barItems?.index(of: queueButton)
+            let index = barItems?.firstIndex(of: queueButton)
             if index == 1 {
                 barItems?.remove(at: 1)
             }

@@ -13,7 +13,7 @@ import MediaPlayer
 extension AudioPlayerViewController{
     
     func setImage(){
-        let url = itemURLs[playerItems.index(of: player.currentItem!) ?? 0]
+        let url = itemURLs[playerItems.firstIndex(of: player.currentItem!) ?? 0]
         if let image = AudioThumbnailGenerator.imageFromMemory(for: url){
             loadImage(image: image)
         }else{
@@ -34,7 +34,7 @@ extension AudioPlayerViewController{
             track = trackName
             artist = artistName
         }else{
-            let asset:AVAsset = AVAsset(url:itemURLs[playerItems.index(of: player.currentItem!) ?? 0])
+            let asset:AVAsset = AVAsset(url:itemURLs[playerItems.firstIndex(of: player.currentItem!) ?? 0])
             let metaData = asset.metadata
             
             let artistNameMetaData = AVMetadataItem.metadataItems(from: metaData, filteredByIdentifier: AVMetadataIdentifier.commonIdentifierArtist)
