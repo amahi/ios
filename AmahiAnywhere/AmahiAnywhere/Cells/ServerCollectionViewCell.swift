@@ -27,7 +27,7 @@ class ServerCollectionViewCell: UICollectionViewCell {
         if #available(iOS 13.0, *) {
             serverLabel.textColor = UIColor.tertiaryLabel
         } else {
-            serverLabel.textColor = UIColor(hex: "949494")
+            serverLabel.textColor = UIColor(named: "949494")
         }
     }
     
@@ -48,7 +48,7 @@ class ServerCollectionViewCell: UICollectionViewCell {
             view.backgroundColor = UIColor.secondarySystemBackground
 
         } else {
-           view.backgroundColor = UIColor(hex: "1E2023")
+            view.backgroundColor = UIColor(named: "formal")
         }
         selectedBackgroundView = view
     }

@@ -87,7 +87,7 @@ extension SettingsViewController {
             selectedBackgroundView.backgroundColor = UIColor.secondarySystemBackground
 
         } else {
-            selectedBackgroundView.backgroundColor = UIColor(hex: "1E2023")
+            selectedBackgroundView.backgroundColor = UIColor(named: "formal")
         }
         
         cell.selectedBackgroundView = selectedBackgroundView
@@ -100,7 +100,7 @@ extension SettingsViewController {
             view.backgroundColor = UIColor.systemBackground
             
         } else {
-            view.backgroundColor = UIColor(hex: "131517")
+            view.backgroundColor = UIColor(named: "131517")
 
 
         }

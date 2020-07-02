@@ -110,8 +110,8 @@ class FilesViewController: BaseUIViewController, GCKRemoteMediaClientListener {
             sortButton.tintColor = UIColor.label
             floaty.tintColor = UIColor.label
         } else {
-            self.view.backgroundColor = UIColor(hex: "1E2023")
-            filesCollectionView.backgroundColor = UIColor(hex: "1E2023")
+            self.view.backgroundColor = UIColor(named: "formal")
+            filesCollectionView.backgroundColor = UIColor(named: "formal")
             sortButton.titleLabel?.textColor = UIColor.white
             sortButton.tintColor = UIColor.white
             floaty.tintColor = UIColor.white

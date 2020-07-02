@@ -21,7 +21,7 @@ class SharesCollectionViewCell: UICollectionViewCell {
 
             titleLabel.textColor = UIColor.label
         } else {
-            view.backgroundColor = UIColor(hex: "1E2023")
+            view.backgroundColor = UIColor(named: "formal")
             titleLabel.textColor = UIColor.white
 
         }

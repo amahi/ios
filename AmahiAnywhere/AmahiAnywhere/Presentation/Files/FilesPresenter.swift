@@ -131,6 +131,7 @@ class FilesPresenter: BasePresenter {
             let results = files.getImageFiles(selectedFile: selectedFile)
             let controller = LightboxController(images: results.images, startIndex: results.startIndex)
             controller.dynamicBackground = true
+            controller.modalPresentationStyle = .fullScreen
             self.view?.present(controller)
 
         case .video, .flacMedia:

@@ -70,8 +70,8 @@ class ServerViewController: BaseUIViewController {
         } else {
             castButton.tintColor = UIColor.white
             availableLabel.textColor = UIColor.white
-            serversCollectionView.backgroundColor = UIColor(hex: "1E2023")
-             self.view.backgroundColor = UIColor(hex: "1E2023")
+            serversCollectionView.backgroundColor = UIColor(named: "formal")
+            self.view.backgroundColor = UIColor(named: "formal")
 
         }
         navigationItem.rightBarButtonItem = UIBarButtonItem(customView: castButton)

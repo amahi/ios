@@ -198,11 +198,10 @@ class BaseUIViewController: UIViewController, GCKSessionManagerListener, GCKRequ
     
     func showStatusAlert(title: String, _ extraSpace: Bool = false){
         let statusView = UIView()
-       // statusView.backgroundColor = UIColor(hex: "1E2023")
         if #available(iOS 13.0, *) {
             statusView.backgroundColor = UIColor.secondarySystemBackground
         } else {
-            statusView.backgroundColor = UIColor(hex: "1E2023")
+            statusView.backgroundColor = UIColor(named: "formal")
         }
         statusView.layer.cornerRadius = 8
         statusView.alpha = 1
@@ -279,14 +278,10 @@ extension BaseUIViewController: UITextFieldDelegate {
 extension BaseUITableViewController{
     func showStatusAlert(title: String){
         let statusView = UIView()
-       // statusView.backgroundColor = UIColor(hex: "1E2023")
         if #available(iOS 13.0, *) {
-
             statusView.backgroundColor = UIColor.secondarySystemBackground
-
         } else {
-            statusView.backgroundColor = UIColor(hex: "1E2023")
-            
+            statusView.backgroundColor = UIColor(named: "formal")
         }
         statusView.layer.cornerRadius = 8
         statusView.alpha = 1

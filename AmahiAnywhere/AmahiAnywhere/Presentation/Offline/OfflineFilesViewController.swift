@@ -67,10 +67,10 @@ class OfflineFilesViewController: BaseUIViewController{
           sortButton.titleLabel?.textColor = UIColor.label
                     
          } else {
-                    self.view.backgroundColor = UIColor(hex: "1E2023")
-          filesCollectionView.backgroundColor = UIColor(hex: "1E2023")
+            self.view.backgroundColor = UIColor(named: "formal")
+            filesCollectionView.backgroundColor = UIColor(named: "formal")
                    
-          sortButton.backgroundColor = UIColor(hex: "1E2023")
+            sortButton.backgroundColor = UIColor(named: "formal")
           sortButton.tintColor = UIColor.white
           sortButton.titleLabel?.textColor = UIColor.white
           }

@@ -12,7 +12,7 @@ class ConnectionViewController: BaseUITableViewController {
         if #available(iOS 13.0, *) {
             self.view.backgroundColor = UIColor.secondarySystemBackground
         } else {
-            self.view.backgroundColor = UIColor(hex: "1E2023")
+            self.view.backgroundColor = UIColor(named: "formal")
         }
     }
     
@@ -59,7 +59,7 @@ class ConnectionViewController: BaseUITableViewController {
         if #available(iOS 13.0, *) {
             selectedBackgroundView.backgroundColor = UIColor.secondarySystemBackground
         } else {
-               selectedBackgroundView.backgroundColor = UIColor(hex: "1E2023")
+            selectedBackgroundView.backgroundColor = UIColor(named: "formal")
         }
 
         cell.selectedBackgroundView = selectedBackgroundView

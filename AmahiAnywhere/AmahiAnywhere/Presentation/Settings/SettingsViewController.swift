@@ -19,7 +19,7 @@ class SettingsViewController: BaseUITableViewController {
         if #available(iOS 13.0, *) {
             self.view.backgroundColor = UIColor.secondarySystemBackground
         } else {
-            self.view.backgroundColor = UIColor(hex: "1E2023")
+            self.view.backgroundColor = UIColor(named: "formal")
         }
         print(getFreeSize())
     }

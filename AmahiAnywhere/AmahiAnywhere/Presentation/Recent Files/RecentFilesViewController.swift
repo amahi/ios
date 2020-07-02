@@ -211,6 +211,7 @@ class RecentFilesViewController: BaseUIViewController {
             let results = getImageFiles(selectedFile: recentFile)
             let controller = LightboxController(images: results.images, startIndex: results.startIndex)
             controller.dynamicBackground = true
+            controller.modalPresentationStyle = .fullScreen
             present(controller, animated: true, completion: nil)
         case "video", "flacMedia":
             playMediaItem(recentFile: recentFile)

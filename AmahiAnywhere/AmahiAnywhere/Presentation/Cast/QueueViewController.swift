@@ -46,8 +46,8 @@ GCKSessionManagerListener, GCKRemoteMediaClientListener, GCKRequestDelegate, GCK
             _tableView.backgroundColor = UIColor.secondarySystemBackground
             _editButton.tintColor = UIColor.label
         } else {
-            self.view.backgroundColor = UIColor(hex: "1E2023")
-            _tableView.backgroundColor = UIColor(hex: "1E2023")
+            self.view.backgroundColor = UIColor(named: "formal")
+            _tableView.backgroundColor = UIColor(named: "formal")
             _editButton.tintColor = UIColor.white
         }
         super.viewDidLoad()

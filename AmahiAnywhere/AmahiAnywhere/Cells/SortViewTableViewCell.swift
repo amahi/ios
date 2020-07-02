@@ -44,7 +44,7 @@ class SortViewTableViewCell: UITableViewCell {
             backgroundView.backgroundColor = UIColor.secondarySystemBackground
 
         } else {
-           backgroundView.backgroundColor = UIColor(hex: "1E2023")
+            backgroundView.backgroundColor = UIColor(named: "formal")
         }
         selectedBackgroundView = backgroundView
         addSubview(iconImageView)

@@ -46,7 +46,7 @@ class LoginViewController: BaseUIViewController {
             showHideButton.tintColor = UIColor.label
             
         } else {
-            self.view.backgroundColor = UIColor(hex: "1E2023")
+            self.view.backgroundColor = UIColor(named: "formal")
             usernameInputField.textColor = UIColor.white
             usernameInputField.placeholderColor = UIColor.lightGray
             usernameInputField.titleColor = UIColor.white

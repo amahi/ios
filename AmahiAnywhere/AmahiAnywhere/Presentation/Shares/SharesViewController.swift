@@ -45,8 +45,8 @@ class SharesViewController: BaseUIViewController, UICollectionViewDelegate, UICo
                        sharesCollectionView.backgroundColor = UIColor.secondarySystemBackground
             serverNameLabel.textColor = UIColor.label
                    } else {
-                       self.view.backgroundColor = UIColor(hex: "1E2023")
-                       sharesCollectionView.backgroundColor = UIColor(hex: "1E2023")
+            self.view.backgroundColor = UIColor(named: "formal")
+            sharesCollectionView.backgroundColor = UIColor(named: "formal")
             serverNameLabel.textColor = UIColor.white
                    }
 
