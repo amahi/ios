@@ -92,7 +92,11 @@ extension RecentFilesViewController: UICollectionViewDelegate, UICollectionViewD
             }
             shareAction.backgroundColor = #colorLiteral(red: 0.2704460415, green: 0.5734752943, blue: 1, alpha: 1)
             shareAction.font = UIFont.systemFont(ofSize: 18, weight: .bold)
-            shareAction.textColor = .white
+            if #available(iOS 13.0, *) {
+                shareAction.textColor = .label
+            } else {
+                shareAction.textColor = .white
+            }
             return [shareAction]
         }else{
             let state = checkFileOfflineState(recentFile)
@@ -103,7 +107,11 @@ extension RecentFilesViewController: UICollectionViewDelegate, UICollectionViewD
                 
                 downloadAction.backgroundColor = #colorLiteral(red: 0.2172219259, green: 0.7408193211, blue: 0.1805167178, alpha: 1)
                 downloadAction.font = UIFont.systemFont(ofSize: 18, weight: .bold)
-                downloadAction.textColor = .white
+                if #available(iOS 13.0, *) {
+                    downloadAction.textColor = .label
+                } else {
+                    downloadAction.textColor = .white
+                }
                 return [downloadAction]
             }else if state == .downloaded{
                 let removeDownloadAction = SwipeAction(style: .default, title: "Remove Download") { (action, indexPath) in
@@ -111,7 +119,11 @@ extension RecentFilesViewController: UICollectionViewDelegate, UICollectionViewD
                 }
                 
                 removeDownloadAction.backgroundColor = #colorLiteral(red: 0.9490196078, green: 0.1215686275, blue: 0.1882352941, alpha: 1)
-                removeDownloadAction.textColor = .white
+                if #available(iOS 13.0, *) {
+                    removeDownloadAction.textColor = .label
+                } else {
+                    removeDownloadAction.textColor = .white
+                }
                 removeDownloadAction.font = UIFont.systemFont(ofSize: 18, weight: .bold)
                 return [removeDownloadAction]
             }else if state == .downloading{
@@ -122,7 +134,11 @@ extension RecentFilesViewController: UICollectionViewDelegate, UICollectionViewD
                 }
                 
                 cancelDownloadAction.backgroundColor = #colorLiteral(red: 0.9490196078, green: 0.1215686275, blue: 0.1882352941, alpha: 1)
-                cancelDownloadAction.textColor = .white
+                if #available(iOS 13.0, *) {
+                    cancelDownloadAction.textColor = .label
+                } else {
+                    cancelDownloadAction.textColor = .white
+                }
                 cancelDownloadAction.font = UIFont.systemFont(ofSize: 18, weight: .bold)
                 return [cancelDownloadAction]
             }else{

@@ -39,6 +39,15 @@ class FilesGridCollectionCell: FilesBaseCollectionCell {
         nameLabel.text = recentFile.fileName
         showFile()
         
+        if #available(iOS 13.0, *) {
+               nameLabel.textColor = UIColor.label
+               downloadIcon.tintColor = UIColor.label
+               moreButton.tintColor = UIColor.label
+           } else {
+               nameLabel.textColor = UIColor.white
+               downloadIcon.tintColor = UIColor.white
+               moreButton.tintColor = UIColor.white
+           }
         setupArtWork(recentFile: recentFile, iconImageView: iconImageView)
     }
     

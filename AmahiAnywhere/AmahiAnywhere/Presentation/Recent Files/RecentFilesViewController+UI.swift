@@ -53,7 +53,11 @@ extension RecentFilesViewController{
         downloadImageView?.setAnchorSize(width: 80, height: 80)
         
         progressView = UIProgressView(progressViewStyle: .bar)
-        progressView?.trackTintColor = .white
+        if #available(iOS 13.0, *) {
+            progressView?.trackTintColor = .label
+        } else {
+            progressView?.trackTintColor = .white
+        }
         progressView?.setProgress(0.0, animated: true)
         progressView?.setAnchorSize(width: nil, height: 2)
         
