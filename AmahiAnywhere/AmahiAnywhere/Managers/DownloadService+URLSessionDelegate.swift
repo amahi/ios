@@ -51,7 +51,9 @@ extension DownloadService: URLSessionDownloadDelegate {
             
         } catch let error {
             AmahiLogger.log("Could not move file to disk: \(error.localizedDescription)")
-            self.updateTabBarCompleted()
+            DispatchQueue.main.async {
+                self.updateTabBarCompleted()
+            }
         }
     }
     

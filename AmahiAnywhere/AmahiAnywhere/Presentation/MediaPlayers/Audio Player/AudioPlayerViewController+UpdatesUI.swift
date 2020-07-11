@@ -12,43 +12,23 @@ import MediaPlayer
 
 extension AudioPlayerViewController{
     
-    func setImage(){
-        let url = itemURLs[playerItems.firstIndex(of: player.currentItem!) ?? 0]
-        if let image = AudioThumbnailGenerator.imageFromMemory(for: url){
-            loadImage(image: image)
+    func loadImage(for item:AVPlayerItem){
+        
+        if let image = dataModel.thumbnailImages[item]{
+            self.musicArtImageView.image = image
+            self.backgroundImageView.image = image
         }else{
-            loadImage(image: UIImage(named: "musicPlayerArtWork")!)
+            self.musicArtImageView.image = UIImage(named: "musicPlayerArtWork")
+            self.backgroundImageView.image = UIImage(named: "musicPlayerArtWork")
         }
     }
     
-    func loadImage(image: UIImage){
-        self.musicArtImageView.image = image
-        self.backgroundImageView.image = image
-    }
-    
-    func setTitleArtist(){
+    func setTitleArtist(for item:AVPlayerItem){
         var track: String?
         var artist: String?
         
-        if let trackName = trackNames[player.currentItem!], let artistName = artistNames[player.currentItem!]{
-            track = trackName
-            artist = artistName
-        }else{
-            let asset:AVAsset = AVAsset(url:itemURLs[playerItems.firstIndex(of: player.currentItem!) ?? 0])
-            let metaData = asset.metadata
-            
-            let artistNameMetaData = AVMetadataItem.metadataItems(from: metaData, filteredByIdentifier: AVMetadataIdentifier.commonIdentifierArtist)
-            if let artistName = artistNameMetaData.first{
-                artist = artistName.value as? String
-                artistNames[player.currentItem!] = artist
-            }
-            
-            let titleMetaData = AVMetadataItem.metadataItems(from: metaData, filteredByIdentifier: AVMetadataIdentifier.commonIdentifierTitle)
-            if let title = titleMetaData.first{
-                track = title.value as? String
-                trackNames[player.currentItem!] = track
-            }
-        }
+        track = dataModel.trackNames[item]
+        artist = dataModel.artistNames[item]
         
         artistName.text = artist
         songTitle.text = track
@@ -64,11 +44,11 @@ extension AudioPlayerViewController{
     func setSliderAndTimeLabels(){
         var duration: Float64 = 0.0
         
-        if let durationCMTime = durations[player.currentItem!]{
+        if let durationCMTime = dataModel.durations[player.currentItem!]{
             duration = CMTimeGetSeconds(durationCMTime)
         }else{
             let durationCMTime = player.currentItem?.asset.duration ?? CMTime.zero
-            durations[player.currentItem!] = durationCMTime
+            dataModel.durations[player.currentItem!] = durationCMTime
             duration = CMTimeGetSeconds(durationCMTime)
         }
         

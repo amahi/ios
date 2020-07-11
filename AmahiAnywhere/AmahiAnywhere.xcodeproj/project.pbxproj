@@ -70,6 +70,13 @@
 		46657183205085FC000E0D45 /* FilesPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46657182205085FC000E0D45 /* FilesPresenter.swift */; };
 		46CB896B204FB0FC0031151F /* SharesPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46CB896A204FB0FC0031151F /* SharesPresenter.swift */; };
 		46F87397204CC69500F1AF37 /* Server.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46F87396204CC69500F1AF37 /* Server.swift */; };
+		725871912496BCEB00AF0A61 /* QueueContainerHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 725871902496BCEB00AF0A61 /* QueueContainerHeaderView.swift */; };
+		725871932496C65300AF0A61 /* PlayerQueueContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 725871922496C65300AF0A61 /* PlayerQueueContainerView.swift */; };
+		7270E663248D14A6001BE439 /* AudioPlayerQueueViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7270E662248D14A6001BE439 /* AudioPlayerQueueViewController.swift */; };
+		7270E665248D4490001BE439 /* AudioPlayerViewController + PlayerQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7270E664248D448F001BE439 /* AudioPlayerViewController + PlayerQueue.swift */; };
+		72BDA8B524A9ED6900B4469E /* QueueItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72BDA8B324A9ED6900B4469E /* QueueItemTableViewCell.swift */; };
+		72BDA8B624A9ED6900B4469E /* QueueItemTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 72BDA8B424A9ED6900B4469E /* QueueItemTableViewCell.xib */; };
+		72DAFE1C24B6276A00755E25 /* AudioPlayerDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72DAFE1B24B6276A00755E25 /* AudioPlayerDataModel.swift */; };
 		80F3FDC7206C0D4D0061CD51 /* ConnectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80F3FDC6206C0D4D0061CD51 /* ConnectionViewController.swift */; };
 		80F60700206BE1530098BC60 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80F606FF206BE1530098BC60 /* SettingsViewController.swift */; };
 		8A0A88F8227CE39C00A1360C /* MimeType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4612851D2051DB770061EC21 /* MimeType.swift */; };
@@ -204,6 +211,13 @@
 		46F87396204CC69500F1AF37 /* Server.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Server.swift; sourceTree = "<group>"; };
 		499AAFCDBDAB4C05C7264992 /* Pods-AmahiAnywhere.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AmahiAnywhere.release.xcconfig"; path = "Pods/Target Support Files/Pods-AmahiAnywhere/Pods-AmahiAnywhere.release.xcconfig"; sourceTree = "<group>"; };
 		665E1C7EF1F0DEBF3A9809B0 /* Pods-AmahiAnywhere.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AmahiAnywhere.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AmahiAnywhere/Pods-AmahiAnywhere.debug.xcconfig"; sourceTree = "<group>"; };
+		725871902496BCEB00AF0A61 /* QueueContainerHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QueueContainerHeaderView.swift; sourceTree = "<group>"; };
+		725871922496C65300AF0A61 /* PlayerQueueContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerQueueContainerView.swift; sourceTree = "<group>"; };
+		7270E662248D14A6001BE439 /* AudioPlayerQueueViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioPlayerQueueViewController.swift; sourceTree = "<group>"; };
+		7270E664248D448F001BE439 /* AudioPlayerViewController + PlayerQueue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AudioPlayerViewController + PlayerQueue.swift"; sourceTree = "<group>"; };
+		72BDA8B324A9ED6900B4469E /* QueueItemTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QueueItemTableViewCell.swift; sourceTree = "<group>"; };
+		72BDA8B424A9ED6900B4469E /* QueueItemTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = QueueItemTableViewCell.xib; sourceTree = "<group>"; };
+		72DAFE1B24B6276A00755E25 /* AudioPlayerDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioPlayerDataModel.swift; sourceTree = "<group>"; };
 		80F3FDC6206C0D4D0061CD51 /* ConnectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectionViewController.swift; sourceTree = "<group>"; };
 		80F606FF206BE1530098BC60 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		8A67FC2A22666F81005A5038 /* OfflineFile+MimeType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OfflineFile+MimeType.swift"; sourceTree = "<group>"; };
@@ -321,12 +335,14 @@
 		3B3F43D822FD80F000BB42B0 /* Audio Player */ = {
 			isa = PBXGroup;
 			children = (
+				7258718D2496BC6100AF0A61 /* Views */,
 				3B3F43DD22FECF5A00BB42B0 /* Animation */,
 				3B3F43D922FD812700BB42B0 /* AudioPlayerViewController.swift */,
 				3B3F43DB22FECF3700BB42B0 /* AudioPlayerViewController+Gesture.swift */,
 				3B3F43E222FED06A00BB42B0 /* AudioPlayerViewController+UpdatesUI.swift */,
 				3B3F43E422FED10100BB42B0 /* AudioPlayerViewController+Player.swift */,
 				3B3F43E622FED14900BB42B0 /* AudioPlayerViewController+Remote.swift */,
+				7270E664248D448F001BE439 /* AudioPlayerViewController + PlayerQueue.swift */,
 			);
 			path = "Audio Player";
 			sourceTree = "<group>";
@@ -336,6 +352,7 @@
 			children = (
 				3B3F43DE22FECF7300BB42B0 /* DissmissAnimator.swift */,
 				3B3F43E022FECF9300BB42B0 /* Interactor.swift */,
+				7270E662248D14A6001BE439 /* AudioPlayerQueueViewController.swift */,
 			);
 			path = Animation;
 			sourceTree = "<group>";
@@ -362,6 +379,15 @@
 				3B24FE1722970B6B0044721D /* WalkthroughCell.xib */,
 			);
 			path = Walkthrough;
+			sourceTree = "<group>";
+		};
+		7258718D2496BC6100AF0A61 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				725871902496BCEB00AF0A61 /* QueueContainerHeaderView.swift */,
+				725871922496C65300AF0A61 /* PlayerQueueContainerView.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		99CF9D7D22E2889F0060C0E5 /* Cast */ = {
@@ -525,6 +551,7 @@
 				3BCAFBA822C68CF70044057E /* FilteredOfflineFile.swift */,
 				9935DAAE2301ED86004816E1 /* RecentFile+CoreDataClass.swift */,
 				3B2805E32312CA1C0022ED48 /* RecentFile+CoreDataProperties.swift */,
+				72DAFE1B24B6276A00755E25 /* AudioPlayerDataModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -625,6 +652,8 @@
 				3B33325522BAA2AF00BC61EB /* FilesCollectionFooterView.swift */,
 				3B33325F22BAB2A800BC61EB /* SortViewTableViewCell.swift */,
 				3BB315D322E1143600A0FDAD /* SharesCollectionViewCell.swift */,
+				72BDA8B324A9ED6900B4469E /* QueueItemTableViewCell.swift */,
+				72BDA8B424A9ED6900B4469E /* QueueItemTableViewCell.xib */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -750,6 +779,7 @@
 			files = (
 				FB71BEA2201CB2FC0005492C /* LaunchScreen.storyboard in Resources */,
 				FB71BE9F201CB2FC0005492C /* Assets.xcassets in Resources */,
+				72BDA8B624A9ED6900B4469E /* QueueItemTableViewCell.xib in Resources */,
 				3B24FE1822970B6B0044721D /* WalkthroughCell.xib in Resources */,
 				3B24FE162297086A0044721D /* WalkthroughAmahiCell.xib in Resources */,
 				FB71BE9D201CB2FC0005492C /* Main.storyboard in Resources */,
@@ -841,6 +871,7 @@
 				C86CA92920D3D26300C8EDCA /* OfflineFile+CoreData.swift in Sources */,
 				3B33325A22BAA40B00BC61EB /* FilesViewController+UICollectionViewDelegates.swift in Sources */,
 				4605964D204F3666004FA066 /* ServerShare.swift in Sources */,
+				72BDA8B524A9ED6900B4469E /* QueueItemTableViewCell.swift in Sources */,
 				3BCAFBAF22C6DC1A0044057E /* OfflineFilesViewController+Sorting.swift in Sources */,
 				AD8F2FE0226E9351009C8C4B /* SettingsViewController+TableViewDataSource.swift in Sources */,
 				3B3F43E522FED10100BB42B0 /* AudioPlayerViewController+Player.swift in Sources */,
@@ -852,12 +883,14 @@
 				C8ED025920B3E30300015846 /* URL.swift in Sources */,
 				C8DA5B1A20D5DC2200F5A527 /* DownloadService.swift in Sources */,
 				46098D04204FDF5500752EB6 /* ServerFile.swift in Sources */,
+				7270E665248D4490001BE439 /* AudioPlayerViewController + PlayerQueue.swift in Sources */,
 				9935DAB42301FA21004816E1 /* RecentFiles.swift in Sources */,
 				C88E5A7620B66B46006518B6 /* Date.swift in Sources */,
 				ADAFF8D6224F6DB700287409 /* ThumbnailGenerator.swift in Sources */,
 				46059643204E8B41004FA066 /* BaseUITableViewController.swift in Sources */,
 				3B37EBAF22ED11650065CB77 /* Units.swift in Sources */,
 				C88E5A7120B543B2006518B6 /* FileManager.swift in Sources */,
+				725871912496BCEB00AF0A61 /* QueueContainerHeaderView.swift in Sources */,
 				3BF1E81C22D07E9800C531CD /* UIApplication.swift in Sources */,
 				C86CA91320D3A84A00C8EDCA /* LocalFilesModel.xcdatamodeld in Sources */,
 				ADAFF8D822501F5B00287409 /* PDFThumbnailGenerator.swift in Sources */,
@@ -874,10 +907,12 @@
 				C80F3F4A20D47423000901B4 /* OfflineFileState.swift in Sources */,
 				C83C637320386DD90089B9D8 /* BaseContract.swift in Sources */,
 				C8DA5B2D20D7283400F5A527 /* DownloadService+URLSessionDelegate.swift in Sources */,
+				7270E663248D14A6001BE439 /* AudioPlayerQueueViewController.swift in Sources */,
 				80F60700206BE1530098BC60 /* SettingsViewController.swift in Sources */,
 				3BEA683E2311899D0017779A /* RecentFilesViewController.swift in Sources */,
 				C83C63912038D5B30089B9D8 /* StringLiterals.swift in Sources */,
 				3B37EBB822F2D9F60065CB77 /* AuthTokenResponse.swift in Sources */,
+				72DAFE1C24B6276A00755E25 /* AudioPlayerDataModel.swift in Sources */,
 				FDF80E94229FB2060087F9B8 /* VideoMenuCellSettings.swift in Sources */,
 				AD8F2FE1226E9351009C8C4B /* SettingsViewController+MFMailComposeViewControllerDelegate.swift in Sources */,
 				AD8F2FE2226E9351009C8C4B /* SettingsViewController+TableViewDelegate.swift in Sources */,
@@ -902,6 +937,7 @@
 				C86CA91020D3937A00C8EDCA /* OfflineFilesPresenter.swift in Sources */,
 				3B2805E42312CA1C0022ED48 /* RecentFile+CoreDataProperties.swift in Sources */,
 				3B3F43DF22FECF7300BB42B0 /* DissmissAnimator.swift in Sources */,
+				725871932496C65300AF0A61 /* PlayerQueueContainerView.swift in Sources */,
 				C83C637E2038D5150089B9D8 /* StringIdentifiers.swift in Sources */,
 				3B33325022BAA26600BC61EB /* FilesGridCollectionCell.swift in Sources */,
 				3BCAFBA322C537DE0044057E /* DownloadsGridCollectionCell.swift in Sources */,
