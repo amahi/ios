@@ -78,8 +78,14 @@ class VideoPlayerViewController: UIViewController {
         listenForNotifications()
         setUpIndicatorLayers(imageView: rewindIndicator)
         setUpIndicatorLayers(imageView: forwardIndicator)
+
+        let commandCenter = MPRemoteCommandCenter.shared()
         
-        MPRemoteCommandCenter.shared().togglePlayPauseCommand.addTarget(self, action: #selector(playandPause(_:)))
+        commandCenter.playCommand.addTarget { (_) -> MPRemoteCommandHandlerStatus in
+            self.playButton.addTarget(self, action: #selector(self.playandPause(_:)), for: .allEvents)
+            return .success
+        }
+        commandCenter.playCommand.isEnabled = true
     }
     
     var volumeSwipeMadeOnce = false
