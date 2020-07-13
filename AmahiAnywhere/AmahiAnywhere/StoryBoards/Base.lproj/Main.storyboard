@@ -724,7 +724,7 @@
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" name="tabBarBackground"/>
                         <color key="barTintColor" name="tabBarBackground"/>
-                        <color key="selectedImageTintColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <color key="selectedImageTintColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </tabBar>
                     <connections>
                         <segue destination="u9q-eJ-6HJ" kind="relationship" relationship="viewControllers" id="siK-tj-abj"/>
