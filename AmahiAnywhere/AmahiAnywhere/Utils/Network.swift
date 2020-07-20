@@ -81,7 +81,12 @@ public class Network {
                     NotificationCenter.default.post(name: .HDATokenExpired, object: nil)
                     completion(nil)
                 }
-                
+
+                if response.response?.statusCode == 408{
+                    NotificationCenter.default.post(name:.HDAUnreachable, object: nil)
+                    completion(nil)
+                }
+
 //                AmahiLogger.log("Request to \(url!) returned with STATUS CODE \(response.response?.statusCode)") // <<<<<<<<<<<<<
                 switch response.result {
                     case .success:

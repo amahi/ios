@@ -34,6 +34,7 @@ class SharesViewController: BaseUIViewController, UICollectionViewDelegate, UICo
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        NotificationCenter.default.addObserver(self, selector: #selector(unreachableHDA), name: .HDAUnreachable, object: nil)
         if server?.name != "Welcome to Amahi"{
             navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Log out", style: .done, target: self, action: #selector(logOutTapped))
             
@@ -75,6 +76,14 @@ class SharesViewController: BaseUIViewController, UICollectionViewDelegate, UICo
             if let serverName = ServerApi.shared?.getServer()?.name{
                 LocalStorage.shared.delete(key: serverName)
             }
+            self.navigationController?.popToRootViewController(animated: true)
+        }))
+        self.present(alertVC, animated: true, completion: nil)
+    }
+    
+    @objc func unreachableHDA(){
+        let alertVC = UIAlertController(title: "Unable to reach HDA", message: "Please check if your HDA is connected and try again.", preferredStyle: .alert)
+        alertVC.addAction(UIAlertAction(title: "OK", style: .default, handler: { (_) in
             self.navigationController?.popToRootViewController(animated: true)
         }))
         self.present(alertVC, animated: true, completion: nil)

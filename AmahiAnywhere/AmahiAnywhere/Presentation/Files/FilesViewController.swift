@@ -103,6 +103,7 @@ class FilesViewController: BaseUIViewController, GCKRemoteMediaClientListener {
         presenter.getFiles(share, directory: directory)
         
         NotificationCenter.default.addObserver(self, selector: #selector(expiredAuthTokenHDA), name: .HDATokenExpired, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(unreachableHDA), name: .HDAUnreachable, object: nil)
         if #available(iOS 13.0, *) {
             self.view.backgroundColor = UIColor.secondarySystemBackground
             filesCollectionView.backgroundColor = UIColor.secondarySystemBackground
@@ -131,6 +132,15 @@ class FilesViewController: BaseUIViewController, GCKRemoteMediaClientListener {
             self.uploadImageTapped()
         }
     }
+    
+    @objc func unreachableHDA(){
+        let alertVC = UIAlertController(title: "Unable to reach HDA", message: "Please check if your HDA is connected and try again.", preferredStyle: .alert)
+        alertVC.addAction(UIAlertAction(title: "OK", style: .default, handler: { (_) in
+            self.navigationController?.popToRootViewController(animated: true)
+        }))
+        self.present(alertVC, animated: true, completion: nil)
+    }
+
     
     @objc func expiredAuthTokenHDA(){
         let alertVC = UIAlertController(title: "Session Expired", message: "Your session expired or was lost. Please login again.", preferredStyle: .alert)
