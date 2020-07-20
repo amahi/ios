@@ -14,41 +14,44 @@ extension AudioPlayerViewController{
     func setLockScreenData(){
         // Setting image
         if let image = musicArtImageView.image{
-            nowPlayingInfo[MPMediaItemPropertyArtwork] = MPMediaItemArtwork(boundsSize: image.size, requestHandler: { (size) -> UIImage in
+            dataModel.nowPlayingInfo[MPMediaItemPropertyArtwork] = MPMediaItemArtwork(boundsSize: image.size, requestHandler: { (size) -> UIImage in
                 return image
             })
         }
         
         // Setting title
-        nowPlayingInfo[MPMediaItemPropertyTitle] = songTitle.text ?? ""
-        nowPlayingInfo[MPMediaItemPropertyArtist] = artistName.text ?? ""
-        nowPlayingInfo[MPNowPlayingInfoPropertyElapsedPlaybackTime] = Int(CMTimeGetSeconds(self.player!.currentTime()))
-        nowPlayingInfo[MPMediaItemPropertyPlaybackDuration] = songDuration
-        nowPlayingInfo[MPNowPlayingInfoPropertyPlaybackRate] = isPaused() ? 0 : 1
+        dataModel.nowPlayingInfo[MPMediaItemPropertyTitle] = songTitle.text ?? ""
+        dataModel.nowPlayingInfo[MPMediaItemPropertyArtist] = artistName.text ?? ""
+        dataModel.nowPlayingInfo[MPNowPlayingInfoPropertyElapsedPlaybackTime] = Int(CMTimeGetSeconds(self.player!.currentTime()))
+        dataModel.nowPlayingInfo[MPMediaItemPropertyPlaybackDuration] = songDuration
+        dataModel.nowPlayingInfo[MPNowPlayingInfoPropertyPlaybackRate] = isPaused() ? 0 : 1
         
-        MPNowPlayingInfoCenter.default().nowPlayingInfo = nowPlayingInfo
+        MPNowPlayingInfoCenter.default().nowPlayingInfo = dataModel.nowPlayingInfo
     }
     
     func updateLockScreenTime(){
-        nowPlayingInfo[MPNowPlayingInfoPropertyElapsedPlaybackTime] = Int(CMTimeGetSeconds(self.player!.currentTime()))
-        nowPlayingInfo[MPNowPlayingInfoPropertyPlaybackRate] = isPaused() ? 0 : 1
-        MPNowPlayingInfoCenter.default().nowPlayingInfo = nowPlayingInfo
+        dataModel.nowPlayingInfo[MPNowPlayingInfoPropertyElapsedPlaybackTime] = Int(CMTimeGetSeconds(self.player!.currentTime()))
+        dataModel.nowPlayingInfo[MPNowPlayingInfoPropertyPlaybackRate] = isPaused() ? 0 : 1
+        MPNowPlayingInfoCenter.default().nowPlayingInfo = dataModel.nowPlayingInfo
     }
     
-    @objc func remotePlayPause(){
+    @objc func remotePlayPause() -> MPRemoteCommandHandlerStatus{
         if isPaused(){
             playPlayer()
         }else{
             pausePlayer()
         }
+        return .success
     }
     
-    @objc func remoteNext(){
+    @objc func remoteNext() -> MPRemoteCommandHandlerStatus{
         playNextSong()
+        return .success
     }
     
-    @objc func remotePrevious(){
+    @objc func remotePrevious() -> MPRemoteCommandHandlerStatus{
         playPreviousSong()
+        return .success
     }
     
     @objc func remoteChangedPlaybackPositionCommand(_ event:MPChangePlaybackPositionCommandEvent) -> MPRemoteCommandHandlerStatus {

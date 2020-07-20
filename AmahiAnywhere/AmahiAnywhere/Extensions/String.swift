@@ -16,4 +16,5 @@ extension String {
 
 extension Notification.Name {
     static let HDATokenExpired = Notification.Name("HDATokenExpired")
+    static let HDAUnreachable = Notification.Name("HDAUnreachable")
 }

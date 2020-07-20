@@ -6,40 +6,121 @@
 //  Copyright © 2019. Amahi. All rights reserved.
 //
 
-extension AudioPlayerViewController{
-    @IBAction func handleGesture(_ sender: UIPanGestureRecognizer) {
-        
-        let percentThreshold:CGFloat = 0.3
-        
-        // convert y-position to downward pull progress (percentage)
-        let translation = sender.translation(in: view)
-        let verticalMovement = translation.y / view.bounds.height
-        let downwardMovement = fmaxf(Float(verticalMovement), 0.0)
-        let downwardMovementPercent = fminf(downwardMovement, 1.0)
-        let progress = CGFloat(downwardMovementPercent)
-        
-        guard let interactor = interactor else { return }
-        
+import UIKit
+
+extension AudioPlayerViewController: QueueHeaderTapDelegate{
+    
+   @objc func handlePanGesture(_ sender: UIPanGestureRecognizer) {
+    
         switch sender.state {
         case .began:
-            interactor.hasStarted = true
-            dismiss(animated: true, completion: nil)
-        case .changed:
-            interactor.shouldFinish = progress > percentThreshold
-            interactor.update(progress)
-        case .cancelled:
-            interactor.hasStarted = false
-            interactor.cancel()
-        case .ended:
-            interactor.hasStarted = false
-            if interactor.shouldFinish{
-                cleanupBeforeExit()
+            let yVelocity = sender.velocity(in: view).y
+            if (yVelocity > 200 && currentQueueState == .open) || (yVelocity < -200 && currentQueueState == .collapsed){
+                startInteractiveTransition(state:nextState,duration: 0.7)
             }
-            interactor.shouldFinish
-                ? interactor.finish()
-                : interactor.cancel()
+        case .changed:
+            let yTranslation = sender.translation(in: self.playerQueueContainer).y
+            var fractionComplete = yTranslation/self.queueVCHeight
+            fractionComplete = currentQueueState == .collapsed ? -fractionComplete : fractionComplete
+            updateInteractiveTransition(fractionCompleted:fractionComplete)
+        case .ended:
+            continueInteractiveTransition()
         default:
             break
         }
+    }
+    
+    func startInteractiveTransition(state:QueueState,duration: TimeInterval){
+        if interactiveAnimators.isEmpty{
+            animateIfNeeded(state: state, duration: duration)
+        }
+        for animator in interactiveAnimators{
+            animationProgressWhenInterrupted = animator.fractionComplete
+        }
+    }
+    
+    func animateIfNeeded(state:QueueState,duration:TimeInterval){
+        if interactiveAnimators.isEmpty{
+            setupQueueAnimator(for:state, with:duration)
+            setupCornerAnimator(for:state, with:duration)
+        }
+    }
+    
+    func updateInteractiveTransition(fractionCompleted:CGFloat){
+        for animator in interactiveAnimators{
+            animator.fractionComplete = fractionCompleted + animationProgressWhenInterrupted
+        }
+    }
+    
+    func continueInteractiveTransition(){
+        for animator in interactiveAnimators{
+            animator.continueAnimation(withTimingParameters: nil, durationFactor: 0)
+        }
+    }
+    
+   @objc func handleArrowHeadTap() {
+        animateIfNeeded(state: nextState, duration: 0.7)
+    }
+
+    func didTapOnQueueHeader() {
+        animateIfNeeded(state: nextState, duration: 0.7)
+    }
+    
+    private func setupQueueAnimator(for state:QueueState, with duration:TimeInterval){
+        let animator = UIViewPropertyAnimator(duration: duration, dampingRatio: 0.85) {
+            switch state{
+            case .collapsed:
+                self.queueTopConstraintForCollapse?.isActive = true
+                self.queueTopConstraintForOpen?.isActive = false
+                self.playerQueueContainer.header.alpha = 1
+                self.playerQueueContainer.header.arrowHead.transform = self.playerQueueContainer.header.arrowHead.transform.rotated(by: CGFloat.pi)
+            case .open:
+                self.queueTopConstraintForCollapse?.isActive = false
+                self.queueTopConstraintForOpen?.isActive = true
+                self.playerQueueContainer.header.alpha = 1
+                self.playerQueueContainer.header.arrowHead.transform = self.playerQueueContainer.header.arrowHead.transform.rotated(by: CGFloat.pi)
+            }
+            
+            self.view.layoutIfNeeded()
+        }
+        
+        animator.addCompletion { (_) in
+            if let index = self.interactiveAnimators.index(of: animator){
+                self.interactiveAnimators.remove(at: index)
+            }
+            self.currentQueueState = state
+        }
+        
+        animator.startAnimation()
+        interactiveAnimators.append(animator)
+    }
+    
+    private func setupCornerAnimator(for state:QueueState, with duration:TimeInterval){
+        
+        let animator = UIViewPropertyAnimator(duration: duration, dampingRatio: 0.85) {
+            switch state{
+            case .collapsed:
+                self.playerQueueContainer.clipsToBounds = true
+                self.playerQueueContainer.layer.cornerRadius = 0
+                self.playerQueueContainer.layer.maskedCorners = [.layerMinXMinYCorner,.layerMaxXMinYCorner]
+            case .open:
+                self.playerQueueContainer.clipsToBounds = true
+                self.playerQueueContainer.layer.cornerRadius = 30
+                self.playerQueueContainer.layer.maskedCorners = [.layerMinXMinYCorner,.layerMaxXMinYCorner]
+            }
+            
+            self.view.layoutIfNeeded()
+        }
+        
+        animator.addCompletion { (_) in
+            if let index = self.interactiveAnimators.index(of: animator){
+                self.interactiveAnimators.remove(at: index)
+            }
+            self.currentQueueState = state
+        }
+        
+        animator.startAnimation()
+        interactiveAnimators.append(animator)
+        
     }
 }

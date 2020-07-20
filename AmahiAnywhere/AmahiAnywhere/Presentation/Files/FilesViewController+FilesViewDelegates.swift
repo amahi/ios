@@ -183,11 +183,17 @@ extension FilesViewController: FilesView {
         else if sessionManager.currentSession == nil, (playbackMode != .local) {
             let audioPlayerVc = self.viewController(viewControllerClass: AudioPlayerViewController.self,
                                                     from: StoryBoardIdentifiers.videoPlayer)
-            audioPlayerVc.startPlayerItem = items[currentIndex]
-            audioPlayerVc.playerItems = items
-            audioPlayerVc.itemURLs = URLs
-            audioPlayerVc.transitioningDelegate = self
-            audioPlayerVc.interactor = interactor
+            AudioPlayerDataModel.shared.startPlayerItem = items[currentIndex]
+            AudioPlayerDataModel.shared.unshuffledQueueItems = items
+            AudioPlayerDataModel.shared.queuedItems = Array(items.suffix(from: currentIndex))
+            AudioPlayerDataModel.shared.itemURLs = Array(URLs.suffix(from: currentIndex))
+            AudioPlayerDataModel.shared.setupQueueMetadata()
+            if #available(iOS 13.0, *) {
+                audioPlayerVc.isModalInPresentation = true
+            }
+            if UIDevice().userInterfaceIdiom == .pad{
+                audioPlayerVc.modalPresentationStyle = .fullScreen
+            }
             self.present(audioPlayerVc)
             
         }

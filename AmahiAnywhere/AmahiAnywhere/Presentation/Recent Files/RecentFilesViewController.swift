@@ -82,6 +82,13 @@ class RecentFilesViewController: BaseUIViewController {
         super.viewDidLoad()
         setupNotifications()
         
+        if #available(iOS 13.0, *) {
+            self.view.backgroundColor = UIColor.secondarySystemBackground
+            searchBar.searchTextField.tintColor = UIColor.label
+            searchBar.searchTextField.textColor = UIColor.label
+        } else {
+            self.view.backgroundColor = UIColor(named: "formal")
+        }
         let longPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(handleLongPress))
         filesCollectionView.addGestureRecognizer(longPressGesture)
     }

@@ -14,15 +14,15 @@ PODS:
   - Imaginary (4.3.1):
     - Cache (~> 5.3.0)
   - IQKeyboardManagerSwift (6.5.5)
-  - Lightbox (2.4.1):
+  - Lightbox (2.4.2):
     - Imaginary (~> 4.3.1)
   - MBProgressHUD (1.2.0)
   - MobileVLCKit (3.3.13)
   - Protobuf (3.12.0)
   - ReachabilitySwift (5.0.0)
-  - SDWebImage (5.8.2):
-    - SDWebImage/Core (= 5.8.2)
-  - SDWebImage/Core (5.8.2)
+  - SDWebImage (5.8.4):
+    - SDWebImage/Core (= 5.8.4)
+  - SDWebImage/Core (5.8.4)
   - SkyFloatingLabelTextField (3.8.0)
   - SwipeCellKit (2.7.1)
 
@@ -66,15 +66,15 @@ SPEC CHECKSUMS:
   google-cast-sdk: 5fb55ce696a3d37f213b64b4f508577ccabd1a36
   Imaginary: 18c5bba364229eef383b925199db442e71d175e1
   IQKeyboardManagerSwift: 0fb93310284665245591f50f7a5e38de615960b7
-  Lightbox: cede4a64f2d864da1f7e7959aa78a8659a311e7c
+  Lightbox: 8837c35c1150fa0410d94296e369b432d37f18c7
   MBProgressHUD: 3ee5efcc380f6a79a7cc9b363dd669c5e1ae7406
   MobileVLCKit: 92e1ea43124259417f481c890821efb2399d25e3
   Protobuf: 2793fcd0622a00b546c60e7cbbcc493e043e9bb9
   ReachabilitySwift: 985039c6f7b23a1da463388634119492ff86c825
-  SDWebImage: f923a89d7344af399ba77b87a523ae747408207a
+  SDWebImage: cf6922231e95550934da2ada0f20f2becf2ceba9
   SkyFloatingLabelTextField: 5a338412114808e961fe2d14ea2c5452c8b6e4aa
   SwipeCellKit: 3972254a826da74609926daf59b08d6c72e619ea
 
 PODFILE CHECKSUM: 61f513bfe95231a9fec4a3a23bc3a645bf8f94a6
 
-COCOAPODS: 1.9.1
+COCOAPODS: 1.9.3

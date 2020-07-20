@@ -104,6 +104,7 @@ class ServerApi {
     func getShares(completion: @escaping (_ serverShares: [ServerShare]?) -> Void ) {
         if serverRoute == nil{
             completion(nil)
+            return
         }
         
         if serverAddress == nil{
