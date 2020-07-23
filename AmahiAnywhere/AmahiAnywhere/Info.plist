@@ -28,9 +28,11 @@
 		<true/>
 	</dict>
 	<key>NSCameraUsageDescription</key>
-	<string>Please allow access to your camera to take pictures for your HDA server</string>
+	<string>Allow access to your camera to take photos and store them in the app or your Amahi server</string>
 	<key>NSPhotoLibraryAddUsageDescription</key>
-	<string>Please allow access to your photo library to select photos for upload</string>
+	<string>Allow access to your photo library to select photos for upload</string>
+	<key>NSBluetoothAlwaysUsageDescription</key>
+	<string>Allow access to Bluetooth to use accesories for audio play</string>
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>audio</string>
