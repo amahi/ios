@@ -66,6 +66,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         populateRegistrationDomain()
         
+        UIViewController.setPresentationStyle_fullScreen()
+        
         useCastContainerViewController = false
         
         NotificationCenter.default.addObserver(self, selector: #selector(syncWithUserDefaults),
