@@ -93,7 +93,7 @@ class BaseUIViewController: UIViewController, GCKSessionManagerListener, GCKRequ
     }
     
     @objc func deviceOrientationDidChange(_: Notification) {
-        print("Orientation changed")
+        // TBD
     }
     
     override func viewWillAppear(_ animated: Bool) {
