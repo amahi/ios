@@ -73,10 +73,10 @@ struct StringLiterals {
     
     // Alert Texts
     
-    static let signOut =                        "Sign Out"
-    static let signOutMessage =                 "Are You Sure You Want to Sign Out ? "
-    static let clearCacheTitle =                "Clear Temporary Downloads"
-    static let clearCacheMessage =              "Are you sure you want to delete all temporary files ?"
+    static let signOut =                        "Sign out"
+    static let signOutMessage =                 "Are you sure you want to sign out?"
+    static let clearCacheTitle =                "Clear temporary downloads"
+    static let clearCacheMessage =              "Are you sure you want to delete all temporary files?"
     static let confirm =                        "Confirm"
     static let cancel =                         "Cancel"
 }
