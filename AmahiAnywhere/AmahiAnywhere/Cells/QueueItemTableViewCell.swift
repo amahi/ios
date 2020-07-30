@@ -14,6 +14,13 @@ class QueueItemTableViewCell:UITableViewCell{
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var artistLabel: UILabel!
     
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        thumbnailView.layer.cornerRadius = 5
+        thumbnailView.clipsToBounds = true
+        selectionStyle = .none
+        shouldIndentWhileEditing = false
+    }
     override func prepareForReuse() {
         thumbnailView.image = UIImage(named:"musicPlayerArtWork")
         titleLabel.text = "Title"

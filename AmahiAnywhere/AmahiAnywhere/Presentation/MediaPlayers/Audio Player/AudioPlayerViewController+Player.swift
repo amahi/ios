@@ -31,44 +31,45 @@ extension AudioPlayerViewController{
     }
     
     
-    func playNextSong(){
+    func playNextSong(whileOverridingRepeatCurrent: Bool = false){
         
-        if dataModel.queuedItems.isEmpty{
-            dataModel.resetQueue()
-        }
-        
-        if repeatButton.currentImage == UIImage(named:"repeatCurrent"){
+        if repeatButton.currentImage == UIImage(named:"repeatCurrent"), !whileOverridingRepeatCurrent{
             restartSong()
             return
         }
         
-        if let nextItem = dataModel.prepareNext(){
-            player.replaceCurrentItem(with: nextItem)
-        }else{
+        if dataModel.currentIndex >= dataModel.playerItems.count - 1{
+            
+            //current queue is empty resetting queue
             dataModel.resetQueue()
-            if let item = dataModel.prepareNext(){
-                player.replaceCurrentItem(with: item)
-            }else{
-                //TODO:- show error
-            }
+            repeatButton.setImage(UIImage(named:"repeatAll"), for: .normal)
+            shuffleButton.setImage(UIImage(named: "shuffle"), for: .normal)
+            player.replaceCurrentItem(with: dataModel.prepareNext())
+            thumbnailCollectionView.reloadData()
+            loadSong()
+            return
         }
+        
+        player.replaceCurrentItem(with: dataModel.prepareNext())
+        updateThumbnailCollectionView(for: .next)
         loadSong()
     }
     
-    func playPreviousSong(){
+    func playPreviousSong(fromSwipe:Bool = false){
         if repeatButton.currentImage == UIImage(named:"repeatCurrent"){
             restartSong()
             return
         }
         
-        if timeElapsedLabel.text == "00:00" || timeElapsedLabel.text == "00:01" || timeElapsedLabel.text == "00:02"{
+        let allowedTimeLimits = ["00:00","00:01","00:02","00:03","00:04","00:05"]
+        
+        if allowedTimeLimits.contains(timeElapsedLabel.text ?? "") || fromSwipe{
             // Previous song
             
             if let item = dataModel.preparePrevious(){
-                 player.replaceCurrentItem(with: item)
+                updateThumbnailCollectionView(for: .previous)
+                player.replaceCurrentItem(with: item)
                 loadSong()
-            }else{
-                restartSong()
             }
         }else{
             // Restart song

@@ -34,12 +34,8 @@ extension OfflineFilesViewController : OfflineFilesView {
         
         let audioPlayerVc = self.viewController(viewControllerClass: AudioPlayerViewController.self,
                                                 from: StoryBoardIdentifiers.videoPlayer)
-        AudioPlayerDataModel.shared.startPlayerItem = items[currentIndex]
-        AudioPlayerDataModel.shared.unshuffledQueueItems = items
-        AudioPlayerDataModel.shared.queuedItems = items
-        AudioPlayerDataModel.shared.itemURLs = URLs
         audioPlayerVc.offlineMode = true
-        AudioPlayerDataModel.shared.setupQueueMetadata()
+        AudioPlayerDataModel.shared.configure(items: items, with: currentIndex)
         audioPlayerVc.modalPresentationStyle = .fullScreen
         self.present(audioPlayerVc)
     }

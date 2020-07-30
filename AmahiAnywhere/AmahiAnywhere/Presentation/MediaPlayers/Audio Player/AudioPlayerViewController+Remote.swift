@@ -13,20 +13,26 @@ extension AudioPlayerViewController{
     
     func setLockScreenData(){
         // Setting image
-        if let image = musicArtImageView.image{
-            dataModel.nowPlayingInfo[MPMediaItemPropertyArtwork] = MPMediaItemArtwork(boundsSize: image.size, requestHandler: { (size) -> UIImage in
-                return image
-            })
+        var lockScreenImage = UIImage(named:"musicPlayerArtWork") ?? UIImage()
+        if let item = dataModel.currentPlayerItem, let image = dataModel.metadata[item]?.image{
+            lockScreenImage = image
         }
+        dataModel.nowPlayingInfo[MPMediaItemPropertyArtwork] = MPMediaItemArtwork(boundsSize: lockScreenImage.size, requestHandler: { (size) -> UIImage in
+            return lockScreenImage
+        })
         
         // Setting title
         dataModel.nowPlayingInfo[MPMediaItemPropertyTitle] = songTitle.text ?? ""
         dataModel.nowPlayingInfo[MPMediaItemPropertyArtist] = artistName.text ?? ""
-        dataModel.nowPlayingInfo[MPNowPlayingInfoPropertyElapsedPlaybackTime] = Int(CMTimeGetSeconds(self.player!.currentTime()))
         dataModel.nowPlayingInfo[MPMediaItemPropertyPlaybackDuration] = songDuration
         dataModel.nowPlayingInfo[MPNowPlayingInfoPropertyPlaybackRate] = isPaused() ? 0 : 1
-        
         MPNowPlayingInfoCenter.default().nowPlayingInfo = dataModel.nowPlayingInfo
+        
+        let elapsedTime = CMTimeGetSeconds(self.player!.currentTime())
+        guard !elapsedTime.isNaN else {
+            return
+        }
+        dataModel.nowPlayingInfo[MPNowPlayingInfoPropertyElapsedPlaybackTime] = Int(elapsedTime)
     }
     
     func updateLockScreenTime(){

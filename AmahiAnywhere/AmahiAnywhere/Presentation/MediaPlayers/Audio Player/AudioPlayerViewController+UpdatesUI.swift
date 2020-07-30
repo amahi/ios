@@ -12,23 +12,19 @@ import MediaPlayer
 
 extension AudioPlayerViewController{
     
-    func loadImage(for item:AVPlayerItem){
-        
-        if let image = dataModel.thumbnailImages[item]{
-            self.musicArtImageView.image = image
-            self.backgroundImageView.image = image
-        }else{
-            self.musicArtImageView.image = UIImage(named: "musicPlayerArtWork")
-            self.backgroundImageView.image = UIImage(named: "musicPlayerArtWork")
+    func loadImageBackground(){
+        if let item = dataModel.currentPlayerItem{
+            self.backgroundImageView.image = dataModel.metadata[item]?.image
         }
     }
     
-    func setTitleArtist(for item:AVPlayerItem){
-        var track: String?
-        var artist: String?
-        
-        track = dataModel.trackNames[item]
-        artist = dataModel.artistNames[item]
+    func setTitleArtist(){
+        var track = "Title"
+        var artist = "Artist"
+        if let item = dataModel.currentPlayerItem{
+            track = dataModel.metadata[item]?.title ?? "Title"
+            artist = dataModel.metadata[item]?.artist ?? "Artist"
+        }
         
         artistName.text = artist
         songTitle.text = track
@@ -44,17 +40,12 @@ extension AudioPlayerViewController{
     func setSliderAndTimeLabels(){
         var duration: Float64 = 0.0
         
-        if let durationCMTime = dataModel.durations[player.currentItem!]{
-            duration = CMTimeGetSeconds(durationCMTime)
-        }else{
-            let durationCMTime = player.currentItem?.asset.duration ?? CMTime.zero
-            dataModel.durations[player.currentItem!] = durationCMTime
-            duration = CMTimeGetSeconds(durationCMTime)
-        }
+        let durationCMTime = player.currentItem?.asset.duration ?? CMTime.zero
+        duration = CMTimeGetSeconds(durationCMTime)
         
         songDuration = Double(duration)
         self.timeSlider.maximumValue = Float(duration)
-        self.timeElapsedLabel.text = "0:00"
+        self.timeElapsedLabel.text = "00:00"
         self.setLabelText(self.durationLabel, Int(duration))
     }
     

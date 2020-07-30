@@ -67,21 +67,21 @@ extension AudioPlayerViewController: QueueHeaderTapDelegate{
     }
     
     private func setupQueueAnimator(for state:QueueState, with duration:TimeInterval){
-        let animator = UIViewPropertyAnimator(duration: duration, dampingRatio: 0.85) {
+        let animator = UIViewPropertyAnimator(duration: duration, dampingRatio: 0.85) { [weak self] in
             switch state{
             case .collapsed:
-                self.queueTopConstraintForCollapse?.isActive = true
-                self.queueTopConstraintForOpen?.isActive = false
-                self.playerQueueContainer.header.alpha = 1
-                self.playerQueueContainer.header.arrowHead.transform = self.playerQueueContainer.header.arrowHead.transform.rotated(by: CGFloat.pi)
+                self?.queueTopConstraintForCollapse?.isActive = true
+                self?.queueTopConstraintForOpen?.isActive = false
+                self?.playerQueueContainer.header.alpha = 1
+                self?.playerQueueContainer.header.arrowHead.transform = self?.playerQueueContainer.header.arrowHead.transform.rotated(by: CGFloat.pi) ?? CGAffineTransform(rotationAngle: CGFloat.pi)
             case .open:
-                self.queueTopConstraintForCollapse?.isActive = false
-                self.queueTopConstraintForOpen?.isActive = true
-                self.playerQueueContainer.header.alpha = 1
-                self.playerQueueContainer.header.arrowHead.transform = self.playerQueueContainer.header.arrowHead.transform.rotated(by: CGFloat.pi)
+                self?.queueTopConstraintForCollapse?.isActive = false
+                self?.queueTopConstraintForOpen?.isActive = true
+                self?.playerQueueContainer.header.alpha = 1
+                self?.playerQueueContainer.header.arrowHead.transform = self?.playerQueueContainer.header.arrowHead.transform.rotated(by: CGFloat.pi) ?? CGAffineTransform(rotationAngle: CGFloat.pi)
             }
             
-            self.view.layoutIfNeeded()
+            self?.view.layoutIfNeeded()
         }
         
         animator.addCompletion { (_) in
@@ -112,11 +112,11 @@ extension AudioPlayerViewController: QueueHeaderTapDelegate{
             self.view.layoutIfNeeded()
         }
         
-        animator.addCompletion { (_) in
-            if let index = self.interactiveAnimators.index(of: animator){
-                self.interactiveAnimators.remove(at: index)
+        animator.addCompletion { [weak self](_) in
+            if let index = self?.interactiveAnimators.index(of: animator){
+                self?.interactiveAnimators.remove(at: index)
             }
-            self.currentQueueState = state
+            self?.currentQueueState = state
         }
         
         animator.startAnimation()

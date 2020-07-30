@@ -23,7 +23,7 @@ class AudioPlayerViewController: UIViewController {
     @IBOutlet weak var doneButton: UIButton!
     @IBOutlet weak var nextButton: UIButton!
     @IBOutlet weak var prevButton: UIButton!
-    @IBOutlet weak var musicArtImageView: UIImageView!
+    @IBOutlet weak var thumbnailCollectionView: UICollectionView!
     @IBOutlet weak var playPauseButton: UIButton!
     @IBOutlet weak var timeElapsedLabel: UILabel!
     @IBOutlet weak var timeSlider: UISlider!
@@ -31,6 +31,9 @@ class AudioPlayerViewController: UIViewController {
     @IBOutlet weak var shuffleButton: UIButton!
     @IBOutlet weak var artistName: UILabel!
     @IBOutlet weak var songTitle: UILabel!
+    @IBOutlet weak var loadingIndicator: UIActivityIndicatorView!
+    
+    var thumbnailCellID = "thumbnailCell"
     
     lazy var dataModel = AudioPlayerDataModel.shared
     
@@ -62,9 +65,43 @@ class AudioPlayerViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        dataModel.currentPlayerItem = dataModel.startPlayerItem
-        dataModel.queuedItems.remove(at: 0)
-        player = AVPlayer(playerItem: dataModel.startPlayerItem)
+        showLoading()
+        
+        playerQueueContainer = PlayerQueueContainerView(target: self)
+        playerQueueContainer.header.arrowHead.addTarget(self, action: #selector(handleArrowHeadTap), for: .touchDown)
+        playerQueueContainer.header.tapDelegate = self
+        layoutPlayerQueue()
+        
+                    
+        let panRecognizer = UIPanGestureRecognizer(target: self, action: #selector(handlePanGesture(_:)))
+        self.playerContainer.addGestureRecognizer(panRecognizer)
+        panRecognizer.cancelsTouchesInView = true
+        
+        setupPlayer()
+        setupRemoteCommandCenter()
+        
+        thumbnailCollectionView.register(UINib(nibName: "AudioThumbnailCollectionCell", bundle: nil), forCellWithReuseIdentifier: thumbnailCellID)
+        thumbnailCollectionView.delegate = self
+        thumbnailCollectionView.dataSource = self
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(refreshCollectionView), name: .audioPlayerShuffleStatusChangedNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(updateMetaData), name: .audioPlayerDidSetMetaData, object: nil)
+        
+        if offlineMode{
+            observer = player.addPeriodicTimeObserver(forInterval: CMTimeMakeWithSeconds(1, preferredTimescale: 1), queue: DispatchQueue.main, using: { [weak self] (time) in
+                self?.updatePlayingSong(time)
+            })
+        }
+        
+    }
+    
+    func setupPlayer(){
+        NotificationCenter.default.addObserver(self, selector: #selector(showLoading), name: .AVPlayerItemPlaybackStalled, object: nil)
+        
+        player = AVPlayer(playerItem: dataModel.currentPlayerItem)
+        player.currentItem?.addObserver(self, forKeyPath: "playbackBufferEmpty", options: [.new], context: nil)
+        player.currentItem?.addObserver(self, forKeyPath: "playbackLikelyToKeepUp", options: [.new], context: nil)
+        player.currentItem?.addObserver(self, forKeyPath: "playbackBufferFull", options: [.new], context: nil)
         player.automaticallyWaitsToMinimizeStalling = true
         AppUtility.lockOrientation(.portrait)
         timeSlider.setThumbImage(UIImage(named: "sliderKnobIcon"), for: .normal)
@@ -72,9 +109,10 @@ class AudioPlayerViewController: UIViewController {
         
         shuffleButton.setImage(UIImage(named:"shuffle"), for: .normal)
         repeatButton.setImage(UIImage(named:"repeat"), for: .normal)
-        
+    }
+    
+    func setupRemoteCommandCenter(){
         NotificationCenter.default.addObserver(self, selector: #selector(hadleInterruption), name: AVAudioSession.interruptionNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(loadSong), name: .audioPlayerDidSetMetaData, object: nil)
         
         MPRemoteCommandCenter.shared().togglePlayPauseCommand.addTarget(self, action: #selector(remotePlayPause))
         MPRemoteCommandCenter.shared().nextTrackCommand.addTarget(self, action: #selector(remoteNext))
@@ -88,46 +126,57 @@ class AudioPlayerViewController: UIViewController {
         MPRemoteCommandCenter.shared().changePlaybackPositionCommand.isEnabled = true
         MPRemoteCommandCenter.shared().changePlaybackPositionCommand.addTarget(self, action:#selector(remoteChangedPlaybackPositionCommand(_:)))
         UIApplication.shared.beginReceivingRemoteControlEvents()
-        
-        playerQueueContainer = PlayerQueueContainerView(target: self)
-        playerQueueContainer.header.arrowHead.addTarget(self, action: #selector(handleArrowHeadTap), for: .touchDown)
-        playerQueueContainer.header.tapDelegate = self
-        layoutPlayerQueue()
-
-        
-        if offlineMode{
-            loadSong()
-            playPlayer()
-            observer = player.addPeriodicTimeObserver(forInterval: CMTimeMakeWithSeconds(1, preferredTimescale: 1), queue: DispatchQueue.main, using: { [weak self] (time) in
-                self?.updatePlayingSong(time)
-            })
+    }
+    
+    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+        switch keyPath{
+        case "playbackBufferEmpty":
+            self.showLoading()
+        default:
+            if !dataModel.isFetchingMetadata{
+                self.loadingIndicator.stopAnimating()
+            }
         }
-        
-        let panRecognizer = UIPanGestureRecognizer(target: self, action: #selector(handlePanGesture(_:)))
-        self.playerContainer.addGestureRecognizer(panRecognizer)
-        panRecognizer.cancelsTouchesInView = true
+    }
+    
+    @objc func showLoading(){
+        DispatchQueue.main.async {
+            self.loadingIndicator.startAnimating()
+            self.playerContainer.bringSubviewToFront(self.loadingIndicator)
+        }
+    }
+    
+    @objc func refreshCollectionView(){
+        thumbnailCollectionView.reloadData()
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        loadSong()
+        playPlayer()
         if !startedPlayer && !offlineMode{
             startedPlayer = true
-            loadSong()
-            playPlayer()
             observer = player.addPeriodicTimeObserver(forInterval: CMTimeMakeWithSeconds(1, preferredTimescale: 1), queue: DispatchQueue.main, using: { [weak self] (time) in
                 self?.updatePlayingSong(time)
             })
         }
-        playerQueueContainer.queueVC.tableView.reloadData()
     }
     
     func cleanupBeforeExit(){
-        player.pause()
-        if let observer = observer{
-            player.removeTimeObserver(observer)
+        if player != nil{
+            player.pause()
+            if let observer = observer{
+                player.removeTimeObserver(observer)
+            }
         }
         player = nil
+        dataModel.isFetchingMetadata = false
+        dataModel.totalFetchedSongs = 0
+        dataModel.metadata.removeAll()
         NotificationCenter.default.removeObserver(self)
+        if let childVC = self.children.first as? AudioPlayerQueueViewController{
+            NotificationCenter.default.removeObserver(childVC)
+        }
         MPRemoteCommandCenter.shared().togglePlayPauseCommand.removeTarget(self)
         MPRemoteCommandCenter.shared().nextTrackCommand.removeTarget(self)
         MPRemoteCommandCenter.shared().previousTrackCommand.removeTarget(self)
@@ -184,29 +233,33 @@ class AudioPlayerViewController: UIViewController {
     }
     
     @IBAction func nextButtonPressed(_ sender: Any) {
-        let index =  dataModel.queuedItems.index(of: player.currentItem!) ?? 0
-        if index == dataModel.queuedItems.count - 1 && repeatButton.currentImage != UIImage(named:"repeatCurrent"){
+        if dataModel.currentIndex == dataModel.playerItems.count - 1,repeatButton.currentImage != UIImage(named:"repeatCurrent"){
             repeatButton.setImage(UIImage(named:"repeatAll"), for: .normal)
         }
         playNextSong()
     }
 
+    @objc func updateMetaData(){
+        loadMetadata()
+        thumbnailCollectionView.reloadData()
+        loadingIndicator.stopAnimating()
+    }
     
     // UI Updates
-   @objc func loadSong(){
+   func loadSong(){
+        resetControls()
+        loadMetadata()
+    }
+    
+    func loadMetadata(){
         // Play button image
         configurePlayButton()
     
-        if let currentItem = dataModel.currentPlayerItem{
-            // Load Image
-            loadImage(for:currentItem)
-            
-            // Load title and artist
-            setTitleArtist(for: currentItem)
-        }
+        // Load title and artist
+        setTitleArtist()
         
-        // Reset Controls
-        resetControls()
+        // Load Image Background
+        loadImageBackground()
         
         // Set slider and time labels
         setSliderAndTimeLabels()
@@ -236,6 +289,7 @@ class AudioPlayerViewController: UIViewController {
     
     func isPaused() -> Bool {
         if ((self.player.rate != 0) && (self.player.error == nil)) {
+            loadingIndicator.stopAnimating()
             return false
         }
         else{
