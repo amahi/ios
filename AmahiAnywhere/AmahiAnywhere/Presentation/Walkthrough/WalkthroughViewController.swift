@@ -56,6 +56,7 @@ class WalkthroughViewController: BaseUIViewController {
         let loginVC = mainStoryboard.instantiateViewController(withIdentifier: StoryBoardIdentifiers.loginViewController)
         
         LocalStorage.shared.persistString(string: "completed", key: "walkthrough")
+        loginVC.modalPresentationStyle = .fullScreen
         present(loginVC, animated: true, completion: nil)
     }
 }

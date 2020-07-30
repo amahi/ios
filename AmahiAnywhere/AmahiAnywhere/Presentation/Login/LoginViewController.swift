@@ -144,41 +144,18 @@ class LoginViewController: BaseUIViewController {
     
 }
 
-extension UIViewController {
-
-    @objc private func swizzled_presentstyle(_ viewControllerToPresent: UIViewController, animated: Bool, completion: (() -> Void)?) {
-
-        if #available(iOS 13.0, *) {
-            if viewControllerToPresent.modalPresentationStyle == .automatic || viewControllerToPresent.modalPresentationStyle == .pageSheet {
-                viewControllerToPresent.modalPresentationStyle = .fullScreen
-            }
-        }
-
-        self.swizzled_presentstyle(viewControllerToPresent, animated: animated, completion: completion)
-    }
-
-     static func setPresentationStyle_fullScreen() {
-
-        let instance: UIViewController = UIViewController()
-        let aClass: AnyClass! = object_getClass(instance)
-
-        let originalSelector = #selector(UIViewController.present(_:animated:completion:))
-        let swizzledSelector = #selector(UIViewController.swizzled_presentstyle(_:animated:completion:))
-
-        let originalMethod = class_getInstanceMethod(aClass, originalSelector)
-        let swizzledMethod = class_getInstanceMethod(aClass, swizzledSelector)
-        if let originalMethod = originalMethod, let swizzledMethod = swizzledMethod {
-        method_exchangeImplementations(originalMethod, swizzledMethod)
-        }
-    }
-}
-
 // Mark - Login view implementations
 extension LoginViewController: LoginView {
     
     func showHome() {
         let serverVc = self.instantiateViewController (withIdentifier: "RootVC", from: StoryBoardIdentifiers.main)
-        self.present(serverVc, animated: true, completion: nil)
+        if let appDelegate = UIApplication.shared.delegate as? AppDelegate, let currentWindow =  appDelegate.window{
+           UIView.transition(with: currentWindow, duration: 0.3, options: .transitionFlipFromRight, animations: {
+            //removing strong references from login VC to let ARC automatically delete it from memmory
+                currentWindow.rootViewController = serverVc
+                currentWindow.makeKeyAndVisible()
+           }, completion: nil)
+       }
     }
     
 }

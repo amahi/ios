@@ -66,7 +66,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         populateRegistrationDomain()
         
-        UIViewController.setPresentationStyle_fullScreen()
         
         useCastContainerViewController = false
         

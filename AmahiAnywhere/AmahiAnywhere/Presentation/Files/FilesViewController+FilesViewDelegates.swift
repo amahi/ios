@@ -100,6 +100,7 @@ extension FilesViewController: FilesView {
             let videoPlayerVc = self.viewController(viewControllerClass: VideoPlayerViewController.self,
                                                     from: StoryBoardIdentifiers.videoPlayer)
             videoPlayerVc.mediaURL = url
+            videoPlayerVc.modalPresentationStyle = .fullScreen
             self.present(videoPlayerVc)
             
         }
@@ -188,12 +189,7 @@ extension FilesViewController: FilesView {
             AudioPlayerDataModel.shared.queuedItems = Array(items.suffix(from: currentIndex))
             AudioPlayerDataModel.shared.itemURLs = Array(URLs.suffix(from: currentIndex))
             AudioPlayerDataModel.shared.setupQueueMetadata()
-            if #available(iOS 13.0, *) {
-                audioPlayerVc.isModalInPresentation = true
-            }
-            if UIDevice().userInterfaceIdiom == .pad{
-                audioPlayerVc.modalPresentationStyle = .fullScreen
-            }
+            audioPlayerVc.modalPresentationStyle = .fullScreen
             self.present(audioPlayerVc)
             
         }

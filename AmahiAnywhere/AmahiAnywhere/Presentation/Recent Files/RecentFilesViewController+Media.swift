@@ -49,6 +49,7 @@ extension RecentFilesViewController{
             AudioPlayerDataModel.shared.queuedItems = items
             AudioPlayerDataModel.shared.itemURLs = URLs
             AudioPlayerDataModel.shared.setupQueueMetadata()
+            audioPlayerVc.modalPresentationStyle = .fullScreen
             present(audioPlayerVc, animated: true, completion: nil)
         }
     }
@@ -85,6 +86,7 @@ extension RecentFilesViewController{
             }else{
                 let videoPlayerVc = self.viewController(viewControllerClass: VideoPlayerViewController.self, from: StoryBoardIdentifiers.videoPlayer)
                 videoPlayerVc.mediaURL = url
+                videoPlayerVc.modalPresentationStyle = .fullScreen
                 present(videoPlayerVc, animated: true, completion: nil)
             }
         }
