@@ -87,13 +87,6 @@ extension RecentFilesViewController: UICollectionViewDelegate, UICollectionViewD
         let recentFile = filteredRecentFiles[indexPath.item]
         
         if orientation == .left{
-            let shareAction = SwipeAction(style: .default, title: StringLiterals.share) { (action, indexPath) in
-                self.shareFile(recentFile, from: self.filesCollectionView.cellForItem(at: indexPath))
-            }
-            shareAction.backgroundColor = #colorLiteral(red: 0.2704460415, green: 0.5734752943, blue: 1, alpha: 1)
-            shareAction.font = UIFont.systemFont(ofSize: 18, weight: .bold)
-            shareAction.textColor = .white
-            
             let clearAction = SwipeAction(style: .default, title: "Clear") { (action, indexPath) in
                 self.filteredRecentFiles.remove(at: indexPath.row)
                 self.filesCollectionView.deleteItems(at: [indexPath])
@@ -101,10 +94,17 @@ extension RecentFilesViewController: UICollectionViewDelegate, UICollectionViewD
             clearAction.backgroundColor = #colorLiteral(red: 0.9529411793, green: 0.6862745285, blue: 0.1333333403, alpha: 1)
             clearAction.font = UIFont.systemFont(ofSize: 18, weight: .bold)
             clearAction.textColor = .white
-            return [shareAction, clearAction]
+            return [clearAction]
         }else{
+            let shareAction = SwipeAction(style: .default, title: StringLiterals.share) { (action, indexPath) in
+                self.shareFile(recentFile, from: self.filesCollectionView.cellForItem(at: indexPath))
+            }
+            shareAction.backgroundColor = #colorLiteral(red: 0.2704460415, green: 0.5734752943, blue: 1, alpha: 1)
+            shareAction.font = UIFont.systemFont(ofSize: 18, weight: .bold)
+            shareAction.textColor = .white
+
             let state = checkFileOfflineState(recentFile)
-            if state == .none{
+            if state == .none {
                 let downloadAction = SwipeAction(style: .default, title: "Download") { (action, indexPath) in
                     self.makeFileAvailableOffline(recentFile, indexPath: indexPath)
                 }
@@ -112,8 +112,8 @@ extension RecentFilesViewController: UICollectionViewDelegate, UICollectionViewD
                 downloadAction.backgroundColor = #colorLiteral(red: 0.2172219259, green: 0.7408193211, blue: 0.1805167178, alpha: 1)
                 downloadAction.font = UIFont.systemFont(ofSize: 18, weight: .bold)
                 downloadAction.textColor = .white
-                return [downloadAction]
-            }else if state == .downloaded{
+                return [downloadAction, shareAction]
+            } else if state == .downloaded {
                 let removeDownloadAction = SwipeAction(style: .default, title: "Remove Download") { (action, indexPath) in
                     self.removeOfflineFile(indexPath: indexPath)
                 }
@@ -121,8 +121,8 @@ extension RecentFilesViewController: UICollectionViewDelegate, UICollectionViewD
                 removeDownloadAction.backgroundColor = #colorLiteral(red: 0.9490196078, green: 0.1215686275, blue: 0.1882352941, alpha: 1)
                 removeDownloadAction.textColor = .white
                 removeDownloadAction.font = UIFont.systemFont(ofSize: 18, weight: .bold)
-                return [removeDownloadAction]
-            }else if state == .downloading{
+                return [removeDownloadAction, shareAction]
+            } else if state == .downloading {
                 let cancelDownloadAction = SwipeAction(style: .default, title: "Cancel Download") { (action, indexPath) in
                     if let offlineFile = OfflineFileIndexesRecents.indexPathsForOfflineFiles[indexPath]{
                         DownloadService.shared.cancelDownload(offlineFile)
@@ -132,8 +132,8 @@ extension RecentFilesViewController: UICollectionViewDelegate, UICollectionViewD
                 cancelDownloadAction.backgroundColor = #colorLiteral(red: 0.9490196078, green: 0.1215686275, blue: 0.1882352941, alpha: 1)
                 cancelDownloadAction.textColor = .white
                 cancelDownloadAction.font = UIFont.systemFont(ofSize: 18, weight: .bold)
-                return [cancelDownloadAction]
-            }else{
+                return [cancelDownloadAction, shareAction]
+            } else {
                 return nil
             }
         }
