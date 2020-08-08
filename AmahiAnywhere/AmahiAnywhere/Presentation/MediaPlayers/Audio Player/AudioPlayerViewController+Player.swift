@@ -38,6 +38,8 @@ extension AudioPlayerViewController{
             return
         }
         
+        resetControls()
+        
         if dataModel.currentIndex >= dataModel.playerItems.count - 1{
             
             //current queue is empty resetting queue
@@ -68,6 +70,7 @@ extension AudioPlayerViewController{
             
             if let item = dataModel.preparePrevious(){
                 updateThumbnailCollectionView(for: .previous)
+                resetControls()
                 player.replaceCurrentItem(with: item)
                 loadSong()
             }
