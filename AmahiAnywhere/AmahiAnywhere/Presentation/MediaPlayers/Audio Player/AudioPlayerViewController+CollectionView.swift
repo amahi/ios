@@ -75,7 +75,7 @@ extension AudioPlayerViewController: UICollectionViewDelegate,UICollectionViewDa
         
         let drag = offset - CGFloat(wholeNumber)
         
-        if (drag >= 0.10 || drag <= -0.10){
+        if (drag >= 0.10 || drag <= -0.10) && !recentsMode{
             if velocity.x < 0{
                 playPreviousSong(fromSwipe : true)
             }else{

@@ -52,6 +52,7 @@ class AudioPlayerViewController: UIViewController {
     
     var startedPlayer = false
     var offlineMode = false
+    var recentsMode = false
     
     var observer: Any?
     
@@ -73,16 +74,17 @@ class AudioPlayerViewController: UIViewController {
 
         showLoading()
         
-        playerQueueContainer = PlayerQueueContainerView(target: self)
-        playerQueueContainer.header.arrowHead.addTarget(self, action: #selector(handleArrowHeadTap), for: .touchDown)
-        playerQueueContainer.header.tapDelegate = self
-        setupQueueConstraints()
-        
-                    
-        let panRecognizer = UIPanGestureRecognizer(target: self, action: #selector(handlePanGesture(_:)))
-        self.playerContainer.addGestureRecognizer(panRecognizer)
-        panRecognizer.cancelsTouchesInView = true
-        
+        if !recentsMode {
+            playerQueueContainer = PlayerQueueContainerView(target: self)
+            playerQueueContainer.header.arrowHead.addTarget(self, action: #selector(handleArrowHeadTap), for: .touchDown)
+            playerQueueContainer.header.tapDelegate = self
+            setupQueueConstraints()
+            
+            let panRecognizer = UIPanGestureRecognizer(target: self, action: #selector(handlePanGesture(_:)))
+            self.playerContainer.addGestureRecognizer(panRecognizer)
+            panRecognizer.cancelsTouchesInView = true
+        }
+                
         setupPlayer()
         setupRemoteCommandCenter()
         
@@ -122,8 +124,17 @@ class AudioPlayerViewController: UIViewController {
         timeSlider.setThumbImage(UIImage(named: "sliderKnobIcon"), for: .normal)
         timeSlider.addTarget(self, action: #selector(timeSliderChanged(slider:event:)), for: .valueChanged)
         
-        shuffleButton.setImage(UIImage(named:"shuffle"), for: .normal)
-        repeatButton.setImage(UIImage(named:"repeat"), for: .normal)
+        if recentsMode{
+            shuffleButton.isHidden = true
+            repeatButton.isHidden = true
+            prevButton.setImage(UIImage(named:"bwd_10"), for: .normal)
+            nextButton.setImage(UIImage(named:"fwd_10"), for: .normal)
+        }else{
+            shuffleButton.isHidden = false
+            repeatButton.isHidden = false
+            shuffleButton.setImage(UIImage(named:"shuffle"), for: .normal)
+            repeatButton.setImage(UIImage(named:"repeat"), for: .normal)
+        }
     }
     
     func setupRemoteCommandCenter(){
@@ -236,6 +247,12 @@ class AudioPlayerViewController: UIViewController {
     }
     
     @IBAction func prevButtonPressed(_ sender: Any) {
+        if recentsMode{
+            //bwd 10 seconds
+            let jumpSecondsInCMT = CMTime(seconds: 10, preferredTimescale: player.currentTime().timescale)
+            player.seek(to: player.currentTime() - jumpSecondsInCMT)
+            return
+        }
         playPreviousSong()
     }
     
@@ -248,6 +265,14 @@ class AudioPlayerViewController: UIViewController {
     }
     
     @IBAction func nextButtonPressed(_ sender: Any) {
+        
+        if recentsMode{
+            //fwd 10 seconds
+            let jumpSecondsInCMT = CMTime(seconds: 10, preferredTimescale: player.currentTime().timescale)
+            player.seek(to: player.currentTime() + jumpSecondsInCMT)
+            return
+        }
+        
         if dataModel.currentIndex == dataModel.playerItems.count - 1,repeatButton.currentImage != UIImage(named:"repeatCurrent"){
             repeatButton.setImage(UIImage(named:"repeatAll"), for: .normal)
         }
@@ -283,7 +308,9 @@ class AudioPlayerViewController: UIViewController {
         setLockScreenData()
         
         //update background color of up next label view
-        playerQueueContainer.header.updateBackgroundColor()
+        if !recentsMode{
+            playerQueueContainer.header.updateBackgroundColor()
+        }
     }
     
     func updatePlayingSong(_ time: CMTime){
@@ -296,7 +323,12 @@ class AudioPlayerViewController: UIViewController {
             }
             if self.timeElapsedLabel.text != "--:--" && self.timeElapsedLabel.text == self.durationLabel.text {
                 if self.nextButton.isEnabled == true {
-                    self.playNextSong()
+                    if recentsMode{
+                        player.seek(to: CMTime(seconds: 0, preferredTimescale: player.currentTime().timescale))
+                        pausePlayer()
+                    }else{
+                        self.playNextSong()
+                    }
                 }
             }
         }

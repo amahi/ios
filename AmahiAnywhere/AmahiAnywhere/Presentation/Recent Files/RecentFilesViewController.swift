@@ -223,8 +223,10 @@ class RecentFilesViewController: BaseUIViewController {
         case "video", "flacMedia":
             playMediaItem(recentFile: recentFile)
         case "audio":
-            let results = getAudioFiles(selectedFile: recentFile)
-            playAudio(results.playerItems, startIndex: results.startIndex, currentIndex: 0, results.urls)
+            if let url = URL(string:recentFile.fileURL){
+                let item = AVPlayerItem(url: url)
+                playAudio([item], startIndex: 0, currentIndex: 0, [url])
+            }
         case "code", "presentation", "sharedFile", "document", "spreadsheet":
             func handleFileOpening(with fileURL: URL) {
                 weak var weakSelf = self

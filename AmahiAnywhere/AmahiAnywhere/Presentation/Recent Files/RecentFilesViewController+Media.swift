@@ -54,7 +54,7 @@ extension RecentFilesViewController{
                 return
             }
             AudioPlayerDataModel.shared.configure(items: items, with: currentIndex)
-            audioPlayerVc.modalPresentationStyle = .fullScreen
+            audioPlayerVc.recentsMode = true
             present(audioPlayerVc, animated: true, completion: nil)
         }
     }

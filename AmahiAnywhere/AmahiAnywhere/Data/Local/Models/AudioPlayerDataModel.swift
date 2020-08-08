@@ -174,7 +174,9 @@ class AudioPlayerDataModel{
                     weakSelf.isFetchingMetadata = false
                     print(weakSelf.metadata)
                     
-                    NotificationCenter.default.post(name: .audioPlayerDidSetMetaData, object: weakSelf)
+                    if !data.isEmpty{
+                        NotificationCenter.default.post(name: .audioPlayerDidSetMetaData, object: weakSelf)
+                    }
                 }
             }
         }
