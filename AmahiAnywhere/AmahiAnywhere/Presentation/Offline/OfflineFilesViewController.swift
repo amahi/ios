@@ -112,10 +112,12 @@ class OfflineFilesViewController: BaseUIViewController{
         searchController.searchBar.placeholder = "Search"
         if #available(iOS 13.0, *) {
             searchController.searchBar.tintColor = .label
+            UITextField.appearance(whenContainedInInstancesOf: [UISearchBar.self]).defaultTextAttributes = [.foregroundColor: UIColor.label]
         } else {
             searchController.searchBar.tintColor = .white
+            UITextField.appearance(whenContainedInInstancesOf: [UISearchBar.self]).defaultTextAttributes = [.foregroundColor: UIColor.white]
         }
-        UITextField.appearance(whenContainedInInstancesOf: [UISearchBar.self]).defaultTextAttributes = [.foregroundColor: UIColor.white]
+        
         searchController.delegate = self
         searchController.searchBar.delegate = self
         searchController.hidesNavigationBarDuringPresentation = false

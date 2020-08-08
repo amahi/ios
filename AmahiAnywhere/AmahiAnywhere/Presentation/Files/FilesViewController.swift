@@ -303,13 +303,10 @@ class FilesViewController: BaseUIViewController, GCKRemoteMediaClientListener {
         searchController.searchBar.placeholder = "Search"
         if #available(iOS 13.0, *) {
             searchController.searchBar.tintColor = .label
+            UITextField.appearance(whenContainedInInstancesOf: [UISearchBar.self]).defaultTextAttributes = [.foregroundColor: UIColor.label]
         } else {
             searchController.searchBar.tintColor = .white
-        }
-        if #available(iOS 13.0, *) {
-            UITextField.appearance(whenContainedInInstancesOf: [UISearchBar.self]).defaultTextAttributes = [.foregroundColor: UIColor.systemGray6]
-        } else {
-            UITextField.appearance(whenContainedInInstancesOf: [UISearchBar.self]).defaultTextAttributes = [.foregroundColor: UIColor.white]
+                        UITextField.appearance(whenContainedInInstancesOf: [UISearchBar.self]).defaultTextAttributes = [.foregroundColor: UIColor.white]
         }
         searchController.delegate = self
         searchController.searchBar.delegate = self
