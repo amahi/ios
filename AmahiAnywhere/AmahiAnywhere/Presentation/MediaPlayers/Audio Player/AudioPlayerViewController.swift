@@ -39,7 +39,7 @@ class AudioPlayerViewController: UIViewController {
     
     var playerQueueContainer : PlayerQueueContainerView!
     
-    var queueVCHeight = UIScreen.main.bounds.height * 0.72
+    var viewSize = CGSize.zero
     
     var queueTopConstraintForOpen:NSLayoutConstraint?
     var queueTopConstraintForCollapse: NSLayoutConstraint?
@@ -65,12 +65,18 @@ class AudioPlayerViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        viewSize = view.bounds.size
+        if UIDevice.current.userInterfaceIdiom != .pad{
+            AppUtility.lockOrientation(.portrait)
+        }
+
         showLoading()
         
         playerQueueContainer = PlayerQueueContainerView(target: self)
         playerQueueContainer.header.arrowHead.addTarget(self, action: #selector(handleArrowHeadTap), for: .touchDown)
         playerQueueContainer.header.tapDelegate = self
-        layoutPlayerQueue()
+        setupQueueConstraints()
         
                     
         let panRecognizer = UIPanGestureRecognizer(target: self, action: #selector(handlePanGesture(_:)))
@@ -95,6 +101,16 @@ class AudioPlayerViewController: UIViewController {
         
     }
     
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        viewSize = size
+        thumbnailCollectionView.frame.size = size
+        thumbnailCollectionView.collectionViewLayout.invalidateLayout()
+        
+        resetQueueConstraints()
+        
+        super.viewWillTransition(to: size, with: coordinator)
+    }
+    
     func setupPlayer(){
         NotificationCenter.default.addObserver(self, selector: #selector(showLoading), name: .AVPlayerItemPlaybackStalled, object: nil)
         
@@ -103,7 +119,6 @@ class AudioPlayerViewController: UIViewController {
         player.currentItem?.addObserver(self, forKeyPath: "playbackLikelyToKeepUp", options: [.new], context: nil)
         player.currentItem?.addObserver(self, forKeyPath: "playbackBufferFull", options: [.new], context: nil)
         player.automaticallyWaitsToMinimizeStalling = true
-        AppUtility.lockOrientation(.portrait)
         timeSlider.setThumbImage(UIImage(named: "sliderKnobIcon"), for: .normal)
         timeSlider.addTarget(self, action: #selector(timeSliderChanged(slider:event:)), for: .valueChanged)
         

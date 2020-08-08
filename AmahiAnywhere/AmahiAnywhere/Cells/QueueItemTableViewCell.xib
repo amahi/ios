@@ -50,6 +50,7 @@
                         </subviews>
                         <color key="backgroundColor" name="tabBarBackground"/>
                         <constraints>
+                            <constraint firstItem="BMk-mY-QLE" firstAttribute="width" secondItem="XQD-ho-HlE" secondAttribute="width" multiplier="0.15" id="6Nt-xh-q7N"/>
                             <constraint firstAttribute="bottom" secondItem="hft-1p-iJZ" secondAttribute="bottom" constant="5" id="JkX-cq-vR1"/>
                             <constraint firstAttribute="bottom" secondItem="BMk-mY-QLE" secondAttribute="bottom" constant="5" id="Z8b-9a-wHT"/>
                             <constraint firstItem="hft-1p-iJZ" firstAttribute="leading" secondItem="BMk-mY-QLE" secondAttribute="trailing" constant="5" id="aIG-UE-FuC"/>
@@ -59,6 +60,17 @@
                             <constraint firstItem="BMk-mY-QLE" firstAttribute="width" secondItem="XQD-ho-HlE" secondAttribute="width" multiplier="0.2" id="gt9-49-bJX"/>
                             <constraint firstItem="BMk-mY-QLE" firstAttribute="top" secondItem="XQD-ho-HlE" secondAttribute="top" constant="5" id="wGR-B6-Hf8"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="6Nt-xh-q7N"/>
+                            </mask>
+                        </variation>
+                        <variation key="heightClass=regular-widthClass=regular">
+                            <mask key="constraints">
+                                <include reference="6Nt-xh-q7N"/>
+                                <exclude reference="gt9-49-bJX"/>
+                            </mask>
+                        </variation>
                     </view>
                 </subviews>
                 <color key="backgroundColor" name="tabBarBackground"/>
