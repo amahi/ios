@@ -79,8 +79,12 @@ class DownloadsBaseCollectionCell: SwipeCollectionViewCell{
     }
     
     
-    func updateProgress(offlineFile: OfflineFile, progressView: UIProgressView, brokenIndicator: UIImageView, iconImageView: UIImageView){
+    func updateProgress(offlineFile: OfflineFile, progressView: UIProgressView, brokenIndicator: UIImageView, iconImageView: UIImageView, dateSizeLabel: UILabel? = nil){
         setupProgressView(offlineFile: offlineFile, progressView: progressView)
+        
+        if let dateSizeLabel = dateSizeLabel {
+            setUpPercentagelabel(offlineFile: offlineFile, dateSizeLabel: dateSizeLabel)
+        }
         
         if offlineFile.stateEnum == .downloading {
             if let remoteUrl = offlineFile.remoteFileURL() {
@@ -109,6 +113,21 @@ class DownloadsBaseCollectionCell: SwipeCollectionViewCell{
         }else{
             progressView.setProgress(offlineFile.progress, animated: false)
         }
+    }
+    
+    func setUpPercentagelabel(offlineFile: OfflineFile, dateSizeLabel: UILabel) {
+        let size = offlineFile.getFileSize()
+        let date = offlineFile.downloadDate?.asString ?? ""
+        let progress = offlineFile.progress * 100
+        let dateSizeText = "\(size) · \(Int(progress))%"
+        if dateSizeText != dateSizeLabel.text {
+            dateSizeLabel.text = dateSizeText
+        }
+        
+        if progress == 100.0 {
+            dateSizeLabel.text = "\(size), \(date)"
+        }
+        
     }
     
     

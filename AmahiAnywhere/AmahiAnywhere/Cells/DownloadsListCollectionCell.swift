@@ -61,6 +61,7 @@ class DownloadsListCollectionCell: DownloadsBaseCollectionCell{
     }
     
     func updateProgress(offlineFile: OfflineFile){
-        updateProgress(offlineFile: offlineFile, progressView: progressView, brokenIndicator: brokenIndicatorImageView, iconImageView: iconImageView)
+        updateProgress(offlineFile: offlineFile, progressView: progressView, brokenIndicator: brokenIndicatorImageView, iconImageView: iconImageView, dateSizeLabel: sizeDateLabel)
     }
+
 }
