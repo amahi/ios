@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
@@ -59,14 +59,14 @@
                                 </constraints>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="n8e-Qv-JoW">
-                                <rect key="frame" x="0.0" y="64" width="40" height="40"/>
+                                <rect key="frame" x="8" y="64" width="40" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="40" id="Vmv-B3-b0p"/>
                                     <constraint firstAttribute="height" constant="40" id="kVn-Iw-xaV"/>
                                 </constraints>
-                                <state key="normal" image="moreIcon"/>
+                                <state key="normal" image="closeButton"/>
                                 <connections>
-                                    <action selector="moreButtonPressed:" destination="2xg-zm-phO" eventType="touchUpInside" id="xLt-94-eSp"/>
+                                    <action selector="userClickDone:" destination="2xg-zm-phO" eventType="touchUpInside" id="z7t-Vf-Qri"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7R4-wT-k9X">
@@ -75,9 +75,9 @@
                                     <constraint firstAttribute="height" constant="40" id="ZtU-ec-RaS"/>
                                     <constraint firstAttribute="width" constant="40" id="fzs-Hr-N7T"/>
                                 </constraints>
-                                <state key="normal" image="closeButton"/>
+                                <state key="normal" image="moreIcon"/>
                                 <connections>
-                                    <action selector="userClickDone:" destination="2xg-zm-phO" eventType="touchUpInside" id="gzc-Pi-tem"/>
+                                    <action selector="moreButtonPressed:" destination="2xg-zm-phO" eventType="touchUpInside" id="fJO-Qa-VAW"/>
                                 </connections>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Px1-hZ-kQe" userLabel="Video Controls View">
@@ -179,23 +179,23 @@
                             <constraint firstItem="zkf-3f-xjD" firstAttribute="centerY" secondItem="ubk-j6-ab1" secondAttribute="centerY" id="PHK-WG-5BO"/>
                             <constraint firstItem="Px1-hZ-kQe" firstAttribute="leading" secondItem="cMV-rb-rpa" secondAttribute="leading" constant="20" id="VVh-RL-ugs"/>
                             <constraint firstItem="cMV-rb-rpa" firstAttribute="trailing" secondItem="3yJ-en-oBu" secondAttribute="trailing" constant="10" id="ZaD-FK-kjE"/>
-                            <constraint firstItem="n8e-Qv-JoW" firstAttribute="leading" secondItem="cMV-rb-rpa" secondAttribute="leading" id="cMG-cJ-Zbp"/>
                             <constraint firstItem="cMV-rb-rpa" firstAttribute="trailing" secondItem="7R4-wT-k9X" secondAttribute="trailing" constant="8" id="dFf-f9-qCy"/>
                             <constraint firstItem="xdE-qU-B5f" firstAttribute="trailing" secondItem="ubk-j6-ab1" secondAttribute="trailing" id="k5R-iO-7lO"/>
                             <constraint firstItem="cMV-rb-rpa" firstAttribute="trailing" secondItem="Px1-hZ-kQe" secondAttribute="trailing" constant="20" id="lzF-wI-I8Y"/>
                             <constraint firstItem="n8e-Qv-JoW" firstAttribute="centerY" secondItem="7R4-wT-k9X" secondAttribute="centerY" id="mnc-MR-Y8r"/>
                             <constraint firstItem="xdE-qU-B5f" firstAttribute="bottom" secondItem="ubk-j6-ab1" secondAttribute="bottom" id="sYC-Ej-SLo"/>
+                            <constraint firstItem="n8e-Qv-JoW" firstAttribute="leading" secondItem="cMV-rb-rpa" secondAttribute="leading" constant="8" id="ssI-IT-BoL"/>
                             <constraint firstItem="QvY-Mo-eVr" firstAttribute="centerY" secondItem="ubk-j6-ab1" secondAttribute="centerY" id="vHW-Lb-K8m"/>
                             <constraint firstItem="7R4-wT-k9X" firstAttribute="top" secondItem="cMV-rb-rpa" secondAttribute="top" constant="20" id="wS2-qM-G7h"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="cMV-rb-rpa"/>
                     </view>
                     <connections>
-                        <outlet property="doneButton" destination="7R4-wT-k9X" id="Ljy-Dw-zYT"/>
+                        <outlet property="doneButton" destination="n8e-Qv-JoW" id="4Oy-Jz-dA0"/>
                         <outlet property="durationLabel" destination="l91-f6-UNR" id="EFY-tC-J4n"/>
                         <outlet property="fastForwardButton" destination="eet-gH-dEN" id="ZpG-MC-qif"/>
                         <outlet property="forwardIndicator" destination="zkf-3f-xjD" id="LLB-KD-ceL"/>
-                        <outlet property="moreButton" destination="n8e-Qv-JoW" id="2Il-5v-HAA"/>
+                        <outlet property="moreButton" destination="7R4-wT-k9X" id="Quq-5A-gcl"/>
                         <outlet property="movieView" destination="xdE-qU-B5f" id="RgI-fE-Guz"/>
                         <outlet property="playButton" destination="CdG-13-Cmv" id="aKI-M0-JVY"/>
                         <outlet property="rewindButton" destination="4fn-Os-xxP" id="lFX-W4-v2H"/>
@@ -238,7 +238,24 @@
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="f0B-dy-F7n">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                            <subviews>
+                                                <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="999" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3JH-p3-RfR">
+                                                    <rect key="frame" x="20" y="20" width="40" height="40"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="40" id="A60-EV-YPm"/>
+                                                        <constraint firstAttribute="height" constant="40" id="xYW-vy-d3O"/>
+                                                    </constraints>
+                                                    <state key="normal" image="closeButton"/>
+                                                    <connections>
+                                                        <action selector="doneButtonPressed:" destination="cll-dP-OW0" eventType="touchUpInside" id="9ev-ZN-afe"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
                                             <gestureRecognizers/>
+                                            <constraints>
+                                                <constraint firstItem="3JH-p3-RfR" firstAttribute="top" secondItem="f0B-dy-F7n" secondAttribute="top" constant="20" id="X4Y-oS-Qt5"/>
+                                                <constraint firstItem="3JH-p3-RfR" firstAttribute="leading" secondItem="f0B-dy-F7n" secondAttribute="leading" constant="20" id="g9y-8L-896"/>
+                                            </constraints>
                                         </view>
                                         <blurEffect style="dark"/>
                                     </visualEffectView>
@@ -322,17 +339,6 @@
                                         </constraints>
                                         <color key="color" name="tabBarBackground"/>
                                     </activityIndicatorView>
-                                    <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="999" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3JH-p3-RfR">
-                                        <rect key="frame" x="354" y="20" width="40" height="40"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="40" id="A60-EV-YPm"/>
-                                            <constraint firstAttribute="height" constant="40" id="xYW-vy-d3O"/>
-                                        </constraints>
-                                        <state key="normal" image="closeButton"/>
-                                        <connections>
-                                            <action selector="doneButtonPressed:" destination="cll-dP-OW0" eventType="touchUpInside" id="9ev-ZN-afe"/>
-                                        </connections>
-                                    </button>
                                     <stackView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="999" spacing="50" translatesAutoresizingMaskIntoConstraints="NO" id="gAA-Hm-ENq">
                                         <rect key="frame" x="90" y="746" width="234" height="70"/>
                                         <subviews>
@@ -369,9 +375,7 @@
                                     <constraint firstAttribute="trailing" secondItem="Xhl-yR-3Gl" secondAttribute="trailing" constant="20" id="0gI-f3-zND"/>
                                     <constraint firstItem="Nwy-gf-Pl3" firstAttribute="leading" secondItem="B7c-EV-cp2" secondAttribute="leading" constant="20" id="1BO-I5-6PT"/>
                                     <constraint firstItem="bx3-st-U8E" firstAttribute="centerY" secondItem="IrN-4V-Q8g" secondAttribute="centerY" id="5G5-f7-fuA"/>
-                                    <constraint firstAttribute="trailing" secondItem="3JH-p3-RfR" secondAttribute="trailing" constant="20" id="7in-95-lKT"/>
                                     <constraint firstItem="3aL-3c-jw0" firstAttribute="trailing" secondItem="Xhl-yR-3Gl" secondAttribute="trailing" id="7ny-cx-X9h"/>
-                                    <constraint firstItem="JUC-Ox-Esv" firstAttribute="top" secondItem="3JH-p3-RfR" secondAttribute="bottom" constant="15" id="85m-dq-0TB"/>
                                     <constraint firstItem="bx3-st-U8E" firstAttribute="width" secondItem="IrN-4V-Q8g" secondAttribute="width" multiplier="0.516667" id="9Ym-na-H6V"/>
                                     <constraint firstItem="3aL-3c-jw0" firstAttribute="top" secondItem="Xhl-yR-3Gl" secondAttribute="bottom" constant="5" id="BM8-iP-vwW"/>
                                     <constraint firstItem="STt-AV-qDW" firstAttribute="leading" secondItem="B7c-EV-cp2" secondAttribute="leading" id="Gsa-3s-fIH"/>
@@ -381,9 +385,9 @@
                                     <constraint firstAttribute="bottom" secondItem="uvU-Os-uFi" secondAttribute="bottom" id="Q1c-wp-AeC"/>
                                     <constraint firstItem="gAA-Hm-ENq" firstAttribute="top" secondItem="IrN-4V-Q8g" secondAttribute="bottom" constant="-10" id="Qwz-37-Cve"/>
                                     <constraint firstItem="IrN-4V-Q8g" firstAttribute="top" secondItem="Ymr-h4-1XM" secondAttribute="bottom" constant="10" id="SDj-gT-lzt"/>
+                                    <constraint firstItem="JUC-Ox-Esv" firstAttribute="top" secondItem="B7c-EV-cp2" secondAttribute="top" constant="75" id="SXY-7A-ePP"/>
                                     <constraint firstItem="gAA-Hm-ENq" firstAttribute="centerX" secondItem="B7c-EV-cp2" secondAttribute="centerX" id="U1l-8H-eET"/>
                                     <constraint firstAttribute="trailing" secondItem="JUC-Ox-Esv" secondAttribute="trailing" id="UCl-Z0-Gio"/>
-                                    <constraint firstItem="3JH-p3-RfR" firstAttribute="top" secondItem="B7c-EV-cp2" secondAttribute="top" constant="20" id="Vhw-OW-mF8"/>
                                     <constraint firstAttribute="trailing" secondItem="mAd-I9-vTK" secondAttribute="trailing" constant="20" id="ZP9-Qo-r8F"/>
                                     <constraint firstItem="bx3-st-U8E" firstAttribute="height" secondItem="IrN-4V-Q8g" secondAttribute="height" id="ZRo-2i-eMI"/>
                                     <constraint firstItem="Nwy-gf-Pl3" firstAttribute="top" secondItem="JUC-Ox-Esv" secondAttribute="bottom" constant="15" id="ZXe-6z-tz1"/>
