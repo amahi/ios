@@ -144,7 +144,7 @@ extension RecentFilesViewController: UICollectionViewDelegate, UICollectionViewD
         var options = SwipeOptions()
         options.expansionStyle = .selection
         if orientation == .left{
-            options.backgroundColor = #colorLiteral(red: 0.2704460415, green: 0.5734752943, blue: 1, alpha: 1)
+            options.backgroundColor = #colorLiteral(red: 0.9529411793, green: 0.6862745285, blue: 0.1333333403, alpha: 1)
         }else{
             let recentFile = filteredRecentFiles[indexPath.item]
             let state = checkFileOfflineState(recentFile)
