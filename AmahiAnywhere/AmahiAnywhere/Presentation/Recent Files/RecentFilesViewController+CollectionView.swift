@@ -21,6 +21,10 @@ extension RecentFilesViewController: UICollectionViewDelegate, UICollectionViewD
             imageView.sd_setImage(with: URL, placeholderImage: nil, options: .refreshCached, completed: { (image, data, error, true) in
                 completion?(nil)
             })
+            LightboxConfig.CloseButton.textAttributes = [
+                           .font: UIFont.boldSystemFont(ofSize: 18),
+                           .foregroundColor: UIColor.blue
+                       ]
         }
         
         let recentFile = filteredRecentFiles[indexPath.item]
