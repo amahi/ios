@@ -19,7 +19,7 @@ extension RecentFilesViewController{
             }
         }
         
-        if !isAlertShowing{
+        if !isAlertShowing && downloadProgressAlertController != nil{
             isAlertShowing = true
             present(downloadProgressAlertController!, animated: true, completion: nil)
         }
@@ -38,7 +38,15 @@ extension RecentFilesViewController{
     
     func setupDownloadProgressIndicator(){
         downloadProgressAlertController = UIAlertController(title: "", message: "", preferredStyle: .alert)
-        downloadProgressAlertController?.view.setAnchorSize(width: nil, height: 190)
+        downloadProgressAlertController?.addAction(UIAlertAction(title: "Cancel", style: .destructive, handler: { _ in
+            self.downloadCancelled = true
+            self.currentFileDownloadRequest?.cancel(createResumeData: true)
+            self.downloadProgressAlertController?.dismiss(animated: true, completion: nil)
+            self.downloadProgressAlertController = nil
+            self.progressView = nil
+            self.isAlertShowing = false
+        }))
+        downloadProgressAlertController?.view.setAnchorSize(width: nil, height: 220)
         
         
         downloadTitleLabel = UILabel()
@@ -68,7 +76,7 @@ extension RecentFilesViewController{
         stackView.alignment = .fill
         
         downloadProgressAlertController?.view.addSubview(stackView)
-        stackView.setAnchors(top: downloadProgressAlertController?.view.topAnchor, leading: downloadProgressAlertController?.view.leadingAnchor, trailing: downloadProgressAlertController?.view.trailingAnchor, bottom: downloadProgressAlertController?.view.bottomAnchor, topConstant: 20, leadingConstant: 20, trailingConstant: 20, bottomConstant: 20)
+        stackView.setAnchors(top: downloadProgressAlertController?.view.topAnchor, leading: downloadProgressAlertController?.view.leadingAnchor, trailing: downloadProgressAlertController?.view.trailingAnchor, bottom: downloadProgressAlertController?.view.bottomAnchor, topConstant: 20, leadingConstant: 20, trailingConstant: 20, bottomConstant: 50)
     }
     
 }

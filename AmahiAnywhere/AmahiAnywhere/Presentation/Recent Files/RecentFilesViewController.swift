@@ -12,6 +12,7 @@ import SDWebImage
 import AVFoundation
 import GoogleCast
 import CoreData
+import Alamofire
 
 class RecentFilesViewController: BaseUIViewController {
     
@@ -32,11 +33,14 @@ class RecentFilesViewController: BaseUIViewController {
     internal var isAlertShowing = false
     
     var offlineFiles : [String: OfflineFile]?
+    var currentFileDownloadRequest:DownloadRequest?
     var fetchedResultsController : NSFetchedResultsController<NSFetchRequestResult>? {
         didSet {
             executeSearch()
         }
     }
+    
+    var downloadCancelled = false
     
     private func executeSearch() {
         if let fc = fetchedResultsController {
@@ -241,7 +245,7 @@ class RecentFilesViewController: BaseUIViewController {
                 let fileURL = FileManager.default.localPathInCache(for: recentFile)
                 handleFileOpening(with: fileURL)
             } else {
-                downloadFile(recentFile: recentFile) { (url) in
+                currentFileDownloadRequest = downloadFile(recentFile: recentFile) { (url) in
                     handleFileOpening(with: url)
                 }
             }
@@ -255,7 +259,7 @@ class RecentFilesViewController: BaseUIViewController {
             let path = FileManager.default.localPathInCache(for: recentFile)
             shareFile(at: path, from: sender)
         }else{
-            downloadFile(recentFile: recentFile) { (url) in
+            currentFileDownloadRequest = downloadFile(recentFile: recentFile) { (url) in
                 self.shareFile(at: url, from: sender)
             }
         }

@@ -9,6 +9,7 @@
 import UIKit
 import Lightbox
 import AVFoundation
+import Alamofire
 import GoogleCast
 import Floaty
 
@@ -31,7 +32,7 @@ class FilesViewController: BaseUIViewController, GCKRemoteMediaClientListener {
             print("setMediaInfo: \(String(describing: mediaInfo))")
         }
     }
-    
+    var currentDownloadRequest:DownloadRequest?
     public var sessionManager: GCKSessionManager!
     public var mediaInformation: GCKMediaInformation?
     public var mediaClient: GCKRemoteMediaClient!
@@ -55,6 +56,7 @@ class FilesViewController: BaseUIViewController, GCKRemoteMediaClientListener {
     internal var filteredFiles = FilteredServerFiles()
     
     internal var fileSort: FileSort!
+    var downloadCancelled = false
     
     /*
      KVO context used to differentiate KVO callbacks for this class versus other
@@ -455,7 +457,16 @@ class FilesViewController: BaseUIViewController, GCKRemoteMediaClientListener {
     
     internal func setupDownloadProgressIndicator() {
         downloadProgressAlertController = UIAlertController(title: "", message: "", preferredStyle: .alert)
-        downloadProgressAlertController?.view.setAnchorSize(width: nil, height: 190)
+        downloadProgressAlertController?.addAction(UIAlertAction(title: "Cancel", style: .destructive, handler: { _ in
+            self.downloadCancelled = true
+            self.currentDownloadRequest?.cancel(createResumeData: true)
+            self.downloadProgressAlertController?.dismiss(animated: true, completion: nil)
+            self.currentDownloadRequest = nil
+            self.downloadProgressAlertController = nil
+            self.progressView = nil
+            self.isAlertShowing = false
+        }))
+        downloadProgressAlertController?.view.setAnchorSize(width: nil, height: 220)
         
         downloadTitleLabel = UILabel()
         downloadTitleLabel?.font = UIFont.systemFont(ofSize: 16, weight: .semibold)
@@ -490,7 +501,7 @@ class FilesViewController: BaseUIViewController, GCKRemoteMediaClientListener {
         stackView.alignment = .fill
         
         downloadProgressAlertController?.view.addSubview(stackView)
-        stackView.setAnchors(top: downloadProgressAlertController?.view.topAnchor, leading: downloadProgressAlertController?.view.leadingAnchor, trailing: downloadProgressAlertController?.view.trailingAnchor, bottom: downloadProgressAlertController?.view.bottomAnchor, topConstant: 20, leadingConstant: 20, trailingConstant: 20, bottomConstant: 20)
+        stackView.setAnchors(top: downloadProgressAlertController?.view.topAnchor, leading: downloadProgressAlertController?.view.leadingAnchor, trailing: downloadProgressAlertController?.view.trailingAnchor, bottom: downloadProgressAlertController?.view.bottomAnchor, topConstant: 20, leadingConstant: 20, trailingConstant: 20, bottomConstant: 50)
     }
     
     // MARK: - Navigation

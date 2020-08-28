@@ -11,6 +11,7 @@ import Lightbox
 import CoreData
 import AVFoundation
 import GoogleCast
+import Alamofire
 
 internal protocol FilesView : BaseView {
     func initFiles(_ files: [ServerFile])
@@ -46,6 +47,7 @@ class FilesPresenter: BasePresenter {
     private var sessionManager: GCKSessionManager!
     
     weak private var view: FilesView?
+    weak private var filesViewController: FilesViewController?
     private var offlineFiles : [String: OfflineFile]?
     
     var fetchedResultsController : NSFetchedResultsController<NSFetchRequestResult>? {
@@ -54,8 +56,9 @@ class FilesPresenter: BasePresenter {
         }
     }
     
-    init(_ view: FilesView) {
-        self.view = view
+    init(_ viewController: FilesViewController) {
+        filesViewController = viewController
+        self.view = viewController
     }
     
     func detachView() {
@@ -162,7 +165,7 @@ class FilesPresenter: BasePresenter {
                 let fileURL = FileManager.default.localPathInCache(for: selectedFile)
                 handleFileOpening(with: fileURL)
             } else {
-                downloadFile(at: indexPath.item, section: indexPath.section, selectedFile, mimeType: type, from: sender) { fileURL in
+                filesViewController?.currentDownloadRequest = downloadFile(at: indexPath.item, section: indexPath.section, selectedFile, mimeType: type, from: sender) { fileURL in
                     handleFileOpening(with: fileURL)
                 }
             }
@@ -178,7 +181,7 @@ class FilesPresenter: BasePresenter {
             let path = FileManager.default.localPathInCache(for: file)
             self.view?.shareFile(at: path, from: sender)
         } else {
-            downloadFile(at: fileIndex, section: section, file, mimeType: file.mimeType, from: sender) { [weak self] filePath in
+            filesViewController?.currentDownloadRequest = downloadFile(at: fileIndex, section: section, file, mimeType: file.mimeType, from: sender) { [weak self] filePath in
                 self?.view?.shareFile(at: filePath, from: sender)
             }
         }
@@ -223,8 +226,7 @@ class FilesPresenter: BasePresenter {
                               _ serverFile: ServerFile,
                               mimeType: MimeType,
                               from sender : UIView?,
-                              completion: @escaping (_ filePath: URL) -> Void) {
-        
+                              completion: @escaping (_ filePath: URL) -> Void) -> DownloadRequest? {
         self.view?.updateDownloadProgress(for: fileIndex, section: section, downloadJustStarted: true, progress: 0.0)
         
         // cleanup temp files in background
@@ -233,12 +235,15 @@ class FilesPresenter: BasePresenter {
                                              folderName: "cache")
         }
         
-        Network.shared.downloadFileToStorage(file: serverFile, progressCompletion: { progress in
+        let downloadRequest = Network.shared.downloadFileToStorage(file: serverFile, progressCompletion: { progress in
             self.view?.updateDownloadProgress(for: fileIndex, section: section, downloadJustStarted: false, progress: progress)
         }, completion: { (wasSuccessful) in
             
             if !wasSuccessful  {
-                self.view?.showError(message: StringLiterals.errorDownloadingFileMessage)
+                if !(self.filesViewController?.downloadCancelled ?? false){
+                    self.view?.showError(message: StringLiterals.errorDownloadingFileMessage)
+                }
+                self.filesViewController?.downloadCancelled = false
                 return
             }
             
@@ -248,6 +253,7 @@ class FilesPresenter: BasePresenter {
                 completion(filePath)
             })
         })
+        return downloadRequest
     }
     
     func loadOfflineFiles() {

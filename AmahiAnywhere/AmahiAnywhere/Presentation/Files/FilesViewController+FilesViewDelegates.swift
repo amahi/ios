@@ -39,7 +39,7 @@ extension FilesViewController: FilesView {
             
         }
         
-        if !isAlertShowing {
+        if !isAlertShowing && downloadProgressAlertController != nil {
             self.isAlertShowing = true
             present(downloadProgressAlertController!, animated: true, completion: nil)
         }

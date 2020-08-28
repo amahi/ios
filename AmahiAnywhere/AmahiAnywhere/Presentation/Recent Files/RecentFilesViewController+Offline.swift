@@ -7,6 +7,7 @@
 //
 
 import CoreData
+import Alamofire
 
 extension RecentFilesViewController{
     
@@ -119,7 +120,7 @@ extension RecentFilesViewController{
         return offlineFiles?[file.fileName]
     }
     
-    func downloadFile(recentFile: Recent, completion: @escaping(_ filePath: URL) -> Void){
+    func downloadFile(recentFile: Recent, completion: @escaping(_ filePath: URL) -> Void) -> DownloadRequest?{
         updateDownloadProgress(recentFile: recentFile, downloadJustStarted: true, progress: 0.0)
         
         // cleanup temp files in background
@@ -128,11 +129,14 @@ extension RecentFilesViewController{
                                              folderName: "cache")
         }
         
-        Network.shared.downloadRecentFileToStorage(recentFile: recentFile, progressCompletion: { (progress) in
+        let request = Network.shared.downloadRecentFileToStorage(recentFile: recentFile, progressCompletion: { (progress) in
             self.updateDownloadProgress(recentFile: recentFile, downloadJustStarted: false, progress: progress)
         }) { (wasSuccessfull) in
             if !wasSuccessfull{
-                self.showError(message: StringLiterals.errorDownloadingFileMessage)
+                if !self.downloadCancelled{
+                    self.showError(message: StringLiterals.errorDownloadingFileMessage)
+                }
+                self.downloadCancelled = false
                 return
             }
             
@@ -142,6 +146,7 @@ extension RecentFilesViewController{
                 completion(filePath)
             })
         }
+        return request
     }
     
 }

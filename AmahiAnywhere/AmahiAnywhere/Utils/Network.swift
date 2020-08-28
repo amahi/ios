@@ -147,7 +147,7 @@ public class Network {
     
     func downloadRecentFileToStorage(recentFile: Recent,
                                             progressCompletion: @escaping (_ percent: Float) -> Void,
-                                            completion: @escaping (_ isSuccessful: Bool ) -> Void) {
+                                            completion: @escaping (_ isSuccessful: Bool ) -> Void) -> DownloadRequest?{
         // Create destination URL
         let destination: DownloadRequest.DownloadFileDestination = { _, _ in
             
@@ -159,9 +159,9 @@ public class Network {
             return (destinationFileUrl!, [.removePreviousFile, .createIntermediateDirectories])
         }
         
-        guard let fileURL = URL(string: recentFile.fileURL) else { return }
+        guard let fileURL = URL(string: recentFile.fileURL) else { return nil}
         
-        Alamofire.download(fileURL, to: destination)
+        let request = Alamofire.download(fileURL, to: destination)
             .downloadProgress { progress in
                 progressCompletion(Float(progress.fractionCompleted))
             }
@@ -173,11 +173,12 @@ public class Network {
                     completion(false)
                 }
         }
+        return request
     }
     
     public func downloadFileToStorage(file: ServerFile,
                                       progressCompletion: @escaping (_ percent: Float) -> Void,
-                                      completion: @escaping (_ isSuccessful: Bool ) -> Void) {
+                                      completion: @escaping (_ isSuccessful: Bool ) -> Void) -> DownloadRequest? {
 
         // Create destination URL
         let destination: DownloadRequest.DownloadFileDestination = { _, _ in
@@ -192,10 +193,10 @@ public class Network {
         
         guard let fileUrl = ServerApi.shared!.getFileUri(file) else {
             AmahiLogger.log("Invalid file URL, attempt to download file failed")
-            return
+            return nil
         }
             
-        Alamofire.download(fileUrl, to: destination)
+       let downloadRequest = Alamofire.download(fileUrl, to: destination)
             .downloadProgress { progress in
                 progressCompletion(Float(progress.fractionCompleted))
             }
@@ -212,5 +213,6 @@ public class Network {
                     completion(false)
                 }
         }
+        return downloadRequest
     }
 }
